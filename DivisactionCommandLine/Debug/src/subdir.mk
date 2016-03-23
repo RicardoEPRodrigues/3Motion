@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/DivisactionCommandLine.cpp 
+../src/DivisactionCommandLine.cpp \
+../src/Looper.cpp 
 
 OBJS += \
-./src/DivisactionCommandLine.o 
+./src/DivisactionCommandLine.o \
+./src/Looper.o 
 
 CPP_DEPS += \
-./src/DivisactionCommandLine.d 
+./src/DivisactionCommandLine.d \
+./src/Looper.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
