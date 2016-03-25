@@ -47,7 +47,7 @@ std::string ProgressString::getProgress(system_clock::time_point now) {
 	if (difference > durationInMilliseconds) {
 		actionProgress += string(progressMaxSize, '*');
 	} else {
-		unsigned progress = floor((difference/1000.) * (double) progressMaxSize);
+		unsigned progress = floor((difference/(double) durationInMilliseconds) * (double) progressMaxSize);
 		actionProgress += string(progress, '*');
 		actionProgress += string(progressMaxSize - progress, ' ');
 	}

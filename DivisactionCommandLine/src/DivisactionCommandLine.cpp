@@ -18,28 +18,23 @@ using namespace DivisactionCommandLine;
 int counter = 0;
 ProgressString * progressState = new ProgressString();
 Looper * looper = new Looper();
-clock_t clocky = clock();
 
 void callback() {
-	cout << counter << endl;
+//	cout << counter << endl;
 	cout << progressState->update() << endl;
-	cout << ((clock() - clocky)/ (double) ( CLOCKS_PER_SEC / 1000)) << endl;
-	if (counter >= 10) {
+	if (counter >= 30) {
 		looper->stop();
 	}
 	counter++;
 }
 
 int main() {
-	mamma * mom = new mamma();
-	mom->screamMom();
 
-	clocky = clock();
-	cout << progressState->start(1000, "My Action") << endl;
-
-
+	progressState->start(10000, "My Action");
 	looper->start(callback);
 
+//	mamma * mom = new mamma();
+//	mom->screamMom();
 //	function<void()> callbackFunc = bind(&mamma::screamMom, mom);
 //	looper->start(callbackFunc);
 
