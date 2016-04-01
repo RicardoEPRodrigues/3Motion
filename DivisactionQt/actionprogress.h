@@ -15,6 +15,8 @@ public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();
 
+    void setLabel(QString name);
+
 private:
     Ui::ActionProgress *ui;
 };

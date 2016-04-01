@@ -23,7 +23,7 @@
       </size>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>ActionName</string>
      </property>
     </widget>
    </item>

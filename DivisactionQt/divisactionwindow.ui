@@ -6,15 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>557</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>DivisactionWindow</string>
   </property>
-  <widget class="QWidget" name="ActionStack">
-   <layout class="QVBoxLayout" name="verticalLayout"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>537</width>
+         <height>407</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="ActionStackLayout"/>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

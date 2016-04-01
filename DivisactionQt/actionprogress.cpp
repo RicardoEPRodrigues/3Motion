@@ -12,3 +12,8 @@ ActionProgress::~ActionProgress()
 {
     delete ui;
 }
+
+void ActionProgress::setLabel(QString name)
+{
+    this->ui->label->setText(name);
+}

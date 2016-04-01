@@ -2,7 +2,6 @@
 #define DIVISACTIONWINDOW_H
 
 #include <QMainWindow>
-#include "mamma.h"
 
 namespace Ui {
 class DivisactionWindow;
