@@ -30,6 +30,12 @@
 # Eclipse
 .metadata
 Debug
+RemoteSystemsTempFiles
+.project
+.cproject
+.settings
 
 # Qt
 build-DivisactionQt*
+*.pro
+*.pro.user
