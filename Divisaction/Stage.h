@@ -13,29 +13,44 @@ using namespace std::chrono;
 
 namespace Divisaction {
 
-class Stage {
-private:
-	system_clock::time_point startTime;
+    class Stage {
+    private:
+        system_clock::time_point startTime;
 
-	double getProgress(system_clock::time_point now);
-public:
-	std::string name;
-	double durationInMilliseconds;
+        /**
+         * Returns the current progress of the stage.
+         * @param now Present time
+         * @return Progress value between 0 and 1. If the stage hasn't been started it'll return 0. If the stage is complete it'll always return 1.
+         */
+        double getProgress(system_clock::time_point now);
+    public:
+        std::string name;
+        double durationInMilliseconds;
+        bool interuptable;
 
-	Stage();
-	virtual ~Stage();
+        Stage();
+        Stage(std::string name, double durationInMilliseconds = 0,
+                bool interuptable = true);
+        virtual ~Stage();
 
-	void start(double durationInMilliseconds, std::string name = std::string());
-	double restart();
+        void start();
 
-	/**
-	 * Return the current progress of the action.
-	 * @return Progress value between 0 and 1. If the stage hasn't been started it'll return 0. If the stage is complete it'll always return 1.
-	 */
-	double getProgress();
-	static double getProgress(system_clock::time_point start,
-			system_clock::time_point now, double durationInMilliseconds);
-};
+        /**
+         * Returns the current progress of the stage.
+         * @return Progress value between 0 and 1. If the stage hasn't been started it'll return 0. If the stage is complete it'll always return 1.
+         */
+        double getProgress();
+
+        /**
+         * Returns the progress of an stage.
+         * @param start Time in which the stage started
+         * @param now Present time
+         * @param durationInMilliseconds Time duration of the stage
+         * @return Progress value between 0 and 1. If the stage hasn't been started it'll return 0. If the stage is complete it'll always return 1.
+         */
+        static double getProgress(system_clock::time_point start,
+                system_clock::time_point now, double durationInMilliseconds);
+    };
 
 } /* namespace Divisaction */
 

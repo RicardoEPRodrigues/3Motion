@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) ricardo 2016 - All Rights Reserved
+ */
+
 #ifndef DIVISACTIONWINDOW_H
 #define DIVISACTIONWINDOW_H
 
@@ -17,6 +21,9 @@ public:
 
 private:
     Ui::DivisactionWindow *ui;
+
+private slots:
+    void updateStages();
 };
 
 #endif // DIVISACTIONWINDOW_H

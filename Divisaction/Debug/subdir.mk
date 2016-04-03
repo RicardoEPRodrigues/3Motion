@@ -4,12 +4,18 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Action.cpp \
+../Looper.cpp \
 ../Stage.cpp 
 
 OBJS += \
+./Action.o \
+./Looper.o \
 ./Stage.o 
 
 CPP_DEPS += \
+./Action.d \
+./Looper.d \
 ./Stage.d 
 
 

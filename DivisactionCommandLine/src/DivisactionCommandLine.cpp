@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include <functional>
-#include "mamma.h"
 #include "Looper.h"
 #include "ConsoleUtilities/ProgressString.h"
 using namespace std;
@@ -22,6 +21,7 @@ Looper * looper = new Looper();
 void callback() {
 //	cout << counter << endl;
 	cout << progressState->update() << endl;
+
 	if (counter >= 30) {
 		looper->stop();
 	}
@@ -31,6 +31,7 @@ void callback() {
 int main() {
 
 	progressState->start(10000, "My Action");
+	looper->setInterval(0);
 	looper->start(callback);
 
 //	mamma * mom = new mamma();
