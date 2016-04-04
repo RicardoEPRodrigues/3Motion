@@ -3,12 +3,17 @@
  * 
  * Copyright (C) ricardo 2016 - All Rights Reserved
  */
-
+/**
+ * @file Stage.h
+ */
 #ifndef STAGE_H_
 #define STAGE_H_
 
 #include <string>
 #include <chrono>
+#include <math.h>
+
+using namespace std;
 using namespace std::chrono;
 
 namespace Divisaction {
@@ -17,15 +22,16 @@ namespace Divisaction {
     private:
         system_clock::time_point startTime;
 
-        /**
-         * Returns the current progress of the stage.
-         * @param now Present time
-         * @return Progress value between 0 and 1. If the stage hasn't been started it'll return 0. If the stage is complete it'll always return 1.
-         */
-        double getProgress(system_clock::time_point now);
+        bool complete;
+        bool started;
     public:
         std::string name;
         double durationInMilliseconds;
+        /**
+         * Determines if this stage is interruptible.
+         * @note interruptibility in only important if the stage is an Execution or Follow Through stage
+         * @see Action()
+         */
         bool interuptable;
 
         Stage();
@@ -50,6 +56,12 @@ namespace Divisaction {
          */
         static double getProgress(system_clock::time_point start,
                 system_clock::time_point now, double durationInMilliseconds);
+
+        bool isComplete();
+        void endStage();
+        bool hasStarted() const;
+
+        void reset();
     };
 
 } /* namespace Divisaction */

@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QScrollArea" name="scrollArea">
+     <widget class="QScrollArea" name="StagesScroll">
       <property name="widgetResizable">
        <bool>true</bool>
       </property>

@@ -17,7 +17,9 @@ namespace Divisaction {
         {
           return "Variable required variable is invalid or some of it's contents are invalid";
         }
-    } invalidArgumentExc;
+    };
+
+    const InvalidArgumentException invalidArgumentExc;
 
 } /* namespace Divisaction */
 

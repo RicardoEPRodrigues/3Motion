@@ -8,6 +8,11 @@
 #define LOOPER_H_
 
 #include <functional>
+#include <chrono>
+#include <thread>
+
+#include "Exceptions/NullPointerException.h"
+#include "Exceptions/InvalidArgumentException.h"
 
 namespace Divisaction {
 
@@ -25,7 +30,6 @@ namespace Divisaction {
         Looper();
         Looper(std::function<void()> callback, long int interval = 250);
         virtual ~Looper();
-
 
         void setCallback(std::function<void()> callback);
         void setInterval(long int interval);

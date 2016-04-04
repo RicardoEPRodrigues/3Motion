@@ -5,8 +5,6 @@
  */
 
 #include "Stage.h"
-#include <math.h>
-using namespace std;
 
 namespace Divisaction {
 
@@ -15,6 +13,8 @@ namespace Divisaction {
         name = string();
         durationInMilliseconds = 0;
         interuptable = true;
+        complete = false;
+        started = false;
     }
 
     Stage::Stage(std::string name, double durationInMilliseconds,
@@ -28,16 +28,42 @@ namespace Divisaction {
     Stage::~Stage() {
     }
 
+    void Stage::reset() {
+        complete = false;
+        started = false;
+    }
+
     void Stage::start() {
+        complete = false;
+        started = true;
         this->startTime = system_clock::now();
     }
 
     double Stage::getProgress() {
-        return getProgress(system_clock::now());
+        if (complete) {
+            return 1;
+        }
+        double percentage = getProgress(startTime, system_clock::now(),
+                durationInMilliseconds);
+        if (percentage == 1) {
+            complete = true;
+        }
+        return percentage;
     }
 
-    double Stage::getProgress(system_clock::time_point now) {
-        return getProgress(startTime, now, durationInMilliseconds);
+    void Stage::endStage() {
+        this->complete = true;
+    }
+
+    bool Stage::isComplete() {
+        if (!complete) {
+            getProgress();
+        }
+        return complete;
+    }
+
+    bool Stage::hasStarted() const {
+        return started;
     }
 
     double Stage::getProgress(system_clock::time_point start,
@@ -54,5 +80,4 @@ namespace Divisaction {
             return (difference / (double) durationInMilliseconds);
         }
     }
-
 } /* namespace Divisaction */

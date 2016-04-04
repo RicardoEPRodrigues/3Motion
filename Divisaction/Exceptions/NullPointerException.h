@@ -17,7 +17,9 @@ namespace Divisaction {
         {
           return "Variable required variable is null or some of it's contents are null";
         }
-    } nullPointerExc;
+    };
+
+    const NullPointerException nullPointerExc;
 
 } /* namespace Divisaction */
 
