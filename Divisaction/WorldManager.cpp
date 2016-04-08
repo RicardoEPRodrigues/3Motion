@@ -9,7 +9,7 @@
 namespace Divisaction {
 
     WorldManager::WorldManager() {
-
+        playing = true;
     }
 
     WorldManager::~WorldManager() {
@@ -18,15 +18,36 @@ namespace Divisaction {
         }
     }
 
+    const vector<Agent*>& WorldManager::getAgents() const {
+        return agents;
+    }
+
+    void WorldManager::play() {
+        this->playing = true;
+    }
+
+    void WorldManager::pause() {
+        this->playing = false;
+    }
+
+    void WorldManager::addAgent(Agent* agent) {
+        if (agent) {
+            agent->setWorldManager(this);
+            this->agents.push_back(agent);
+        }
+    }
+
     void WorldManager::update() {
-        for (Agent * agent : agents) {
-            agent->perceive();
-        }
-        for (Agent* agent : agents) {
-            agent->decide();
-        }
-        for (Agent* agent : agents) {
-            agent->act();
+        if (playing) {
+            for (Agent * agent : agents) {
+                agent->perceive();
+            }
+            for (Agent* agent : agents) {
+                agent->decide();
+            }
+            for (Agent* agent : agents) {
+                agent->perform();
+            }
         }
     }
 

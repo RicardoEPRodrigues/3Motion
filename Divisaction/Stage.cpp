@@ -10,7 +10,7 @@ namespace Divisaction {
 
     Stage::Stage() {
         startTime = system_clock::now();
-        name = string();
+        name = string("Default Stage Name");
         durationInMilliseconds = 0;
         interuptable = true;
         complete = false;
@@ -79,5 +79,45 @@ namespace Divisaction {
         } else {
             return (difference / (double) durationInMilliseconds);
         }
+    }
+
+    inline bool Stage::operator ==(const Stage& other) {
+        return this->getName() == other.getName();
+    }
+
+    inline bool Stage::operator !=(const Stage& other) {
+        return !((*this) == other);
+    }
+
+    inline bool Stage::operator <(const Stage& other) {
+        return this->name < other.getName();
+    }
+
+    inline bool Stage::operator >(const Stage& other) {
+        return this->name > other.getName();
+    }
+
+    double Stage::getDurationInMilliseconds() const {
+        return durationInMilliseconds;
+    }
+
+    void Stage::setDurationInMilliseconds(double durationInMilliseconds) {
+        this->durationInMilliseconds = durationInMilliseconds;
+    }
+
+    bool Stage::isInteruptable() const {
+        return interuptable;
+    }
+
+    void Stage::setInteruptable(bool interuptable) {
+        this->interuptable = interuptable;
+    }
+
+    const std::string& Stage::getName() const {
+        return name;
+    }
+
+    void Stage::setName(const std::string& name) {
+        this->name = name;
     }
 } /* namespace Divisaction */

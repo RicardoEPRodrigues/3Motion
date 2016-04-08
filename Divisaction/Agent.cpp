@@ -11,7 +11,6 @@ namespace Divisaction {
     Agent::Agent() {
         worldManager = nullptr;
         action = nullptr;
-        alreadyActed = false;
     }
 
     Agent::~Agent() {
@@ -22,6 +21,10 @@ namespace Divisaction {
 
     void Agent::setWorldManager(class WorldManager* worldManager) {
         this->worldManager = worldManager;
+    }
+
+    Action* Agent::getCurrentAction() const {
+        return action;
     }
 
     void Agent::addPossibleAction(Action* action) {
@@ -43,17 +46,15 @@ namespace Divisaction {
     void Agent::decide() {
     }
 
-    void Agent::act() {
-        if (!alreadyActed && !action && possibleActions.size() > 0) {
-            action = possibleActions[0];
-        }
-        if (action) {
-            if(action->execute()) {
-                alreadyActed = true;
-                action = nullptr;
-                // completed action
-            }
-        }
+    const std::string& Agent::getName() const {
+        return name;
+    }
+
+    void Agent::setName(const std::string& name) {
+        this->name = name;
+    }
+
+    void Agent::perform() {
     }
 
 } /* namespace Divisaction */

@@ -7,8 +7,6 @@
 
 using namespace Divisaction;
 
-std::vector<ActionProgress*> actionProgresses;
-
 DivisactionWindow::DivisactionWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::DivisactionWindow)
@@ -23,17 +21,8 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
     timer->start(100);
 
-    int j = 1;
-    std::vector<Stage*> stages (30);
-    for(Stage * stage : stages) {
-        stage = new Stage(std::string("Super Action ") + std::to_string(j), j * 1000);
-
-        ActionProgress * actionProgress = new ActionProgress();
-        actionProgress->set(stage);
-        ui->ActionStackLayout->addWidget(actionProgress);
-        actionProgresses.push_back(actionProgress);
-        ++j;
-    }
+    worldManager = Examples::example1();
+    this->on_pauseButton_clicked();
 }
 
 DivisactionWindow::~DivisactionWindow()
@@ -43,14 +32,60 @@ DivisactionWindow::~DivisactionWindow()
 
 
 void DivisactionWindow::updateWorld() {
-    for (ActionProgress * progress : actionProgresses) {
-        if (progress) {
-            progress->update();
+    if (worldManager) {
+        worldManager->update();
+
+        this->updateProgress();
+    }
+}
+
+void DivisactionWindow::updateProgress()
+{
+    if (worldManager) {
+        for(Agent * agent: worldManager->getAgents()) {
+            Action * action = agent->getCurrentAction();
+
+            if (action) {
+                Stage * stage = action->getCurrentStage();
+
+                std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(stage);
+                if (it == actionsProgress.end()) {
+                    ActionProgress * actionProgress = new ActionProgress();
+                    actionProgress->set(stage);
+                    ui->ActionStackLayout->addWidget(actionProgress);
+                    actionsProgress[stage] = actionProgress;
+                }
+            }
+        }
+
+        for(std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.begin(); it != actionsProgress.end(); ++it) {
+            it->second->update();
         }
     }
 }
 
+
+// Utilities
+
 void DivisactionWindow::moveScrollBarToBottom(int min, int max) {
     Q_UNUSED(min);
     this->scrollbar->setValue(max); // Moves the scroll bar to the bottom so that new stage are seen first.
+}
+
+void DivisactionWindow::on_playButton_clicked()
+{
+    if (worldManager) {
+        worldManager->play();
+        ui->playButton->setEnabled(false);
+        ui->pauseButton->setEnabled(true);
+    }
+}
+
+void DivisactionWindow::on_pauseButton_clicked()
+{
+    if (worldManager) {
+        worldManager->pause();
+        ui->playButton->setEnabled(true);
+        ui->pauseButton->setEnabled(false);
+    }
 }

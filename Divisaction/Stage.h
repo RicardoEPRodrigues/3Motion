@@ -24,7 +24,6 @@ namespace Divisaction {
 
         bool complete;
         bool started;
-    public:
         std::string name;
         double durationInMilliseconds;
         /**
@@ -33,6 +32,7 @@ namespace Divisaction {
          * @see Action()
          */
         bool interuptable;
+    public:
 
         Stage();
         Stage(std::string name, double durationInMilliseconds = 0,
@@ -62,6 +62,17 @@ namespace Divisaction {
         bool hasStarted() const;
 
         void reset();
+
+        inline bool operator==(const Stage& other);
+        inline bool operator!=(const Stage& other);
+        inline bool operator<(const Stage& other);
+        inline bool operator>(const Stage& other);
+        double getDurationInMilliseconds() const;
+        void setDurationInMilliseconds(double durationInMilliseconds);
+        bool isInteruptable() const;
+        void setInteruptable(bool interuptable);
+        const std::string& getName() const;
+        void setName(const std::string& name);
     };
 
 } /* namespace Divisaction */

@@ -16,11 +16,18 @@ namespace Divisaction {
 
     class WorldManager {
     private:
-    public:
         vector<Agent*> agents;
+
+        bool playing;
+    public:
 
         WorldManager();
         virtual ~WorldManager();
+
+        void play();
+        void pause();
+        const vector<Agent*>& getAgents() const;
+        void addAgent(Agent * agent);
 
         void update();
     };

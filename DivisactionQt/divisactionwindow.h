@@ -6,11 +6,15 @@
 #define DIVISACTIONWINDOW_H
 
 #include <QMainWindow>
-#include "actionprogress.h"
-#include "Stage.h"
 #include <QTimer>
 #include <QScrollArea>
 #include <QScrollBar>
+
+#include <vector>
+
+#include "actionprogress.h"
+#include "WorldManager.h"
+#include "Extra/Examples.h"
 
 namespace Ui {
 class DivisactionWindow;
@@ -28,9 +32,16 @@ private:
     Ui::DivisactionWindow *ui;
     QScrollBar* scrollbar;
 
+    WorldManager * worldManager;
+    std::map<Stage *, ActionProgress *> actionsProgress;
+
+    void updateProgress();
+
 private slots:
     void updateWorld();
     void moveScrollBarToBottom(int min, int max);
+    void on_playButton_clicked();
+    void on_pauseButton_clicked();
 };
 
 #endif // DIVISACTIONWINDOW_H

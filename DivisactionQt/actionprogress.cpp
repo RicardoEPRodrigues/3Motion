@@ -28,7 +28,7 @@ void ActionProgress::setLabel(QString name)
 void ActionProgress::set(Stage* stage)
 {
     this->stage = stage;
-    ui->label->setText(QString(stage->name.c_str()));
+    ui->label->setText(QString(stage->getName().c_str()));
     ui->progressBar->setValue(floor(stage->getProgress() * 100));
 }
 

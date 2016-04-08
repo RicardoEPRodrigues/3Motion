@@ -13,29 +13,33 @@
 namespace Divisaction {
 
     class Agent {
+    private:
+        std::string name;
+
+    protected:
         class WorldManager* worldManager;
 
         std::vector<Action*> possibleActions;
 
-        bool alreadyActed;
-
-    public:
         /**
          * Action chosen to be executed by the agent
          */
         Action * action;
-
+    public:
         Agent();
         virtual ~Agent();
 
         void setWorldManager(class WorldManager* worldManager);
 
+        Action* getCurrentAction() const;
+        const std::string& getName() const;
+        void setName(const std::string& name);
         void addPossibleAction(Action * action);
         void removePossibleAction(Action * action);
 
-        void perceive();
-        void decide();
-        void act();
+        virtual void perceive();
+        virtual void decide();
+        virtual void perform();
     };
 
 } /* namespace Divisaction */

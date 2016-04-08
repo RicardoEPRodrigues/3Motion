@@ -25,7 +25,9 @@ namespace Divisaction {
         this->currentStageType = StageType::anticipation;
         this->running = false;
         for (Stage * stage : stages) {
-            stage->reset();
+            if (stage) {
+                stage->reset();
+            }
         }
     }
 
@@ -33,12 +35,16 @@ namespace Divisaction {
         this->stages[type] = stage;
     }
 
-    Stage* Action::getStage(StageType type) {
+    Stage* Action::getStage(StageType type) const {
         return stages[type];
     }
 
     StageType Action::getCurrentStageType() const {
         return currentStageType;
+    }
+
+    Stage* Action::getCurrentStage() const {
+        return stages[currentStageType];
     }
 
     bool Action::execute() {
@@ -59,7 +65,8 @@ namespace Divisaction {
                 running = false;
                 return true;
             } else {
-                currentStageType = static_cast<StageType>((int)currentStageType + 1);
+                currentStageType = static_cast<StageType>((int) currentStageType
+                        + 1);
                 return execute();
             }
         }
@@ -75,7 +82,7 @@ namespace Divisaction {
             case StageType::execution:
                 // Fall through
             case StageType::followThrough:
-                if (getStage(currentStageType)->interuptable) {
+                if (getStage(currentStageType)->isInteruptable()) {
                     currentStageType = StageType::cancel;
                 }
                 break;

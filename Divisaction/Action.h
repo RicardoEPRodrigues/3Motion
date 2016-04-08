@@ -13,7 +13,9 @@
 
 namespace Divisaction {
 
-    enum StageType { anticipation, execution, followThrough, cancel, size };
+    enum StageType {
+        anticipation, execution, followThrough, cancel, size
+    };
 
     class Action {
     private:
@@ -30,7 +32,8 @@ namespace Divisaction {
         virtual ~Action();
 
         void setStage(StageType type, Stage * stage);
-        Stage * getStage(StageType type);
+        Stage * getStage(StageType type) const;
+        Stage * getCurrentStage() const;
         StageType getCurrentStageType() const;
 
         /**
