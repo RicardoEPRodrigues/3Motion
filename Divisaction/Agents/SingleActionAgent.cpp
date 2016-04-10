@@ -15,9 +15,11 @@ namespace Divisaction {
     SingleActionAgent::~SingleActionAgent() {
     }
 
-    void SingleActionAgent::perform() {
+    Event * SingleActionAgent::perform() {
+        Event* event = nullptr;
         if (!alreadyActed && !action && possibleActions.size() > 0) {
             action = possibleActions[0];
+            event = new Event(this);
         }
         if (action) {
             if(action->execute()) {
@@ -25,7 +27,11 @@ namespace Divisaction {
                 action = nullptr;
                 // completed action
             }
+            if (event) {
+                event->stage = action->getCurrentStage();
+            }
         }
+        return event;
     }
 
 } /* namespace Divisaction */

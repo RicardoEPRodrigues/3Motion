@@ -9,6 +9,7 @@
 
 #include <vector>
 #include "Action.h"
+#include "Event.h"
 
 namespace Divisaction {
 
@@ -38,8 +39,9 @@ namespace Divisaction {
         void removePossibleAction(Action * action);
 
         virtual void perceive();
+        virtual void react();
         virtual void decide();
-        virtual void perform();
+        virtual Event* perform();
     };
 
 } /* namespace Divisaction */

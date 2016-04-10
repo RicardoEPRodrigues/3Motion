@@ -51,7 +51,7 @@ void DivisactionWindow::updateProgress()
                 std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(stage);
                 if (it == actionsProgress.end()) {
                     ActionProgress * actionProgress = new ActionProgress();
-                    actionProgress->set(stage);
+                    actionProgress->set(agent, stage);
                     ui->ActionStackLayout->addWidget(actionProgress);
                     actionsProgress[stage] = actionProgress;
                 }

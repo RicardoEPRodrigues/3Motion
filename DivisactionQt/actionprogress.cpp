@@ -4,7 +4,6 @@
 
 #include "actionprogress.h"
 #include "ui_actionprogress.h"
-#include <math.h>
 
 ActionProgress::ActionProgress(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +12,16 @@ ActionProgress::ActionProgress(QWidget *parent) :
     ui->setupUi(this);
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(100);
+
+    QGraphicsOpacityEffect* opacity = new QGraphicsOpacityEffect;
+    QPropertyAnimation* animationOpacity = new QPropertyAnimation(opacity, "opacity");
+    this->setGraphicsEffect(opacity);
+
+    animationOpacity->setDuration(500);
+    animationOpacity->setStartValue(0.0);
+    animationOpacity->setEndValue(1.0);
+    animationOpacity->setEasingCurve( QEasingCurve::InCubic );
+    animationOpacity->start();
 }
 
 ActionProgress::~ActionProgress()
@@ -25,10 +34,11 @@ void ActionProgress::setLabel(QString name)
     this->ui->label->setText(name);
 }
 
-void ActionProgress::set(Stage* stage)
+void ActionProgress::set(Agent* agent, Stage* stage)
 {
     this->stage = stage;
-    ui->label->setText(QString(stage->getName().c_str()));
+    ui->AgentName->setText(QString(agent->getName().c_str()));
+    ui->AgentStage->setText(QString(stage->getName().c_str()));
     ui->progressBar->setValue(floor(stage->getProgress() * 100));
 }
 

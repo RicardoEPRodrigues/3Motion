@@ -22,10 +22,10 @@ namespace Divisaction {
         agentBob->addPossibleAction(new LongWalk());
         worldManager->addAgent(agentBob);
 
-        Agent * agentHanna = new SingleActionAgent();
-        agentHanna->setName(string("Hanna"));
-        agentHanna->addPossibleAction(new LongWalk());
-        worldManager->addAgent(agentHanna);
+//        Agent * agentHanna = new SingleActionAgent();
+//        agentHanna->setName(string("Hanna"));
+//        agentHanna->addPossibleAction(new LongWalk());
+//        worldManager->addAgent(agentHanna);
 
         return worldManager;
     }

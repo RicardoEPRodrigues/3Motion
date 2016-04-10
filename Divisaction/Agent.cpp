@@ -40,12 +40,6 @@ namespace Divisaction {
         }
     }
 
-    void Agent::perceive() {
-    }
-
-    void Agent::decide() {
-    }
-
     const std::string& Agent::getName() const {
         return name;
     }
@@ -54,7 +48,17 @@ namespace Divisaction {
         this->name = name;
     }
 
-    void Agent::perform() {
+    void Agent::perceive() {
+    }
+
+    void Agent::react() {
+    }
+
+    void Agent::decide() {
+    }
+
+    Event* Agent::perform() {
+        return nullptr;
     }
 
 } /* namespace Divisaction */

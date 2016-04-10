@@ -18,7 +18,7 @@ namespace Divisaction {
         SingleActionAgent();
         virtual ~SingleActionAgent();
 
-        void perform();
+        Event* perform();
     };
 
 } /* namespace Divisaction */

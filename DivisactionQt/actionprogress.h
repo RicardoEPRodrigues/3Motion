@@ -6,7 +6,11 @@
 #define ACTIONPROGRESS_H
 
 #include <QWidget>
+#include "Agent.h"
 #include "Stage.h"
+#include <math.h>
+#include <QPropertyAnimation>
+#include <QGraphicsOpacityEffect>
 
 using namespace Divisaction;
 
@@ -26,12 +30,13 @@ public:
 
     void setLabel(QString name);
 
-    void set(Stage *stage);
+    void set(Agent* agent, Stage *stage);
 
     void update();
 
 private:
     Ui::ActionProgress *ui;
+
 };
 
 #endif // ACTIONPROGRESS_H
