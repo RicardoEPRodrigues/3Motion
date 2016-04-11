@@ -8,30 +8,22 @@
 
 namespace Divisaction {
 
-    SingleActionAgent::SingleActionAgent() : Agent() {
+    SingleActionAgent::SingleActionAgent()
+            : Agent() {
         alreadyActed = false;
     }
 
     SingleActionAgent::~SingleActionAgent() {
     }
 
-    Event * SingleActionAgent::perform() {
-        Event* event = nullptr;
+    void SingleActionAgent::perceive(vector<Event> events) {
+    }
+
+    void SingleActionAgent::decide() {
         if (!alreadyActed && !action && possibleActions.size() > 0) {
             action = possibleActions[0];
-            event = new Event(this);
+            alreadyActed = true;
         }
-        if (action) {
-            if(action->execute()) {
-                alreadyActed = true;
-                action = nullptr;
-                // completed action
-            }
-            if (event) {
-                event->stage = action->getCurrentStage();
-            }
-        }
-        return event;
     }
 
 } /* namespace Divisaction */

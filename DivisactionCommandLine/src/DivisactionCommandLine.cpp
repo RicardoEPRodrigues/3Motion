@@ -8,7 +8,11 @@
 
 #include <iostream>
 #include <functional>
+
 #include "Looper.h"
+#include "WorldManager.h"
+#include "Extra/Examples.h"
+
 #include "ConsoleUtilities/ProgressString.h"
 using namespace std;
 using namespace Divisaction;
@@ -18,21 +22,35 @@ int counter = 0;
 ProgressString * progressState = new ProgressString();
 Looper * looper = new Looper();
 
-void callback() {
-//	cout << counter << endl;
-	cout << progressState->update() << endl;
+WorldManager * worldManager = nullptr;
 
-	if (counter >= 30) {
-		looper->stop();
-	}
-	counter++;
+void basicExample() {
+//  cout << counter << endl;
+    cout << progressState->update() << endl;
+
+    if (counter >= 30) {
+        looper->stop();
+    }
+    counter++;
+}
+
+Event currentEvent;
+bool hasEvent = false;
+
+void worldManagerTesting() {
+    worldManager->update();
+
+    if (counter == 10) {
+        looper->stop();
+    }
+    counter++;
 }
 
 int main() {
-
-	progressState->start(10000, "My Action");
-	looper->setInterval(0);
-	looper->start(callback);
+    worldManager = Examples::example1();
+//	progressState->start(10000, "My Action");
+	looper->setInterval(100);
+	looper->start(worldManagerTesting);
 
 //	mamma * mom = new mamma();
 //	mom->screamMom();

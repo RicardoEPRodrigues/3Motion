@@ -10,16 +10,16 @@ namespace Divisaction {
 
     LongWalk::LongWalk() : Action() {
         Stage* anticipation = new Stage(string("Prepares to Walk"), 5000, true);
-        this->setStage(StageType::anticipation, anticipation);
+        this->setStage(StageType::ANTICIPATION, anticipation);
 
         Stage* execution = new Stage(string("Starts Walking"), 10, true);
-        this->setStage(StageType::execution, execution);
+        this->setStage(StageType::EXECUTION, execution);
 
         Stage* followThrough = new Stage(string("Walks"), 10000, true);
-        this->setStage(StageType::followThrough, followThrough);
+        this->setStage(StageType::FOLLOW_THROUGH, followThrough);
 
         Stage* cancel = new Stage(string("Stopped Walking"), 10, true);
-        this->setStage(StageType::cancel, cancel);
+        this->setStage(StageType::CANCEL, cancel);
     }
 
     LongWalk::~LongWalk() {

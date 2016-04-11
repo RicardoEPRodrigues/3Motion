@@ -40,14 +40,19 @@ namespace Divisaction {
     void WorldManager::update() {
         if (playing) {
             for (Agent * agent : agents) {
-                agent->perceive();
+                agent->perceive(events);
             }
+            events.clear();
             for (Agent* agent : agents) {
                 agent->decide();
             }
             for (Agent* agent : agents) {
-                agent->perform();
+                Event * event = agent->perform();
+                if (event) {
+                    events.push_back(*event);
+                }
             }
+
         }
     }
 

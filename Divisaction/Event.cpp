@@ -10,16 +10,19 @@ namespace Divisaction {
 
     Event::Event() {
         sender = nullptr;
+        stageType = StageType::size;
         stage = nullptr;
     }
 
-    Event::Event(Agent* sender) :
+    Event::Event(class Agent* sender) :
             Event::Event() {
         this->sender = sender;
     }
 
-    Event::Event(Agent* sender, Stage* stage) :
+    Event::Event(class Agent* sender, StageType stageType,
+            class Stage* stage) :
             Event::Event(sender) {
+        this->stageType = stageType;
         this->stage = stage;
     }
 

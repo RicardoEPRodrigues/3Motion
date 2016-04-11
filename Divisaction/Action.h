@@ -8,14 +8,13 @@
 #define ACTION_H_
 
 #include <vector>
+#include <functional>
+
 #include "Stage.h"
 #include "Exceptions/NullPointerException.h"
+#include "StageType.h"
 
 namespace Divisaction {
-
-    enum StageType {
-        anticipation, execution, followThrough, cancel, size
-    };
 
     class Action {
     private:
@@ -23,10 +22,13 @@ namespace Divisaction {
 
         StageType currentStageType;
         bool running;
-
     protected:
         void reset();
     public:
+        // Function for updating listeners
+        std::function<void(Action*)> started;
+        std::function<void(Action*, StageType)> changed;
+        std::function<void(Action*)> finished;
 
         Action();
         virtual ~Action();

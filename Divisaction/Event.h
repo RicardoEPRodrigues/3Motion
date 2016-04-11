@@ -7,15 +7,21 @@
 #ifndef EVENT_H_
 #define EVENT_H_
 
+#include "StageType.h"
+
 namespace Divisaction {
 
     struct Event {
         class Agent * sender;
+
+        // Action events
+        StageType stageType;
         class Stage * stage;
 
         Event();
-        Event(Agent* sender);
-        Event(Agent* sender, Stage* stage);
+        Event(class Agent* sender);
+        Event(class Agent* sender, StageType stageType,
+                class Stage* stage);
     };
 
 } /* namespace Divisaction */

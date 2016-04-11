@@ -9,7 +9,11 @@
 namespace Divisaction {
 
     Action::Action() {
-        this->stages = vector<Stage*>(StageType::size, nullptr);
+        started = nullptr;
+        changed = nullptr;
+        finished = nullptr;
+
+        stages = vector<Stage*>(StageType::size, nullptr);
         reset();
     }
 
@@ -22,7 +26,7 @@ namespace Divisaction {
     }
 
     void Action::reset() {
-        this->currentStageType = StageType::anticipation;
+        this->currentStageType = StageType::ANTICIPATION;
         this->running = false;
         for (Stage * stage : stages) {
             if (stage) {
@@ -54,19 +58,28 @@ namespace Divisaction {
         if (!running) {
             reset();
             running = true;
+            if (started) {
+                started(this);
+            }
         }
 
         Stage * currentStage = getStage(currentStageType);
         if (!currentStage->hasStarted()) {
             currentStage->start();
         } else if (currentStage->isComplete()) {
-            if (currentStageType == StageType::followThrough
-                    || currentStageType == StageType::cancel) {
+            if (currentStageType == StageType::FOLLOW_THROUGH
+                    || currentStageType == StageType::CANCEL) {
                 running = false;
+                if (finished) {
+                    finished(this);
+                }
                 return true;
             } else {
                 currentStageType = static_cast<StageType>((int) currentStageType
                         + 1);
+                if (changed) {
+                    changed(this, currentStageType);
+                }
                 return execute();
             }
         }
@@ -76,14 +89,14 @@ namespace Divisaction {
 
     void Action::cancel() {
         switch (currentStageType) {
-            case StageType::anticipation:
-                currentStageType = StageType::cancel;
+            case StageType::ANTICIPATION:
+                currentStageType = StageType::CANCEL;
                 break;
-            case StageType::execution:
+            case StageType::EXECUTION:
                 // Fall through
-            case StageType::followThrough:
+            case StageType::FOLLOW_THROUGH:
                 if (getStage(currentStageType)->isInteruptable()) {
-                    currentStageType = StageType::cancel;
+                    currentStageType = StageType::CANCEL;
                 }
                 break;
             default:

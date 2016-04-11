@@ -8,7 +8,12 @@
 #define AGENT_H_
 
 #include <vector>
+#include <algorithm>    // std::find_if
+#include <functional>
+
+#include "Utils/StdExtras.h"
 #include "Action.h"
+#include "StageType.h"
 #include "Event.h"
 
 namespace Divisaction {
@@ -16,6 +21,10 @@ namespace Divisaction {
     class Agent {
     private:
         std::string name;
+
+        Event* eventToSend;
+
+        static Event* generateEvent(Agent* agent, Action* action);
 
     protected:
         class WorldManager* worldManager;
@@ -38,10 +47,14 @@ namespace Divisaction {
         void addPossibleAction(Action * action);
         void removePossibleAction(Action * action);
 
-        virtual void perceive();
+        virtual void perceive(vector<Event> events);
         virtual void react();
         virtual void decide();
         virtual Event* perform();
+
+        virtual void actionStarted(Action* action);
+        virtual void actionChanged(Action* action, StageType stage);
+        virtual void actionFinished(Action* action);
     };
 
 } /* namespace Divisaction */
