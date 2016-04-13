@@ -9,6 +9,7 @@
 
 #include "../Action.h"
 #include "../Stage.h"
+#include "../Stages/TimeProgressiveStage.h"
 
 namespace Divisaction {
 

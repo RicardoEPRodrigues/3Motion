@@ -10,20 +10,20 @@
 #include <vector>
 #include <functional>
 
+#include "Executable.h"
 #include "Stage.h"
 #include "Exceptions/NullPointerException.h"
 #include "StageType.h"
 
 namespace Divisaction {
 
-    class Action {
+    class Action : public Executable {
     private:
+        bool running;
         std::vector<Stage *> stages;
 
         StageType currentStageType;
-        bool running;
     protected:
-        void reset();
     public:
         // Function for updating listeners
         std::function<void(Action*)> started;
@@ -44,6 +44,8 @@ namespace Divisaction {
          */
         bool execute();
         void cancel();
+        void reset();
+        bool isRunning() const;
     };
 
 } /* namespace Divisaction */

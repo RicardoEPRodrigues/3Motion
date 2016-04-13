@@ -6,14 +6,14 @@
 
 #include "Agent.h"
 
+using namespace std;
 using namespace std::placeholders;
 
 namespace Divisaction {
 
     Agent::Agent() {
-        worldManager = nullptr;
-        action = nullptr;
-        eventToSend = nullptr;
+        executable = nullptr;
+        performedEvent = nullptr;
     }
 
     Agent::~Agent() {
@@ -22,12 +22,8 @@ namespace Divisaction {
         }
     }
 
-    void Agent::setWorldManager(class WorldManager* worldManager) {
-        this->worldManager = worldManager;
-    }
-
-    Action* Agent::getCurrentAction() const {
-        return action;
+    Executable* Agent::getCurrentExecutable() const {
+        return executable;
     }
 
     void Agent::addPossibleAction(Action* action) {
@@ -38,8 +34,8 @@ namespace Divisaction {
     }
 
     void Agent::removePossibleAction(Action* action) {
-        std::vector<Action *>::iterator it = std::find(
-                possibleActions.begin(), possibleActions.end(), action);
+        std::vector<Action *>::iterator it = std::find(possibleActions.begin(),
+                possibleActions.end(), action);
         if (it != possibleActions.end()) {
             possibleActions.erase(it);
         }
@@ -62,32 +58,45 @@ namespace Divisaction {
     void Agent::decide() {
     }
 
-    Event* Agent::perform() {
-        eventToSend = nullptr; // It may be modified if there are changes in the action that is being executed
-        if (action) {
-            if(action->execute()) {
+    vector<Event*> Agent::perform() {
+        performedEvent = nullptr; // It may be modified if there are changes in the action that is being executed
+        if (executable) {
+            if (executable->execute()) {
+                this->executable = nullptr;
             }
         }
-        return eventToSend;
+        // Sends the event about the action of the current agent
+        vector<Event*> responseEvents;
+        if (performedEvent) {
+            responseEvents.push_back(performedEvent);
+            performedEvent = nullptr;
+        }
+        // Sends events as replies about other agents' actions
+        for (Event* event : eventResponses) {
+            responseEvents.push_back(event);
+        }
+        eventResponses.clear();
+
+        return responseEvents;
     }
 
     void Agent::actionStarted(Action* action) {
-        this->eventToSend = generateEvent(this, action);
+        this->performedEvent = generateEvent(this, action);
     }
 
     void Agent::actionChanged(Action* action, StageType stage) {
         if (stage != StageType::EXECUTION) {
-            this->eventToSend = generateEvent(this, action);
+            this->performedEvent = generateEvent(this, action);
         }
     }
 
     void Agent::actionFinished(Action* action) {
-        this->eventToSend = generateEvent(this, action);
-        this->action = nullptr;
+        this->performedEvent = generateEvent(this, action);
     }
 
     Event* Agent::generateEvent(Agent* agent, Action* action) {
-        return new Event(agent, action->getCurrentStageType(), action->getCurrentStage());
+        return new Event(agent, action->getCurrentStageType(),
+                action->getCurrentStage());
     }
 
 } /* namespace Divisaction */

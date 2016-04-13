@@ -18,7 +18,6 @@ namespace Divisaction {
         SingleActionAgent();
         virtual ~SingleActionAgent();
 
-        void perceive(vector<Event> events) override;
         void decide() override;
     };
 

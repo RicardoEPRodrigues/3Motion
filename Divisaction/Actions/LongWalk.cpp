@@ -6,19 +6,21 @@
 
 #include "LongWalk.h"
 
+using namespace std;
+
 namespace Divisaction {
 
     LongWalk::LongWalk() : Action() {
-        Stage* anticipation = new Stage(string("Prepares to Walk"), 5000, true);
+        TimeProgressiveStage* anticipation = new TimeProgressiveStage(string("Prepares to Walk"), 5000, true);
         this->setStage(StageType::ANTICIPATION, anticipation);
 
-        Stage* execution = new Stage(string("Starts Walking"), 10, true);
+        TimeProgressiveStage* execution = new TimeProgressiveStage(string("Starts Walking"), 10, true);
         this->setStage(StageType::EXECUTION, execution);
 
-        Stage* followThrough = new Stage(string("Walks"), 10000, true);
+        TimeProgressiveStage* followThrough = new TimeProgressiveStage(string("Walks"), 10000, true);
         this->setStage(StageType::FOLLOW_THROUGH, followThrough);
 
-        Stage* cancel = new Stage(string("Stopped Walking"), 10, true);
+        TimeProgressiveStage* cancel = new TimeProgressiveStage(string("Stopped Walking"), 100, true);
         this->setStage(StageType::CANCEL, cancel);
     }
 

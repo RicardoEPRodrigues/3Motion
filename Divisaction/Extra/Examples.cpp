@@ -6,6 +6,8 @@
 
 #include "Examples.h"
 
+using namespace std;
+
 namespace Divisaction {
 
     Examples::Examples() {

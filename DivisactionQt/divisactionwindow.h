@@ -13,6 +13,8 @@
 #include <vector>
 
 #include "actionprogress.h"
+
+#include "Extra/Time.h"
 #include "WorldManager.h"
 #include "Extra/Examples.h"
 

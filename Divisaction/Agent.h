@@ -11,7 +11,7 @@
 #include <algorithm>    // std::find_if
 #include <functional>
 
-#include "Utils/StdExtras.h"
+#include "Executable.h"
 #include "Action.h"
 #include "StageType.h"
 #include "Event.h"
@@ -22,39 +22,33 @@ namespace Divisaction {
     private:
         std::string name;
 
-        Event* eventToSend;
+        Event* performedEvent;
+        std::vector<Event*> eventResponses;
 
         static Event* generateEvent(Agent* agent, Action* action);
 
     protected:
-        class WorldManager* worldManager;
-
         std::vector<Action*> possibleActions;
 
-        /**
-         * Action chosen to be executed by the agent
-         */
-        Action * action;
+        Executable * executable;
+
+        virtual void actionStarted(Action* action);
+        virtual void actionChanged(Action* action, StageType stage);
+        virtual void actionFinished(Action* action);
     public:
         Agent();
         virtual ~Agent();
 
-        void setWorldManager(class WorldManager* worldManager);
-
-        Action* getCurrentAction() const;
+        Executable* getCurrentExecutable() const;
         const std::string& getName() const;
         void setName(const std::string& name);
         void addPossibleAction(Action * action);
         void removePossibleAction(Action * action);
 
-        virtual void perceive(vector<Event> events);
+        void perceive(std::vector<Event> events);
         virtual void react();
         virtual void decide();
-        virtual Event* perform();
-
-        virtual void actionStarted(Action* action);
-        virtual void actionChanged(Action* action, StageType stage);
-        virtual void actionFinished(Action* action);
+        std::vector<Event*> perform();
     };
 
 } /* namespace Divisaction */

@@ -8,6 +8,7 @@
 #include <QWidget>
 #include "Agent.h"
 #include "Stage.h"
+#include "Stages/TimeProgressiveStage.h"
 #include <math.h>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
@@ -22,7 +23,7 @@ class ActionProgress : public QWidget
 {
     Q_OBJECT
 private:
-    Stage *stage;
+    TimeProgressiveStage *stage;
 
 public:
     explicit ActionProgress(QWidget *parent = 0);

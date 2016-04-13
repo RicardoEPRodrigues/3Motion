@@ -6,6 +6,8 @@
 
 #include "WorldManager.h"
 
+using namespace std;
+
 namespace Divisaction {
 
     WorldManager::WorldManager() {
@@ -32,7 +34,6 @@ namespace Divisaction {
 
     void WorldManager::addAgent(Agent* agent) {
         if (agent) {
-            agent->setWorldManager(this);
             this->agents.push_back(agent);
         }
     }
@@ -47,9 +48,11 @@ namespace Divisaction {
                 agent->decide();
             }
             for (Agent* agent : agents) {
-                Event * event = agent->perform();
-                if (event) {
-                    events.push_back(*event);
+                vector<Event*> events = agent->perform();
+                for (Event* event : events) {
+                    if (event) {
+                        this->events.push_back(*event);
+                    }
                 }
             }
 

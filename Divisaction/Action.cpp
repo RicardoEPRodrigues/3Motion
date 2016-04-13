@@ -6,6 +6,8 @@
 
 #include "Action.h"
 
+using namespace std;
+
 namespace Divisaction {
 
     Action::Action() {
@@ -28,9 +30,9 @@ namespace Divisaction {
     void Action::reset() {
         this->currentStageType = StageType::ANTICIPATION;
         this->running = false;
-        for (Stage * stage : stages) {
+        for (Stage* stage : stages) {
             if (stage) {
-                stage->reset();
+                stage->endStage();
             }
         }
     }
@@ -52,9 +54,6 @@ namespace Divisaction {
     }
 
     bool Action::execute() {
-//        for (Stage * stage : stages)
-//            if (!stage)
-//                throw nullPointerExc;
         if (!running) {
             reset();
             running = true;
@@ -64,9 +63,11 @@ namespace Divisaction {
         }
 
         Stage * currentStage = getStage(currentStageType);
-        if (!currentStage->hasStarted()) {
+        if (!currentStage->isPlaying()) {
             currentStage->start();
-        } else if (currentStage->isComplete()) {
+        }
+        currentStage->update();
+        if (currentStage->isComplete()) {
             if (currentStageType == StageType::FOLLOW_THROUGH
                     || currentStageType == StageType::CANCEL) {
                 running = false;
@@ -80,7 +81,7 @@ namespace Divisaction {
                 if (changed) {
                     changed(this, currentStageType);
                 }
-                return execute();
+//                return execute();
             }
         }
 
@@ -102,6 +103,10 @@ namespace Divisaction {
             default:
                 break;
         }
+    }
+
+    bool Action::isRunning() const {
+        return this->running;
     }
 
 } /* namespace Divisaction */

@@ -11,14 +11,12 @@
 #include "Agent.h"
 #include "Event.h"
 
-using namespace std;
-
 namespace Divisaction {
 
     class WorldManager {
     private:
-        vector<Agent*> agents;
-        vector<Event> events;
+        std::vector<Agent*> agents;
+        std::vector<Event> events;
 
         bool playing;
     public:
@@ -38,12 +36,12 @@ namespace Divisaction {
          * @see WorldManager::update()
          */
         void pause();
-        const vector<Agent*>& getAgents() const;
+        const std::vector<Agent*>& getAgents() const;
         void addAgent(Agent * agent);
 
         void update();
 
-        const vector<Event>& getCurrentEvents() const {
+        const std::vector<Event>& getCurrentEvents() const {
             return events;
         }
     };

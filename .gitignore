@@ -39,3 +39,7 @@ RemoteSystemsTempFiles
 build-DivisactionQt*
 *.pro
 *.pro.user
+
+# CLion
+.idea
+.idea_modules

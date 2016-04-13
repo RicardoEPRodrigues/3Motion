@@ -19,7 +19,8 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
-    timer->start(100);
+    updateWorld();
+    timer->start(10);
 
     worldManager = Examples::example1();
     this->on_pauseButton_clicked();
@@ -32,6 +33,7 @@ DivisactionWindow::~DivisactionWindow()
 
 
 void DivisactionWindow::updateWorld() {
+    Time::update();
     if (worldManager) {
         worldManager->update();
 
@@ -43,7 +45,7 @@ void DivisactionWindow::updateProgress()
 {
     if (worldManager) {
         for(Agent * agent: worldManager->getAgents()) {
-            Action * action = agent->getCurrentAction();
+            Action * action = dynamic_cast<Action*>(agent->getCurrentExecutable());
 
             if (action) {
                 Stage * stage = action->getCurrentStage();

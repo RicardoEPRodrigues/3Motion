@@ -16,12 +16,9 @@ namespace Divisaction {
     SingleActionAgent::~SingleActionAgent() {
     }
 
-    void SingleActionAgent::perceive(vector<Event> events) {
-    }
-
     void SingleActionAgent::decide() {
-        if (!alreadyActed && !action && possibleActions.size() > 0) {
-            action = possibleActions[0];
+        if (!alreadyActed && !executable && possibleActions.size() > 0) {
+            executable = possibleActions[0];
             alreadyActed = true;
         }
     }

@@ -36,15 +36,17 @@ void ActionProgress::setLabel(QString name)
 
 void ActionProgress::set(Agent* agent, Stage* stage)
 {
-    this->stage = stage;
-    ui->AgentName->setText(QString(agent->getName().c_str()));
-    ui->AgentStage->setText(QString(stage->getName().c_str()));
-    ui->progressBar->setValue(floor(stage->getProgress() * 100));
+    this->stage = dynamic_cast<TimeProgressiveStage*>(stage);
+    if (this->stage) {
+        ui->AgentName->setText(QString(agent->getName().c_str()));
+        ui->AgentStage->setText(QString(this->stage->getName().c_str()));
+        ui->progressBar->setValue(floor(this->stage->getProgress() * 100));
+    }
 }
 
 void ActionProgress::update()
 {
     if (this->stage) {
-        ui->progressBar->setValue(stage->getProgress() * 100);
+        ui->progressBar->setValue(this->stage->getProgress() * 100);
     }
 }
