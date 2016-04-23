@@ -15,23 +15,29 @@
 
 namespace Divisaction {
 
-    class Emotion: public Executable {
-    private:
-        bool running;
+    class Emotion : public Executable {
+        private:
+            bool running;
 
-        Stage * emotion;
-    public:
-        std::function<void(Emotion*)> started;
-        std::function<void(Emotion*)> finished;
+        protected:
+            Stage *emotion;
+        public:
+            std::function<void(Emotion *)> started;
+            std::function<void(Emotion *)> finished;
 
-        Emotion();
-        virtual ~Emotion();
+            Emotion();
 
-        virtual bool execute();
-        void reset();
-        virtual bool isRunning();
-        Stage* getEmotion() const;
-        void setEmotion(Stage* emotion);
+            virtual ~Emotion();
+
+            virtual bool execute();
+
+            void reset();
+
+            virtual bool isRunning() const;
+
+            Stage *getEmotion() const;
+
+            void setEmotion(Stage *emotion);
     };
 
 } /* namespace Divisaction */

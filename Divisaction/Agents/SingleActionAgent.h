@@ -11,14 +11,26 @@
 
 namespace Divisaction {
 
-    class SingleActionAgent: public Agent {
-    private:
-        bool alreadyActed;
-    public:
-        SingleActionAgent();
-        virtual ~SingleActionAgent();
+    class SingleActionAgent : public Agent {
+        private:
+            bool alreadyActed;
 
-        void decide() override;
+        protected:
+
+            virtual void actionStarted(Action *action);
+
+            virtual void actionChanged(Action *action, StageType stage);
+
+            virtual void actionFinished(Action *action);
+
+        public:
+            SingleActionAgent();
+
+            virtual ~SingleActionAgent();
+
+            void decide() override;
+
+            virtual void addPossibleAction(Action *action) override;
     };
 
 } /* namespace Divisaction */

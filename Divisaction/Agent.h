@@ -10,45 +10,76 @@
 #include <vector>
 #include <algorithm>    // std::find_if
 #include <functional>
+#include <unordered_map>
 
 #include "Executable.h"
 #include "Action.h"
 #include "StageType.h"
 #include "Event.h"
+#include "Time.h"
+#include "Emotion.h"
 
 namespace Divisaction {
 
     class Agent {
-    private:
-        std::string name;
+        private:
+            std::string name;
 
-        Event* performedEvent;
-        std::vector<Event*> eventResponses;
+            std::unordered_map<double, Event> eventsBeingPerceived;
+        protected:
+            /**
+             * Time to perceive an event (simulates the human mind)
+             * @note time is should be in milliseconds
+             */
+            double timeToPerceive;
 
-        static Event* generateEvent(Agent* agent, Action* action);
+            struct EmotionalReply {
+                Agent *sender;
+                Emotion *emotion;
+                Event original;
 
-    protected:
-        std::vector<Action*> possibleActions;
+                bool hasGenerated = false;
 
-        Executable * executable;
+                Event generateEvent();
+            };
 
-        virtual void actionStarted(Action* action);
-        virtual void actionChanged(Action* action, StageType stage);
-        virtual void actionFinished(Action* action);
-    public:
-        Agent();
-        virtual ~Agent();
+            std::vector<Action *> possibleActions;
 
-        Executable* getCurrentExecutable() const;
-        const std::string& getName() const;
-        void setName(const std::string& name);
-        void addPossibleAction(Action * action);
-        void removePossibleAction(Action * action);
+            std::vector<Event> eventsPerceived;
 
-        void perceive(std::vector<Event> events);
-        virtual void react();
-        virtual void decide();
-        std::vector<Event*> perform();
+            std::vector<EmotionalReply> emotionalReplies;
+
+            Executable *executable;
+            Event *performedEvent;
+
+            static Event *generateEvent(Agent *agent, Action *action);
+
+        public:
+            Agent();
+
+            virtual ~Agent();
+
+            Executable *getCurrentExecutable() const;
+
+            const std::string &getName() const;
+
+            void setName(const std::string &name);
+
+            virtual void addPossibleAction(Action *action);
+
+            void removePossibleAction(Action *action);
+
+            void perceive(std::vector<Event> &events);
+
+            virtual void react();
+
+            virtual void decide();
+
+            const std::vector<Event> perform();
+
+            double getTimeToPerceive() const;
+
+            void setTimeToPerceive(double timeToPerceive);
     };
 
 } /* namespace Divisaction */

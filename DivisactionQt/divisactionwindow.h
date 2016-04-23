@@ -14,8 +14,9 @@
 
 #include "actionprogress.h"
 
-#include "Extra/Time.h"
+#include "Time.h"
 #include "WorldManager.h"
+#include "Agent.h"
 #include "Extra/Examples.h"
 
 namespace Ui {

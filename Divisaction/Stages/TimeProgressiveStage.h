@@ -8,7 +8,7 @@
 #define STAGES_TIMEPROGRESSIVESTAGE_H_
 
 #include "../Stage.h"
-#include "../Extra/Time.h"
+#include "../Time.h"
 
 namespace Divisaction {
 

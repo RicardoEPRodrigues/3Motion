@@ -15,12 +15,12 @@ namespace Divisaction {
     }
 
     WorldManager::~WorldManager() {
-        for (Agent * agent : agents) {
+        for (Agent *agent : agents) {
             delete agent;
         }
     }
 
-    const vector<Agent*>& WorldManager::getAgents() const {
+    const vector<Agent *> &WorldManager::getAgents() const {
         return agents;
     }
 
@@ -32,7 +32,7 @@ namespace Divisaction {
         this->playing = false;
     }
 
-    void WorldManager::addAgent(Agent* agent) {
+    void WorldManager::addAgent(Agent *agent) {
         if (agent) {
             this->agents.push_back(agent);
         }
@@ -40,19 +40,20 @@ namespace Divisaction {
 
     void WorldManager::update() {
         if (playing) {
-            for (Agent * agent : agents) {
+            for (Agent *agent : agents) {
                 agent->perceive(events);
             }
             events.clear();
-            for (Agent* agent : agents) {
+            for (Agent *agent : agents) {
+                agent->react();
+            }
+            for (Agent *agent : agents) {
                 agent->decide();
             }
-            for (Agent* agent : agents) {
-                vector<Event*> events = agent->perform();
-                for (Event* event : events) {
-                    if (event) {
-                        this->events.push_back(*event);
-                    }
+            for (Agent *agent : agents) {
+                vector<Event> events = agent->perform();
+                for (Event event : events) {
+                    this->events.push_back(event);
                 }
             }
 

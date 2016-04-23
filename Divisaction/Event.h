@@ -7,21 +7,40 @@
 #ifndef EVENT_H_
 #define EVENT_H_
 
+#include <cstdlib>
+#include <cstring>
+
 #include "StageType.h"
 
 namespace Divisaction {
 
+    enum EventType {
+        ACTION,
+        REPLY,
+        EventSize
+    };
+
     struct Event {
-        class Agent * sender;
+        EventType type;
+
+        class Agent *sender;
 
         // Action events
         StageType stageType;
-        class Stage * stage;
+
+        class Stage *stage;
+
+        Event* reply;
 
         Event();
-        Event(class Agent* sender);
-        Event(class Agent* sender, StageType stageType,
-                class Stage* stage);
+
+        Event(EventType type, class Agent *sender);
+
+        Event(EventType type, class Agent *sender, StageType stageType,
+              class Stage *stage);
+
+        Event(EventType type, class Agent *sender, StageType stageType,
+              class Stage *stage, Event reply);
     };
 
 } /* namespace Divisaction */

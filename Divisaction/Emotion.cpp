@@ -30,7 +30,9 @@ namespace Divisaction {
 
         if (!emotion->isPlaying()) {
             emotion->start();
-        } else if (emotion->isComplete()) {
+        }
+        emotion->update();
+        if (emotion->isComplete()) {
             running = false;
             if (finished) {
                 finished(this);
@@ -46,15 +48,15 @@ namespace Divisaction {
         emotion->endStage();
     }
 
-    Stage* Emotion::getEmotion() const {
+    Stage *Emotion::getEmotion() const {
         return emotion;
     }
 
-    void Emotion::setEmotion(Stage* emotion) {
+    void Emotion::setEmotion(Stage *emotion) {
         this->emotion = emotion;
     }
 
-    bool Emotion::isRunning() {
+    bool Emotion::isRunning() const {
         return this->running;
     }
 

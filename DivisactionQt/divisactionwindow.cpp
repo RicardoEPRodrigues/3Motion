@@ -17,13 +17,13 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
     scrollbar = ui->StagesScroll->verticalScrollBar();
     QObject::connect(scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(moveScrollBarToBottom(int, int)));
 
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
-    updateWorld();
-    timer->start(10);
-
     worldManager = Examples::example1();
     this->on_pauseButton_clicked();
+
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
+    Time::update();
+    timer->start(10);
 }
 
 DivisactionWindow::~DivisactionWindow()
@@ -56,6 +56,14 @@ void DivisactionWindow::updateProgress()
                     actionProgress->set(agent, stage);
                     ui->ActionStackLayout->addWidget(actionProgress);
                     actionsProgress[stage] = actionProgress;
+                }
+            }
+        }
+        for (Event event : worldManager->getCurrentEvents()) {
+            if (event.type == EventType::REPLY) {
+                std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(event.reply->stage);
+                if (it != actionsProgress.end()) {
+                    it->second->addReply(event);
                 }
             }
         }

@@ -6,12 +6,15 @@
 #define ACTIONPROGRESS_H
 
 #include <QWidget>
-#include "Agent.h"
-#include "Stage.h"
-#include "Stages/TimeProgressiveStage.h"
-#include <math.h>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
+
+#include <math.h>
+
+#include "Agent.h"
+#include "Stage.h"
+#include "Event.h"
+#include "Stages/TimeProgressiveStage.h"
 
 using namespace Divisaction;
 
@@ -24,7 +27,9 @@ class ActionProgress : public QWidget
     Q_OBJECT
 private:
     TimeProgressiveStage *stage;
+    Agent* agent;
 
+    std::vector<ActionProgress*> replies;
 public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();
@@ -33,7 +38,11 @@ public:
 
     void set(Agent* agent, Stage *stage);
 
+    void addReply(Event reply);
+
     void update();
+
+    Agent* getAgent() const;
 
 private:
     Ui::ActionProgress *ui;

@@ -7,49 +7,68 @@
 #include "Agent.h"
 
 using namespace std;
-using namespace std::placeholders;
 
 namespace Divisaction {
 
     Agent::Agent() {
         executable = nullptr;
         performedEvent = nullptr;
+        timeToPerceive = 100;
     }
 
     Agent::~Agent() {
-        for (Action* action : possibleActions) {
+        for (Action *action : possibleActions) {
             delete action;
         }
     }
 
-    Executable* Agent::getCurrentExecutable() const {
+    Executable *Agent::getCurrentExecutable() const {
         return executable;
     }
 
-    void Agent::addPossibleAction(Action* action) {
-        action->started = bind(&Agent::actionStarted, this, _1);
-        action->changed = bind(&Agent::actionChanged, this, _1, _2);
-        action->finished = bind(&Agent::actionFinished, this, _1);
+    void Agent::addPossibleAction(Action *action) {
         this->possibleActions.push_back(action);
     }
 
-    void Agent::removePossibleAction(Action* action) {
+    void Agent::removePossibleAction(Action *action) {
         std::vector<Action *>::iterator it = std::find(possibleActions.begin(),
-                possibleActions.end(), action);
+                                                       possibleActions.end(), action);
         if (it != possibleActions.end()) {
             possibleActions.erase(it);
         }
     }
 
-    const std::string& Agent::getName() const {
+    const std::string &Agent::getName() const {
         return name;
     }
 
-    void Agent::setName(const std::string& name) {
+    void Agent::setName(const std::string &name) {
         this->name = name;
     }
 
-    void Agent::perceive(vector<Event> events) {
+    double Agent::getTimeToPerceive() const {
+        return timeToPerceive;
+    }
+
+    void Agent::setTimeToPerceive(double timeToPerceive) {
+        this->timeToPerceive = timeToPerceive;
+    }
+
+    void Agent::perceive(vector<Event> &events) {
+        std::unordered_map<double, Event> newEventsBeingPerceived;
+        for (std::pair<double, Event> event : eventsBeingPerceived) {
+            double time = event.first - Time::delta();
+            if (time <= 0) {
+                eventsPerceived.push_back(event.second);
+            } else {
+                newEventsBeingPerceived.insert(std::pair<double, Event>(time, event.second));
+            }
+        }
+        eventsBeingPerceived = newEventsBeingPerceived;
+        for (Event event : events) {
+            Event storedEvent = event;
+            eventsBeingPerceived.insert(std::pair<double, Event>(timeToPerceive, storedEvent));
+        }
     }
 
     void Agent::react() {
@@ -58,7 +77,7 @@ namespace Divisaction {
     void Agent::decide() {
     }
 
-    vector<Event*> Agent::perform() {
+    const vector<Event> Agent::perform() {
         performedEvent = nullptr; // It may be modified if there are changes in the action that is being executed
         if (executable) {
             if (executable->execute()) {
@@ -66,37 +85,34 @@ namespace Divisaction {
             }
         }
         // Sends the event about the action of the current agent
-        vector<Event*> responseEvents;
+        vector<Event> responseEvents;
         if (performedEvent) {
-            responseEvents.push_back(performedEvent);
+            responseEvents.push_back(*performedEvent);
             performedEvent = nullptr;
         }
         // Sends events as replies about other agents' actions
-        for (Event* event : eventResponses) {
-            responseEvents.push_back(event);
+        for (vector<EmotionalReply>::iterator reply = emotionalReplies.begin(); reply != emotionalReplies.end();) {
+            if (!reply->hasGenerated) {
+                responseEvents.push_back(reply->generateEvent());
+            }
+            if (reply->emotion->execute()) {
+                reply = emotionalReplies.erase(reply);
+            } else {
+                ++reply;
+            }
         }
-        eventResponses.clear();
 
         return responseEvents;
     }
 
-    void Agent::actionStarted(Action* action) {
-        this->performedEvent = generateEvent(this, action);
+    Event *Agent::generateEvent(Agent *agent, Action *action) {
+        return new Event(EventType::ACTION, agent, action->getCurrentStageType(),
+                         action->getCurrentStage());
     }
 
-    void Agent::actionChanged(Action* action, StageType stage) {
-        if (stage != StageType::EXECUTION) {
-            this->performedEvent = generateEvent(this, action);
-        }
-    }
-
-    void Agent::actionFinished(Action* action) {
-        this->performedEvent = generateEvent(this, action);
-    }
-
-    Event* Agent::generateEvent(Agent* agent, Action* action) {
-        return new Event(agent, action->getCurrentStageType(),
-                action->getCurrentStage());
+    Event Agent::EmotionalReply::generateEvent() {
+        hasGenerated = true;
+        return Event(EventType::REPLY, sender, StageType::EMOTION, emotion->getEmotion(), original);
     }
 
 } /* namespace Divisaction */
