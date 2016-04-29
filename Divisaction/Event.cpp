@@ -13,6 +13,7 @@ namespace Divisaction {
         sender = nullptr;
         stageType = StageType::size;
         stage = nullptr;
+        reply = nullptr;
     }
 
     Event::Event(EventType type, class Agent *sender) :
@@ -31,8 +32,40 @@ namespace Divisaction {
 
     Event::Event(EventType type, class Agent *sender, StageType stageType, class Stage *stage, Event reply) :
             Event::Event(type, sender, stageType, stage) {
-        this->reply =  (Event*)malloc( sizeof(reply) );
-        memcpy(this->reply, &reply, sizeof(reply) );
+        CopyReply(reply);
+    }
+
+    Event::Event(const Event &event) : type(event.type), sender(event.sender), stageType(event.stageType),
+                                       stage(event.stage) {
+        if (event.reply && event.reply != nullptr) {
+            CopyReply(*event.reply);
+        } else {
+            reply = nullptr;
+        }
+    }
+
+    void Event::CopyReply(Event &reply) {
+        this->reply = (Event *) malloc(sizeof(reply));
+        memcpy(this->reply, &reply, sizeof(reply));
+    }
+
+    Event::~Event() {
+        if (reply) {
+            free(reply);
+        }
+    }
+
+    Event& Event::operator=(const Event& event) {
+        type = event.type;
+        sender = event.sender;
+        stageType = event.stageType;
+        stage = event.stage;
+        if (event.reply && event.reply != nullptr) {
+            CopyReply(*event.reply);
+        } else {
+            reply = nullptr;
+        }
+        return *this;
     }
 
 } /* namespace Divisaction */

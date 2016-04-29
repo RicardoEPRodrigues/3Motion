@@ -30,6 +30,9 @@ private:
     Agent* agent;
 
     std::vector<ActionProgress*> replies;
+
+    QGraphicsOpacityEffect* opacity;
+    QPropertyAnimation* animationOpacity;
 public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();

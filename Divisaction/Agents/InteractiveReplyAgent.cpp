@@ -4,21 +4,20 @@
  * Copyright (C) ricardo 2016 - All Rights Reserved
  */
 
-#include "SingleReplyAgent.h"
+#include "InteractiveReplyAgent.h"
 
 namespace Divisaction {
 
-    SingleReplyAgent::SingleReplyAgent() {
-        addAvailableEmotion(new Confidence());
+    InteractiveReplyAgent::InteractiveReplyAgent() {
     }
 
-    SingleReplyAgent::~SingleReplyAgent() {
+    InteractiveReplyAgent::~InteractiveReplyAgent() {
     }
 
-    void SingleReplyAgent::react() {
+    void InteractiveReplyAgent::react() {
         for (Event event : eventsPerceived) {
             if (event.type == EventType::ACTION && event.stageType == StageType::ANTICIPATION) {
-                Emotion *emotion = availableEmotions[0];
+                Emotion *emotion = new Confidence();
                 this->emotionalReplies.push_back({this, emotion, event});
             }
         }

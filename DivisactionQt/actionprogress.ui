@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>644</width>
-    <height>69</height>
+    <height>100</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QWidget" name="horizontalWidget" native="true">
+    <widget class="QWidget" name="actionProgressHolder" native="true">
      <property name="maximumSize">
       <size>
        <width>16777215</width>

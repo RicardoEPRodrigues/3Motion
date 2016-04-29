@@ -20,6 +20,9 @@ namespace Divisaction {
         for (Action *action : possibleActions) {
             delete action;
         }
+        for (Emotion *emotion: availableEmotions) {
+            delete emotion;
+        }
     }
 
     Executable *Agent::getCurrentExecutable() const {
@@ -35,6 +38,18 @@ namespace Divisaction {
                                                        possibleActions.end(), action);
         if (it != possibleActions.end()) {
             possibleActions.erase(it);
+        }
+    }
+
+    void Agent::addAvailableEmotion(Emotion *emotion){
+        availableEmotions.push_back(emotion);
+    }
+
+    void Agent::removeAvailableEmotion(Emotion *emotion){
+        std::vector<Emotion *>::iterator it = std::find(availableEmotions.begin(),
+                                                       availableEmotions.end(), emotion);
+        if (it != availableEmotions.end()) {
+            availableEmotions.erase(it);
         }
     }
 
@@ -88,7 +103,7 @@ namespace Divisaction {
         vector<Event> responseEvents;
         if (performedEvent) {
             responseEvents.push_back(*performedEvent);
-            performedEvent = nullptr;
+            delete performedEvent;
         }
         // Sends events as replies about other agents' actions
         for (vector<EmotionalReply>::iterator reply = emotionalReplies.begin(); reply != emotionalReplies.end();) {

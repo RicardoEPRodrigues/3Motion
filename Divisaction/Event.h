@@ -30,7 +30,7 @@ namespace Divisaction {
 
         class Stage *stage;
 
-        Event* reply;
+        Event *reply;
 
         Event();
 
@@ -41,6 +41,14 @@ namespace Divisaction {
 
         Event(EventType type, class Agent *sender, StageType stageType,
               class Stage *stage, Event reply);
+
+        Event(const Event& event);
+
+        ~Event();
+
+        Event& operator=(const Event& event);
+
+        void CopyReply(Event &reply);
     };
 
 } /* namespace Divisaction */

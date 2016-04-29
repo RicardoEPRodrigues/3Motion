@@ -17,6 +17,7 @@
 #include "Time.h"
 #include "WorldManager.h"
 #include "Agent.h"
+#include "Agent.h"
 #include "Extra/Examples.h"
 
 namespace Ui {

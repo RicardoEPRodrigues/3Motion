@@ -7,6 +7,8 @@
 #ifndef AGENT_H_
 #define AGENT_H_
 
+#include "IAgent.h"
+
 #include <vector>
 #include <algorithm>    // std::find_if
 #include <functional>
@@ -21,7 +23,7 @@
 
 namespace Divisaction {
 
-    class Agent {
+    class Agent : public IAgent {
         private:
             std::string name;
 
@@ -44,6 +46,7 @@ namespace Divisaction {
             };
 
             std::vector<Action *> possibleActions;
+            std::vector<Emotion *> availableEmotions;
 
             std::vector<Event> eventsPerceived;
 
@@ -67,7 +70,11 @@ namespace Divisaction {
 
             virtual void addPossibleAction(Action *action);
 
-            void removePossibleAction(Action *action);
+            virtual void removePossibleAction(Action *action);
+
+            virtual void addAvailableEmotion(Emotion *emotion);
+
+            virtual void removeAvailableEmotion(Emotion *emotion);
 
             void perceive(std::vector<Event> &events);
 

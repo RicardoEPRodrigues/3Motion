@@ -29,6 +29,8 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
 DivisactionWindow::~DivisactionWindow()
 {
     delete ui;
+    delete worldManager;
+    scrollbar = nullptr;
 }
 
 
@@ -44,7 +46,8 @@ void DivisactionWindow::updateWorld() {
 void DivisactionWindow::updateProgress()
 {
     if (worldManager) {
-        for(Agent * agent: worldManager->getAgents()) {
+        for(IAgent * iagent: worldManager->getAgents()) {
+            Agent* agent = dynamic_cast<Agent*>(iagent);
             Action * action = dynamic_cast<Action*>(agent->getCurrentExecutable());
 
             if (action) {

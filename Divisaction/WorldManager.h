@@ -8,14 +8,14 @@
 #define WORLDMANAGER_H_
 
 #include <vector>
-#include "Agent.h"
+#include "IAgent.h"
 #include "Event.h"
 
 namespace Divisaction {
 
     class WorldManager {
     private:
-        std::vector<Agent*> agents;
+        std::vector<IAgent*> agents;
         std::vector<Event> events;
 
         bool playing;
@@ -36,8 +36,8 @@ namespace Divisaction {
          * @see WorldManager::update()
          */
         void pause();
-        const std::vector<Agent*>& getAgents() const;
-        void addAgent(Agent * agent);
+        const std::vector<IAgent*>& getAgents() const;
+        void addAgent(IAgent * agent);
 
         void update();
 

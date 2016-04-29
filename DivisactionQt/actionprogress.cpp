@@ -13,15 +13,15 @@ ActionProgress::ActionProgress(QWidget *parent) :
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(100);
 
-//    QGraphicsOpacityEffect* opacity = new QGraphicsOpacityEffect;
-//    QPropertyAnimation* animationOpacity = new QPropertyAnimation(opacity, "opacity");
-//    this->setGraphicsEffect(opacity);
+    opacity = new QGraphicsOpacityEffect;
+    animationOpacity = new QPropertyAnimation(opacity, "opacity");
+    ui->actionProgressHolder->setGraphicsEffect(opacity);
 
-//    animationOpacity->setDuration(500);
-//    animationOpacity->setStartValue(0.0);
-//    animationOpacity->setEndValue(1.0);
-//    animationOpacity->setEasingCurve( QEasingCurve::InCubic );
-//    animationOpacity->start();
+    animationOpacity->setDuration(500);
+    animationOpacity->setStartValue(0.0);
+    animationOpacity->setEndValue(1.0);
+    animationOpacity->setEasingCurve( QEasingCurve::InCubic );
+    animationOpacity->start();
 
     ui->repliesHolder->setVisible(false);
 }
@@ -29,6 +29,8 @@ ActionProgress::ActionProgress(QWidget *parent) :
 ActionProgress::~ActionProgress()
 {
     delete ui;
+    delete animationOpacity;
+    delete opacity;
 }
 
 void ActionProgress::setLabel(QString name)
