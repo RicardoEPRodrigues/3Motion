@@ -16,7 +16,7 @@ namespace Divisaction {
 
     void InteractiveReplyAgent::react() {
         for (Event event : eventsPerceived) {
-            if (event.type == EventType::ACTION && event.stageType == StageType::ANTICIPATION) {
+            if (event.type == Event::Type::ACTION && event.action->getCurrentStageType() == StageType::ANTICIPATION) {
                 Emotion *emotion = new Confidence();
                 this->emotionalReplies.push_back({this, emotion, event});
             }

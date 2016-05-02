@@ -52,9 +52,7 @@ namespace Divisaction {
             }
             for (IAgent *agent : agents) {
                 vector<Event> events = agent->perform();
-                for (Event event : events) {
-                    this->events.push_back(event);
-                }
+                this->events.insert(std::end(this->events), std::begin(events), std::end(events));
             }
 
         }

@@ -28,7 +28,7 @@ namespace Divisaction {
 
         Agent * agentHanna = new SingleReplyAgent();
         agentHanna->setName(string("Hanna"));
-        agentHanna->setTimeToPerceive(1000);
+        agentHanna->addAvailableEmotion(new Confidence());
         worldManager->addAgent(agentHanna);
 
         return worldManager;

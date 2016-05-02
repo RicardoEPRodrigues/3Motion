@@ -63,8 +63,8 @@ void DivisactionWindow::updateProgress()
             }
         }
         for (Event event : worldManager->getCurrentEvents()) {
-            if (event.type == EventType::REPLY) {
-                std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(event.reply->stage);
+            if (event.type == Event::Type::REPLY && event.reply->type == Event::Type::ACTION) {
+                std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(event.reply->action->getCurrentStage());
                 if (it != actionsProgress.end()) {
                     it->second->addReply(event);
                 }

@@ -18,34 +18,42 @@
 namespace Divisaction {
 
     class Action : public Executable {
-    private:
-        bool running;
-        std::vector<Stage *> stages;
+        private:
+            bool running;
+            std::vector<Stage*> stages;
 
-        StageType currentStageType;
-    protected:
-    public:
-        // Function for updating listeners
-        std::function<void(Action*)> started;
-        std::function<void(Action*, StageType)> changed;
-        std::function<void(Action*)> finished;
+            StageType currentStageType;
+        protected:
+        public:
+            // Function for updating listeners
+            std::function<void(Action*)> started;
+            std::function<void(Action*, StageType)> changed;
+            std::function<void(Action*)> finished;
 
-        Action();
-        virtual ~Action();
+            Action();
 
-        void setStage(StageType type, Stage * stage);
-        Stage * getStage(StageType type) const;
-        Stage * getCurrentStage() const;
-        StageType getCurrentStageType() const;
+            virtual ~Action();
 
-        /**
-         * Executes the action.
-         * @return true if the action has finished all it's steps, false otherwise.
-         */
-        bool execute();
-        void cancel();
-        void reset();
-        bool isRunning() const;
+            void setStage(StageType type, Stage* stage);
+
+            Stage* getStage(StageType type) const;
+
+            Stage* getCurrentStage() const;
+
+            StageType getCurrentStageType() const;
+
+            /**
+             * Executes the action.
+             * @return true if the action has finished all it's steps, false otherwise.
+             */
+            bool execute();
+
+            void cancel();
+
+            void reset();
+
+            bool isRunning() const;
+            bool hasFinished() const;
     };
 
 } /* namespace Divisaction */

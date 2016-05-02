@@ -13,7 +13,6 @@ namespace Divisaction {
     Agent::Agent() {
         executable = nullptr;
         performedEvent = nullptr;
-        timeToPerceive = 100;
     }
 
     Agent::~Agent() {
@@ -61,14 +60,6 @@ namespace Divisaction {
         this->name = name;
     }
 
-    double Agent::getTimeToPerceive() const {
-        return timeToPerceive;
-    }
-
-    void Agent::setTimeToPerceive(double timeToPerceive) {
-        this->timeToPerceive = timeToPerceive;
-    }
-
     void Agent::perceive(vector<Event> &events) {
         std::unordered_map<double, Event> newEventsBeingPerceived;
         for (std::pair<double, Event> event : eventsBeingPerceived) {
@@ -80,9 +71,14 @@ namespace Divisaction {
             }
         }
         eventsBeingPerceived = newEventsBeingPerceived;
-        for (Event event : events) {
-            Event storedEvent = event;
-            eventsBeingPerceived.insert(std::pair<double, Event>(timeToPerceive, storedEvent));
+        for (vector<Event>::iterator event = events.begin(); event != events.end(); event++) {
+            double timeToPerceive = 10;
+            if (event->type == Event::Type::ACTION) {
+                timeToPerceive = event->action->getCurrentStage()->getTimeToPerceive();
+            } else {
+                timeToPerceive = event->emotion->getEmotion()->getTimeToPerceive();
+            }
+            eventsBeingPerceived.insert(std::pair<double, Event>(timeToPerceive, *event));
         }
     }
 
@@ -121,13 +117,12 @@ namespace Divisaction {
     }
 
     Event *Agent::generateEvent(Agent *agent, Action *action) {
-        return new Event(EventType::ACTION, agent, action->getCurrentStageType(),
-                         action->getCurrentStage());
+        return new Event(Event::Type::ACTION, agent, action);
     }
 
     Event Agent::EmotionalReply::generateEvent() {
         hasGenerated = true;
-        return Event(EventType::REPLY, sender, StageType::EMOTION, emotion->getEmotion(), original);
+        return Event(Event::Type::REPLY, sender, emotion, original);
     }
 
 } /* namespace Divisaction */

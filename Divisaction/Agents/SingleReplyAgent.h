@@ -8,7 +8,6 @@
 #define AGENTS_SINGLEREPLYAGENT_H_
 
 #include "../Agent.h"
-#include "../Emotions/Confidence.h"
 
 namespace Divisaction {
 

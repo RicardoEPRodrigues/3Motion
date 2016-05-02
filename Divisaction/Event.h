@@ -14,39 +14,43 @@
 
 namespace Divisaction {
 
-    enum EventType {
-        ACTION,
-        REPLY,
-        EventSize
-    };
-
     struct Event {
-        EventType type;
+        enum Type {
+            ACTION,
+            EMOTION,
+            REPLY,
+            size
+        };
 
-        class Agent *sender;
+        Type type;
 
-        // Action events
-        StageType stageType;
+        class Agent* sender;
 
-        class Stage *stage;
+        // Action
+        class Action* action;
 
-        Event *reply;
+        Event(Type type, class Agent* sender, class Action* action);
 
+        // Emotion
+        class Emotion* emotion;
+
+        Event(Type type, class Agent* sender, class Emotion* emotion);
+
+        // Reply
+        Event* reply;
+
+        Event(Type type, class Agent* sender, class Emotion* emotion, Event reply);
+
+        // Base
         Event();
 
-        Event(EventType type, class Agent *sender);
+        Event(Type type, class Agent* sender);
 
-        Event(EventType type, class Agent *sender, StageType stageType,
-              class Stage *stage);
-
-        Event(EventType type, class Agent *sender, StageType stageType,
-              class Stage *stage, Event reply);
-
-        Event(const Event& event);
+        Event(const Event &event);
 
         ~Event();
 
-        Event& operator=(const Event& event);
+        Event &operator=(const Event &event);
 
         void CopyReply(Event &reply);
     };

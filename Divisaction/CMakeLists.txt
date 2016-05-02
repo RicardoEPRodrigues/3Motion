@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(Divisaction)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -O0 -fPIC -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -O0 -fPIC -Wuninitialized -std=c++14")
 
 include_directories(Actions Agents Exceptions Extra Stages Emotions)
 

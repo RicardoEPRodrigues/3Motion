@@ -14,44 +14,63 @@
 namespace Divisaction {
 
     class Stage {
-    private:
-        std::string name;
-        bool complete;
-        bool playing;
-        /**
-         * Determines if this stage is interruptible.
-         * @note interruptibility in only important if the stage is an Execution or Follow Through stage
-         * @see Action()
-         */
-        bool interuptable;
-    protected:
-        virtual void onStart() = 0;
-        virtual void onUpdate() = 0;
-    public:
+        private:
+            std::string name;
+            bool complete;
+            bool playing;
+            /**
+             * Determines if this action is interruptible.
+             * @note interruptibility in only important if the action is an Execution or Follow Through action
+             * @see Action()
+             */
+            bool interuptable;
+            double timeToPerceive;
+        protected:
+            virtual void onStart() = 0;
 
-        Stage();
-        Stage(std::string name, bool interuptable = true);
-        virtual ~Stage();
+            virtual void onUpdate() = 0;
 
-        void start();
-        /**
-         * Updates the current stage
-         * @return Progress value between 0 and 1. If the stage hasn't been started it'll return 0. If the stage is complete it'll always return 1.
-         */
-        void update();
+        public:
 
-        void endStage();
-        bool isPlaying() const;
-        bool isComplete() const;
+            Stage();
 
-        bool isInteruptable() const;
-        void setInteruptable(bool interuptable);
-        const std::string& getName() const;
-        void setName(const std::string& name);
-        inline bool operator==(const Stage& other);
-        inline bool operator!=(const Stage& other);
-        inline bool operator<(const Stage& other);
-        inline bool operator>(const Stage& other);
+            Stage(std::string name, bool interuptable = true);
+
+            virtual ~Stage();
+
+            void start();
+
+            /**
+             * Updates the current action
+             * @return Progress value between 0 and 1. If the action hasn't been started it'll return 0. If the action is complete it'll always return 1.
+             */
+            void update();
+
+            void endStage();
+
+            bool isPlaying() const;
+
+            bool isComplete() const;
+
+            bool isInteruptable() const;
+
+            void setInteruptable(bool interuptable);
+
+            const std::string &getName() const;
+
+            void setName(const std::string &name);
+
+            double getTimeToPerceive() const;
+
+            void setTimeToPerceive(double timeToPerceive);
+
+            inline bool operator==(const Stage &other);
+
+            inline bool operator!=(const Stage &other);
+
+            inline bool operator<(const Stage &other);
+
+            inline bool operator>(const Stage &other);
     };
 
 } /* namespace Divisaction */

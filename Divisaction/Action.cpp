@@ -109,4 +109,8 @@ namespace Divisaction {
         return this->running;
     }
 
+    bool Action::hasFinished() const {
+        return !running && (currentStageType == StageType::FOLLOW_THROUGH || currentStageType == StageType::CANCEL);
+    }
+
 } /* namespace Divisaction */

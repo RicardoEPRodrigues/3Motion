@@ -29,11 +29,6 @@ namespace Divisaction {
 
             std::unordered_map<double, Event> eventsBeingPerceived;
         protected:
-            /**
-             * Time to perceive an event (simulates the human mind)
-             * @note time is should be in milliseconds
-             */
-            double timeToPerceive;
 
             struct EmotionalReply {
                 Agent *sender;
@@ -83,10 +78,6 @@ namespace Divisaction {
             virtual void decide();
 
             const std::vector<Event> perform();
-
-            double getTimeToPerceive() const;
-
-            void setTimeToPerceive(double timeToPerceive);
     };
 
 } /* namespace Divisaction */

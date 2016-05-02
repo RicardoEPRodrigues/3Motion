@@ -66,7 +66,7 @@ void ActionProgress::update()
 
 void ActionProgress::addReply(Event reply) {
     ActionProgress * actionProgress = new ActionProgress(this);
-    actionProgress->set(reply.sender, reply.stage);
+    actionProgress->set(reply.sender, reply.emotion->getEmotion());
     this->replies.push_back(actionProgress);
     this->ui->replies->addWidget(actionProgress);
 }

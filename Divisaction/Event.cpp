@@ -9,34 +9,39 @@
 namespace Divisaction {
 
     Event::Event() {
-        type = EventType::ACTION;
+        type = Type::ACTION;
         sender = nullptr;
-        stageType = StageType::size;
-        stage = nullptr;
+        action = nullptr;
+        emotion = nullptr;
         reply = nullptr;
     }
 
-    Event::Event(EventType type, class Agent *sender) :
+    Event::Event(Type type, class Agent* sender) :
             Event::Event() {
         this->type = type;
         this->sender = sender;
     }
 
-    Event::Event(EventType type, class Agent *sender, StageType stageType,
-                 class Stage *stage) :
+    // Action
+    Event::Event(Type type, class Agent* sender, class Action* action) :
             Event::Event(type, sender) {
-        this->stageType = stageType;
-        this->stage = stage;
+        this->action = action;
     }
 
+    // Emotion
+    Event::Event(Type type, class Agent* sender, class Emotion* emotion) :
+            Event::Event(type, sender) {
+        this->emotion = emotion;
+    }
 
-    Event::Event(EventType type, class Agent *sender, StageType stageType, class Stage *stage, Event reply) :
-            Event::Event(type, sender, stageType, stage) {
+    // Reply
+    Event::Event(Type type, class Agent* sender, class Emotion* emotion, Event reply) :
+            Event::Event(type, sender, emotion) {
         CopyReply(reply);
     }
 
-    Event::Event(const Event &event) : type(event.type), sender(event.sender), stageType(event.stageType),
-                                       stage(event.stage) {
+    Event::Event(const Event &event) : type(event.type), sender(event.sender), action(event.action),
+                                       emotion(event.emotion) {
         if (event.reply && event.reply != nullptr) {
             CopyReply(*event.reply);
         } else {
@@ -45,7 +50,7 @@ namespace Divisaction {
     }
 
     void Event::CopyReply(Event &reply) {
-        this->reply = (Event *) malloc(sizeof(reply));
+        this->reply = (Event*) malloc(sizeof(reply));
         memcpy(this->reply, &reply, sizeof(reply));
     }
 
@@ -55,11 +60,11 @@ namespace Divisaction {
         }
     }
 
-    Event& Event::operator=(const Event& event) {
+    Event &Event::operator=(const Event &event) {
         type = event.type;
         sender = event.sender;
-        stageType = event.stageType;
-        stage = event.stage;
+        emotion = event.emotion;
+        action = event.action;
         if (event.reply && event.reply != nullptr) {
             CopyReply(*event.reply);
         } else {
