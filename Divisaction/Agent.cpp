@@ -11,74 +11,50 @@ using namespace std;
 namespace Divisaction {
 
     Agent::Agent() {
-        executable = nullptr;
+        selectedAction = nullptr;
         performedEvent = nullptr;
     }
 
-    Agent::~Agent() {
-        for (Action *action : possibleActions) {
-            delete action;
-        }
-        for (Emotion *emotion: availableEmotions) {
-            delete emotion;
-        }
+    const std::shared_ptr<Executable> Agent::getCurrentExecutable() const {
+        return selectedAction;
     }
 
-    Executable *Agent::getCurrentExecutable() const {
-        return executable;
-    }
-
-    void Agent::addPossibleAction(Action *action) {
+    void Agent::addPossibleAction(std::shared_ptr<Action>& action) {
         this->possibleActions.push_back(action);
     }
 
-    void Agent::removePossibleAction(Action *action) {
-        std::vector<Action *>::iterator it = std::find(possibleActions.begin(),
-                                                       possibleActions.end(), action);
+    void Agent::removePossibleAction(std::shared_ptr<Action>& action) {
+        auto it = std::find(possibleActions.begin(), possibleActions.end(), action);
         if (it != possibleActions.end()) {
             possibleActions.erase(it);
         }
     }
 
-    void Agent::addAvailableEmotion(Emotion *emotion){
+    void Agent::addAvailableEmotion(std::shared_ptr<Emotion>& emotion) {
         availableEmotions.push_back(emotion);
     }
 
-    void Agent::removeAvailableEmotion(Emotion *emotion){
-        std::vector<Emotion *>::iterator it = std::find(availableEmotions.begin(),
-                                                       availableEmotions.end(), emotion);
+    void Agent::removeAvailableEmotion(std::shared_ptr<Emotion>& emotion) {
+        auto it = std::find(availableEmotions.begin(), availableEmotions.end(), emotion);
         if (it != availableEmotions.end()) {
             availableEmotions.erase(it);
         }
     }
 
-    const std::string &Agent::getName() const {
-        return name;
-    }
-
-    void Agent::setName(const std::string &name) {
-        this->name = name;
-    }
-
-    void Agent::perceive(vector<Event> &events) {
-        std::unordered_map<double, Event> newEventsBeingPerceived;
-        for (std::pair<double, Event> event : eventsBeingPerceived) {
-            double time = event.first - Time::delta();
+    void Agent::perceive(const vector<std::shared_ptr<Event>>& events) {
+        for (auto event = eventsBeingPerceived.begin(); event != eventsBeingPerceived.end();) {
+            double time = event->first - Time::delta();
             if (time <= 0) {
-                eventsPerceived.push_back(event.second);
+                eventsPerceived.push_back(event->second);
+                event = eventsBeingPerceived.erase(event);
             } else {
-                newEventsBeingPerceived.insert(std::pair<double, Event>(time, event.second));
+                event->first = time;
+                ++event;
             }
         }
-        eventsBeingPerceived = newEventsBeingPerceived;
-        for (vector<Event>::iterator event = events.begin(); event != events.end(); event++) {
-            double timeToPerceive = 10;
-            if (event->type == Event::Type::ACTION) {
-                timeToPerceive = event->action->getCurrentStage()->getTimeToPerceive();
-            } else {
-                timeToPerceive = event->emotion->getEmotion()->getTimeToPerceive();
-            }
-            eventsBeingPerceived.insert(std::pair<double, Event>(timeToPerceive, *event));
+        for (auto event = events.begin(); event != events.end(); event++) {
+            double timeToPerceive = (*event)->timeToPerceive();
+            eventsBeingPerceived.push_back(std::pair<double, std::shared_ptr<Event>>(timeToPerceive, *event));
         }
     }
 
@@ -88,18 +64,18 @@ namespace Divisaction {
     void Agent::decide() {
     }
 
-    const vector<Event> Agent::perform() {
+    const vector<std::shared_ptr<Event>> Agent::perform() {
         performedEvent = nullptr; // It may be modified if there are changes in the action that is being executed
-        if (executable) {
-            if (executable->execute()) {
-                this->executable = nullptr;
+        if (selectedAction) {
+            if (selectedAction->execute()) {
+                this->selectedAction = nullptr;
             }
         }
         // Sends the event about the action of the current agent
-        vector<Event> responseEvents;
+        vector<std::shared_ptr<Event>> responseEvents;
         if (performedEvent) {
-            responseEvents.push_back(*performedEvent);
-            delete performedEvent;
+            responseEvents.push_back(shared_ptr<Event>(performedEvent.release()));
+            performedEvent = nullptr;
         }
         // Sends events as replies about other agents' actions
         for (vector<EmotionalReply>::iterator reply = emotionalReplies.begin(); reply != emotionalReplies.end();) {
@@ -116,13 +92,9 @@ namespace Divisaction {
         return responseEvents;
     }
 
-    Event *Agent::generateEvent(Agent *agent, Action *action) {
-        return new Event(Event::Type::ACTION, agent, action);
-    }
-
-    Event Agent::EmotionalReply::generateEvent() {
+    std::shared_ptr<Event> Agent::EmotionalReply::generateEvent() {
         hasGenerated = true;
-        return Event(Event::Type::REPLY, sender, emotion, original);
+        return shared_ptr<Event>(new ReplyEvent(sender, emotion, original));
     }
 
 } /* namespace Divisaction */

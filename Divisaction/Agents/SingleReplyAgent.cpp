@@ -11,16 +11,17 @@ namespace Divisaction {
     SingleReplyAgent::SingleReplyAgent() {
     }
 
-    SingleReplyAgent::~SingleReplyAgent() {
-    }
-
     void SingleReplyAgent::react() {
-        for (std::vector<Event>::iterator event = eventsPerceived.begin(); event != eventsPerceived.end(); event++) {
-            if (event->type == Event::Type::ACTION && (event->action->getCurrentStageType() == StageType::ANTICIPATION
-                                                       || event->action->getCurrentStageType() == StageType::FOLLOW_THROUGH
-                                                          || event->action->hasFinished() )) {
-                Emotion *emotion = availableEmotions[0];
-                this->emotionalReplies.push_back({this, emotion, *event});
+        for (auto event = eventsPerceived.begin(); event != eventsPerceived.end(); ++event) {
+            Event* eventptr = (*event).get();
+            ActionEvent* actionEvent = dynamic_cast<ActionEvent*>(eventptr);
+//            EmotionEvent* emotionEvent = dynamic_cast<EmotionEvent*>(eventptr);
+//            ReplyEvent* replyEvent = dynamic_cast<ReplyEvent*>(eventptr);
+            if (actionEvent && (actionEvent->action->getCurrentStageType() == StageType::ANTICIPATION
+                                || actionEvent->action->getCurrentStageType() == StageType::FOLLOW_THROUGH
+                                || actionEvent->action->hasFinished())) {
+                auto emotion = availableEmotions[0];
+                this->emotionalReplies.push_back({shared_from_this(), emotion, *event});
             }
         }
         eventsPerceived.clear();

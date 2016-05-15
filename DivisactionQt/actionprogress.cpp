@@ -5,6 +5,8 @@
 #include "actionprogress.h"
 #include "ui_actionprogress.h"
 
+using namespace std;
+
 ActionProgress::ActionProgress(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ActionProgress)
@@ -38,9 +40,9 @@ void ActionProgress::setLabel(QString name)
     this->ui->label->setText(name);
 }
 
-void ActionProgress::set(Agent* agent, Stage* stage)
+void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 {
-    this->stage = dynamic_cast<TimeProgressiveStage*>(stage);
+    this->stage = dynamic_cast<TimeProgressiveStage*>(stage.get());
     if (this->stage) {
         ui->AgentName->setText(QString(agent->getName().c_str()));
         ui->AgentStage->setText(QString(this->stage->getName().c_str()));
@@ -64,14 +66,17 @@ void ActionProgress::update()
     }
 }
 
-void ActionProgress::addReply(Event reply) {
-    ActionProgress * actionProgress = new ActionProgress(this);
-    actionProgress->set(reply.sender, reply.emotion->getEmotion());
-    this->replies.push_back(actionProgress);
-    this->ui->replies->addWidget(actionProgress);
+void ActionProgress::addReply(shared_ptr<Event> reply) {
+    EmotionEvent* emotionEvent = dynamic_cast<EmotionEvent*>(reply.get());
+    if (emotionEvent) {
+        ActionProgress * actionProgress = new ActionProgress(this);
+        actionProgress->set(emotionEvent->sender, emotionEvent->emotion->getEmotion());
+        this->replies.push_back(actionProgress);
+        this->ui->replies->addWidget(actionProgress);
+    }
 }
 
-Agent* ActionProgress::getAgent() const
+shared_ptr<IAgent> ActionProgress::getAgent() const
 {
     return agent;
 }

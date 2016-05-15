@@ -6,6 +6,7 @@
 #include "ui_divisactionwindow.h"
 
 using namespace Divisaction;
+using namespace std;
 
 DivisactionWindow::DivisactionWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,7 +24,7 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
     Time::update();
-    timer->start(10);
+    timer->start(20);
 }
 
 DivisactionWindow::~DivisactionWindow()
@@ -46,32 +47,36 @@ void DivisactionWindow::updateWorld() {
 void DivisactionWindow::updateProgress()
 {
     if (worldManager) {
-        for(IAgent * iagent: worldManager->getAgents()) {
-            Agent* agent = dynamic_cast<Agent*>(iagent);
-            Action * action = dynamic_cast<Action*>(agent->getCurrentExecutable());
+        for(shared_ptr<IAgent> iagent: worldManager->getAgents()) {
+            Agent* agent = dynamic_cast<Agent*>(iagent.get());
+            Action * action = dynamic_cast<Action*>(agent->getCurrentExecutable().get());
 
             if (action) {
-                Stage * stage = action->getCurrentStage();
+                auto stage = action->getCurrentStage();
 
-                std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(stage);
+                auto it = actionsProgress.find(stage);
                 if (it == actionsProgress.end()) {
                     ActionProgress * actionProgress = new ActionProgress();
-                    actionProgress->set(agent, stage);
+                    actionProgress->set(iagent, stage);
                     ui->ActionStackLayout->addWidget(actionProgress);
                     actionsProgress[stage] = actionProgress;
                 }
             }
         }
-        for (Event event : worldManager->getCurrentEvents()) {
-            if (event.type == Event::Type::REPLY && event.reply->type == Event::Type::ACTION) {
-                std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.find(event.reply->action->getCurrentStage());
-                if (it != actionsProgress.end()) {
-                    it->second->addReply(event);
+        for (shared_ptr<Event> event : worldManager->getCurrentEvents()) {
+            ReplyEvent* replyEvent = dynamic_cast<ReplyEvent*>(event.get());
+            if (replyEvent) {
+                ActionEvent* actionEvent = dynamic_cast<ActionEvent*>(replyEvent->reply.get());
+                if (actionEvent) {
+                    auto it = actionsProgress.find(actionEvent->action->getCurrentStage());
+                    if (it != actionsProgress.end()) {
+                        it->second->addReply(event);
+                    }
                 }
             }
         }
 
-        for(std::map<Stage *, ActionProgress *>::iterator it = actionsProgress.begin(); it != actionsProgress.end(); ++it) {
+        for(auto it = actionsProgress.begin(); it != actionsProgress.end(); ++it) {
             it->second->update();
         }
     }

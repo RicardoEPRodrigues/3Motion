@@ -8,6 +8,7 @@
 #define EMOTION_H_
 
 #include <functional>
+#include <memory>
 
 #include "Executable.h"
 
@@ -20,14 +21,12 @@ namespace Divisaction {
             bool running;
 
         protected:
-            Stage *emotion;
+            std::shared_ptr<Stage> emotion;
         public:
-            std::function<void(Emotion *)> started;
-            std::function<void(Emotion *)> finished;
+            std::function<void()> started;
+            std::function<void()> finished;
 
             Emotion();
-
-            virtual ~Emotion();
 
             virtual bool execute();
 
@@ -35,9 +34,11 @@ namespace Divisaction {
 
             virtual bool isRunning() const;
 
-            Stage *getEmotion() const;
+            std::shared_ptr<Stage> getEmotion() const;
 
-            void setEmotion(Stage *emotion);
+            void setEmotion(Stage* emotion);
+
+            void setEmotion(std::shared_ptr<Stage>& emotion);
     };
 
 } /* namespace Divisaction */

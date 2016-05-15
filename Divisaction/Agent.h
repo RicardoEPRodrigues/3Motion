@@ -1,7 +1,7 @@
 /*
  * File Agent.h in project Divisaction
  * 
- * Copyright (C) ricardo 2016 - All Rights Reserved
+ * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
 
 #ifndef AGENT_H_
@@ -20,64 +20,59 @@
 #include "Event.h"
 #include "Time.h"
 #include "Emotion.h"
+#include "Events/ActionEvent.h"
+#include "Events/ReplyEvent.h"
 
 namespace Divisaction {
 
     class Agent : public IAgent {
         private:
-            std::string name;
 
-            std::unordered_map<double, Event> eventsBeingPerceived;
+            std::vector<std::pair<double, std::shared_ptr<Event>>> eventsBeingPerceived;
         protected:
 
             struct EmotionalReply {
-                Agent *sender;
-                Emotion *emotion;
-                Event original;
+                std::shared_ptr<IAgent> sender;
+                std::shared_ptr<Emotion> emotion;
+                std::shared_ptr<Event> original;
 
                 bool hasGenerated = false;
 
-                Event generateEvent();
+                std::shared_ptr<Event> generateEvent();
             };
 
-            std::vector<Action *> possibleActions;
-            std::vector<Emotion *> availableEmotions;
+            std::vector<std::shared_ptr<Action>> possibleActions;
+            std::shared_ptr<Action> selectedAction;
 
-            std::vector<Event> eventsPerceived;
+            std::vector<std::shared_ptr<Emotion>> availableEmotions;
+            std::shared_ptr<Emotion> selectedEmotion;
+
+            std::vector<std::shared_ptr<Event>> eventsPerceived;
 
             std::vector<EmotionalReply> emotionalReplies;
 
-            Executable *executable;
-            Event *performedEvent;
-
-            static Event *generateEvent(Agent *agent, Action *action);
+            std::unique_ptr<Event> performedEvent;
 
         public:
             Agent();
 
-            virtual ~Agent();
+            const std::shared_ptr<Executable> getCurrentExecutable() const;
 
-            Executable *getCurrentExecutable() const;
+            virtual void addPossibleAction(std::shared_ptr<Action>& action);
 
-            const std::string &getName() const;
+            virtual void removePossibleAction(std::shared_ptr<Action>& action);
 
-            void setName(const std::string &name);
+            virtual void addAvailableEmotion(std::shared_ptr<Emotion>& emotion);
 
-            virtual void addPossibleAction(Action *action);
+            virtual void removeAvailableEmotion(std::shared_ptr<Emotion>& emotion);
 
-            virtual void removePossibleAction(Action *action);
-
-            virtual void addAvailableEmotion(Emotion *emotion);
-
-            virtual void removeAvailableEmotion(Emotion *emotion);
-
-            void perceive(std::vector<Event> &events);
+            void perceive(const std::vector<std::shared_ptr<Event>>& events);
 
             virtual void react();
 
             virtual void decide();
 
-            const std::vector<Event> perform();
+            const std::vector<std::shared_ptr<Event>> perform();
     };
 
 } /* namespace Divisaction */

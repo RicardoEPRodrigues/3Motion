@@ -27,7 +27,7 @@ class ActionProgress : public QWidget
     Q_OBJECT
 private:
     TimeProgressiveStage *stage;
-    Agent* agent;
+    std::shared_ptr<IAgent> agent;
 
     std::vector<ActionProgress*> replies;
 
@@ -39,13 +39,13 @@ public:
 
     void setLabel(QString name);
 
-    void set(Agent* agent, Stage *stage);
+    void set(std::shared_ptr<IAgent>& agent, std::shared_ptr<Stage> stage);
 
-    void addReply(Event reply);
+    void addReply(std::shared_ptr<Event> reply);
 
     void update();
 
-    Agent* getAgent() const;
+    std::shared_ptr<IAgent> getAgent() const;
 
 private:
     Ui::ActionProgress *ui;

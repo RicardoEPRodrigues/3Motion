@@ -7,52 +7,22 @@
 #ifndef EVENT_H_
 #define EVENT_H_
 
-#include <cstdlib>
-#include <cstring>
-
-#include "StageType.h"
+#include <memory>
 
 namespace Divisaction {
 
     struct Event {
-        enum Type {
-            ACTION,
-            EMOTION,
-            REPLY,
-            size
-        };
 
-        Type type;
-
-        class Agent* sender;
-
-        // Action
-        class Action* action;
-
-        Event(Type type, class Agent* sender, class Action* action);
-
-        // Emotion
-        class Emotion* emotion;
-
-        Event(Type type, class Agent* sender, class Emotion* emotion);
-
-        // Reply
-        Event* reply;
-
-        Event(Type type, class Agent* sender, class Emotion* emotion, Event reply);
+        std::shared_ptr<class IAgent> sender;
 
         // Base
         Event();
 
-        Event(Type type, class Agent* sender);
+        Event(std::shared_ptr<class IAgent> sender);
 
-        Event(const Event &event);
+        virtual ~Event();
 
-        ~Event();
-
-        Event &operator=(const Event &event);
-
-        void CopyReply(Event &reply);
+        virtual double timeToPerceive() = 0;
     };
 
 } /* namespace Divisaction */

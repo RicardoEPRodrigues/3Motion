@@ -13,7 +13,7 @@ namespace Divisaction {
     public:
         virtual ~Executable() {}
         /**
-         * Executes the executable.
+         * Executes the selectedAction.
          * @return true if the execution has finished all it's steps, false otherwise.
          */
         virtual bool execute() = 0;

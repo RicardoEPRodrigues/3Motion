@@ -15,12 +15,10 @@ namespace Divisaction {
     }
 
     WorldManager::~WorldManager() {
-        for (IAgent *agent : agents) {
-            delete agent;
-        }
+
     }
 
-    const vector<IAgent *> &WorldManager::getAgents() const {
+    const vector<std::shared_ptr<IAgent>> &WorldManager::getAgents() const {
         return agents;
     }
 
@@ -32,7 +30,13 @@ namespace Divisaction {
         this->playing = false;
     }
 
-    void WorldManager::addAgent(IAgent *agent) {
+    void WorldManager::addAgent(IAgent* agent) {
+        if (agent) {
+            this->agents.push_back(shared_ptr<IAgent> {agent});
+        }
+    }
+
+    void WorldManager::addAgent(shared_ptr<IAgent>& agent) {
         if (agent) {
             this->agents.push_back(agent);
         }
@@ -40,18 +44,18 @@ namespace Divisaction {
 
     void WorldManager::update() {
         if (playing) {
-            for (IAgent *agent : agents) {
-                agent->perceive(events);
+            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+                (*agent)->perceive(events);
             }
             events.clear();
-            for (IAgent *agent : agents) {
-                agent->react();
+            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+                (*agent)->react();
             }
-            for (IAgent *agent : agents) {
-                agent->decide();
+            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+                (*agent)->decide();
             }
-            for (IAgent *agent : agents) {
-                vector<Event> events = agent->perform();
+            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+                vector<shared_ptr<Event>> events = (*agent)->perform();
                 this->events.insert(std::end(this->events), std::begin(events), std::end(events));
             }
 

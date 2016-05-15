@@ -15,33 +15,25 @@ namespace Divisaction {
         changed = nullptr;
         finished = nullptr;
 
-        stages = vector<Stage*>(StageType::size, nullptr);
+        stages = vector<std::shared_ptr<Stage>>(StageType::size, nullptr);
         reset();
-    }
-
-    Action::~Action() {
-        for (Stage * stage : stages) {
-            if (stage) {
-                delete stage;
-            }
-        }
     }
 
     void Action::reset() {
         this->currentStageType = StageType::ANTICIPATION;
         this->running = false;
-        for (Stage* stage : stages) {
+        for (auto stage : stages) {
             if (stage) {
                 stage->endStage();
             }
         }
     }
 
-    void Action::setStage(StageType type, Stage* stage) {
+    void Action::setStage(StageType type, std::shared_ptr<Stage> stage) {
         this->stages[type] = stage;
     }
 
-    Stage* Action::getStage(StageType type) const {
+    std::shared_ptr<Stage> Action::getStage(StageType type) const {
         return stages[type];
     }
 
@@ -49,7 +41,7 @@ namespace Divisaction {
         return currentStageType;
     }
 
-    Stage* Action::getCurrentStage() const {
+    std::shared_ptr<Stage> Action::getCurrentStage() const {
         return stages[currentStageType];
     }
 
@@ -58,11 +50,11 @@ namespace Divisaction {
             reset();
             running = true;
             if (started) {
-                started(this);
+                started();
             }
         }
 
-        Stage * currentStage = getStage(currentStageType);
+        std::shared_ptr<Stage> currentStage = getStage(currentStageType);
         if (!currentStage->isPlaying()) {
             currentStage->start();
         }
@@ -72,14 +64,14 @@ namespace Divisaction {
                     || currentStageType == StageType::CANCEL) {
                 running = false;
                 if (finished) {
-                    finished(this);
+                    finished();
                 }
                 return true;
             } else {
                 currentStageType = static_cast<StageType>((int) currentStageType
                         + 1);
                 if (changed) {
-                    changed(this, currentStageType);
+                    changed(currentStageType);
                 }
 //                return execute();
             }
@@ -92,12 +84,18 @@ namespace Divisaction {
         switch (currentStageType) {
             case StageType::ANTICIPATION:
                 currentStageType = StageType::CANCEL;
+                if (changed) {
+                    changed(currentStageType);
+                }
                 break;
             case StageType::EXECUTION:
                 // Fall through
             case StageType::FOLLOW_THROUGH:
                 if (getStage(currentStageType)->isInteruptable()) {
                     currentStageType = StageType::CANCEL;
+                    if (changed) {
+                        changed(currentStageType);
+                    }
                 }
                 break;
             default:

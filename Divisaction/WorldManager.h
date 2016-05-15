@@ -8,42 +8,50 @@
 #define WORLDMANAGER_H_
 
 #include <vector>
+#include <memory>
+
 #include "IAgent.h"
 #include "Event.h"
 
 namespace Divisaction {
 
     class WorldManager {
-    private:
-        std::vector<IAgent*> agents;
-        std::vector<Event> events;
+        private:
+            std::vector<std::shared_ptr<IAgent>> agents;
+            std::vector<std::shared_ptr<Event>> events;
 
-        bool playing;
-    public:
+            bool playing;
+        public:
 
-        WorldManager();
-        virtual ~WorldManager();
+            WorldManager();
 
-        /**
-         * Sets the world manager to update it's agents when Update() is called
-         * @note Play is enabled by default
-         * @see WorldManager::update()
-         */
-        void play();
-        /**
-         * Sets the world manager not to update it's agents when Update() is called
-         * @note Play is enabled by default
-         * @see WorldManager::update()
-         */
-        void pause();
-        const std::vector<IAgent*>& getAgents() const;
-        void addAgent(IAgent * agent);
+            virtual ~WorldManager();
 
-        void update();
+            /**
+             * Sets the world manager to update it's agents when Update() is called
+             * @note Play is enabled by default
+             * @see WorldManager::update()
+             */
+            void play();
 
-        const std::vector<Event>& getCurrentEvents() const {
-            return events;
-        }
+            /**
+             * Sets the world manager not to update it's agents when Update() is called
+             * @note Play is enabled by default
+             * @see WorldManager::update()
+             */
+            void pause();
+
+            const std::vector<std::shared_ptr<IAgent>>& getAgents() const;
+
+            void addAgent(IAgent* agent);
+
+            void addAgent(std::shared_ptr<IAgent>& agent);
+
+            void update();
+
+            const std::vector<std::shared_ptr<Event>>& getCurrentEvents() const {
+                return events;
+            }
     };
 
 } /* namespace Divisaction */

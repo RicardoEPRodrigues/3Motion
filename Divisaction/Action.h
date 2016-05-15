@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <functional>
+#include <memory>
 
 #include "Executable.h"
 #include "Stage.h"
@@ -20,25 +21,23 @@ namespace Divisaction {
     class Action : public Executable {
         private:
             bool running;
-            std::vector<Stage*> stages;
+            std::vector<std::shared_ptr<Stage>> stages;
 
             StageType currentStageType;
         protected:
         public:
             // Function for updating listeners
-            std::function<void(Action*)> started;
-            std::function<void(Action*, StageType)> changed;
-            std::function<void(Action*)> finished;
+            std::function<void()> started;
+            std::function<void(StageType)> changed;
+            std::function<void()> finished;
 
             Action();
 
-            virtual ~Action();
+            void setStage(StageType type, std::shared_ptr<Stage> stage);
 
-            void setStage(StageType type, Stage* stage);
+            std::shared_ptr<Stage> getStage(StageType type) const;
 
-            Stage* getStage(StageType type) const;
-
-            Stage* getCurrentStage() const;
+            std::shared_ptr<Stage> getCurrentStage() const;
 
             StageType getCurrentStageType() const;
 

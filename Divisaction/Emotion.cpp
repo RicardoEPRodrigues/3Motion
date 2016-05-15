@@ -13,18 +13,12 @@ namespace Divisaction {
         this->running = false;
     }
 
-    Emotion::~Emotion() {
-        if (emotion) {
-            delete this->emotion;
-        }
-    }
-
     bool Emotion::execute() {
         if (!running) {
             reset();
             running = true;
             if (started) {
-                started(this);
+                started();
             }
         }
 
@@ -35,7 +29,7 @@ namespace Divisaction {
         if (emotion->isComplete()) {
             running = false;
             if (finished) {
-                finished(this);
+                finished();
             }
             return true;
         }
@@ -48,11 +42,15 @@ namespace Divisaction {
         emotion->endStage();
     }
 
-    Stage *Emotion::getEmotion() const {
+    std::shared_ptr<Stage> Emotion::getEmotion() const {
         return emotion;
     }
 
-    void Emotion::setEmotion(Stage *emotion) {
+    void Emotion::setEmotion(Stage* emotion) {
+        this->emotion = std::shared_ptr<Stage>(emotion);
+    }
+
+    void Emotion::setEmotion(std::shared_ptr<Stage>& emotion) {
         this->emotion = emotion;
     }
 

@@ -16,35 +16,39 @@ namespace Divisaction {
         alreadyActed = false;
     }
 
-    SingleActionAgent::~SingleActionAgent() {
+
+    void SingleActionAgent::react() {
+        if (eventsPerceived.size() > 0) {
+            this->eventsPerceived.clear();
+        }
     }
 
     void SingleActionAgent::decide() {
-        if (!alreadyActed && !executable && possibleActions.size() > 0) {
-            executable = possibleActions[0];
+        if (!alreadyActed && !selectedAction && possibleActions.size() > 0) {
+            selectedAction = possibleActions[0];
             alreadyActed = true;
         }
     }
 
-    void SingleActionAgent::addPossibleAction(Action *action) {
+    void SingleActionAgent::addPossibleAction(shared_ptr<Action>& action) {
         Agent::addPossibleAction(action);
-        action->started = bind(&SingleActionAgent::actionStarted, this, _1);
-        action->changed = bind(&SingleActionAgent::actionChanged, this, _1, _2);
-        action->finished = bind(&SingleActionAgent::actionFinished, this, _1);
+        action->started = bind(&SingleActionAgent::actionStarted, this);
+        action->changed = bind(&SingleActionAgent::actionChanged, this, _1);
+        action->finished = bind(&SingleActionAgent::actionFinished, this);
     }
 
-    void SingleActionAgent::actionStarted(Action *action) {
-        this->performedEvent = generateEvent(this, action);
+    void SingleActionAgent::actionStarted() {
+        this->performedEvent.reset(new ActionEvent(shared_from_this(), selectedAction));
     }
 
-    void SingleActionAgent::actionChanged(Action *action, StageType stage) {
+    void SingleActionAgent::actionChanged( StageType stage) {
         if (stage != StageType::EXECUTION) {
-            this->performedEvent = generateEvent(this, action);
+            this->performedEvent.reset(new ActionEvent(shared_from_this(), selectedAction));
         }
     }
 
-    void SingleActionAgent::actionFinished(Action *action) {
-        this->performedEvent = generateEvent(this, action);
+    void SingleActionAgent::actionFinished() {
+        this->performedEvent.reset(new ActionEvent(shared_from_this(), selectedAction));
     }
 
 } /* namespace Divisaction */

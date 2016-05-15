@@ -16,21 +16,20 @@ namespace Divisaction {
             bool alreadyActed;
 
         protected:
+            virtual void actionStarted();
 
-            virtual void actionStarted(Action *action);
+            virtual void actionChanged(StageType stage);
 
-            virtual void actionChanged(Action *action, StageType stage);
-
-            virtual void actionFinished(Action *action);
+            virtual void actionFinished();
 
         public:
             SingleActionAgent();
 
-            virtual ~SingleActionAgent();
-
             void decide() override;
 
-            virtual void addPossibleAction(Action *action) override;
+            virtual void react() override;
+
+            virtual void addPossibleAction(std::shared_ptr<Action>& action) override;
     };
 
 } /* namespace Divisaction */

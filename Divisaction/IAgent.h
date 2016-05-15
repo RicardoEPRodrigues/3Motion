@@ -7,22 +7,34 @@
 #define DIVISACTION_IAGENT_H
 
 #include <vector>
+#include <memory>
+
 #include "Event.h"
 
 namespace Divisaction {
 
-    class IAgent {
+    class IAgent : public std::enable_shared_from_this<IAgent> {
+        protected:
+            std::string name;
 
         public:
-            virtual void perceive(std::vector<Event> &events) = 0;
+            virtual ~IAgent() { }
+
+            virtual void perceive(const std::vector<std::shared_ptr<Event>>& events) = 0;
 
             virtual void react() = 0;
 
             virtual void decide() = 0;
 
-            virtual const std::vector<Event> perform() = 0;
+            virtual const std::vector<std::shared_ptr<Event>> perform() = 0;
 
-            virtual ~IAgent() { };
+            const std::string& getName() const {
+                return name;
+            }
+
+            void setName(const std::string& name) {
+                this->name = name;
+            }
     };
 
 }
