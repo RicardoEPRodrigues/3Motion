@@ -16,12 +16,12 @@
 namespace Divisaction {
 
     struct ReplyEvent : public EmotionEvent {
-        std::shared_ptr<Event> reply;
+        std::shared_ptr<class IAgent> origin;
 
         ReplyEvent();
 
         ReplyEvent(std::shared_ptr<class IAgent> sender, std::shared_ptr<Emotion> emotion,
-                   std::shared_ptr<Event> reply);
+                   std::shared_ptr<class IAgent> origin);
     };
 
 } /* namespace Divisaction */

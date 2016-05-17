@@ -11,17 +11,14 @@
 
 #include <vector>
 #include <algorithm>    // std::find_if
-#include <functional>
-#include <unordered_map>
 
-#include "Executable.h"
 #include "Action.h"
-#include "StageType.h"
 #include "Event.h"
 #include "Time.h"
 #include "Emotion.h"
 #include "Events/ActionEvent.h"
 #include "Events/ReplyEvent.h"
+#include "MentalState.h"
 
 namespace Divisaction {
 
@@ -29,29 +26,29 @@ namespace Divisaction {
         private:
 
             std::vector<std::pair<double, std::shared_ptr<Event>>> eventsBeingPerceived;
+            std::vector<std::pair<std::shared_ptr<ReplyEvent>, bool>> emotionalReplies;
+
         protected:
 
-            struct EmotionalReply {
-                std::shared_ptr<IAgent> sender;
-                std::shared_ptr<Emotion> emotion;
-                std::shared_ptr<Event> original;
-
-                bool hasGenerated = false;
-
-                std::shared_ptr<Event> generateEvent();
-            };
+//            struct EmotionalReply {
+//                std::shared_ptr<IAgent> sender;
+//                std::shared_ptr<Emotion> emotion;
+//                std::shared_ptr<Event> original;
+//
+//                bool hasGenerated = false;
+//
+//                std::shared_ptr<Event> generateEvent();
+//            };
 
             std::vector<std::shared_ptr<Action>> possibleActions;
-            std::shared_ptr<Action> selectedAction;
 
             std::vector<std::shared_ptr<Emotion>> availableEmotions;
-            std::shared_ptr<Emotion> selectedEmotion;
-
-            std::vector<std::shared_ptr<Event>> eventsPerceived;
-
-            std::vector<EmotionalReply> emotionalReplies;
 
             std::unique_ptr<Event> performedEvent;
+
+            MentalState mentalState;
+
+            void addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent);
 
         public:
             Agent();

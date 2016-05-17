@@ -12,19 +12,22 @@ namespace Divisaction {
     }
 
     void SingleReplyAgent::react() {
-        for (auto event = eventsPerceived.begin(); event != eventsPerceived.end(); ++event) {
-            Event* eventptr = (*event).get();
-            ActionEvent* actionEvent = dynamic_cast<ActionEvent*>(eventptr);
-//            EmotionEvent* emotionEvent = dynamic_cast<EmotionEvent*>(eventptr);
-//            ReplyEvent* replyEvent = dynamic_cast<ReplyEvent*>(eventptr);
-            if (actionEvent && (actionEvent->action->getCurrentStageType() == StageType::ANTICIPATION
-                                || actionEvent->action->getCurrentStageType() == StageType::FOLLOW_THROUGH
-                                || actionEvent->action->hasFinished())) {
-                auto emotion = availableEmotions[0];
-                this->emotionalReplies.push_back({shared_from_this(), emotion, *event});
+        for (auto mentalRep = mentalState.others.begin(); mentalRep != mentalState.others.end(); ++mentalRep) {
+            if (mentalRep->second.update) {
+                if (mentalRep->second.action
+                    && (mentalRep->second.action->getCurrentStageType() == StageType::ANTICIPATION
+                        || mentalRep->second.action->getCurrentStageType() == StageType::FOLLOW_THROUGH
+                        || mentalRep->second.action->hasFinished())) {
+                    if (auto origin = mentalRep->first.lock()) {
+                        auto emotion = availableEmotions[0];
+                        std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(shared_from_this(), emotion,
+                                                                                         origin);
+                        addEmotionalReply(event);
+                    }
+                    mentalRep->second.update = false;
+                }
             }
         }
-        eventsPerceived.clear();
     }
 
 } /* namespace Divisaction */

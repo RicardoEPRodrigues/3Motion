@@ -14,9 +14,7 @@ namespace Divisaction {
         playing = true;
     }
 
-    WorldManager::~WorldManager() {
-
-    }
+    WorldManager::~WorldManager() { }
 
     const vector<std::shared_ptr<IAgent>> &WorldManager::getAgents() const {
         return agents;

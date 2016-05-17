@@ -17,15 +17,11 @@ namespace Divisaction {
     }
 
 
-    void SingleActionAgent::react() {
-        if (eventsPerceived.size() > 0) {
-            this->eventsPerceived.clear();
-        }
-    }
+    void SingleActionAgent::react() { }
 
     void SingleActionAgent::decide() {
-        if (!alreadyActed && !selectedAction && possibleActions.size() > 0) {
-            selectedAction = possibleActions[0];
+        if (!alreadyActed && !mentalState.self.action && possibleActions.size() > 0) {
+            mentalState.self.action = possibleActions[0];
             alreadyActed = true;
         }
     }
@@ -38,17 +34,17 @@ namespace Divisaction {
     }
 
     void SingleActionAgent::actionStarted() {
-        this->performedEvent.reset(new ActionEvent(shared_from_this(), selectedAction));
+        this->performedEvent.reset(new ActionEvent(shared_from_this(), mentalState.self.action));
     }
 
-    void SingleActionAgent::actionChanged( StageType stage) {
+    void SingleActionAgent::actionChanged(StageType stage) {
         if (stage != StageType::EXECUTION) {
-            this->performedEvent.reset(new ActionEvent(shared_from_this(), selectedAction));
+            this->performedEvent.reset(new ActionEvent(shared_from_this(), mentalState.self.action));
         }
     }
 
     void SingleActionAgent::actionFinished() {
-        this->performedEvent.reset(new ActionEvent(shared_from_this(), selectedAction));
+        this->performedEvent.reset(new ActionEvent(shared_from_this(), mentalState.self.action));
     }
 
 } /* namespace Divisaction */

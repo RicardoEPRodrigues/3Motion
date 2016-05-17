@@ -66,11 +66,10 @@ void DivisactionWindow::updateProgress()
         for (shared_ptr<Event> event : worldManager->getCurrentEvents()) {
             ReplyEvent* replyEvent = dynamic_cast<ReplyEvent*>(event.get());
             if (replyEvent) {
-                ActionEvent* actionEvent = dynamic_cast<ActionEvent*>(replyEvent->reply.get());
-                if (actionEvent) {
-                    auto it = actionsProgress.find(actionEvent->action->getCurrentStage());
-                    if (it != actionsProgress.end()) {
-                        it->second->addReply(event);
+                for(std::map<std::shared_ptr<Stage>, ActionProgress *>::reverse_iterator progress = actionsProgress.rbegin(); progress != actionsProgress.rend(); progress++) {
+                    if (progress->second->agent == replyEvent->origin) {
+                        progress->second->addReply(event);
+                        break;
                     }
                 }
             }

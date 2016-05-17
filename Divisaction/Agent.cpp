@@ -10,13 +10,10 @@ using namespace std;
 
 namespace Divisaction {
 
-    Agent::Agent() {
-        selectedAction = nullptr;
-        performedEvent = nullptr;
-    }
+    Agent::Agent() { }
 
     const std::shared_ptr<Executable> Agent::getCurrentExecutable() const {
-        return selectedAction;
+        return mentalState.self.action;
     }
 
     void Agent::addPossibleAction(std::shared_ptr<Action>& action) {
@@ -45,7 +42,9 @@ namespace Divisaction {
         for (auto event = eventsBeingPerceived.begin(); event != eventsBeingPerceived.end();) {
             double time = event->first - Time::delta();
             if (time <= 0) {
-                eventsPerceived.push_back(event->second);
+                if (event->second->sender != shared_from_this()) {
+                    this->mentalState.update(event->second);
+                }
                 event = eventsBeingPerceived.erase(event);
             } else {
                 event->first = time;
@@ -66,10 +65,13 @@ namespace Divisaction {
 
     const vector<std::shared_ptr<Event>> Agent::perform() {
         performedEvent = nullptr; // It may be modified if there are changes in the action that is being executed
-        if (selectedAction) {
-            if (selectedAction->execute()) {
-                this->selectedAction = nullptr;
+        if (mentalState.self.action) {
+            mentalState.self.state = mentalState.self.action->getCurrentStageType();
+            if (mentalState.self.action->execute()) {
+                mentalState.self.action = nullptr;
             }
+        }
+        if (mentalState.self.emotion) {
         }
         // Sends the event about the action of the current agent
         vector<std::shared_ptr<Event>> responseEvents;
@@ -78,11 +80,11 @@ namespace Divisaction {
             performedEvent = nullptr;
         }
         // Sends events as replies about other agents' actions
-        for (vector<EmotionalReply>::iterator reply = emotionalReplies.begin(); reply != emotionalReplies.end();) {
-            if (!reply->hasGenerated) {
-                responseEvents.push_back(reply->generateEvent());
+        for (auto reply = emotionalReplies.begin(); reply != emotionalReplies.end();) {
+            if (!reply->second) {
+                responseEvents.push_back(reply->first);
             }
-            if (reply->emotion->execute()) {
+            if (reply->first->emotion->execute()) {
                 reply = emotionalReplies.erase(reply);
             } else {
                 ++reply;
@@ -92,9 +94,8 @@ namespace Divisaction {
         return responseEvents;
     }
 
-    std::shared_ptr<Event> Agent::EmotionalReply::generateEvent() {
-        hasGenerated = true;
-        return shared_ptr<Event>(new ReplyEvent(sender, emotion, original));
+    void Agent::addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent) {
+        emotionalReplies.push_back(pair<shared_ptr<ReplyEvent>, bool>(replyEvent, false));
     }
 
 } /* namespace Divisaction */
