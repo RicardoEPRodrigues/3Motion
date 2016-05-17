@@ -16,18 +16,18 @@ namespace Divisaction {
     Examples::~Examples() {
     }
 
-    WorldManager* Examples::example1() {
+    shared_ptr<WorldManager> Examples::example1() {
         Time::setTimeCalculator(new ChronoTimeCalculator());
 
-        WorldManager* worldManager = new WorldManager();
+        auto worldManager = make_shared<WorldManager>();
 
-        Agent * agentBob = new SingleActionAgent();
+        auto agentBob = make_shared<SingleActionAgent>();
         agentBob->setName(string("Bob"));
         shared_ptr<Action> longWalk = make_shared<LongWalk>();
         agentBob->addPossibleAction(longWalk);
         worldManager->addAgent(agentBob);
 
-        Agent * agentHanna = new SingleReplyAgent();
+        auto agentHanna = make_shared<SingleReplyAgent>();
         agentHanna->setName(string("Hanna"));
         shared_ptr<Emotion> confidence = make_shared<Confidence>();
         agentHanna->addAvailableEmotion(confidence);

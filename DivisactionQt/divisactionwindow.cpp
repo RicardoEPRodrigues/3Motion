@@ -30,7 +30,6 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
 DivisactionWindow::~DivisactionWindow()
 {
     delete ui;
-    delete worldManager;
     scrollbar = nullptr;
 }
 

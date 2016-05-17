@@ -23,6 +23,10 @@ namespace Divisaction {
         followThrough->setTimeToPerceive(1000);
         this->setStage(StageType::FOLLOW_THROUGH, followThrough);
 
+        auto finished = make_shared<TimeProgressiveStage>(string("Finishes Walk"), 10, true);
+        finished->setTimeToPerceive(3000);
+        this->setStage(StageType::FINISHED, finished);
+
         auto cancel = make_shared<TimeProgressiveStage>(string("Stopped Walking"), 100, true);
         cancel->setTimeToPerceive(1000);
         this->setStage(StageType::CANCEL, cancel);

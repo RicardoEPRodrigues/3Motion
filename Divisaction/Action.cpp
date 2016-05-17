@@ -60,18 +60,21 @@ namespace Divisaction {
         }
         currentStage->update();
         if (currentStage->isComplete()) {
-            if (currentStageType == StageType::FOLLOW_THROUGH
-                    || currentStageType == StageType::CANCEL) {
+            if (currentStageType == StageType::FINISHED
+                || currentStageType == StageType::CANCEL) {
                 running = false;
-                if (finished) {
-                    finished();
-                }
                 return true;
             } else {
                 currentStageType = static_cast<StageType>((int) currentStageType
-                        + 1);
-                if (changed) {
-                    changed(currentStageType);
+                                                          + 1);
+                if (currentStageType == StageType::FINISHED) {
+                    if (finished) {
+                        finished();
+                    }
+                } else {
+                    if (changed) {
+                        changed(currentStageType);
+                    }
                 }
 //                return execute();
             }
@@ -108,7 +111,7 @@ namespace Divisaction {
     }
 
     bool Action::hasFinished() const {
-        return !running && (currentStageType == StageType::FOLLOW_THROUGH || currentStageType == StageType::CANCEL);
+        return currentStageType == StageType::FINISHED;
     }
 
 } /* namespace Divisaction */

@@ -11,8 +11,8 @@
 #include <chrono>
 #include <thread>
 
-#include "NullPointerException.h"
-#include "InvalidArgumentException.h"
+#include "../Exceptions/NullPointerException.h"
+#include "../Exceptions/InvalidArgumentException.h"
 
 namespace Divisaction {
 

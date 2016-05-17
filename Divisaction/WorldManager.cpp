@@ -28,13 +28,7 @@ namespace Divisaction {
         this->playing = false;
     }
 
-    void WorldManager::addAgent(IAgent* agent) {
-        if (agent) {
-            this->agents.push_back(shared_ptr<IAgent> {agent});
-        }
-    }
-
-    void WorldManager::addAgent(shared_ptr<IAgent>& agent) {
+    void WorldManager::addAgent(shared_ptr<IAgent> agent) {
         if (agent) {
             this->agents.push_back(agent);
         }

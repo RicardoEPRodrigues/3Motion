@@ -14,10 +14,7 @@
 
 #include "actionprogress.h"
 
-#include "Time.h"
-#include "WorldManager.h"
-#include "Agent.h"
-#include "Agent.h"
+#include "Divisaction.h"
 #include "Extra/Examples.h"
 
 namespace Ui {
@@ -36,8 +33,8 @@ private:
     Ui::DivisactionWindow *ui;
     QScrollBar* scrollbar;
 
-    WorldManager * worldManager;
-    std::map<std::shared_ptr<Stage>, ActionProgress *> actionsProgress; // change to have a matrix where the key is the agent and the value a list with the actions he has done.
+    std::shared_ptr<class WorldManager> worldManager;
+    std::map<std::shared_ptr<class Stage>, ActionProgress *> actionsProgress; // change to have a matrix where the key is the agent and the value a list with the actions he has done.
 
     void updateProgress();
 

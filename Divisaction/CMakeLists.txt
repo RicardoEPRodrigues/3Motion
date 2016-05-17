@@ -32,6 +32,9 @@ set(SOURCE_FILES
         Events/ActionEvent.cpp Events/ActionEvent.h
         Events/EmotionEvent.cpp Events/EmotionEvent.h
         Events/ReplyEvent.cpp Events/ReplyEvent.h
-        MentalState.cpp MentalState.h)
+        MentalState.cpp MentalState.h
+        Divisaction.h
+        DivisactionExtras.h
+        )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

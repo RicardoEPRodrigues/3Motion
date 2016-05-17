@@ -53,6 +53,9 @@ namespace Divisaction {
         }
         for (auto event = events.begin(); event != events.end(); event++) {
             double timeToPerceive = (*event)->timeToPerceive();
+            if (timeToPerceive == 0) {
+                timeToPerceive = 100;
+            }
             eventsBeingPerceived.push_back(std::pair<double, std::shared_ptr<Event>>(timeToPerceive, *event));
         }
     }

@@ -7,13 +7,10 @@
 #ifndef EXTRA_EXAMPLES_H_
 #define EXTRA_EXAMPLES_H_
 
-#include "../Time.h"
-#include "ChronoTimeCalculator.h"
-#include "../WorldManager.h"
-#include "../Agents/SingleActionAgent.h"
-#include "../Agents/SingleReplyAgent.h"
-#include "../Actions/LongWalk.h"
-#include "../Emotions/Confidence.h"
+#include <memory>
+
+#include "../Divisaction.h"
+#include "../DivisactionExtras.h"
 
 namespace Divisaction {
 
@@ -22,7 +19,7 @@ namespace Divisaction {
         Examples();
         virtual ~Examples();
     public:
-        static WorldManager* example1();
+        static std::shared_ptr<WorldManager> example1();
 
     };
 

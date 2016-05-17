@@ -43,9 +43,7 @@ namespace Divisaction {
 
             const std::vector<std::shared_ptr<IAgent>>& getAgents() const;
 
-            void addAgent(IAgent* agent);
-
-            void addAgent(std::shared_ptr<IAgent>& agent);
+            void addAgent(std::shared_ptr<IAgent> agent);
 
             void update();
 
