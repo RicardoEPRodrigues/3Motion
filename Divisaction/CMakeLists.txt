@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(Divisaction)
 
+find_package(Doxygen)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -O0 -fPIC -Wuninitialized -std=c++14")
 
 include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
@@ -38,3 +40,27 @@ set(SOURCE_FILES
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
+
+if(DOXYGEN_FOUND)
+
+    set(DOXYGEN_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/project-Divisaction.cfg)
+    set(DOXYFILE ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+    configure_file(${DOXYGEN_INPUT} ${DOXYFILE} @ONLY)
+
+    add_custom_target(apidoc
+            COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation...\n"
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
+            COMMAND ${CMAKE_COMMAND} -E echo "Done."
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            DEPENDS ${DOXYGEN_INPUT}
+            )
+
+    add_custom_target(apidoc_forced
+            COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation...\n"
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
+            COMMAND ${CMAKE_COMMAND} -E echo "Done."
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            )
+
+endif(DOXYGEN_FOUND)

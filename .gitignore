@@ -43,3 +43,6 @@ build-DivisactionQt*
 # CLion
 .idea
 .idea_modules
+
+# Doxygen
+doc/

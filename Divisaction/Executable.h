@@ -1,8 +1,13 @@
-/*
- * File Executable.h in project Divisaction
- * 
- * Copyright (C) ricardo 2016 - All Rights Reserved
+/**
+ * @file Executable.h
+ * Abstract class that defines a object that can be executed.
+ *
  */
+/*
+* File Executable.h in project Divisaction
+*
+* Copyright (C) ricardo 2016 - All Rights Reserved
+*/
 
 #ifndef EXECUTABLE_H_
 #define EXECUTABLE_H_
@@ -13,7 +18,7 @@ namespace Divisaction {
     public:
         virtual ~Executable() {}
         /**
-         * Executes the selectedAction.
+         * Executes the functionality of this executable.
          * @return true if the execution has finished all it's steps, false otherwise.
          */
         virtual bool execute() = 0;

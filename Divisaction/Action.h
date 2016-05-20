@@ -3,6 +3,11 @@
  * 
  * Copyright (C) ricardo 2016 - All Rights Reserved
  */
+/**
+ * @file Action.h
+ * Action to be performed by and agent.
+ *
+ */
 
 #ifndef ACTION_H_
 #define ACTION_H_
@@ -18,6 +23,9 @@
 
 namespace Divisaction {
 
+    /**
+     * @class Action
+     */
     class Action : public Executable {
         private:
             bool running;
@@ -43,6 +51,7 @@ namespace Divisaction {
 
             /**
              * Executes the action.
+             *
              * @return true if the action has finished all it's steps, false otherwise.
              */
             bool execute();

@@ -45,6 +45,10 @@ namespace Divisaction {
         return stages[currentStageType];
     }
 
+    /**
+     * Executes the action.
+     * @return true if the action has finished all it's steps, false otherwise.
+     */
     bool Action::execute() {
         if (!running) {
             reset();
