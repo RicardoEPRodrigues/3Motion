@@ -28,7 +28,7 @@ namespace Divisaction {
         ActionEvent* actionEvent = dynamic_cast<ActionEvent*>(event.get());
         if (actionEvent) {
             lb->second.action = actionEvent->action;
-            lb->second.state = actionEvent->action->getCurrentStageType();
+            lb->second.state = actionEvent->stage;
             lb->second.update = true;
         } else {
             EmotionEvent* emotionEvent = dynamic_cast<EmotionEvent*>(event.get());

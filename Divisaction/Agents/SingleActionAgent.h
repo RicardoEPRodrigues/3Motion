@@ -14,6 +14,7 @@ namespace Divisaction {
     class SingleActionAgent : public Agent {
         private:
             bool alreadyActed;
+            bool alreadyFelt;
 
         protected:
             virtual void actionStarted();
@@ -22,6 +23,10 @@ namespace Divisaction {
 
             virtual void actionFinished();
 
+            void emotionStarted();
+
+            void emotionFinished();
+
         public:
             SingleActionAgent();
 
@@ -29,7 +34,9 @@ namespace Divisaction {
 
             virtual void react() override;
 
-            virtual void addPossibleAction(std::shared_ptr<Action>& action) override;
+            virtual void addAvailableAction(std::shared_ptr<Action> action) override;
+
+            virtual void addAvailableEmotion(std::shared_ptr<Emotion> emotion) override;
     };
 
 } /* namespace Divisaction */

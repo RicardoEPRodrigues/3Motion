@@ -23,14 +23,13 @@ namespace Divisaction {
 
         auto agentBob = make_shared<SingleActionAgent>();
         agentBob->setName(string("Bob"));
-        shared_ptr<Action> longWalk = make_shared<LongWalk>();
-        agentBob->addPossibleAction(longWalk);
+        agentBob->addAvailableAction(make_shared<LongWalk>());
+        agentBob->addAvailableEmotion(make_shared<Confidence>());
         worldManager->addAgent(agentBob);
 
         auto agentHanna = make_shared<SingleReplyAgent>();
         agentHanna->setName(string("Hanna"));
-        shared_ptr<Emotion> confidence = make_shared<Confidence>();
-        agentHanna->addAvailableEmotion(confidence);
+        agentHanna->addAvailableEmotion(make_shared<Confidence>());
         worldManager->addAgent(agentHanna);
 
         return worldManager;

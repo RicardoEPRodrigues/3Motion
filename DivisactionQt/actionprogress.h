@@ -38,8 +38,6 @@ public:
 
     std::shared_ptr<IAgent> agent;
 
-    void setLabel(QString name);
-
     void set(std::shared_ptr<IAgent>& agent, std::shared_ptr<Stage> stage);
 
     void addReply(std::shared_ptr<Event> reply);

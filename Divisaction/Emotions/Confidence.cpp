@@ -8,7 +8,7 @@
 namespace Divisaction {
 
     Confidence::Confidence() {
-        this->setEmotion(new TimeProgressiveStage(std::string("Show Confidence"), 10, true));
+        this->setEmotion(new TimeProgressiveStage(std::string("show confidence"), 10, true));
     }
 
 }

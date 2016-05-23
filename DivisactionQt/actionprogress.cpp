@@ -35,11 +35,6 @@ ActionProgress::~ActionProgress()
     delete opacity;
 }
 
-void ActionProgress::setLabel(QString name)
-{
-    this->ui->label->setText(name);
-}
-
 void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 {
     this->stage = dynamic_cast<TimeProgressiveStage*>(stage.get());

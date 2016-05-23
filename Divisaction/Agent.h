@@ -27,39 +27,31 @@ namespace Divisaction {
 
             std::vector<std::pair<double, std::shared_ptr<Event>>> eventsBeingPerceived;
             std::vector<std::pair<std::shared_ptr<ReplyEvent>, bool>> emotionalReplies;
+            std::vector<std::shared_ptr<Event>> events;
 
         protected:
+            MentalState mentalState;
 
-//            struct EmotionalReply {
-//                std::shared_ptr<IAgent> sender;
-//                std::shared_ptr<Emotion> emotion;
-//                std::shared_ptr<Event> original;
-//
-//                bool hasGenerated = false;
-//
-//                std::shared_ptr<Event> generateEvent();
-//            };
-
-            std::vector<std::shared_ptr<Action>> possibleActions;
+            std::vector<std::shared_ptr<Action>> availableActions;
 
             std::vector<std::shared_ptr<Emotion>> availableEmotions;
 
-            std::unique_ptr<Event> performedEvent;
-
-            MentalState mentalState;
-
             void addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent);
+
+            void addEvent(std::shared_ptr<Event> event);
+
+            void addEvent(std::shared_ptr<Event>& event);
 
         public:
             Agent();
 
             const std::shared_ptr<Executable> getCurrentExecutable() const;
 
-            virtual void addPossibleAction(std::shared_ptr<Action>& action);
+            virtual void addAvailableAction(std::shared_ptr<Action> action);
 
-            virtual void removePossibleAction(std::shared_ptr<Action>& action);
+            virtual void removeAvailableAction(std::shared_ptr<Action>& action);
 
-            virtual void addAvailableEmotion(std::shared_ptr<Emotion>& emotion);
+            virtual void addAvailableEmotion(std::shared_ptr<Emotion> emotion);
 
             virtual void removeAvailableEmotion(std::shared_ptr<Emotion>& emotion);
 

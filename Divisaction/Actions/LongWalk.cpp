@@ -11,23 +11,23 @@ using namespace std;
 namespace Divisaction {
 
     LongWalk::LongWalk() : Action() {
-        auto anticipation = make_shared<TimeProgressiveStage>(string("Prepares to Walk"), 5000, true);
+        auto anticipation = make_shared<TimeProgressiveStage>(string("prepares to Walk"), 5000, true);
         anticipation->setTimeToPerceive(1000);
         this->setStage(StageType::ANTICIPATION, anticipation);
 
-        auto execution = make_shared<TimeProgressiveStage>(string("Starts Walking"), 10, true);
+        auto execution = make_shared<TimeProgressiveStage>(string("starts Walking"), 10, true);
         execution->setTimeToPerceive(1000);
         this->setStage(StageType::EXECUTION, execution);
 
-        auto followThrough = make_shared<TimeProgressiveStage>(string("Walks"), 10000, true);
+        auto followThrough = make_shared<TimeProgressiveStage>(string("walks"), 10000, true);
         followThrough->setTimeToPerceive(1000);
         this->setStage(StageType::FOLLOW_THROUGH, followThrough);
 
-        auto finished = make_shared<TimeProgressiveStage>(string("Finishes Walk"), 10, true);
+        auto finished = make_shared<TimeProgressiveStage>(string("finishes Walk"), 10, true);
         finished->setTimeToPerceive(3000);
         this->setStage(StageType::FINISHED, finished);
 
-        auto cancel = make_shared<TimeProgressiveStage>(string("Stopped Walking"), 100, true);
+        auto cancel = make_shared<TimeProgressiveStage>(string("stopped Walking"), 100, true);
         cancel->setTimeToPerceive(1000);
         this->setStage(StageType::CANCEL, cancel);
     }
