@@ -17,7 +17,7 @@ namespace Divisaction {
 
         EmotionEvent();
 
-        EmotionEvent(std::shared_ptr<class IAgent> sender, std::shared_ptr<Emotion> emotion);
+        EmotionEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Emotion> emotion);
 
         virtual double timeToPerceive();
     };

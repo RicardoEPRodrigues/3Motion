@@ -7,10 +7,10 @@
 
 namespace Divisaction {
 
-    ReplyEvent::ReplyEvent() : ReplyEvent::ReplyEvent(nullptr, nullptr, nullptr) { }
+    ReplyEvent::ReplyEvent() : ReplyEvent::ReplyEvent(std::weak_ptr<IAgent>(), nullptr, std::weak_ptr<IAgent>()) { }
 
-    ReplyEvent::ReplyEvent(std::shared_ptr<class IAgent> sender, std::shared_ptr<Emotion> emotion,
-                           std::shared_ptr<class IAgent> origin) : EmotionEvent::EmotionEvent(sender, emotion),
+    ReplyEvent::ReplyEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Emotion> emotion,
+                           std::weak_ptr<class IAgent> origin) : EmotionEvent::EmotionEvent(sender, emotion),
                                                                    origin(origin) { }
 
 } /* namespace Divisaction */

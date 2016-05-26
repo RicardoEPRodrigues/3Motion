@@ -11,6 +11,7 @@
 #include <QScrollBar>
 
 #include <vector>
+#include <memory>
 
 #include "actionprogress.h"
 

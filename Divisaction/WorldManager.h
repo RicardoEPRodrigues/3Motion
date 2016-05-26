@@ -28,16 +28,16 @@ namespace Divisaction {
             virtual ~WorldManager();
 
             /**
-             * Sets the world manager to update it's agents when Update() is called
+             * Sets the world manager to updateAction it's agents when Update() is called
              * @note Play is enabled by default
-             * @see WorldManager::update()
+             * @see WorldManager::updateAction()
              */
             void play();
 
             /**
-             * Sets the world manager not to update it's agents when Update() is called
+             * Sets the world manager not to updateAction it's agents when Update() is called
              * @note Play is enabled by default
-             * @see WorldManager::update()
+             * @see WorldManager::updateAction()
              */
             void pause();
 

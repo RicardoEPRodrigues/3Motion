@@ -13,12 +13,12 @@ namespace Divisaction {
 
     struct Event {
 
-        std::shared_ptr<class IAgent> sender;
+        std::weak_ptr<class IAgent> sender;
 
         // Base
         Event();
 
-        Event(std::shared_ptr<class IAgent> sender);
+        Event(std::weak_ptr<class IAgent> sender);
 
         virtual ~Event();
 

@@ -62,12 +62,14 @@ void ActionProgress::update()
 }
 
 void ActionProgress::addReply(shared_ptr<Event> reply) {
-    EmotionEvent* emotionEvent = dynamic_cast<EmotionEvent*>(reply.get());
+    shared_ptr<EmotionEvent> emotionEvent = dynamic_pointer_cast<EmotionEvent>(reply);
     if (emotionEvent) {
-        ActionProgress * actionProgress = new ActionProgress(this);
-        actionProgress->set(emotionEvent->sender, emotionEvent->emotion->getEmotion());
-        this->replies.push_back(actionProgress);
-        this->ui->replies->addWidget(actionProgress);
+        if (auto sender = emotionEvent->sender.lock()) {
+            ActionProgress * actionProgress = new ActionProgress(this);
+            actionProgress->set(sender, emotionEvent->emotion->getEmotion());
+            this->replies.push_back(actionProgress);
+            this->ui->replies->addWidget(actionProgress);
+        }
     }
 }
 

@@ -14,13 +14,11 @@
 namespace Divisaction {
 
     struct MentalRepresentation {
+        std::weak_ptr<class IAgent> agent;
+
         std::shared_ptr<class Action> action;
 
-        StageType state;
-
         std::shared_ptr<class Emotion> emotion;
-
-        bool update;
     };
 
 } /* namespace Divisaction */

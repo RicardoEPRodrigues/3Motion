@@ -37,7 +37,7 @@ set(SOURCE_FILES
         MentalState.cpp MentalState.h
         Divisaction.h
         DivisactionExtras.h
-        )
+        MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h MentalRepresentations/OthersMentalRepresentation.cpp MentalRepresentations/OthersMentalRepresentation.h)
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

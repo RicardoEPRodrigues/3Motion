@@ -10,7 +10,14 @@ using namespace std;
 
 namespace Divisaction {
 
-    Agent::Agent() { }
+    Agent::Agent() {
+    }
+
+
+    void Agent::initialize() {
+        mentalState.initialize(shared_from_this());
+    }
+
 
     const std::shared_ptr<Executable> Agent::getCurrentExecutable() const {
         return mentalState.self.action;
@@ -42,9 +49,7 @@ namespace Divisaction {
         for (auto event = eventsBeingPerceived.begin(); event != eventsBeingPerceived.end();) {
             double time = event->first - Time::delta();
             if (time <= 0) {
-                if (event->second->sender != shared_from_this()) {
-                    this->mentalState.update(event->second);
-                }
+                this->mentalState.update(event->second);
                 event = eventsBeingPerceived.erase(event);
             } else {
                 event->first = time;
@@ -68,7 +73,6 @@ namespace Divisaction {
 
     const vector<std::shared_ptr<Event>> Agent::perform() {
         if (mentalState.self.action) {
-            mentalState.self.state = mentalState.self.action->getCurrentStageType();
             if (mentalState.self.action->execute()) {
                 mentalState.self.action = nullptr;
             }
@@ -86,6 +90,7 @@ namespace Divisaction {
         for (auto reply = emotionalReplies.begin(); reply != emotionalReplies.end();) {
             if (!reply->second) {
                 responseEvents.push_back(reply->first);
+                reply->second = true;
             }
             if (reply->first->emotion->execute()) {
                 reply = emotionalReplies.erase(reply);

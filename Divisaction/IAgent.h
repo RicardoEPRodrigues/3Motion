@@ -28,6 +28,8 @@ namespace Divisaction {
 
             virtual const std::vector<std::shared_ptr<Event>> perform() = 0;
 
+            virtual void initialize() { }
+
             const std::string& getName() const {
                 return name;
             }

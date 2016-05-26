@@ -36,6 +36,9 @@ namespace Divisaction {
 
             std::vector<std::shared_ptr<Emotion>> availableEmotions;
 
+        public:
+            virtual void initialize() override;
+
             void addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent);
 
             void addEvent(std::shared_ptr<Event> event);
