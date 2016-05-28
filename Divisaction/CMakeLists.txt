@@ -39,7 +39,10 @@ set(SOURCE_FILES
         DivisactionExtras.h
         MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h
         MentalRepresentations/OthersMentalRepresentation.cpp MentalRepresentations/OthersMentalRepresentation.h
-        )
+        Module.h
+        Modules/DelayPerceive.cpp Modules/DelayPerceive.h
+        Modules/Perform.cpp Modules/Perform.h
+        Modules/SingleActionDecide.cpp Modules/SingleActionDecide.h Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h)
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

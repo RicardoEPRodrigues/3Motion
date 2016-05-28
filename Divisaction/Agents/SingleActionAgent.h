@@ -8,13 +8,15 @@
 #define EXAMPLES_SINGLEACTIONAGENT_H_
 
 #include "../Agent.h"
+#include "../Modules/DelayPerceive.h"
+#include "../Modules/SingleActionDecide.h"
+#include "../Modules/SingleEmotionReact.h"
+#include "../Modules/Perform.h"
 
 namespace Divisaction {
 
     class SingleActionAgent : public Agent {
         private:
-            bool alreadyActed;
-            bool alreadyFelt;
 
         protected:
             virtual void actionStarted();
@@ -29,10 +31,6 @@ namespace Divisaction {
 
         public:
             SingleActionAgent();
-
-            void decide() override;
-
-            virtual void react() override;
 
             virtual void addAvailableAction(std::shared_ptr<Action> action) override;
 

@@ -8,14 +8,15 @@
 #define AGENTS_SINGLEREPLYAGENT_H_
 
 #include "../Agent.h"
+#include "../Modules/DelayPerceive.h"
+#include "../Modules/SingleReplyReact.h"
+#include "../Modules/Perform.h"
 
 namespace Divisaction {
 
     class SingleReplyAgent : public Agent {
         public:
             SingleReplyAgent();
-
-            void react() override;
     };
 
 } /* namespace Divisaction */

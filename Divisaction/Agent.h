@@ -14,19 +14,22 @@
 
 #include "Action.h"
 #include "Event.h"
-#include "Time.h"
 #include "Emotion.h"
 #include "Events/ActionEvent.h"
 #include "Events/ReplyEvent.h"
 #include "MentalState.h"
+#include "Module.h"
 
 namespace Divisaction {
 
     class Agent : public IAgent {
-        private:
-            std::vector<std::pair<double, std::shared_ptr<Event>>> eventsBeingPerceived;
         protected:
             std::shared_ptr<MentalState> mentalState;
+
+            std::vector<std::unique_ptr<Module<void, const std::vector<std::shared_ptr<Event>>&>>> perceiveModules;
+            std::vector<std::unique_ptr<Module<void, void>>> reactModules;
+            std::vector<std::unique_ptr<Module<void, void>>> decideModules;
+            std::vector<std::unique_ptr<Module<const std::vector<std::shared_ptr<Event>>, void>>> performModules;
         public:
             Agent();
 
@@ -44,9 +47,9 @@ namespace Divisaction {
 
             void perceive(const std::vector<std::shared_ptr<Event>>& events);
 
-            virtual void react();
+            void react();
 
-            virtual void decide();
+            void decide();
 
             const std::vector<std::shared_ptr<Event>> perform();
     };

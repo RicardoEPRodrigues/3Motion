@@ -13,23 +13,13 @@ namespace Divisaction {
 
     SingleActionAgent::SingleActionAgent()
             : Agent() {
-        alreadyActed = false;
-        alreadyFelt = false;
-    }
+        perceiveModules.push_back(std::make_unique<DelayPerceive>());
 
+        reactModules.push_back(std::make_unique<SingleEmotionReact>());
 
-    void SingleActionAgent::react() {
-        if (!alreadyFelt && !mentalState->self.emotion && mentalState->self.availableEmotions.size() > 0) {
-            mentalState->self.emotion = mentalState->self.availableEmotions[0];
-            alreadyFelt = true;
-        }
-    }
+        decideModules.push_back(std::make_unique<SingleActionDecide>());
 
-    void SingleActionAgent::decide() {
-        if (!alreadyActed && !mentalState->self.action && mentalState->self.availableActions.size() > 0) {
-            mentalState->self.action = mentalState->self.availableActions[0];
-            alreadyActed = true;
-        }
+        performModules.push_back(std::make_unique<Perform>());
     }
 
     void SingleActionAgent::addAvailableAction(shared_ptr<Action> action) {
