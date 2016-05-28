@@ -24,29 +24,13 @@ namespace Divisaction {
 
     class Agent : public IAgent {
         private:
-
             std::vector<std::pair<double, std::shared_ptr<Event>>> eventsBeingPerceived;
-            std::vector<std::pair<std::shared_ptr<ReplyEvent>, bool>> emotionalReplies;
-            std::vector<std::shared_ptr<Event>> events;
-
         protected:
-            MentalState mentalState;
-
-            std::vector<std::shared_ptr<Action>> availableActions;
-
-            std::vector<std::shared_ptr<Emotion>> availableEmotions;
-
-        public:
-            virtual void initialize() override;
-
-            void addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent);
-
-            void addEvent(std::shared_ptr<Event> event);
-
-            void addEvent(std::shared_ptr<Event>& event);
-
+            std::shared_ptr<MentalState> mentalState;
         public:
             Agent();
+
+            virtual void initialize() override;
 
             const std::shared_ptr<Executable> getCurrentExecutable() const;
 

@@ -37,11 +37,13 @@ set(SOURCE_FILES
         MentalState.cpp MentalState.h
         Divisaction.h
         DivisactionExtras.h
-        MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h MentalRepresentations/OthersMentalRepresentation.cpp MentalRepresentations/OthersMentalRepresentation.h)
+        MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h
+        MentalRepresentations/OthersMentalRepresentation.cpp MentalRepresentations/OthersMentalRepresentation.h
+        )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 
-if(DOXYGEN_FOUND)
+if (DOXYGEN_FOUND)
 
     set(DOXYGEN_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/project-Divisaction.cfg)
     set(DOXYFILE ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
@@ -63,4 +65,4 @@ if(DOXYGEN_FOUND)
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             )
 
-endif(DOXYGEN_FOUND)
+endif (DOXYGEN_FOUND)

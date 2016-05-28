@@ -22,8 +22,11 @@ namespace Divisaction {
             typedef std::vector<OthersMentalRepresentation> MentalRepresentations;
         public:
             MentalState();
+
             MentalState(std::weak_ptr<IAgent> selfAgent);
+
             virtual ~MentalState();
+
             SelfMentalRepresentation self;
             MentalRepresentations others;
 

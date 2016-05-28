@@ -10,13 +10,13 @@
 
 namespace Divisaction {
 
-    struct OthersMentalRepresentation : public MentalRepresentation {
+    class OthersMentalRepresentation : public MentalRepresentation {
+        public:
+            StageType state;
 
-        StageType state;
+            bool updateAction;
 
-        bool updateAction;
-
-        bool updateEmotion;
+            bool updateEmotion;
 
     };
 

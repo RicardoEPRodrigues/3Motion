@@ -3,11 +3,6 @@
  * 
  * Copyright (C) ricardo 2016 - All Rights Reserved
  */
-/**
- * @file Action.h
- * Action to be performed by and agent.
- *
- */
 
 #ifndef ACTION_H_
 #define ACTION_H_

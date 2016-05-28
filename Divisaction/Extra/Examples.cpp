@@ -30,6 +30,7 @@ namespace Divisaction {
 
         auto agentHanna = make_shared<SingleReplyAgent>();
         agentHanna->setName(string("Hanna"));
+        agentHanna->addAvailableAction(make_shared<LongWalk>());
         agentHanna->addAvailableEmotion(make_shared<Confidence>());
         agentHanna->initialize();
         worldManager->addAgent(agentHanna);

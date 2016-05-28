@@ -3,9 +3,6 @@
  * 
  * Copyright (C) ricardo 2016 - All Rights Reserved
  */
-/**
- * @file Stage.h
- */
 #ifndef STAGE_H_
 #define STAGE_H_
 
@@ -56,21 +53,21 @@ namespace Divisaction {
 
             void setInteruptable(bool interuptable);
 
-            const std::string &getName() const;
+            const std::string& getName() const;
 
-            void setName(const std::string &name);
+            void setName(const std::string& name);
 
             double getTimeToPerceive() const;
 
             void setTimeToPerceive(double timeToPerceive);
 
-            inline bool operator==(const Stage &other);
+            inline bool operator==(const Stage& other);
 
-            inline bool operator!=(const Stage &other);
+            inline bool operator!=(const Stage& other);
 
-            inline bool operator<(const Stage &other);
+            inline bool operator<(const Stage& other);
 
-            inline bool operator>(const Stage &other);
+            inline bool operator>(const Stage& other);
     };
 
 } /* namespace Divisaction */

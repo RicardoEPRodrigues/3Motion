@@ -19,15 +19,15 @@ namespace Divisaction {
 
 
     void SingleActionAgent::react() {
-        if (!alreadyFelt && !mentalState.self.emotion && availableEmotions.size() > 0) {
-            mentalState.self.emotion = availableEmotions[0];
+        if (!alreadyFelt && !mentalState->self.emotion && mentalState->self.availableEmotions.size() > 0) {
+            mentalState->self.emotion = mentalState->self.availableEmotions[0];
             alreadyFelt = true;
         }
     }
 
     void SingleActionAgent::decide() {
-        if (!alreadyActed && !mentalState.self.action && availableActions.size() > 0) {
-            mentalState.self.action = availableActions[0];
+        if (!alreadyActed && !mentalState->self.action && mentalState->self.availableActions.size() > 0) {
+            mentalState->self.action = mentalState->self.availableActions[0];
             alreadyActed = true;
         }
     }
@@ -46,23 +46,23 @@ namespace Divisaction {
     }
 
     void SingleActionAgent::actionStarted() {
-        this->addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState.self.action));
+        mentalState->self.addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState->self.action));
     }
 
     void SingleActionAgent::actionChanged(StageType stage) {
-        this->addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState.self.action, stage));
+        mentalState->self.addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState->self.action, stage));
     }
 
     void SingleActionAgent::actionFinished() {
-        this->addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState.self.action));
+        mentalState->self.addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState->self.action));
     }
 
     void SingleActionAgent::emotionStarted() {
-        this->addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState.self.emotion));
+        mentalState->self.addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState->self.emotion));
     }
 
     void SingleActionAgent::emotionFinished() {
-        this->addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState.self.emotion));
+        mentalState->self.addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState->self.emotion));
     }
 
 } /* namespace Divisaction */

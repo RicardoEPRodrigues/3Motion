@@ -1,8 +1,3 @@
-/**
- * @file Executable.h
- * Abstract class that defines a object that can be executed.
- *
- */
 /*
 * File Executable.h in project Divisaction
 *
