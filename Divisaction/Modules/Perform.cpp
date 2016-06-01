@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    const std::vector<std::shared_ptr<Event>> Perform::execute(std::vector<std::shared_ptr<Event>>& responseEvents) {
+    void Perform::execute(std::vector<std::shared_ptr<Event>>& responseEvents) {
         if (auto mentalState = mentalStateWeak.lock()) {
 
             if (mentalState->self.action) {
@@ -37,10 +37,7 @@ namespace Divisaction {
                     ++reply;
                 }
             }
-
-            return responseEvents;
         }
-        return std::vector<std::shared_ptr<Event>>();
     }
 
 } /* namespace Divisaction */

@@ -72,7 +72,7 @@ namespace Divisaction {
     const vector<std::shared_ptr<Event>> Agent::perform() {
         auto eventsToSend = vector<std::shared_ptr<Event>>();
         for (auto performModule = performModules.begin(); performModule != performModules.end(); ++performModule) {
-            auto events = (*performModule)->execute(eventsToSend);
+            (*performModule)->execute(eventsToSend);
         }
         return eventsToSend;
     }
