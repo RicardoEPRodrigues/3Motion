@@ -26,10 +26,10 @@ namespace Divisaction {
         protected:
             std::shared_ptr<MentalState> mentalState;
 
-            std::vector<std::unique_ptr<Module<void, const std::vector<std::shared_ptr<Event>>&>>> perceiveModules;
-            std::vector<std::unique_ptr<Module<void, void>>> reactModules;
-            std::vector<std::unique_ptr<Module<void, void>>> decideModules;
-            std::vector<std::unique_ptr<Module<const std::vector<std::shared_ptr<Event>>, void>>> performModules;
+            std::vector<std::unique_ptr<PerceiveModule>> perceiveModules;
+            std::vector<std::unique_ptr<ReactModule>> reactModules;
+            std::vector<std::unique_ptr<DecideModule>> decideModules;
+            std::vector<std::unique_ptr<PerformModule>> performModules;
         public:
             Agent();
 

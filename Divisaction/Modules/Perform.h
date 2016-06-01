@@ -10,10 +10,10 @@
 
 namespace Divisaction {
 
-    class Perform : public Module<const std::vector<std::shared_ptr<Event>>, void> {
+    class Perform : public PerformModule {
 
         public:
-            virtual const std::vector<std::shared_ptr<Event>> execute() override;
+            virtual const std::vector<std::shared_ptr<Event>> execute(std::vector<std::shared_ptr<Event>>&) override;
     };
 
 } /* namespace Divisaction */

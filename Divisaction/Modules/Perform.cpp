@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    const std::vector<std::shared_ptr<Event>> Perform::execute() {
+    const std::vector<std::shared_ptr<Event>> Perform::execute(std::vector<std::shared_ptr<Event>>& responseEvents) {
         if (auto mentalState = mentalStateWeak.lock()) {
 
             if (mentalState->self.action) {
@@ -21,7 +21,6 @@ namespace Divisaction {
                 }
             }
             // Sends the event about the action of the current agent
-            std::vector<std::shared_ptr<Event>> responseEvents;
             responseEvents.insert(std::end(responseEvents), std::begin(mentalState->self.eventsToSend),
                                   std::end(mentalState->self.eventsToSend));
             mentalState->self.eventsToSend.clear();

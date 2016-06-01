@@ -43,6 +43,11 @@ namespace Divisaction {
                 this->mentalStateWeak = mentalState;
             }
     };
+
+    typedef Module<void, const std::vector<std::shared_ptr<Event>>&> PerceiveModule;
+    typedef Module<void, void> ReactModule;
+    typedef Module<void, void> DecideModule;
+    typedef Module<const std::vector<std::shared_ptr<Event>>, std::vector<std::shared_ptr<Event>>&> PerformModule;
 } /* namespace Divisaction */
 
 #endif //DIVISACTION_MODULE_H
