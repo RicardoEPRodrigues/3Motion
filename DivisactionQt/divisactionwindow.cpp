@@ -47,19 +47,33 @@ void DivisactionWindow::updateProgress()
 {
     if (worldManager) {
         for(shared_ptr<IAgent> iagent: worldManager->getAgents()) {
-            Agent* agent = dynamic_cast<Agent*>(iagent.get());
-            Action * action = dynamic_cast<Action*>(agent->getCurrentExecutable().get());
+            shared_ptr<Agent> agent = dynamic_pointer_cast<Agent>(iagent);
+            if (agent) {
+                shared_ptr<Action> action = dynamic_pointer_cast<Action>(agent->getMentalState()->self.action);
+                if (action) {
+                    auto stage = action->getCurrentStage();
 
-            if (action) {
-                auto stage = action->getCurrentStage();
-
-                auto it = actionsProgress.find(stage);
-                if (it == actionsProgress.end()) {
-                    ActionProgress * actionProgress = new ActionProgress();
-                    actionProgress->set(iagent, stage);
-                    ui->ActionStackLayout->addWidget(actionProgress);
-                    actionsProgress[stage] = actionProgress;
+                    auto it = actionsProgress.find(stage);
+                    if (it == actionsProgress.end()) {
+                        ActionProgress * actionProgress = new ActionProgress();
+                        actionProgress->set(iagent, stage);
+                        ui->ActionStackLayout->addWidget(actionProgress);
+                        actionsProgress[stage] = actionProgress;
+                    }
                 }
+
+//                shared_ptr<Emotion> emotion = dynamic_pointer_cast<Emotion>(agent->getMentalState()->self.emotion);
+//                if (emotion) {
+//                    auto stage = emotion->getStage();
+
+//                    auto it = actionsProgress.find(stage);
+//                    if (it == actionsProgress.end()) {
+//                        ActionProgress * actionProgress = new ActionProgress();
+//                        actionProgress->set(iagent, stage);
+//                        ui->ActionStackLayout->addWidget(actionProgress);
+//                        actionsProgress[stage] = actionProgress;
+//                    }
+//                }
             }
         }
         for (shared_ptr<Event> event : worldManager->getCurrentEvents()) {
@@ -70,6 +84,19 @@ void DivisactionWindow::updateProgress()
                         if (progress->second->agent == origin) {
                             progress->second->addReply(event);
                             break;
+                        }
+                    }
+                }
+            } else {
+                shared_ptr<EmotionEvent> emotionEvent = dynamic_pointer_cast<EmotionEvent>(event);
+                if (emotionEvent) {
+                    shared_ptr<Emotion> emotion = dynamic_pointer_cast<Emotion>(emotionEvent->emotion);
+                    if (shared_ptr<IAgent> sender = emotionEvent->sender.lock()) {
+                        for(std::map<std::shared_ptr<Stage>, ActionProgress *>::reverse_iterator progress = actionsProgress.rbegin(); progress != actionsProgress.rend(); progress++) {
+                            if (progress->second->agent == sender) {
+                                progress->second->addReply(event);
+                                break;
+                            }
                         }
                     }
                 }

@@ -35,7 +35,7 @@ namespace Divisaction {
 
             virtual void initialize() override;
 
-            const std::shared_ptr<Executable> getCurrentExecutable() const;
+            const std::shared_ptr<MentalState> getMentalState() const;
 
             virtual void addAvailableAction(std::shared_ptr<Action> action);
 

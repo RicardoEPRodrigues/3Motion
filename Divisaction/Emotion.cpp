@@ -9,7 +9,7 @@
 namespace Divisaction {
 
     Emotion::Emotion() {
-        this->emotion = nullptr;
+        this->stage = nullptr;
         this->running = false;
     }
 
@@ -22,11 +22,11 @@ namespace Divisaction {
             }
         }
 
-        if (!emotion->isPlaying()) {
-            emotion->start();
+        if (!stage->isPlaying()) {
+            stage->start();
         }
-        emotion->update();
-        if (emotion->isComplete()) {
+        stage->update();
+        if (stage->isComplete()) {
             running = false;
             if (finished) {
                 finished();
@@ -39,19 +39,15 @@ namespace Divisaction {
 
     void Emotion::reset() {
         this->running = false;
-        emotion->endStage();
+        stage->endStage();
     }
 
-    std::shared_ptr<Stage> Emotion::getEmotion() const {
-        return emotion;
+    std::shared_ptr<Stage> Emotion::getStage() const {
+        return stage;
     }
 
-    void Emotion::setEmotion(Stage* emotion) {
-        this->emotion = std::shared_ptr<Stage>(emotion);
-    }
-
-    void Emotion::setEmotion(std::shared_ptr<Stage>& emotion) {
-        this->emotion = emotion;
+    void Emotion::setStage(std::shared_ptr<Stage> emotion) {
+        this->stage = emotion;
     }
 
     bool Emotion::isRunning() const {

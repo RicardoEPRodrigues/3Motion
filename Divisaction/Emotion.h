@@ -21,7 +21,7 @@ namespace Divisaction {
             bool running;
 
         protected:
-            std::shared_ptr<Stage> emotion;
+            std::shared_ptr<Stage> stage;
         public:
             std::function<void()> started;
             std::function<void()> finished;
@@ -34,11 +34,9 @@ namespace Divisaction {
 
             virtual bool isRunning() const;
 
-            std::shared_ptr<Stage> getEmotion() const;
+            std::shared_ptr<Stage> getStage() const;
 
-            void setEmotion(Stage* emotion);
-
-            void setEmotion(std::shared_ptr<Stage>& emotion);
+            void setStage(std::shared_ptr<Stage> emotion);
     };
 
 } /* namespace Divisaction */

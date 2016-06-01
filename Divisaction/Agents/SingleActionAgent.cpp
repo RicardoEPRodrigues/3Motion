@@ -52,7 +52,7 @@ namespace Divisaction {
     }
 
     void SingleActionAgent::emotionFinished() {
-        mentalState->self.addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState->self.emotion));
+//        mentalState->self.addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState->self.stage));
     }
 
 } /* namespace Divisaction */

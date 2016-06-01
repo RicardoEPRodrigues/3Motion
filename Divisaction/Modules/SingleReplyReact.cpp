@@ -18,9 +18,7 @@ namespace Divisaction {
                         if (auto self = mentalState->self.agent.lock()) {
                             if (auto origin = mentalRep->agent.lock()) {
                                 auto emotion = mentalState->self.availableEmotions[0];
-                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self,
-                                                                                                 emotion,
-                                                                                                 origin);
+                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self, emotion, origin);
                                 mentalState->self.addEmotionalReply(event);
                             }
                         }

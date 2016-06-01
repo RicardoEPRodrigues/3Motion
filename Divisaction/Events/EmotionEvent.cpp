@@ -14,7 +14,7 @@ namespace Divisaction {
 
     double EmotionEvent::timeToPerceive() {
         if (this->emotion) {
-            return emotion->getEmotion()->getTimeToPerceive();
+            return emotion->getStage()->getTimeToPerceive();
         }
         return 0;
     }

@@ -20,7 +20,7 @@ namespace Divisaction {
                     mentalState->self.emotion = nullptr;
                 }
             }
-            // Sends the event about the action of the current agent
+            // Sends the event about the action and emotion of the agent
             responseEvents.insert(std::end(responseEvents), std::begin(mentalState->self.eventsToSend),
                                   std::end(mentalState->self.eventsToSend));
             mentalState->self.eventsToSend.clear();

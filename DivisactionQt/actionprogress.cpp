@@ -66,7 +66,7 @@ void ActionProgress::addReply(shared_ptr<Event> reply) {
     if (emotionEvent) {
         if (auto sender = emotionEvent->sender.lock()) {
             ActionProgress * actionProgress = new ActionProgress(this);
-            actionProgress->set(sender, emotionEvent->emotion->getEmotion());
+            actionProgress->set(sender, emotionEvent->emotion->getStage());
             this->replies.push_back(actionProgress);
             this->ui->replies->addWidget(actionProgress);
         }
