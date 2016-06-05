@@ -12,6 +12,7 @@
 #include "Actions/LongWalk.h"
 
 #include "Emotions/Confidence.h"
+#include "Emotions/Fear.h"
 
 #include "Extra/ChronoTimeCalculator.h"
 #include "Extra/Looper.h"

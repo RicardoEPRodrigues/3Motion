@@ -1,19 +1,18 @@
 /*
- * File Confidence.cpp in project Divisaction
+ * File Fear.cpp in project Divisaction
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#include "Confidence.h"
+#include "../Stages/TimeProgressiveStage.h"
+#include "Fear.h"
 
 namespace Divisaction {
-
-    Confidence::Confidence() {
-        setName("Confidence");
+    Fear::Fear() {
+        setName("Fear");
 
         std::shared_ptr<TimeProgressiveStage> stage = std::make_shared<TimeProgressiveStage>(
-                std::string("shows confidence"), 1000, true);
+                std::string("shows fear"), 1000, true);
         stage->setTimeToPerceive(0);
         this->setStage(stage);
     }
-
-}
+} /* namespace Divisaction */

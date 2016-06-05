@@ -25,6 +25,7 @@ namespace Divisaction {
         agentBob->setName(string("Bob"));
         agentBob->addAvailableAction(make_shared<LongWalk>());
         agentBob->addAvailableEmotion(make_shared<Confidence>());
+        agentBob->addAvailableEmotion(make_shared<Fear>());
         agentBob->initialize();
         worldManager->addAgent(agentBob);
 
@@ -32,6 +33,7 @@ namespace Divisaction {
         agentHanna->setName(string("Hanna"));
         agentHanna->addAvailableAction(make_shared<LongWalk>());
         agentHanna->addAvailableEmotion(make_shared<Confidence>());
+        agentHanna->addAvailableEmotion(make_shared<Fear>());
         agentHanna->initialize();
         worldManager->addAgent(agentHanna);
 

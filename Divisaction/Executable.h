@@ -7,19 +7,35 @@
 #ifndef EXECUTABLE_H_
 #define EXECUTABLE_H_
 
+#include <string>
+
 namespace Divisaction {
 
     class Executable {
-    public:
-        virtual ~Executable() {}
-        /**
-         * Executes the functionality of this executable.
-         * @return true if the execution has finished all it's steps, false otherwise.
-         */
-        virtual bool execute() = 0;
-        virtual void reset() = 0;
+        private:
+            std::string name;
+        public:
+            const std::string& getName() const {
+                return name;
+            }
 
-        virtual bool isRunning() const = 0;
+            void setName(const std::string& name) {
+                Executable::name = name;
+            }
+
+            virtual ~Executable() { }
+
+            /**
+             * Executes the functionality of this executable.
+             * @return true if the execution has finished all it's steps, false otherwise.
+             */
+            virtual bool execute() = 0;
+
+            virtual void reset() = 0;
+
+            virtual bool isRunning() const = 0;
+
+
     };
 
 } /* namespace Divisaction */

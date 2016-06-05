@@ -14,7 +14,7 @@ set(SOURCE_FILES
         Agent.cpp Agent.h
         Emotion.cpp Emotion.h
         Event.cpp Event.h
-        Executable.h
+        Executable.h Executable.cpp
         TimeCalculator.h
         StageType.h
         Stage.cpp Stage.h
@@ -42,7 +42,11 @@ set(SOURCE_FILES
         Module.h
         Modules/DelayPerceive.cpp Modules/DelayPerceive.h
         Modules/Perform.cpp Modules/Perform.h
-        Modules/SingleActionDecide.cpp Modules/SingleActionDecide.h Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h)
+        Modules/SingleActionDecide.cpp Modules/SingleActionDecide.h
+        Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h
+        Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h
+        Modules/ReplyReact.cpp Modules/ReplyReact.h
+        Emotions/Fear.cpp Emotions/Fear.h)
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

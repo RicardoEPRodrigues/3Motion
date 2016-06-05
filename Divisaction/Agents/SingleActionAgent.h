@@ -9,8 +9,9 @@
 
 #include "../Agent.h"
 #include "../Modules/DelayPerceive.h"
-#include "../Modules/SingleActionDecide.h"
 #include "../Modules/SingleEmotionReact.h"
+#include "../Modules/ReplyReact.h"
+#include "../Modules/SingleActionDecide.h"
 #include "../Modules/Perform.h"
 
 namespace Divisaction {

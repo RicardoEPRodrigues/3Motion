@@ -16,6 +16,7 @@ namespace Divisaction {
         perceiveModules.push_back(std::make_unique<DelayPerceive>());
 
         reactModules.push_back(std::make_unique<SingleEmotionReact>());
+        reactModules.push_back(std::make_unique<ReplyReact>());
 
         decideModules.push_back(std::make_unique<SingleActionDecide>());
 
