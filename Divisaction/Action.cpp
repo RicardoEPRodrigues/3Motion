@@ -20,7 +20,7 @@ namespace Divisaction {
     }
 
     void Action::reset() {
-        this->currentStageType = StageType::ANTICIPATION;
+        this->currentStageType = StageType::ANTICIPATION_INTERRUPTIBLE;
         this->running = false;
         for (auto stage : stages) {
             if (stage) {
@@ -64,14 +64,14 @@ namespace Divisaction {
         }
         currentStage->update();
         if (currentStage->isComplete()) {
-            if (currentStageType == StageType::FINISHED
-                || currentStageType == StageType::CANCEL) {
+            if (currentStageType == StageType::FOLLOW_THROUGH || currentStageType == StageType::CANCEL) {
                 running = false;
                 return true;
             } else {
-                currentStageType = static_cast<StageType>((int) currentStageType
-                                                          + 1);
-                if (currentStageType == StageType::FINISHED) {
+                do {
+                    currentStageType = static_cast<StageType>((int) currentStageType + 1);
+                } while (getStage(currentStageType) == nullptr && currentStageType != StageType::FOLLOW_THROUGH);
+                if (currentStageType == StageType::FOLLOW_THROUGH) {
                     if (finished) {
                         finished();
                     }
@@ -89,22 +89,16 @@ namespace Divisaction {
 
     void Action::cancel() {
         switch (currentStageType) {
-            case StageType::ANTICIPATION:
+            case StageType::ANTICIPATION_INTERRUPTIBLE:
                 currentStageType = StageType::CANCEL;
                 if (changed) {
                     changed(currentStageType);
                 }
                 break;
-            case StageType::EXECUTION:
-                // Fall through
-            case StageType::FOLLOW_THROUGH:
-                if (getStage(currentStageType)->isInteruptable()) {
-                    currentStageType = StageType::CANCEL;
-                    if (changed) {
-                        changed(currentStageType);
-                    }
-                }
-                break;
+//            case StageType::ANTICIPATION_UNINTERRUPTIBLE:
+//                // Fall through
+//            case StageType::FOLLOW_THROUGH:
+//                break;
             default:
                 break;
         }
@@ -115,7 +109,7 @@ namespace Divisaction {
     }
 
     bool Action::hasFinished() const {
-        return currentStageType == StageType::FINISHED;
+        return currentStageType == StageType::FOLLOW_THROUGH;
     }
 
 } /* namespace Divisaction */

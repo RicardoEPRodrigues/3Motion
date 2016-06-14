@@ -46,7 +46,8 @@ set(SOURCE_FILES
         Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h
         Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h
         Modules/ReplyReact.cpp Modules/ReplyReact.h
-        Emotions/Fear.cpp Emotions/Fear.h)
+        Emotions/Fear.cpp Emotions/Fear.h
+        )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

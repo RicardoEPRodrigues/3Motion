@@ -17,8 +17,6 @@
 namespace Divisaction {
 
     class SingleActionAgent : public Agent {
-        private:
-
         protected:
             virtual void actionStarted();
 
@@ -26,9 +24,9 @@ namespace Divisaction {
 
             virtual void actionFinished();
 
-            void emotionStarted();
+            virtual void emotionStarted();
 
-            void emotionFinished();
+            virtual void emotionFinished();
 
         public:
             SingleActionAgent();

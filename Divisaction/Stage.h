@@ -15,12 +15,6 @@ namespace Divisaction {
             std::string name;
             bool complete;
             bool playing;
-            /**
-             * Determines if this action is interruptible.
-             * @note interruptibility in only important if the action is an Execution or Follow Through action
-             * @see Action()
-             */
-            bool interuptable;
             double timeToPerceive;
         protected:
             virtual void onStart() = 0;
@@ -31,7 +25,7 @@ namespace Divisaction {
 
             Stage();
 
-            Stage(std::string name, bool interuptable = true);
+            Stage(std::string name);
 
             virtual ~Stage();
 
@@ -48,10 +42,6 @@ namespace Divisaction {
             bool isPlaying() const;
 
             bool isComplete() const;
-
-            bool isInteruptable() const;
-
-            void setInteruptable(bool interuptable);
 
             const std::string& getName() const;
 

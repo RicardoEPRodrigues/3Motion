@@ -8,14 +8,14 @@
 
 namespace Divisaction {
 
-    Stage::Stage() : Stage::Stage(std::string("Default Stage Name"), true) {
+    Stage::Stage() : Stage::Stage(std::string("Default Stage Name")) {
     }
 
-    Stage::Stage(std::string name, bool interuptable)
-            : name(name), interuptable(interuptable) {
+    Stage::Stage(std::string name)
+            : name(name) {
         complete = false;
         playing = false;
-        timeToPerceive = 100;
+        timeToPerceive = 1000;
     }
 
     Stage::~Stage() {
@@ -47,39 +47,30 @@ namespace Divisaction {
         return playing;
     }
 
-    inline bool Stage::operator==(const Stage &other) {
+    inline bool Stage::operator==(const Stage& other) {
         return this->getName() == other.getName();
     }
 
-    inline bool Stage::operator!=(const Stage &other) {
+    inline bool Stage::operator!=(const Stage& other) {
         return !((*this) == other);
     }
 
-    inline bool Stage::operator<(const Stage &other) {
+    inline bool Stage::operator<(const Stage& other) {
         return this->name < other.getName();
     }
 
-    inline bool Stage::operator>(const Stage &other) {
+    inline bool Stage::operator>(const Stage& other) {
         return this->name > other.getName();
     }
 
-    bool Stage::isInteruptable() const {
-        return interuptable;
-    }
-
-    void Stage::setInteruptable(bool interuptable) {
-        if (!playing) {
-            this->interuptable = interuptable;
-        }
-    }
-
-    const std::string &Stage::getName() const {
+    const std::string& Stage::getName() const {
         return name;
     }
 
-    void Stage::setName(const std::string &name) {
+    void Stage::setName(const std::string& name) {
         this->name = name;
     }
+
     double Stage::getTimeToPerceive() const {
         return timeToPerceive;
     }

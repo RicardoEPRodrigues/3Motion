@@ -37,7 +37,7 @@ ActionProgress::~ActionProgress()
 
 void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 {
-    this->stage = dynamic_cast<TimeProgressiveStage*>(stage.get());
+    this->stage = std::dynamic_pointer_cast<TimeProgressiveStage>(stage);
     if (this->stage) {
         ui->AgentName->setText(QString(agent->getName().c_str()));
         ui->AgentStage->setText(QString(this->stage->getName().c_str()));
@@ -71,9 +71,4 @@ void ActionProgress::addReply(shared_ptr<Event> reply) {
             this->ui->replies->addWidget(actionProgress);
         }
     }
-}
-
-shared_ptr<IAgent> ActionProgress::getAgent() const
-{
-    return agent;
 }

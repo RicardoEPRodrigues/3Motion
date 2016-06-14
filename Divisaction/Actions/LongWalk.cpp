@@ -11,23 +11,19 @@ using namespace std;
 namespace Divisaction {
 
     LongWalk::LongWalk() : Action() {
-        auto anticipation = make_shared<TimeProgressiveStage>(string("prepares to Walk"), 5000, true);
+        auto anticipation = make_shared<TimeProgressiveStage>(string("starts to walk"), 5000);
         anticipation->setTimeToPerceive(1000);
-        this->setStage(StageType::ANTICIPATION, anticipation);
+        this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 
-        auto execution = make_shared<TimeProgressiveStage>(string("starts Walking"), 10, true);
-        execution->setTimeToPerceive(1000);
-        this->setStage(StageType::EXECUTION, execution);
+//        auto execution = make_shared<TimeProgressiveStage>(string("starts to walk"), 10);
+//        execution->setTimeToPerceive(1000);
+//        this->setStage(StageType::ANTICIPATION_UNINTERRUPTIBLE, execution);
 
-        auto followThrough = make_shared<TimeProgressiveStage>(string("walks"), 10000, true);
-        followThrough->setTimeToPerceive(1000);
-        this->setStage(StageType::FOLLOW_THROUGH, followThrough);
+        auto finished = make_shared<TimeProgressiveStage>(string("stops"), 1000);
+        finished->setTimeToPerceive(1000);
+        this->setStage(StageType::FOLLOW_THROUGH, finished);
 
-        auto finished = make_shared<TimeProgressiveStage>(string("finishes Walk"), 10, true);
-        finished->setTimeToPerceive(3000);
-        this->setStage(StageType::FINISHED, finished);
-
-        auto cancel = make_shared<TimeProgressiveStage>(string("stopped Walking"), 100, true);
+        auto cancel = make_shared<TimeProgressiveStage>(string("stopped walking abruptly"), 1000);
         cancel->setTimeToPerceive(1000);
         this->setStage(StageType::CANCEL, cancel);
     }

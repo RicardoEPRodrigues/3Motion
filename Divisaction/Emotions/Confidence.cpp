@@ -11,7 +11,7 @@ namespace Divisaction {
         setName("Confidence");
 
         std::shared_ptr<TimeProgressiveStage> stage = std::make_shared<TimeProgressiveStage>(
-                std::string("shows confidence"), 1000, true);
+                std::string("shows confidence"), 1000);
         stage->setTimeToPerceive(0);
         this->setStage(stage);
     }

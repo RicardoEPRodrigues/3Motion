@@ -27,7 +27,6 @@ namespace Divisaction {
             std::vector<std::shared_ptr<Stage>> stages;
 
             StageType currentStageType;
-        protected:
         public:
             // Function for updating listeners
             std::function<void()> started;
@@ -56,6 +55,7 @@ namespace Divisaction {
             void reset();
 
             bool isRunning() const;
+
             bool hasFinished() const;
     };
 

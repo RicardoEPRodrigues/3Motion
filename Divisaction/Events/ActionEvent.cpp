@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    ActionEvent::ActionEvent() : ActionEvent::ActionEvent(std::weak_ptr<IAgent>(), nullptr, StageType::ANTICIPATION) { }
+    ActionEvent::ActionEvent() : ActionEvent::ActionEvent(std::weak_ptr<IAgent>(), nullptr, StageType::ANTICIPATION_INTERRUPTIBLE) { }
 
     ActionEvent::ActionEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Action> action)
             : ActionEvent::ActionEvent(sender, action, action->getCurrentStageType()) { }

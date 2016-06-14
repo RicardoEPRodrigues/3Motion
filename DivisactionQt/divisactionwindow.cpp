@@ -43,6 +43,14 @@ void DivisactionWindow::updateWorld() {
     }
 }
 
+struct ActionProgress_stage_equal {
+    const std::shared_ptr<Stage> to_find;
+
+    bool operator()(const ActionProgress* other) const {
+        return other->stage == to_find;
+    }
+};
+
 void DivisactionWindow::updateProgress()
 {
     if (worldManager) {
@@ -53,12 +61,12 @@ void DivisactionWindow::updateProgress()
                 if (action) {
                     auto stage = action->getCurrentStage();
 
-                    auto it = actionsProgress.find(stage);
+                    auto it = std::find_if(actionsProgress.begin(), actionsProgress.end(), ActionProgress_stage_equal { stage });
                     if (it == actionsProgress.end()) {
                         ActionProgress * actionProgress = new ActionProgress();
                         actionProgress->set(iagent, stage);
                         ui->ActionStackLayout->addWidget(actionProgress);
-                        actionsProgress[stage] = actionProgress;
+                        actionsProgress.push_back(actionProgress);
                     }
                 }
 
@@ -80,9 +88,9 @@ void DivisactionWindow::updateProgress()
             shared_ptr<ReplyEvent> replyEvent = dynamic_pointer_cast<ReplyEvent>(event);
             if (replyEvent) {
                 if (shared_ptr<IAgent> origin = replyEvent->origin.lock()) {
-                    for(std::map<std::shared_ptr<Stage>, ActionProgress *>::reverse_iterator progress = actionsProgress.rbegin(); progress != actionsProgress.rend(); progress++) {
-                        if (progress->second->agent == origin) {
-                            progress->second->addReply(event);
+                    for(std::vector< ActionProgress *>::reverse_iterator progress = actionsProgress.rbegin(); progress != actionsProgress.rend(); progress++) {
+                        if ((*progress)->agent == origin) {
+                            (*progress)->addReply(event);
                             break;
                         }
                     }
@@ -92,9 +100,9 @@ void DivisactionWindow::updateProgress()
                 if (emotionEvent) {
                     shared_ptr<Emotion> emotion = dynamic_pointer_cast<Emotion>(emotionEvent->emotion);
                     if (shared_ptr<IAgent> sender = emotionEvent->sender.lock()) {
-                        for(std::map<std::shared_ptr<Stage>, ActionProgress *>::reverse_iterator progress = actionsProgress.rbegin(); progress != actionsProgress.rend(); progress++) {
-                            if (progress->second->agent == sender) {
-                                progress->second->addReply(event);
+                        for(std::vector< ActionProgress *>::reverse_iterator progress = actionsProgress.rbegin(); progress != actionsProgress.rend(); progress++) {
+                            if ((*progress)->agent == sender) {
+                                (*progress)->addReply(event);
                                 break;
                             }
                         }
@@ -104,7 +112,7 @@ void DivisactionWindow::updateProgress()
         }
 
         for(auto it = actionsProgress.begin(); it != actionsProgress.end(); ++it) {
-            it->second->update();
+            (*it)->update();
         }
     }
 }

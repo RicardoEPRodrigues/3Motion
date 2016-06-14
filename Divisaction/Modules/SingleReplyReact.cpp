@@ -12,9 +12,9 @@ namespace Divisaction {
             for (auto mentalRep = mentalState->others.begin(); mentalRep != mentalState->others.end(); ++mentalRep) {
                 if (mentalRep->updateAction) {
                     if (mentalRep->action
-                        && (mentalRep->state == StageType::ANTICIPATION
-                            || mentalRep->state == StageType::FOLLOW_THROUGH
-                            || mentalRep->state == StageType::FINISHED)) {
+                        && (mentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE
+                            || mentalRep->state == StageType::ANTICIPATION_UNINTERRUPTIBLE
+                            || mentalRep->state == StageType::FOLLOW_THROUGH)) {
                         if (auto self = mentalState->self.agent.lock()) {
                             if (auto origin = mentalRep->agent.lock()) {
                                 auto emotionIndex = rand() % mentalState->self.availableEmotions.size();

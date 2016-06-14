@@ -26,17 +26,17 @@ class ActionProgress : public QWidget
 {
     Q_OBJECT
 private:
-    TimeProgressiveStage *stage;
 
     std::vector<ActionProgress*> replies;
 
     QGraphicsOpacityEffect* opacity;
     QPropertyAnimation* animationOpacity;
+
+    Ui::ActionProgress *ui;
 public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();
 
-    std::shared_ptr<IAgent> agent;
 
     void set(std::shared_ptr<IAgent>& agent, std::shared_ptr<Stage> stage);
 
@@ -44,10 +44,8 @@ public:
 
     void update();
 
-    std::shared_ptr<IAgent> getAgent() const;
-
-private:
-    Ui::ActionProgress *ui;
+    std::shared_ptr<IAgent> agent;
+    std::shared_ptr<TimeProgressiveStage> stage;
 
 };
 

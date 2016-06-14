@@ -10,7 +10,7 @@
 namespace Divisaction {
 
     enum StageType {
-        ANTICIPATION, EXECUTION, FOLLOW_THROUGH, FINISHED, CANCEL, EMOTION, size
+        ANTICIPATION_INTERRUPTIBLE, ANTICIPATION_UNINTERRUPTIBLE, FOLLOW_THROUGH, CANCEL, EMOTION, size
     };
 
 } /* namespace Divisaction */

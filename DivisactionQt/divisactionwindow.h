@@ -35,7 +35,7 @@ private:
     QScrollBar* scrollbar;
 
     std::shared_ptr<class WorldManager> worldManager;
-    std::map<std::shared_ptr<class Stage>, ActionProgress *> actionsProgress; // change to have a matrix where the key is the agent and the value a list with the actions he has done.
+    std::vector<ActionProgress *> actionsProgress; // change to have a matrix where the key is the agent and the value a list with the actions he has done.
 
     void updateProgress();
 
