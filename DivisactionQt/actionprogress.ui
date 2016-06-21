@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>644</width>
+    <width>931</width>
     <height>100</height>
    </rect>
   </property>
@@ -39,31 +39,15 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="AgentName">
+       <widget class="QLabel" name="Description">
         <property name="minimumSize">
          <size>
-          <width>60</width>
+          <width>400</width>
           <height>0</height>
          </size>
         </property>
         <property name="text">
-         <string>Name</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="AgentStage">
-        <property name="minimumSize">
-         <size>
-          <width>250</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>StageName</string>
+         <string/>
         </property>
        </widget>
       </item>

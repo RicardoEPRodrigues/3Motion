@@ -21,6 +21,8 @@ namespace Divisaction {
             std::vector<std::shared_ptr<Event>> events;
 
             bool playing;
+
+            std::string description;
         public:
 
             WorldManager();
@@ -49,6 +51,14 @@ namespace Divisaction {
 
             const std::vector<std::shared_ptr<Event>>& getCurrentEvents() const {
                 return events;
+            }
+
+            const std::string& getDescription() const {
+                return description;
+            }
+
+            void setDescription(const std::string& description) {
+                WorldManager::description = description;
             }
     };
 

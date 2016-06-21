@@ -39,8 +39,7 @@ void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 {
     this->stage = std::dynamic_pointer_cast<TimeProgressiveStage>(stage);
     if (this->stage) {
-        ui->AgentName->setText(QString(agent->getName().c_str()));
-        ui->AgentStage->setText(QString(this->stage->getName().c_str()));
+        concatDescription(QString(agent->getName().c_str()) + " " + QString(this->stage->getName().c_str()));
         ui->progressBar->setValue(floor(this->stage->getProgress() * 100));
     }
     this->agent = agent;
@@ -49,7 +48,9 @@ void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 void ActionProgress::update()
 {
     if (this->stage) {
-        ui->progressBar->setValue(this->stage->getProgress() * 100);
+        auto progress = this->stage->getProgress() * 100;
+        progress = ui->progressBar->value() > progress ? ui->progressBar->value() : progress;
+        ui->progressBar->setValue(progress);
         if (this->replies.size() > 0) {
             if (!this->ui->repliesHolder->isVisible()) {
                 this->ui->repliesHolder->setVisible(true);
@@ -58,6 +59,20 @@ void ActionProgress::update()
                 reply->update();
             }
         }
+    }
+}
+
+void ActionProgress::addEmotion(std::shared_ptr<Emotion> emotion) {
+    if (emotion) {
+        concatDescription(QString(emotion->getStage()->getName().c_str()));
+    }
+}
+
+void ActionProgress::concatDescription(QString text) {
+    if (this->ui->Description->text().length() > 0) {
+        this->ui->Description->setText(this->ui->Description->text() + " and " + text);
+    } else {
+        this->ui->Description->setText(text);
     }
 }
 

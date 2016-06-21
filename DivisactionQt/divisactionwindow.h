@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QScrollArea>
 #include <QScrollBar>
+#include <QLabel>
 
 #include <vector>
 #include <memory>

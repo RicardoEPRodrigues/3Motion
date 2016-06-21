@@ -22,15 +22,22 @@ set(SOURCE_FILES
         MentalRepresentation.h
         Extra/Looper.cpp Extra/Looper.h
         Actions/LongWalk.cpp Actions/LongWalk.h
+        Actions/ThrowBall.cpp Actions/ThrowBall.h
+        Actions/Follow.cpp Actions/Follow.h
+        Emotions/Confidence.cpp Emotions/Confidence.h
+        Emotions/Fear.cpp Emotions/Fear.h
+        Emotions/Happiness.cpp Emotions/Happiness.h
+        Emotions/Relief.cpp Emotions/Relief.h
         Agents/SingleActionAgent.cpp Agents/SingleActionAgent.h
         Agents/SingleReplyAgent.cpp Agents/SingleReplyAgent.h
+        Agents/CoopSceneBob.cpp Agents/CoopSceneBob.h
+        Agents/CoopSceneHanna.cpp Agents/CoopSceneHanna.h
         Exceptions/InvalidArgumentException.h
         Exceptions/NullPointerException.h
         Extra/StdExtras.cpp Extra/StdExtras.h
         Extra/Examples.cpp Extra/Examples.h
         Stages/TimeProgressiveStage.cpp Stages/TimeProgressiveStage.h
         Extra/ChronoTimeCalculator.cpp Extra/ChronoTimeCalculator.h
-        Emotions/Confidence.cpp Emotions/Confidence.h
         Events/ActionEvent.cpp Events/ActionEvent.h
         Events/EmotionEvent.cpp Events/EmotionEvent.h
         Events/ReplyEvent.cpp Events/ReplyEvent.h
@@ -46,7 +53,9 @@ set(SOURCE_FILES
         Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h
         Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h
         Modules/ReplyReact.cpp Modules/ReplyReact.h
-        Emotions/Fear.cpp Emotions/Fear.h
+        Modules/CoopSceneBobReact.cpp Modules/CoopSceneBobReact.h
+        Modules/CoopSceneHannaReact.cpp Modules/CoopSceneHannaReact.h
+        Modules/CoopSceneHannaDecide.cpp Modules/CoopSceneHannaDecide.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

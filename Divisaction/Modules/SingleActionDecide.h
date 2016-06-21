@@ -10,7 +10,7 @@
 
 namespace Divisaction {
 
-    class SingleActionDecide : public ReactModule {
+    class SingleActionDecide : public DecideModule {
         private:
             bool alreadyActed;
         public:

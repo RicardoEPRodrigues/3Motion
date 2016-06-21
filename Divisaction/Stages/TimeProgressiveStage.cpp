@@ -14,7 +14,8 @@ namespace Divisaction {
         elapsedTime = 0;
     }
 
-    TimeProgressiveStage::TimeProgressiveStage(std::string name, double durationInMilliseconds) : Stage(name) {
+    TimeProgressiveStage::TimeProgressiveStage(std::string name, double timeToPerceive, double durationInMilliseconds)
+            : Stage(name, timeToPerceive) {
         startTime = -1;
         elapsedTime = 0;
         this->duration = durationInMilliseconds;

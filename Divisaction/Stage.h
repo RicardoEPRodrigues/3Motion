@@ -25,7 +25,7 @@ namespace Divisaction {
 
             Stage();
 
-            Stage(std::string name);
+            Stage(std::string name, double timeToPerceive);
 
             virtual ~Stage();
 

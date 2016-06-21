@@ -15,11 +15,15 @@
 namespace Divisaction {
 
     class Examples {
-    private:
-        Examples();
-        virtual ~Examples();
-    public:
-        static std::shared_ptr<WorldManager> example1();
+        private:
+            Examples();
+
+            virtual ~Examples();
+
+        public:
+            static std::shared_ptr<WorldManager> example1();
+
+            static std::shared_ptr<WorldManager> example2();
 
     };
 

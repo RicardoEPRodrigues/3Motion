@@ -13,10 +13,11 @@
 
 namespace Divisaction {
 
-    class LongWalk: public Action {
-    public:
-        LongWalk();
-        virtual ~LongWalk();
+    class LongWalk : public Action {
+        public:
+            LongWalk();
+
+            virtual ~LongWalk();
     };
 
 } /* namespace Divisaction */

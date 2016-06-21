@@ -8,14 +8,14 @@
 
 namespace Divisaction {
 
-    Stage::Stage() : Stage::Stage(std::string("Default Stage Name")) {
+    Stage::Stage() : Stage::Stage(std::string("Default Stage Name"), 1000) {
     }
 
-    Stage::Stage(std::string name)
+    Stage::Stage(std::string name, double timeToPerceive)
             : name(name) {
         complete = false;
         playing = false;
-        timeToPerceive = 1000;
+        this->timeToPerceive = timeToPerceive;
     }
 
     Stage::~Stage() {

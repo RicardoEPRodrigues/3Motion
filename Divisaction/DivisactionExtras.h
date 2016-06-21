@@ -8,11 +8,17 @@
 
 #include "Agents/SingleActionAgent.h"
 #include "Agents/SingleReplyAgent.h"
+#include "Agents/CoopSceneBob.h"
+#include "Agents/CoopSceneHanna.h"
 
 #include "Actions/LongWalk.h"
+#include "Actions/ThrowBall.h"
+#include "Actions/Follow.h"
 
 #include "Emotions/Confidence.h"
 #include "Emotions/Fear.h"
+#include "Emotions/Happiness.h"
+#include "Emotions/Relief.h"
 
 #include "Extra/ChronoTimeCalculator.h"
 #include "Extra/Looper.h"

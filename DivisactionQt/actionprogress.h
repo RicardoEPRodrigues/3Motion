@@ -40,6 +40,10 @@ public:
 
     void set(std::shared_ptr<IAgent>& agent, std::shared_ptr<Stage> stage);
 
+    void addEmotion(std::shared_ptr<Emotion> emotion);
+
+    void concatDescription(QString text);
+
     void addReply(std::shared_ptr<Event> reply);
 
     void update();
