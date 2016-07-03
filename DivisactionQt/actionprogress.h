@@ -33,6 +33,8 @@ private:
     QPropertyAnimation* animationOpacity;
 
     Ui::ActionProgress *ui;
+
+    void setReply(std::shared_ptr<IAgent>& agent, std::shared_ptr<ReplyEvent> reply);
 public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();

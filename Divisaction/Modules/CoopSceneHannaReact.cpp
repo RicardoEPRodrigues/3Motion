@@ -12,19 +12,16 @@ namespace Divisaction {
 
     void CoopSceneHannaReact::execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt[0] && !mentalState->self.emotion && mentalState->self.availableEmotions.size() > 0 &&
+            if (!alreadyFelt[0] && !mentalState->self.emotion &&
                 mentalState->self.action &&
                 mentalState->self.action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
                 mentalState->self.emotion = mentalState->self.availableEmotions[1];
                 alreadyFelt[0] = true;
-                return;
-            }
-            if (!alreadyFelt[1] && !mentalState->self.emotion && mentalState->self.availableEmotions.size() > 0 &&
+            } else if (!alreadyFelt[1] && !mentalState->self.emotion && mentalState->self.availableEmotions.size() > 0 &&
                 mentalState->self.action &&
                 mentalState->self.action->getCurrentStageType() == StageType::FOLLOW_THROUGH) {
                 mentalState->self.emotion = mentalState->self.availableEmotions[2];
                 alreadyFelt[1] = true;
-                return;
             }
 
             for (auto mentalRep = mentalState->others.begin(); mentalRep != mentalState->others.end(); ++mentalRep) {
@@ -45,6 +42,10 @@ namespace Divisaction {
                             mentalState->self.addEmotionalReply(event);
                         }
                     }
+                } else if (mentalRep->updateAction && mentalRep->action) {
+                    // TODO deal with the case of having only an action
+                } else if (mentalRep->updateEmotion && mentalRep->emotion) {
+                    // TODO deal with the case of having only an emotion
                 }
             }
         }

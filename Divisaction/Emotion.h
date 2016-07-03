@@ -22,10 +22,11 @@ namespace Divisaction {
 
         protected:
             std::shared_ptr<Stage> stage;
+
+            std::string replyText;
         public:
             std::function<void()> started;
             std::function<void()> finished;
-
             Emotion();
 
             virtual bool execute();
@@ -37,6 +38,14 @@ namespace Divisaction {
             std::shared_ptr<Stage> getStage() const;
 
             void setStage(std::shared_ptr<Stage> emotion);
+
+            const std::string& getReplyText() const {
+                return replyText;
+            }
+
+            void setReplyText(const std::string& replyText) {
+                Emotion::replyText = replyText;
+            }
     };
 
 } /* namespace Divisaction */

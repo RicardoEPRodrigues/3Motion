@@ -6,28 +6,17 @@
 #include "CoopSceneHannaDecide.h"
 
 namespace Divisaction {
-    void CoopSceneHannaDecide::execute() {
-        if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyActed) {
-                if (!this->action && !mentalState->self.action && mentalState->self.availableActions.size() > 0) {
-                    for (auto other = mentalState->others.begin();
-                         other != mentalState->others.end(); ++other) {
-                        if (auto agent = other->agent.lock()) {
-                            if (agent->getName().compare("Bob") == 0 &&
-                                other->action &&
-                                other->action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
-                                this->action = mentalState->self.availableActions[1];
-                            }
-                        }
+
+    void CoopSceneHannaDecide::selectAction(std::shared_ptr<MentalState> mentalState) {
+        for (auto other = mentalState->others.begin();
+             other != mentalState->others.end(); ++other) {
+            if (auto agent = other->agent.lock()) {
+                if (agent->getName().compare("Bob") == 0 &&
+                    other->action &&
+                    other->action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
+                    if (!this->action || this->action != mentalState->self.availableActions[1]) {
+                        this->action = mentalState->self.availableActions[1];
                     }
-                }
-                if (this->action && !startCountdown) {
-                    startTime = Time::now();
-                    startCountdown = true;
-                }
-                if (this->action && startCountdown && Time::now() > startTime + interval) {
-                    mentalState->self.action = this->action;
-                    alreadyActed = true;
                 }
             }
         }

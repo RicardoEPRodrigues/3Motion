@@ -19,7 +19,7 @@ namespace Divisaction {
         double duration;
     public:
         TimeProgressiveStage();
-        TimeProgressiveStage(std::string name, double timeToPerceive, double durationInMilliseconds = 0);
+        TimeProgressiveStage(std::string name, double timeToPerceive = 1000, double durationInMilliseconds = 0);
         virtual ~TimeProgressiveStage();
 
         void onStart() override;

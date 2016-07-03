@@ -11,6 +11,7 @@ namespace Divisaction {
     Emotion::Emotion() {
         this->stage = nullptr;
         this->running = false;
+        this->replyText = "";
     }
 
     bool Emotion::execute() {

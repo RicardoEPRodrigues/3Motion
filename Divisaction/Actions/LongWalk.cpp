@@ -11,17 +11,13 @@ using namespace std;
 namespace Divisaction {
 
     LongWalk::LongWalk() : Action() {
-        auto anticipation = make_shared<TimeProgressiveStage>(string("starts to walk to the door"), 4000, 10000);
+        auto anticipation = make_shared<TimeProgressiveStage>(string("starts crossing the bridge"), 4000, 10000);
         this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 
-//        auto execution = make_shared<TimeProgressiveStage>(string("starts to walk"), 10);
-//        execution->setTimeToPerceive(1000);
-//        this->setStage(StageType::ANTICIPATION_UNINTERRUPTIBLE, execution);
-
-        auto finished = make_shared<TimeProgressiveStage>(string("stops at the door"), 4000, 7000);
+        auto finished = make_shared<TimeProgressiveStage>(string("reaches the end of the bridge"), 4000, 7000);
         this->setStage(StageType::FOLLOW_THROUGH, finished);
 
-        auto cancel = make_shared<TimeProgressiveStage>(string("stopped walking abruptly before reaching the door"), 1000, 3000);
+        auto cancel = make_shared<TimeProgressiveStage>(string("stopped walking abruptly before reaching the end of the bridge"), 1000, 3000);
         this->setStage(StageType::CANCEL, cancel);
     }
 

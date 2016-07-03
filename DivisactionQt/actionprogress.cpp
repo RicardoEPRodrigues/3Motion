@@ -38,11 +38,11 @@ ActionProgress::~ActionProgress()
 void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 {
     this->stage = std::dynamic_pointer_cast<TimeProgressiveStage>(stage);
+    this->agent = agent;
     if (this->stage) {
-        concatDescription(QString(agent->getName().c_str()) + " " + QString(this->stage->getName().c_str()));
+        concatDescription(QString(this->stage->getName().c_str()));
         ui->progressBar->setValue(floor(this->stage->getProgress() * 100));
     }
-    this->agent = agent;
 }
 
 void ActionProgress::update()
@@ -70,20 +70,28 @@ void ActionProgress::addEmotion(std::shared_ptr<Emotion> emotion) {
 
 void ActionProgress::concatDescription(QString text) {
     if (this->ui->Description->text().length() > 0) {
-        this->ui->Description->setText(this->ui->Description->text() + " and " + text);
+        this->ui->Description->setText(this->ui->Description->text() + ". " + QString(agent->getName().c_str()) + " " + text);
     } else {
-        this->ui->Description->setText(text);
+        this->ui->Description->setText(QString(agent->getName().c_str()) + " " + text);
     }
 }
 
 void ActionProgress::addReply(shared_ptr<Event> reply) {
-    shared_ptr<EmotionEvent> emotionEvent = dynamic_pointer_cast<EmotionEvent>(reply);
+    shared_ptr<ReplyEvent> emotionEvent = dynamic_pointer_cast<ReplyEvent>(reply);
     if (emotionEvent) {
         if (auto sender = emotionEvent->sender.lock()) {
             ActionProgress * actionProgress = new ActionProgress(this);
-            actionProgress->set(sender, emotionEvent->emotion->getStage());
+            actionProgress->setReply(sender, emotionEvent);
             this->replies.push_back(actionProgress);
             this->ui->replies->addWidget(actionProgress);
         }
     }
+}
+
+void ActionProgress::setReply(std::shared_ptr<IAgent>& agent, std::shared_ptr<ReplyEvent> reply) {
+    this->agent = agent;
+    if (auto origin = reply->origin.lock()) {
+        concatDescription(QString(reply->emotion->getReplyText().c_str()) + QString(origin->getName().c_str()));
+    }
+    this->set(agent, reply->emotion->getStage());
 }

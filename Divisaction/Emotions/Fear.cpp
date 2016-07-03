@@ -10,8 +10,10 @@ namespace Divisaction {
     Fear::Fear() {
         setName("Fear");
 
+        setReplyText("gives a terrifying look at ");
+
         std::shared_ptr<TimeProgressiveStage> stage = std::make_shared<TimeProgressiveStage>(
-                std::string("shows fear"), 1500, 2000);
+                std::string("has fear"), 1500, 2000);
         this->setStage(stage);
     }
 } /* namespace Divisaction */

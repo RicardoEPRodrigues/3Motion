@@ -56,6 +56,7 @@ set(SOURCE_FILES
         Modules/CoopSceneBobReact.cpp Modules/CoopSceneBobReact.h
         Modules/CoopSceneHannaReact.cpp Modules/CoopSceneHannaReact.h
         Modules/CoopSceneHannaDecide.cpp Modules/CoopSceneHannaDecide.h
+        Modules/DelayedDecide.cpp Modules/DelayedDecide.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

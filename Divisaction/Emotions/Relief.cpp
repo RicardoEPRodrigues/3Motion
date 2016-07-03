@@ -10,6 +10,8 @@ namespace Divisaction {
     Relief::Relief() {
         setName("Relief");
 
+        setReplyText("breaths out and looks at ");
+
         std::shared_ptr<TimeProgressiveStage> stage = std::make_shared<TimeProgressiveStage>(
                 std::string("is relieved"), 1500, 2000);
         this->setStage(stage);
