@@ -17,9 +17,15 @@ namespace Divisaction {
                             || mentalRep->state == StageType::FOLLOW_THROUGH)) {
                         if (auto self = mentalState->self.agent.lock()) {
                             if (auto origin = mentalRep->agent.lock()) {
+
+                                if (mentalState->self.emotion) {
+                                    mentalState->self.emotion->reset();
+                                }
+
                                 auto emotionIndex = rand() % mentalState->self.availableEmotions.size();
-                                auto emotion = mentalState->self.availableEmotions[emotionIndex];
-                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self, emotion, origin);
+                                mentalState->self.emotion = mentalState->self.availableEmotions[emotionIndex];
+                                mentalState->self.emotion->setThrowEvents(false);
+                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self, mentalState->self.emotion, origin);
                                 mentalState->self.addEmotionalReply(event);
                             }
                         }

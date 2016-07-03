@@ -23,7 +23,6 @@ namespace Divisaction {
             // Sends events about the action and emotion of the agent
             responseEvents.insert(std::end(responseEvents), std::begin(mentalState->self.eventsToSend),
                                   std::end(mentalState->self.eventsToSend));
-            mentalState->self.eventsToSend.clear();
             // Sends events as replies about other agents' actions
             for (auto reply = mentalState->self.emotionalReplies.begin();
                  reply != mentalState->self.emotionalReplies.end();) {
@@ -31,12 +30,10 @@ namespace Divisaction {
                     responseEvents.push_back(reply->first);
                     reply->second = true;
                 }
-                if (reply->first->emotion->execute()) {
-                    reply = mentalState->self.emotionalReplies.erase(reply);
-                } else {
-                    ++reply;
-                }
+                reply = mentalState->self.emotionalReplies.erase(reply);
             }
+
+            mentalState->self.eventsToSend.clear();
         }
     }
 

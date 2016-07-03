@@ -9,8 +9,13 @@ namespace Divisaction {
 
     void SingleEmotionReact::execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt && !mentalState->self.emotion && mentalState->self.availableEmotions.size() > 0) {
+            if (!alreadyFelt && mentalState->self.availableEmotions.size() > 0) {
+                if (mentalState->self.emotion) {
+                    mentalState->self.emotion->reset();
+                }
+
                 mentalState->self.emotion = mentalState->self.availableEmotions[0];
+                mentalState->self.emotion->setThrowEvents(true);
                 alreadyFelt = true;
             }
         }

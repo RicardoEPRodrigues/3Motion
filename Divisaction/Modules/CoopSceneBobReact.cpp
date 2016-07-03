@@ -13,19 +13,23 @@ namespace Divisaction {
 
     void CoopSceneBobReact::execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt[0] && !mentalState->self.emotion &&
-                mentalState->self.action &&
+            if (!alreadyFelt[0] && mentalState->self.action &&
                 mentalState->self.action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
+                if (mentalState->self.emotion) {
+                    mentalState->self.emotion->reset();
+                }
                 mentalState->self.emotion = mentalState->self.availableEmotions[0];
+                mentalState->self.emotion->setThrowEvents(true);
                 alreadyFelt[0] = true;
-                return;
             }
-            if (!alreadyFelt[1] && !mentalState->self.emotion &&
-                mentalState->self.action &&
+            if (!alreadyFelt[1] && mentalState->self.action &&
                 mentalState->self.action->getCurrentStageType() == StageType::FOLLOW_THROUGH) {
+                if (mentalState->self.emotion) {
+                    mentalState->self.emotion->reset();
+                }
                 mentalState->self.emotion = mentalState->self.availableEmotions[2];
+                mentalState->self.emotion->setThrowEvents(true);
                 alreadyFelt[1] = true;
-                return;
             }
 
             for (auto mentalRep = mentalState->others.begin(); mentalRep != mentalState->others.end(); ++mentalRep) {
@@ -41,8 +45,14 @@ namespace Divisaction {
                                 } else {
                                     emotionIndex = 2;
                                 }
-                                auto emotion = mentalState->self.availableEmotions[emotionIndex];
-                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self, emotion,
+                                if (mentalState->self.emotion) {
+                                    mentalState->self.emotion->reset();
+                                }
+
+                                mentalState->self.emotion = mentalState->self.availableEmotions[emotionIndex];
+                                mentalState->self.emotion->setThrowEvents(false);
+                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self,
+                                                                                                 mentalState->self.emotion,
                                                                                                  origin);
                                 mentalState->self.addEmotionalReply(event);
                             }

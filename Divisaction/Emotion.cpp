@@ -11,6 +11,7 @@ namespace Divisaction {
     Emotion::Emotion() {
         this->stage = nullptr;
         this->running = false;
+        this->throwEvents = true;
         this->replyText = "";
     }
 
@@ -18,7 +19,7 @@ namespace Divisaction {
         if (!running) {
             reset();
             running = true;
-            if (started) {
+            if (throwEvents && started) {
                 started();
             }
         }
@@ -27,7 +28,7 @@ namespace Divisaction {
             stage->start();
         }
         stage->update();
-        if (stage->isComplete()) {
+        if (throwEvents && stage->isComplete()) {
             running = false;
             if (finished) {
                 finished();
