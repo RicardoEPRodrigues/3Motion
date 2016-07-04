@@ -19,37 +19,4 @@ namespace Divisaction {
 
         performModules.push_back(std::make_unique<Perform>());
     }
-
-    void CoopSceneHanna::addAvailableAction(shared_ptr<Action> action) {
-        Agent::addAvailableAction(action);
-        action->started = bind(&CoopSceneHanna::actionStarted, this);
-        action->changed = bind(&CoopSceneHanna::actionChanged, this, _1);
-        action->finished = bind(&CoopSceneHanna::actionFinished, this);
-    }
-
-    void CoopSceneHanna::addAvailableEmotion(std::shared_ptr<Emotion> emotion) {
-        Agent::addAvailableEmotion(emotion);
-        emotion->started = bind(&CoopSceneHanna::emotionStarted, this);
-        emotion->finished = bind(&CoopSceneHanna::emotionFinished, this);
-    }
-
-    void CoopSceneHanna::actionStarted() {
-        mentalState->self.addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState->self.action));
-    }
-
-    void CoopSceneHanna::actionChanged(StageType stage) {
-        mentalState->self.addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState->self.action, stage));
-    }
-
-    void CoopSceneHanna::actionFinished() {
-        mentalState->self.addEvent(make_shared<ActionEvent>(shared_from_this(), mentalState->self.action));
-    }
-
-    void CoopSceneHanna::emotionStarted() {
-        mentalState->self.addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState->self.emotion));
-    }
-
-    void CoopSceneHanna::emotionFinished() {
-//        mentalState->self.addEvent(make_shared<EmotionEvent>(shared_from_this(), mentalState->self.stage));
-    }
 } /* namespace Divisaction */

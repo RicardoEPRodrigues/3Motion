@@ -28,11 +28,6 @@ namespace Divisaction {
 
             StageType currentStageType;
         public:
-            // Function for updating listeners
-            std::function<void()> started;
-            std::function<void(StageType)> changed;
-            std::function<void()> finished;
-
             Action();
 
             void setStage(StageType type, std::shared_ptr<Stage> stage);
@@ -48,7 +43,7 @@ namespace Divisaction {
              *
              * @return true if the action has finished all it's steps, false otherwise.
              */
-            bool execute();
+            ExecutionState execute();
 
             void cancel();
 
@@ -57,6 +52,7 @@ namespace Divisaction {
             bool isRunning() const;
 
             bool hasFinished() const;
+
     };
 
 } /* namespace Divisaction */

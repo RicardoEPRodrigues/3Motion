@@ -15,23 +15,8 @@
 namespace Divisaction {
 
     class CoopSceneHanna : public Agent {
-        protected:
-            virtual void actionStarted();
-
-            virtual void actionChanged(StageType stage);
-
-            virtual void actionFinished();
-
-            virtual void emotionStarted();
-
-            virtual void emotionFinished();
-
         public:
             CoopSceneHanna();
-
-            virtual void addAvailableAction(std::shared_ptr<Action> action) override;
-
-            virtual void addAvailableEmotion(std::shared_ptr<Emotion> emotion) override;
     };
 
 } /* namespace Divisaction */

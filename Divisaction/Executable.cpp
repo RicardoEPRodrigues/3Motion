@@ -7,5 +7,4 @@
 #include "Executable.h"
 
 namespace Divisaction {
-
 }

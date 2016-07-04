@@ -9,6 +9,8 @@
 #include <vector>
 #include <algorithm>    // std::find_if
 
+#include "../Action.h"
+#include "../Extra/StdExtras.h"
 #include "../Events/ReplyEvent.h"
 #include "../MentalRepresentation.h"
 #include "../IAgent.h"
@@ -36,7 +38,7 @@ namespace Divisaction {
              * Contains the emotional replies to other's actions.
              * @note The collection should be emptied after the emotions in the reply are executed.
              */
-            std::vector<std::pair<std::shared_ptr<ReplyEvent>, bool>> emotionalReplies;
+            std::vector<std::shared_ptr<ReplyEvent>> emotionalReplies;
 
             typedef std::vector<std::shared_ptr<ReplyEvent>> AgentsReplies;
 
@@ -56,9 +58,13 @@ namespace Divisaction {
 
             virtual void removeAvailableAction(std::shared_ptr<Action>& action);
 
+            std::shared_ptr<Action> getAction(const std::shared_ptr<Action> action) const;
+
             virtual void addAvailableEmotion(std::shared_ptr<Emotion> emotion);
 
             virtual void removeAvailableEmotion(std::shared_ptr<Emotion>& emotion);
+
+            std::shared_ptr<Emotion> getEmotion(const std::shared_ptr<Emotion> emotion) const;
     };
 
 } /* namespace Divisaction */

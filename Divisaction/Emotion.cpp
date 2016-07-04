@@ -15,28 +15,24 @@ namespace Divisaction {
         this->replyText = "";
     }
 
-    bool Emotion::execute() {
+    Executable::ExecutionState Emotion::execute() {
+        ExecutionState state = ExecutionState::RUNNING;
         if (!running) {
             reset();
             running = true;
-            if (throwEvents && started) {
-                started();
-            }
         }
 
         if (!stage->isPlaying()) {
             stage->start();
+            state = ExecutionState::CHANGED;
         }
         stage->update();
-        if (throwEvents && stage->isComplete()) {
+        if (stage->isComplete()) {
             running = false;
-            if (finished) {
-                finished();
-            }
-            return true;
+            state = ExecutionState::ENDED;
         }
 
-        return false;
+        return state;
     }
 
     void Emotion::reset() {

@@ -19,6 +19,12 @@ namespace Divisaction {
         }
     }
 
+    std::shared_ptr<Action> SelfMentalRepresentation::getAction(const std::shared_ptr<Action> action) const {
+        std::shared_pointer_values_equal<Action> eq = {action};
+        auto storedAction = find_if(availableActions.begin(), availableActions.end(), eq);
+        return storedAction == availableActions.end() ? nullptr : *storedAction;
+    }
+
     void SelfMentalRepresentation::addAvailableEmotion(std::shared_ptr<Emotion> emotion) {
         availableEmotions.push_back(emotion);
     }
@@ -30,8 +36,14 @@ namespace Divisaction {
         }
     }
 
+    std::shared_ptr<Emotion> SelfMentalRepresentation::getEmotion(const std::shared_ptr<Emotion> emotion) const {
+        std::shared_pointer_values_equal<Emotion> eq = {emotion};
+        auto storedEmotion = find_if(availableEmotions.begin(), availableEmotions.end(), eq);
+        return storedEmotion == availableEmotions.end() ? nullptr : *storedEmotion;
+    }
+
     void SelfMentalRepresentation::addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent) {
-        emotionalReplies.push_back(std::pair<std::shared_ptr<ReplyEvent>, bool>(replyEvent, false));
+        emotionalReplies.push_back(replyEvent);
     }
 
     void SelfMentalRepresentation::addEvent(std::shared_ptr<Event> event) {

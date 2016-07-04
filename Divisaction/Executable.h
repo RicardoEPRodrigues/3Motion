@@ -15,6 +15,8 @@ namespace Divisaction {
         private:
             std::string name;
         public:
+            enum ExecutionState { RUNNING, CHANGED, ENDED };
+
             const std::string& getName() const {
                 return name;
             }
@@ -29,13 +31,27 @@ namespace Divisaction {
              * Executes the functionality of this executable.
              * @return true if the execution has finished all it's steps, false otherwise.
              */
-            virtual bool execute() = 0;
+            virtual ExecutionState execute() = 0;
 
             virtual void reset() = 0;
 
             virtual bool isRunning() const = 0;
 
+            inline bool operator==(const Executable& other) const {
+                return this->getName() == other.getName();
+            }
 
+            inline bool operator!=(const Executable& other) const {
+                return !((*this) == other);
+            }
+
+            inline bool operator<(const Executable& other) const {
+                return this->name < other.getName();
+            }
+
+            inline bool operator>(const Executable& other) const {
+                return this->name > other.getName();
+            }
     };
 
 } /* namespace Divisaction */

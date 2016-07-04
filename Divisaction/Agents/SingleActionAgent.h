@@ -17,23 +17,8 @@
 namespace Divisaction {
 
     class SingleActionAgent : public Agent {
-        protected:
-            virtual void actionStarted();
-
-            virtual void actionChanged(StageType stage);
-
-            virtual void actionFinished();
-
-            virtual void emotionStarted();
-
-            virtual void emotionFinished();
-
         public:
             SingleActionAgent();
-
-            virtual void addAvailableAction(std::shared_ptr<Action> action) override;
-
-            virtual void addAvailableEmotion(std::shared_ptr<Emotion> emotion) override;
     };
 
 } /* namespace Divisaction */

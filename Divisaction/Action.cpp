@@ -11,10 +11,6 @@ using namespace std;
 namespace Divisaction {
 
     Action::Action() {
-        started = nullptr;
-        changed = nullptr;
-        finished = nullptr;
-
         stages = vector<std::shared_ptr<Stage>>(StageType::size, nullptr);
         reset();
     }
@@ -49,56 +45,37 @@ namespace Divisaction {
      * Executes the action.
      * @return true if the action has finished all it's steps, false otherwise.
      */
-    bool Action::execute() {
+    Executable::ExecutionState Action::execute() {
+        ExecutionState state = ExecutionState::RUNNING;
         if (!running) {
             reset();
             running = true;
-            if (started) {
-                started();
-            }
         }
 
         std::shared_ptr<Stage> currentStage = getStage(currentStageType);
         if (!currentStage->isPlaying()) {
             currentStage->start();
+            state = ExecutionState::CHANGED;
         }
         currentStage->update();
         if (currentStage->isComplete()) {
             if (currentStageType == StageType::FOLLOW_THROUGH || currentStageType == StageType::CANCEL) {
                 running = false;
-                return true;
+                state = ExecutionState::ENDED;
             } else {
                 do {
                     currentStageType = static_cast<StageType>((int) currentStageType + 1);
                 } while (getStage(currentStageType) == nullptr && currentStageType != StageType::FOLLOW_THROUGH);
-                if (currentStageType == StageType::FOLLOW_THROUGH) {
-                    if (finished) {
-                        finished();
-                    }
-                } else {
-                    if (changed) {
-                        changed(currentStageType);
-                    }
-                }
-//                return execute();
             }
         }
-
-        return false;
+        return state;
     }
 
     void Action::cancel() {
         switch (currentStageType) {
             case StageType::ANTICIPATION_INTERRUPTIBLE:
                 currentStageType = StageType::CANCEL;
-                if (changed) {
-                    changed(currentStageType);
-                }
                 break;
-//            case StageType::ANTICIPATION_UNINTERRUPTIBLE:
-//                // Fall through
-//            case StageType::FOLLOW_THROUGH:
-//                break;
             default:
                 break;
         }

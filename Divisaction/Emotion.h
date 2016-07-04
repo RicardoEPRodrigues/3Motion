@@ -27,13 +27,9 @@ namespace Divisaction {
 
             bool throwEvents;
         public:
-            std::function<void()> started;
-
-            std::function<void()> finished;
-
             Emotion();
 
-            virtual bool execute();
+            virtual ExecutionState execute();
 
             void reset();
 
