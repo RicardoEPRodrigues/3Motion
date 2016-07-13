@@ -11,6 +11,8 @@
 
 #include <math.h>
 
+#include "qthelper.h"
+
 #include "Agent.h"
 #include "Stage.h"
 #include "Event.h"

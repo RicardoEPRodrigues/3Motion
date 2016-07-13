@@ -29,6 +29,10 @@ namespace Divisaction {
             static double now();
 
             static double delta();
+
+            static void play();
+
+            static void pause();
     };
 
 } /* namespace Divisaction */

@@ -11,7 +11,7 @@ using namespace std;
 namespace Divisaction {
 
     WorldManager::WorldManager() {
-        playing = true;
+        paused = false;
     }
 
     WorldManager::~WorldManager() { }
@@ -21,11 +21,11 @@ namespace Divisaction {
     }
 
     void WorldManager::play() {
-        this->playing = true;
+        this->paused = false;
     }
 
     void WorldManager::pause() {
-        this->playing = false;
+        this->paused = true;
     }
 
     void WorldManager::addAgent(shared_ptr<IAgent> agent) {
@@ -35,7 +35,7 @@ namespace Divisaction {
     }
 
     void WorldManager::update() {
-        if (playing) {
+        if (!paused) {
             for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
                 (*agent)->perceive(events);
             }

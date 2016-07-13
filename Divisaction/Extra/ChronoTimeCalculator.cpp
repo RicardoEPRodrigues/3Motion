@@ -33,11 +33,14 @@ void ChronoTimeCalculator::update() {
     double now = chrono::duration_cast<chrono::milliseconds>(
             system_clock::now().time_since_epoch()).count();
     if (!started) {
-        _startTime = now;
+        _startTime = _now = realtimeNow = now;
         started = true;
     }
-    _delta = now - _now;
-    _now = now;
+    _delta = now - realtimeNow;
+    realtimeNow = now;
+    if (!_pause) {
+        _now += _delta;
+    }
 }
 
 

@@ -13,7 +13,7 @@ namespace Divisaction {
         setReplyText("winks at ");
 
         std::shared_ptr<TimeProgressiveStage> stage = std::make_shared<TimeProgressiveStage>(
-                std::string("shows confidence"), 1500, 2000);
+                std::string("is confident"), 1500, 2000);
         this->setStage(stage);
     }
 

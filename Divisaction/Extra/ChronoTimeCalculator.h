@@ -14,10 +14,12 @@ class ChronoTimeCalculator : public TimeCalculator {
     private:
         bool started;
         double _now;
+        double realtimeNow;
         double _startTime;
         double _delta;
-
+        bool _pause;
     public:
+
         ChronoTimeCalculator();
 
         virtual void update() override;
@@ -27,6 +29,14 @@ class ChronoTimeCalculator : public TimeCalculator {
         virtual double delta() override;
 
         double startTime() override;
+
+        void play() {
+            _pause = false;
+        }
+
+        void pause() {
+            _pause = true;
+        }
 
 };
 

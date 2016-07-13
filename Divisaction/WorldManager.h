@@ -20,7 +20,7 @@ namespace Divisaction {
             std::vector<std::shared_ptr<IAgent>> agents;
             std::vector<std::shared_ptr<Event>> events;
 
-            bool playing;
+            bool paused;
 
             std::string description;
         public:
@@ -42,6 +42,14 @@ namespace Divisaction {
              * @see WorldManager::updateAction()
              */
             void pause();
+
+            /**
+             * Tells if the World Manager is updating it's agents or if it's paused.
+             * @return true if World Manager is paused, false otherwise
+             */
+            bool isPaused() const {
+                return paused;
+            }
 
             const std::vector<std::shared_ptr<IAgent>>& getAgents() const;
 

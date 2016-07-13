@@ -8,7 +8,6 @@
 #define ACTION_H_
 
 #include <vector>
-#include <functional>
 #include <memory>
 
 #include "Executable.h"

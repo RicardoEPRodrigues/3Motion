@@ -39,7 +39,7 @@ DivisactionWindow::~DivisactionWindow()
 
 void DivisactionWindow::updateWorld() {
     Time::update();
-    if (worldManager) {
+    if (worldManager && !worldManager->isPaused()) {
         worldManager->update();
 
         this->updateProgress();
@@ -131,6 +131,7 @@ void DivisactionWindow::moveScrollBarToBottom(int min, int max) {
 
 void DivisactionWindow::on_playButton_clicked()
 {
+    Time::play();
     if (worldManager) {
         worldManager->play();
         ui->playButton->setEnabled(false);
@@ -140,6 +141,7 @@ void DivisactionWindow::on_playButton_clicked()
 
 void DivisactionWindow::on_pauseButton_clicked()
 {
+    Time::pause();
     if (worldManager) {
         worldManager->pause();
         ui->playButton->setEnabled(true);

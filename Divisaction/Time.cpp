@@ -36,5 +36,12 @@ namespace Divisaction {
         _timeCalculator = timeCalculator;
     }
 
+    void Time::play() {
+        _timeCalculator->play();
+    }
+
+    void Time::pause() {
+        _timeCalculator->pause();
+    }
 
 } /* namespace Divisaction */

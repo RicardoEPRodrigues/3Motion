@@ -26,6 +26,8 @@ ActionProgress::ActionProgress(QWidget *parent) :
     animationOpacity->start();
 
     ui->repliesHolder->setVisible(false);
+
+    ui->progressBar->setProperty("disabled", false);
 }
 
 ActionProgress::~ActionProgress()
@@ -49,15 +51,23 @@ void ActionProgress::update()
 {
     if (this->stage) {
         auto progress = this->stage->getProgress() * 100;
-        progress = ui->progressBar->value() > progress ? ui->progressBar->value() : progress;
-        ui->progressBar->setValue(progress);
-        if (this->replies.size() > 0) {
-            if (!this->ui->repliesHolder->isVisible()) {
-                this->ui->repliesHolder->setVisible(true);
+        if (progress > ui->progressBar->value()) {
+            ui->progressBar->setValue(progress);
+            if (ui->progressBar->property("disabled") == true) {
+                QtHelper::setProperty(ui->progressBar, "disabled", false);
             }
-            for (ActionProgress* reply : replies) {
-                reply->update();
+        } else if (int(progress) == ui->progressBar->value() && progress > 1) {
+            if (ui->progressBar->property("disabled") == false) {
+                QtHelper::setProperty(ui->progressBar, "disabled", true);
             }
+        }
+    }
+    if (this->replies.size() > 0) {
+        if (!this->ui->repliesHolder->isVisible()) {
+            this->ui->repliesHolder->setVisible(true);
+        }
+        for (ActionProgress* reply : replies) {
+            reply->update();
         }
     }
 }

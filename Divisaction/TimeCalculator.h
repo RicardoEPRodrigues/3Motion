@@ -16,6 +16,10 @@ class TimeCalculator {
         virtual double now() = 0;
 
         virtual double delta() = 0;
+
+        virtual void play() = 0;
+
+        virtual void pause() = 0;
 };
 
 
