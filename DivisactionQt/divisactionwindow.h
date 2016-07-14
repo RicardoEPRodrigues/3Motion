@@ -10,6 +10,7 @@
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QLabel>
+#include <QShortcut>
 
 #include <vector>
 #include <memory>
@@ -40,11 +41,12 @@ private:
 
     void updateProgress();
 
+    void play();
+    void pause();
 private slots:
     void updateWorld();
     void moveScrollBarToBottom(int min, int max);
-    void on_playButton_clicked();
-    void on_pauseButton_clicked();
+    void on_playPauseButton_clicked();
 };
 
 #endif // DIVISACTIONWINDOW_H

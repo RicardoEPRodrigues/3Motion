@@ -18,8 +18,11 @@ DivisactionWindow::DivisactionWindow(QWidget *parent) :
     scrollbar = ui->StagesScroll->verticalScrollBar();
     QObject::connect(scrollbar, SIGNAL(rangeChanged(int,int)), this, SLOT(moveScrollBarToBottom(int, int)));
 
+    QShortcut *shortcut = new QShortcut(QKeySequence("SPACE"), this);
+    QObject::connect(shortcut, SIGNAL(activated()), this, SLOT(on_playPauseButton_clicked()));
+
     worldManager = Examples::example2();
-    this->on_pauseButton_clicked();
+    this->pause();
     QLabel* descriptionLabel = new QLabel();
     descriptionLabel->setText(QString(worldManager->getDescription().c_str()));
     ui->ActionStackLayout->addWidget(descriptionLabel);
@@ -121,6 +124,24 @@ void DivisactionWindow::updateProgress()
     }
 }
 
+void DivisactionWindow::play()
+{
+    if (worldManager) {
+        ui->playPauseButton->setText("Pause (space)");
+        Time::play();
+        worldManager->play();
+    }
+}
+
+void DivisactionWindow::pause()
+{
+    if (worldManager) {
+        ui->playPauseButton->setText("Play (space)");
+        Time::pause();
+        worldManager->pause();
+    }
+}
+
 
 // Utilities
 
@@ -129,22 +150,13 @@ void DivisactionWindow::moveScrollBarToBottom(int min, int max) {
     this->scrollbar->setValue(max); // Moves the scroll bar to the bottom so that new stage are seen first.
 }
 
-void DivisactionWindow::on_playButton_clicked()
+void DivisactionWindow::on_playPauseButton_clicked()
 {
-    Time::play();
     if (worldManager) {
-        worldManager->play();
-        ui->playButton->setEnabled(false);
-        ui->pauseButton->setEnabled(true);
-    }
-}
-
-void DivisactionWindow::on_pauseButton_clicked()
-{
-    Time::pause();
-    if (worldManager) {
-        worldManager->pause();
-        ui->playButton->setEnabled(true);
-        ui->pauseButton->setEnabled(false);
+        if (worldManager->isPaused()) {
+            this->play();
+        } else {
+            this->pause();
+        }
     }
 }
