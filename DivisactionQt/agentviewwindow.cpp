@@ -34,8 +34,6 @@ AgentViewWindow::AgentViewWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
     Time::update();
     timer->start(20);
-
-    this->adjustSize();
 }
 
 AgentViewWindow::~AgentViewWindow()
