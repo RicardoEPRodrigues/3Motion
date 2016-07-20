@@ -18,8 +18,6 @@
 #include "Event.h"
 #include "Stages/TimeProgressiveStage.h"
 
-using namespace Divisaction;
-
 namespace Ui {
     class ActionProgress;
 }
@@ -36,24 +34,24 @@ private:
 
     Ui::ActionProgress *ui;
 
-    void setReply(std::shared_ptr<IAgent>& agent, std::shared_ptr<ReplyEvent> reply);
+    void setReply(std::shared_ptr<Divisaction::IAgent>& agent, std::shared_ptr<Divisaction::ReplyEvent> reply);
 public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();
 
 
-    void set(std::shared_ptr<IAgent>& agent, std::shared_ptr<Stage> stage);
+    void set(std::shared_ptr<Divisaction::IAgent>& agent, std::shared_ptr<Divisaction::Stage> stage);
 
-    void addEmotion(std::shared_ptr<Emotion> emotion);
+    void addEmotion(std::shared_ptr<Divisaction::Emotion> emotion);
 
     void concatDescription(QString text);
 
-    void addReply(std::shared_ptr<Event> reply);
+    void addReply(std::shared_ptr<Divisaction::Event> reply);
 
     void update();
 
-    std::shared_ptr<IAgent> agent;
-    std::shared_ptr<TimeProgressiveStage> stage;
+    std::shared_ptr<Divisaction::IAgent> agent;
+    std::shared_ptr<Divisaction::TimeProgressiveStage> stage;
 
 };
 

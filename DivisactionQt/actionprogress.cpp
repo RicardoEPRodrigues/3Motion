@@ -6,6 +6,7 @@
 #include "ui_actionprogress.h"
 
 using namespace std;
+using namespace Divisaction;
 
 ActionProgress::ActionProgress(QWidget *parent) :
     QWidget(parent),

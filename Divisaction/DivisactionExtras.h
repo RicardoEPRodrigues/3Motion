@@ -20,6 +20,8 @@
 #include "Emotions/Happiness.h"
 #include "Emotions/Relief.h"
 
+#include "Stages/TimeProgressiveStage.h"
+
 #include "Extra/ChronoTimeCalculator.h"
 #include "Extra/Looper.h"
 

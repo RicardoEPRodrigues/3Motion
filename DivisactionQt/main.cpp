@@ -2,7 +2,8 @@
  * Copyright (C) ricardo 2016 - All Rights Reserved
  */
 
-#include "divisactionwindow.h"
+#include "logviewwindow.h"
+#include "agentviewwindow.h"
 #include <QApplication>
 #include <QFile>
 
@@ -15,7 +16,8 @@ int main(int argc, char *argv[])
     QString styleSheet = QLatin1String(file.readAll());
     a.setStyleSheet(styleSheet);
 
-    DivisactionWindow w;
+//    LogViewWindow w;
+    AgentViewWindow w;
     w.show();
 
     const int retval = a.exec();

@@ -8,6 +8,7 @@
 #define DIVISACTION_DIVISACTION_H
 
 #include "WorldManager.h"
+#include "Time.h"
 #include "Agent.h"
 #include "Events/ActionEvent.h"
 #include "Events/EmotionEvent.h"

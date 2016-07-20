@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DivisactionWindow</class>
- <widget class="QMainWindow" name="DivisactionWindow">
+ <class>AgentViewWindow</class>
+ <widget class="QMainWindow" name="AgentViewWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>952</width>
-    <height>592</height>
+    <width>1100</width>
+    <height>300</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>650</width>
-    <height>0</height>
+    <width>1100</width>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>DivisactionWindow</string>
+   <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QScrollArea" name="StagesScroll">
+       <widget class="QScrollArea" name="scrollArea">
         <property name="widgetResizable">
          <bool>true</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
         <widget class="QWidget" name="scrollAreaWidgetContents">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>930</width>
-           <height>536</height>
+           <width>1078</width>
+           <height>244</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="ActionStackLayout"/>
+         <layout class="QGridLayout" name="gridLayout"/>
         </widget>
        </widget>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QPushButton" name="playPauseButton">
         <property name="text">
-         <string>Play (space)</string>
+         <string>Play (Pause)</string>
         </property>
        </widget>
       </item>
@@ -60,7 +63,6 @@
    </layout>
   </widget>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>

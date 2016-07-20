@@ -17,27 +17,26 @@
 
 #include "actionprogress.h"
 
-#include "Divisaction.h"
 #include "Extra/Examples.h"
 
 namespace Ui {
 class DivisactionWindow;
 }
 
-class DivisactionWindow : public QMainWindow
+class LogViewWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit DivisactionWindow(QWidget *parent = 0);
-    ~DivisactionWindow();
+    explicit LogViewWindow(QWidget *parent = 0);
+    ~LogViewWindow();
 
 private:
     Ui::DivisactionWindow *ui;
     QScrollBar* scrollbar;
 
-    std::shared_ptr<class WorldManager> worldManager;
-    std::vector<ActionProgress *> actionsProgress; // change to have a matrix where the key is the agent and the value a list with the actions he has done.
+    std::shared_ptr<class Divisaction::WorldManager> worldManager;
+    std::vector<ActionProgress *> actionsProgress; // TODO change to have a matrix where the key is the agent and the value a list with the actions he has done.
 
     void updateProgress();
 
