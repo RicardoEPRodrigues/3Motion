@@ -9,3 +9,14 @@ void QtHelper::setProperty(QWidget* object, const char* name, const QVariant & v
     object->style()->polish(object);
 }
 
+void QtHelper::clearLayout(QLayout *layout) {
+    if ( layout->layout() != NULL )
+    {
+        QLayoutItem* item;
+        while ( ( item = layout->layout()->takeAt( 0 ) ) != NULL )
+        {
+            delete item->widget();
+            delete item;
+        }
+    }
+}

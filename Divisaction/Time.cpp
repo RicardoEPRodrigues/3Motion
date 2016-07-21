@@ -14,6 +14,9 @@ namespace Divisaction {
     }
 
     Time::~Time() {
+        if (_timeCalculator) {
+            delete _timeCalculator;
+        }
     }
 
     void Time::update() {
@@ -33,6 +36,9 @@ namespace Divisaction {
     }
 
     void Time::setTimeCalculator(TimeCalculator* timeCalculator) {
+        if (_timeCalculator) {
+            delete _timeCalculator;
+        }
         _timeCalculator = timeCalculator;
     }
 

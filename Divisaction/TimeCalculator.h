@@ -9,6 +9,9 @@
 
 class TimeCalculator {
     public:
+        TimeCalculator() {};
+        virtual ~TimeCalculator() {};
+
         virtual void update() = 0;
 
         virtual double startTime() = 0;

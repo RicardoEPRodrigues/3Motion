@@ -22,7 +22,7 @@ namespace Divisaction {
         auto worldManager = make_shared<WorldManager>();
 
         worldManager->setDescription(
-                "This scenario contains 2 agents, Bob and Hanna, purely reactive.\n Bob does an action and Hanna responds to it.");
+                "This scenario contains 2 agents, Bob and Hanna.\n The agents are near a rope bridge.");
 
         auto agentBob = make_shared<SingleActionAgent>();
         agentBob->setName(string("Bob"));
@@ -52,7 +52,7 @@ namespace Divisaction {
 
         auto worldManager = make_shared<WorldManager>();
         worldManager->setDescription(
-                "This scenario contains 2 agents, Bob and Hanna, purely reactive.\n Bob wants to go to a door and Hanna is somewhat scared of the room.");
+                "This scenario contains 2 agents, Bob and Hanna.\n The agents are near a rope bridge.");
 
         auto agentBob = make_shared<CoopSceneBob>();
         auto agentHanna = make_shared<CoopSceneHanna>();

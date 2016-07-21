@@ -3,13 +3,15 @@
  */
 
 #include "logviewwindow.h"
-#include "ui_divisactionwindow.h"
+#include "ui_logviewwindow.h"
+
+#include "agentviewwindow.h"
 
 using namespace Divisaction;
 using namespace std;
 
 LogViewWindow::LogViewWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::DivisactionWindow) {
+    : QMainWindow(parent), ui(new Ui::LogViewWindow) {
     ui->setupUi(this);
     ui->ActionStackLayout->setAlignment(Qt::AlignTop);
 
@@ -21,22 +23,36 @@ LogViewWindow::LogViewWindow(QWidget *parent)
     QObject::connect(shortcut, SIGNAL(activated()), this,
                      SLOT(on_playPauseButton_clicked()));
 
-    worldManager = Examples::example2();
-    this->pause();
-    QLabel *descriptionLabel = new QLabel();
-    descriptionLabel->setText(QString(worldManager->getDescription().c_str()));
-    descriptionLabel->setAlignment(Qt::AlignCenter);
-    ui->ActionStackLayout->addWidget(descriptionLabel);
+    init();
 
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateWorld()));
+    updateTimer = new QTimer(this);
+    connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateWorld()));
     Time::update();
-    timer->start(20);
+    updateTimer->start(20);
 }
 
 LogViewWindow::~LogViewWindow() {
     delete ui;
     scrollbar = nullptr;
+}
+
+void LogViewWindow::init() {
+    worldManager = Examples::example2();
+    this->pause();
+    QLabel *descriptionLabel = new QLabel();
+    descriptionLabel->setText(QString::fromStdString(worldManager->getDescription()));
+    descriptionLabel->setAlignment(Qt::AlignCenter);
+    ui->ActionStackLayout->addWidget(descriptionLabel);
+}
+
+void LogViewWindow::restart() {
+    if (worldManager) {
+        worldManager = nullptr;
+    }
+    QtHelper::clearLayout(ui->ActionStackLayout);
+    this->actionsProgress.clear();
+
+    init();
 }
 
 void LogViewWindow::updateWorld() {
@@ -168,4 +184,18 @@ void LogViewWindow::on_playPauseButton_clicked() {
             this->pause();
         }
     }
+}
+
+void LogViewWindow::on_actionExit_triggered() { QApplication::exit(); }
+
+void LogViewWindow::on_actionAction_View_triggered()
+{
+    (new AgentViewWindow())->show();
+    updateTimer->stop();
+    this->hide();
+}
+
+void LogViewWindow::on_actionRestart_triggered()
+{
+    restart();
 }
