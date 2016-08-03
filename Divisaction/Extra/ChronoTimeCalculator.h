@@ -10,35 +10,36 @@
 
 #include "../TimeCalculator.h"
 
-class ChronoTimeCalculator : public TimeCalculator {
-    private:
-        bool started;
-        double _now;
-        double realtimeNow;
-        double _startTime;
-        double _delta;
-        bool _pause;
-    public:
+namespace Divisaction {
+    class ChronoTimeCalculator : public TimeCalculator {
+        private:
+            bool started;
+            milliseconds _now;
+            milliseconds realtimeNow;
+            milliseconds _startTime;
+            milliseconds _delta;
+            bool _pause;
+        public:
 
-        ChronoTimeCalculator();
+            ChronoTimeCalculator();
 
-        virtual void update() override;
+            virtual void update() override;
 
-        virtual double now() override;
+            virtual milliseconds now() override;
 
-        virtual double delta() override;
+            virtual milliseconds delta() override;
 
-        double startTime() override;
+            milliseconds startTime() override;
 
-        void play() {
-            _pause = false;
-        }
+            void play() {
+                _pause = false;
+            }
 
-        void pause() {
-            _pause = true;
-        }
+            void pause() {
+                _pause = true;
+            }
 
-};
-
+    };
+}
 
 #endif //DIVISACTION_CHRONOTIMECALCULATOR_H

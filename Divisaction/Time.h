@@ -24,11 +24,11 @@ namespace Divisaction {
 
             static void update();
 
-            static double startTime();
+            static milliseconds startTime();
 
-            static double now();
+            static milliseconds now();
 
-            static double delta();
+            static milliseconds delta();
 
             static void play();
 

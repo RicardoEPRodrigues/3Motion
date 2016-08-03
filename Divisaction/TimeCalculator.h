@@ -6,24 +6,28 @@
 #ifndef DIVISACTION_TIMECALCULATOR_H
 #define DIVISACTION_TIMECALCULATOR_H
 
+namespace Divisaction {
+    typedef double milliseconds;
 
-class TimeCalculator {
-    public:
-        TimeCalculator() {};
-        virtual ~TimeCalculator() {};
+    class TimeCalculator {
+        public:
+            TimeCalculator() {};
 
-        virtual void update() = 0;
+            virtual ~TimeCalculator() {};
 
-        virtual double startTime() = 0;
+            virtual void update() = 0;
 
-        virtual double now() = 0;
+            virtual milliseconds startTime() = 0;
 
-        virtual double delta() = 0;
+            virtual milliseconds now() = 0;
 
-        virtual void play() = 0;
+            virtual milliseconds delta() = 0;
 
-        virtual void pause() = 0;
-};
+            virtual void play() = 0;
+
+            virtual void pause() = 0;
+    };
+}
 
 
 #endif //DIVISACTION_TIMECALCULATOR_H

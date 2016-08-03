@@ -15,10 +15,10 @@ namespace Divisaction {
         private:
             bool alreadyActed;
 
-            double startTime = 0;
+            milliseconds startTime = 0;
             bool startCountdown;
         protected:
-            double interval = 2000.0;
+            milliseconds interval = 2000.0;
             /**
              * This variable is used to store the action to be picked until the agent has to make the action.
              */

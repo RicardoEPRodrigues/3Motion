@@ -23,15 +23,15 @@ namespace Divisaction {
         _timeCalculator->update();
     }
 
-    double Time::startTime() {
+    milliseconds Time::startTime() {
         return _timeCalculator->startTime();
     }
 
-    double Time::now() {
+    milliseconds Time::now() {
         return _timeCalculator->now();
     }
 
-    double Time::delta() {
+    milliseconds Time::delta() {
         return _timeCalculator->delta();
     }
 

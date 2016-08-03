@@ -57,6 +57,9 @@ set(SOURCE_FILES
         Modules/CoopSceneHannaReact.cpp Modules/CoopSceneHannaReact.h
         Modules/CoopSceneHannaDecide.cpp Modules/CoopSceneHannaDecide.h
         Modules/DelayedDecide.cpp Modules/DelayedDecide.h
+        TimeUtils/DTimer.cpp TimeUtils/DTimer.h
+        TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
+        TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

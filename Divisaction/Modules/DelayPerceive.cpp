@@ -8,7 +8,7 @@
 namespace Divisaction {
     void DelayPerceive::execute(const std::vector<std::shared_ptr<Event>>& events) {
         for (auto event = eventsBeingPerceived.begin(); event != eventsBeingPerceived.end();) {
-            double time = event->first - Time::delta();
+            milliseconds time = event->first - Time::delta();
             if (time <= 0) {
                 if (auto mentalStatePtr = mentalStateWeak.lock()) {
                     mentalStatePtr->update(event->second);
