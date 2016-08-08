@@ -8,7 +8,7 @@
 
 namespace Divisaction {
 
-    DTimer::DTimer(milliseconds duration) : counter(0), duration(duration) {}
+    DTimer::DTimer(milliseconds duration) : counter(0), duration(duration), paused(false) {}
 
     DTimer::~DTimer() {}
 

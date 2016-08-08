@@ -11,7 +11,7 @@ namespace Divisaction {
         alreadyFelt = std::vector<bool>(10);
     }
 
-    void CoopSceneBobReact::execute() {
+    void CoopSceneBobReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
             if (!alreadyFelt[0] && mentalState->self.action &&
                 mentalState->self.action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {

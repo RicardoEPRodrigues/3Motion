@@ -13,8 +13,8 @@ namespace Divisaction {
     class SingleEmotionReact : public ReactModule {
         private:
             bool alreadyFelt;
-        public:
-            virtual void execute() override;
+        protected:
+            virtual void _execute() override;
     };
 
 } /* namespace Divisaction */

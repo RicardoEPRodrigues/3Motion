@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    void Perform::execute(std::vector<std::shared_ptr<Event>>& responseEvents) {
+    void Perform::_execute(std::vector<std::shared_ptr<Event>>& responseEvents) {
         if (auto mentalState = mentalStateWeak.lock()) {
 
             if (mentalState->self.action) {

@@ -11,9 +11,8 @@
 namespace Divisaction {
 
     class ReplyReact : public ReactModule {
-
-        public:
-            virtual void execute() override;
+        protected:
+            virtual void _execute() override;
     };
 
 } /* namespace Divisaction */

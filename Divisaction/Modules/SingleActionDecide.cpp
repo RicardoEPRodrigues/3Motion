@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    void SingleActionDecide::execute() {
+    void SingleActionDecide::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
             if (!alreadyActed && !mentalState->self.action && mentalState->self.availableActions.size() > 0) {
                 mentalState->self.action = mentalState->self.availableActions[0];

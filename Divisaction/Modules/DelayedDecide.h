@@ -15,8 +15,7 @@ namespace Divisaction {
         private:
             bool alreadyActed;
 
-            milliseconds startTime = 0;
-            bool startCountdown;
+            std::shared_ptr<DTimer> timer;
         protected:
             milliseconds interval = 2000.0;
             /**
@@ -25,8 +24,8 @@ namespace Divisaction {
             std::shared_ptr<Action> action;
 
             virtual void selectAction(std::shared_ptr<MentalState> mentalState);
-        public:
-            void execute() override;
+
+            virtual void _execute() override;
     };
 
 } /* namespace Divisaction */

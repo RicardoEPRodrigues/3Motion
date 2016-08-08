@@ -6,22 +6,16 @@
 #include "DelayPerceive.h"
 
 namespace Divisaction {
-    void DelayPerceive::execute(const std::vector<std::shared_ptr<Event>>& events) {
-        for (auto event = eventsBeingPerceived.begin(); event != eventsBeingPerceived.end();) {
-            milliseconds time = event->first - Time::delta();
-            if (time <= 0) {
-                if (auto mentalStatePtr = mentalStateWeak.lock()) {
-                    mentalStatePtr->update(event->second);
-                    event = eventsBeingPerceived.erase(event);
+    void DelayPerceive::_execute(const std::vector<std::shared_ptr<Event>>& events) {
+        for (auto eventIter = events.begin(); eventIter != events.end(); eventIter++) {
+            double timeToPerceive = (*eventIter)->timeToPerceive();
+            std::shared_ptr<Event> event = *eventIter;
+            wait(timeToPerceive, [this, event]() {
+                if (auto mentalState = mentalStateWeak.lock()) {
+                    auto eventshr = event;
+                    mentalState->update(eventshr);
                 }
-            } else {
-                event->first = time;
-                ++event;
-            }
-        }
-        for (auto event = events.begin(); event != events.end(); event++) {
-            double timeToPerceive = (*event)->timeToPerceive();
-            eventsBeingPerceived.push_back(std::pair<double, std::shared_ptr<Event>>(timeToPerceive, *event));
+            });
         }
     }
 } /* namespace Divisaction */

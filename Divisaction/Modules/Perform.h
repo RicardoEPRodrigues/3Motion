@@ -12,8 +12,8 @@ namespace Divisaction {
 
     class Perform : public PerformModule {
 
-        public:
-            virtual void execute(std::vector<std::shared_ptr<Event>>&) override;
+        protected:
+            virtual void _execute(std::vector<std::shared_ptr<Event>>&) override;
     };
 
 } /* namespace Divisaction */

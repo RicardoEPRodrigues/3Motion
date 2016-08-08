@@ -12,10 +12,8 @@
 namespace Divisaction {
 
     class DelayPerceive : public PerceiveModule {
-        private:
-            std::vector<std::pair<double, std::shared_ptr<Event>>> eventsBeingPerceived;
-        public:
-            virtual void execute(const std::vector<std::shared_ptr<Event>>& param) override;
+        protected:
+            virtual void _execute(const std::vector<std::shared_ptr<Event>>& param) override;
     };
 
 } /* namespace Divisaction */

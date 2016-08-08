@@ -12,8 +12,8 @@ namespace Divisaction {
 
     class SingleReplyReact : public ReactModule {
 
-        public:
-            virtual void execute() override;
+        protected:
+            virtual void _execute() override;
     };
 
 } /* namespace Divisaction */

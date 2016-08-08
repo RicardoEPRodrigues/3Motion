@@ -9,39 +9,52 @@
 #include <memory>
 
 #include "MentalState.h"
+#include "TimeUtils/DTimerManager.h"
 
 namespace Divisaction {
 
     template<typename T, typename U>
-    class Module {
-        protected:
-            std::weak_ptr<MentalState> mentalStateWeak;
+    class Module : public DTimerManager {
         public:
-            Module() : mentalStateWeak(std::make_shared<MentalState>()) { }
+            Module() : mentalStateWeak(std::make_shared<MentalState>()) {}
 
-            virtual ~Module() { }
+            virtual ~Module() {}
 
-            virtual T execute(U param) = 0;
+            T execute(U param) {
+                timersUpdate();
+                return _execute(param);
+            }
 
             void initialize(std::shared_ptr<MentalState> mentalState) {
                 this->mentalStateWeak = mentalState;
             };
+
+        protected:
+            virtual T _execute(U param) = 0;
+
+            std::weak_ptr<MentalState> mentalStateWeak;
     };
 
     template<typename T>
-    class Module<T, void> {
-        protected:
-            std::weak_ptr<MentalState> mentalStateWeak;
+    class Module<T, void> : public DTimerManager {
         public:
-            Module() : mentalStateWeak(std::make_shared<MentalState>()) { }
+            Module() : mentalStateWeak(std::make_shared<MentalState>()) {}
 
-            virtual ~Module() { }
+            virtual ~Module() {}
 
-            virtual T execute() = 0;
+            T execute() {
+                timersUpdate();
+                return _execute();
+            }
 
             void initialize(std::shared_ptr<MentalState> mentalState) {
                 this->mentalStateWeak = mentalState;
             }
+
+        protected:
+            virtual T _execute() = 0;
+
+            std::weak_ptr<MentalState> mentalStateWeak;
     };
 
     typedef Module<void, const std::vector<std::shared_ptr<Event>>&> PerceiveModule;

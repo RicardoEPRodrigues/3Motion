@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    void SingleReplyReact::execute() {
+    void SingleReplyReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
             for (auto mentalRep = mentalState->others.begin(); mentalRep != mentalState->others.end(); ++mentalRep) {
                 if (mentalRep->updateAction) {

@@ -6,20 +6,20 @@
 #include "DelayedDecide.h"
 
 namespace Divisaction {
-    void DelayedDecide::execute() {
+    void DelayedDecide::_execute() {
         if (!alreadyActed) {
             if (auto mentalState = mentalStateWeak.lock()) {
                 if (!mentalState->self.action) {
                     this->selectAction(mentalState);
                 }
-                if (this->action && !startCountdown) {
-                    startTime = Time::now();
-                    startCountdown = true;
-                }
-                if (this->action && startCountdown && Time::now() > startTime + interval) {
-                    mentalState->self.action = this->action;
-                    alreadyActed = true;
-                }
+            }
+            if (this->action && !timer) {
+                timer = wait(interval, [this]() {
+                    if (auto mentalState = mentalStateWeak.lock()) {
+                        mentalState->self.action = action;
+                        alreadyActed = true;
+                    }
+                });
             }
         }
     }

@@ -13,8 +13,8 @@ namespace Divisaction {
     class SingleActionDecide : public DecideModule {
         private:
             bool alreadyActed;
-        public:
-            virtual void execute() override;
+        protected:
+            virtual void _execute() override;
     };
 
 } /* namespace Divisaction */

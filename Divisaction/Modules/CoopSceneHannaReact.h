@@ -11,11 +11,14 @@
 namespace Divisaction {
 
     class CoopSceneHannaReact : public ReactModule {
-        private:
-            std::vector<bool> alreadyFelt;
         public:
             CoopSceneHannaReact();
-            virtual void execute() override;
+
+        protected:
+            virtual void _execute() override;
+
+        private:
+            std::vector<bool> alreadyFelt;
     };
 
 } /* namespace Divisaction */

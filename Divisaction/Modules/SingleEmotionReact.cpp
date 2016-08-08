@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    void SingleEmotionReact::execute() {
+    void SingleEmotionReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
             if (!alreadyFelt && mentalState->self.availableEmotions.size() > 0) {
                 if (mentalState->self.emotion) {

@@ -7,7 +7,7 @@
 
 namespace Divisaction {
 
-    void ReplyReact::execute() {
+    void ReplyReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
             for (auto replyIter = mentalState->self.replies.begin(); replyIter != mentalState->self.replies.end(); ++replyIter) {
                 auto reply = (*replyIter);
