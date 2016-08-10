@@ -13,8 +13,7 @@ namespace Divisaction {
 
     void CoopSceneBobReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt[0] && mentalState->self.action &&
-                mentalState->self.action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
+            if (!alreadyFelt[0] && selfInActionStage(mentalState, StageType::ANTICIPATION_INTERRUPTIBLE)) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->reset();
                 }
@@ -22,8 +21,7 @@ namespace Divisaction {
                 mentalState->self.emotion->setThrowEvents(true);
                 alreadyFelt[0] = true;
             }
-            if (!alreadyFelt[1] && mentalState->self.action &&
-                mentalState->self.action->getCurrentStageType() == StageType::FOLLOW_THROUGH) {
+            if (!alreadyFelt[1] && selfInActionStage(mentalState, StageType::FOLLOW_THROUGH)) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->reset();
                 }

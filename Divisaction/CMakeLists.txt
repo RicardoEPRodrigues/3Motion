@@ -60,7 +60,9 @@ set(SOURCE_FILES
         TimeUtils/DTimer.cpp TimeUtils/DTimer.h
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
-        TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h)
+        TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
+        DivisactionModule.cpp DivisactionModule.h
+        )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

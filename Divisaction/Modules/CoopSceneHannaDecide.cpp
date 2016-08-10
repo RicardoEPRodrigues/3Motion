@@ -8,12 +8,10 @@
 namespace Divisaction {
 
     void CoopSceneHannaDecide::selectAction(std::shared_ptr<MentalState> mentalState) {
-        for (auto other = mentalState->others.begin();
-             other != mentalState->others.end(); ++other) {
-            if (auto agent = other->agent.lock()) {
-                if (agent->getName().compare("Bob") == 0 &&
-                    other->action &&
-                    other->action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
+        for (auto otherIter = mentalState->others.begin(); otherIter != mentalState->others.end(); ++otherIter) {
+            if (auto otherAgent = otherIter->agent.lock()) {
+                if (otherHasName(otherAgent, "Bob") &&
+                    otherInActionStage(*otherIter, StageType::ANTICIPATION_INTERRUPTIBLE)) {
                     if (!this->action || this->action != mentalState->self.availableActions[1]) {
                         this->action = mentalState->self.availableActions[1];
                     }

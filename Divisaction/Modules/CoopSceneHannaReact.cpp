@@ -12,16 +12,14 @@ namespace Divisaction {
 
     void CoopSceneHannaReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt[0] && mentalState->self.action &&
-                mentalState->self.action->getCurrentStageType() == StageType::ANTICIPATION_INTERRUPTIBLE) {
+            if (!alreadyFelt[0] && selfInActionStage(mentalState, StageType::ANTICIPATION_INTERRUPTIBLE)) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->reset();
                 }
                 mentalState->self.emotion = mentalState->self.availableEmotions[1];
                 mentalState->self.emotion->setThrowEvents(true);
                 alreadyFelt[0] = true;
-            } else if (!alreadyFelt[1] && mentalState->self.action &&
-                       mentalState->self.action->getCurrentStageType() == StageType::FOLLOW_THROUGH) {
+            } else if (!alreadyFelt[1] && selfInActionStage(mentalState, StageType::FOLLOW_THROUGH)) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->reset();
                 }
