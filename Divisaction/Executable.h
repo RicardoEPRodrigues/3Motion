@@ -8,6 +8,7 @@
 #define EXECUTABLE_H_
 
 #include <string>
+#include <memory>
 
 namespace Divisaction {
 
@@ -17,15 +18,17 @@ namespace Divisaction {
         public:
             enum ExecutionState { RUNNING, CHANGED, ENDED };
 
-            const std::string& getName() const {
-                return name;
-            }
+            Executable();
 
-            void setName(const std::string& name) {
-                Executable::name = name;
-            }
+            Executable(std::string name);
 
-            virtual ~Executable() { }
+            Executable(const Executable& other);
+
+            virtual ~Executable();
+
+            const std::string& getName() const;
+
+            void setName(const std::string& name);
 
             /**
              * Executes the functionality of this executable.

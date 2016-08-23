@@ -29,6 +29,10 @@ namespace Divisaction {
         public:
             Action();
 
+            Action(const Action& other);
+
+            ~Action();
+
             void setStage(StageType type, std::shared_ptr<Stage> stage);
 
             std::shared_ptr<Stage> getStage(StageType type) const;

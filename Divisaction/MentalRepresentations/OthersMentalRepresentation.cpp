@@ -6,5 +6,7 @@
 #include "OthersMentalRepresentation.h"
 
 namespace Divisaction {
-
+    bool OthersMentalRepresentation::actionInStage(StageType stageType) const {
+        return this->state == stageType;
+    }
 } /* namespace Divisaction */

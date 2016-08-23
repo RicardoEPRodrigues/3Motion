@@ -25,8 +25,8 @@ namespace Divisaction {
     }
 
     void DelayedDecide::selectAction(std::shared_ptr<MentalState> mentalState) {
-        if (!this->action || this->action != mentalState->self.availableActions[0]) {
-            this->action = mentalState->self.availableActions[0];
+        if (!this->action || this->action != mentalState->self.getAction(0)) {
+            this->action = mentalState->self.getAction(0);
         }
     }
 } /* namespace Divisaction */

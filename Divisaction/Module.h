@@ -9,14 +9,14 @@
 #include <memory>
 
 #include "MentalState.h"
-#include "DivisactionModule.h"
+#include "DModule.h"
 
 namespace Divisaction {
 
     template<typename T, typename U>
-    class Module : public DivisactionModule {
+    class Module : public DModule {
         public:
-            Module() : DivisactionModule() {}
+            Module() : DModule() {}
 
             virtual ~Module() {}
 
@@ -30,9 +30,9 @@ namespace Divisaction {
     };
 
     template<typename T>
-    class Module<T, void> : public DivisactionModule {
+    class Module<T, void> : public DModule {
         public:
-            Module() : DivisactionModule() {}
+            Module() : DModule() {}
 
             virtual ~Module() {}
 

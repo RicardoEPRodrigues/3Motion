@@ -8,45 +8,59 @@
 namespace Divisaction {
 
 
-    void SelfMentalRepresentation::addAvailableAction(std::shared_ptr<Action> action) {
+    void SelfMentalRepresentation::addAction(std::shared_ptr<Action> action) {
         this->availableActions.push_back(action);
     }
 
-    void SelfMentalRepresentation::removeAvailableAction(std::shared_ptr<Action>& action) {
+    void SelfMentalRepresentation::removeAction(std::shared_ptr<Action>& action) {
         auto it = std::find(availableActions.begin(), availableActions.end(), action);
         if (it != availableActions.end()) {
             availableActions.erase(it);
         }
     }
 
+    std::shared_ptr<Action> SelfMentalRepresentation::getAction(unsigned int index) const {
+        if (index >= availableActions.size()) {
+            return nullptr;
+        }
+        return std::make_shared<Action>(*availableActions[index].get());
+    }
+
     std::shared_ptr<Action> SelfMentalRepresentation::getAction(const std::shared_ptr<Action> action) const {
         std::shared_pointer_values_equal<Action> eq = {action};
         auto storedAction = find_if(availableActions.begin(), availableActions.end(), eq);
-        return storedAction == availableActions.end() ? nullptr : *storedAction;
+        return storedAction == availableActions.end() ? nullptr : std::make_shared<Action>(*(*storedAction).get());
     }
 
-    void SelfMentalRepresentation::addAvailableEmotion(std::shared_ptr<Emotion> emotion) {
+    unsigned long SelfMentalRepresentation::countActions() const {
+        return availableActions.size();
+    }
+
+    void SelfMentalRepresentation::addEmotion(std::shared_ptr<Emotion> emotion) {
         availableEmotions.push_back(emotion);
     }
 
-    void SelfMentalRepresentation::removeAvailableEmotion(std::shared_ptr<Emotion>& emotion) {
+    void SelfMentalRepresentation::removeEmotion(std::shared_ptr<Emotion>& emotion) {
         auto it = std::find(availableEmotions.begin(), availableEmotions.end(), emotion);
         if (it != availableEmotions.end()) {
             availableEmotions.erase(it);
         }
     }
 
+    std::shared_ptr<Emotion> SelfMentalRepresentation::getEmotion(unsigned int index) const {
+        if (index >= availableEmotions.size()) {
+            return nullptr;
+        }
+        return std::make_shared<Emotion>(*availableEmotions[index].get());
+    }
+
     std::shared_ptr<Emotion> SelfMentalRepresentation::getEmotion(const std::shared_ptr<Emotion> emotion) const {
         std::shared_pointer_values_equal<Emotion> eq = {emotion};
         auto storedEmotion = find_if(availableEmotions.begin(), availableEmotions.end(), eq);
-        return storedEmotion == availableEmotions.end() ? nullptr : *storedEmotion;
+        return storedEmotion == availableEmotions.end() ? nullptr : std::make_shared<Emotion>(*(*storedEmotion).get());
     }
 
-    void SelfMentalRepresentation::addEmotionalReply(std::shared_ptr<ReplyEvent>& replyEvent) {
-        emotionalReplies.push_back(replyEvent);
-    }
-
-    void SelfMentalRepresentation::addEvent(std::shared_ptr<Event> event) {
-        eventsToSend.push_back(event);
+    unsigned long SelfMentalRepresentation::countEmotions() const {
+        return availableEmotions.size();
     }
 } /* namespace Divisaction */

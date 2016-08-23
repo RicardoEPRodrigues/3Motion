@@ -16,7 +16,6 @@
 #include "Event.h"
 #include "Emotion.h"
 #include "Events/ActionEvent.h"
-#include "Events/ReplyEvent.h"
 #include "MentalState.h"
 #include "Module.h"
 

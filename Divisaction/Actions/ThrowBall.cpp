@@ -9,8 +9,10 @@ using namespace std;
 
 namespace Divisaction {
     ThrowBall::ThrowBall() {
+        this->setName("Throw Ball");
 
-        auto anticipation = make_shared<TimeProgressiveStage>(string("starts swinging his arm to throw the ball"), 1000, 2000);
+        auto anticipation = make_shared<TimeProgressiveStage>(string("starts swinging his arm to throw the ball"), 1000,
+                                                              2000);
         this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 
         auto execution = make_shared<TimeProgressiveStage>(string("throws the ball"), 1000, 5000);
@@ -19,7 +21,8 @@ namespace Divisaction {
         auto finished = make_shared<TimeProgressiveStage>(string("sees the ball hit the target"), 1000, 1000);
         this->setStage(StageType::FOLLOW_THROUGH, finished);
 
-        auto cancel = make_shared<TimeProgressiveStage>(string("stops his swing and doesn't throw the ball"), 1000, 1000);
+        auto cancel = make_shared<TimeProgressiveStage>(string("stops his swing and doesn't throw the ball"), 1000,
+                                                        1000);
         this->setStage(StageType::CANCEL, cancel);
     }
 

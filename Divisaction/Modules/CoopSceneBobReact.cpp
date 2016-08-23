@@ -13,20 +13,18 @@ namespace Divisaction {
 
     void CoopSceneBobReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt[0] && selfInActionStage(mentalState, StageType::ANTICIPATION_INTERRUPTIBLE)) {
+            if (!alreadyFelt[0]) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->reset();
                 }
-                mentalState->self.emotion = mentalState->self.availableEmotions[0];
-                mentalState->self.emotion->setThrowEvents(true);
+                mentalState->self.emotion = mentalState->self.getEmotion(0);
                 alreadyFelt[0] = true;
             }
-            if (!alreadyFelt[1] && selfInActionStage(mentalState, StageType::FOLLOW_THROUGH)) {
+            if (!alreadyFelt[1] && mentalState->self.actionHasName("Long Walk") && mentalState->self.actionInStage(StageType::FOLLOW_THROUGH)) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->reset();
                 }
-                mentalState->self.emotion = mentalState->self.availableEmotions[2];
-                mentalState->self.emotion->setThrowEvents(true);
+                mentalState->self.emotion = mentalState->self.getEmotion(2);
                 alreadyFelt[1] = true;
             }
 
@@ -47,12 +45,8 @@ namespace Divisaction {
                                     mentalState->self.emotion->reset();
                                 }
 
-                                mentalState->self.emotion = mentalState->self.availableEmotions[emotionIndex];
-                                mentalState->self.emotion->setThrowEvents(false);
-                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self,
-                                                                                                 mentalState->self.emotion,
-                                                                                                 origin);
-                                mentalState->self.addEmotionalReply(event);
+                                mentalState->self.emotion = mentalState->self.getEmotion(emotionIndex);
+                                mentalState->self.emotion->replyToAgent(origin);
                             }
                         }
                     }

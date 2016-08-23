@@ -10,6 +10,8 @@ using namespace std;
 namespace Divisaction {
 
     Follow::Follow(std::weak_ptr<IAgent> agent) : Action() {
+        this->setName("Follow");
+
         if (auto agentshr = agent.lock()) {
             auto anticipation = make_shared<TimeProgressiveStage>(string("starts to follow " + agentshr->getName()), 4000, 10000);
             this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);

@@ -11,16 +11,15 @@
 #include "MentalRepresentation.h"
 #include "Events/ActionEvent.h"
 #include "Events/EmotionEvent.h"
-#include "Events/ReplyEvent.h"
 #include "MentalRepresentations/SelfMentalRepresentation.h"
 #include "MentalRepresentations/OthersMentalRepresentation.h"
 
 namespace Divisaction {
 
     class MentalState {
-        private:
-            typedef std::vector<OthersMentalRepresentation> MentalRepresentations;
         public:
+            typedef std::vector<OthersMentalRepresentation> MentalRepresentations;
+
             MentalState();
 
             MentalState(std::weak_ptr<IAgent> selfAgent);

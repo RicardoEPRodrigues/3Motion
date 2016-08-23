@@ -34,7 +34,7 @@ private:
 
     Ui::ActionProgress *ui;
 
-    void setReply(std::shared_ptr<Divisaction::IAgent>& agent, std::shared_ptr<Divisaction::ReplyEvent> reply);
+    void setReply(std::shared_ptr<Divisaction::IAgent>& agent, std::shared_ptr<Divisaction::EmotionEvent> reply);
 public:
     explicit ActionProgress(QWidget *parent = 0);
     ~ActionProgress();

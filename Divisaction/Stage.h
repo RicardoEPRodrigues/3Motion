@@ -7,57 +7,51 @@
 #define STAGE_H_
 
 #include <string>
+#include <memory>
+#include "Time.h"
+#include "Executable.h"
 
 namespace Divisaction {
 
-    class Stage {
-        private:
-            std::string name;
-            bool complete;
-            bool playing;
-            double timeToPerceive;
-        protected:
-            virtual void onStart() = 0;
-
-            virtual void onUpdate() = 0;
-
+    class Stage : public Executable {
         public:
 
             Stage();
 
             Stage(std::string name, double timeToPerceive);
 
+            Stage(const Stage& other);
+
             virtual ~Stage();
+
+            virtual std::shared_ptr<Stage> clone() const = 0;
 
             void start();
 
             /**
-             * Updates the current action
-             * @return Progress value between 0 and 1. If the action hasn't been started it'll return 0. If the action is complete it'll always return 1.
+             * Updates the current stage
              */
-            void update();
+            ExecutionState execute();
 
-            void endStage();
+            void reset();
 
-            bool isPlaying() const;
+            bool isRunning() const;
 
             bool isComplete() const;
-
-            const std::string& getName() const;
-
-            void setName(const std::string& name);
 
             double getTimeToPerceive() const;
 
             void setTimeToPerceive(double timeToPerceive);
 
-            inline bool operator==(const Stage& other);
+        protected:
+            virtual void onStart() = 0;
 
-            inline bool operator!=(const Stage& other);
+            virtual ExecutionState onUpdate() = 0;
 
-            inline bool operator<(const Stage& other);
-
-            inline bool operator>(const Stage& other);
+        private:
+            bool complete;
+            bool playing;
+            milliseconds timeToPerceive;
     };
 
 } /* namespace Divisaction */

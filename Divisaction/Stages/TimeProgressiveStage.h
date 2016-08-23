@@ -12,23 +12,32 @@
 
 namespace Divisaction {
 
-    class TimeProgressiveStage: public Stage {
-    private:
-        double startTime;
-        double elapsedTime;
-        double duration;
-    public:
-        TimeProgressiveStage();
-        TimeProgressiveStage(std::string name, double timeToPerceive = 1000, double durationInMilliseconds = 0);
-        virtual ~TimeProgressiveStage();
+    class TimeProgressiveStage : public Stage {
+        public:
+            TimeProgressiveStage();
 
-        void onStart() override;
-        void onUpdate();
+            TimeProgressiveStage(std::string name, double timeToPerceive = 1000, double durationInMilliseconds = 0);
 
-        double getProgress() const;
+            TimeProgressiveStage(const TimeProgressiveStage& other);
 
-        virtual double getDuration() const;
-        void setDuration(double durationInMilliseconds);
+            virtual ~TimeProgressiveStage();
+
+            void onStart() override;
+
+            ExecutionState onUpdate();
+
+            double getProgress() const;
+
+            virtual double getDuration() const;
+
+            void setDuration(double durationInMilliseconds);
+
+            virtual std::shared_ptr<Stage> clone() const override;
+
+        private:
+            double startTime;
+            double elapsedTime;
+            double duration;
     };
 
 } /* namespace Divisaction */

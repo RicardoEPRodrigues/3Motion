@@ -5,15 +5,18 @@
  */
 
 #include "Emotion.h"
+#include "Agent.h"
 
 namespace Divisaction {
 
-    Emotion::Emotion() {
-        this->stage = nullptr;
-        this->running = false;
-        this->throwEvents = true;
-        this->replyText = "";
-    }
+    Emotion::Emotion() : running(false), stage(nullptr), replyText(""),
+                         replyTo(std::make_shared<Agent>()/* Gave reply to an empty agent until it's valid*/) {}
+
+    Emotion::Emotion(const Emotion& other) : Executable(other), running(other.running),
+                                             stage(other.stage->clone()),
+                                             replyText(other.replyText), replyTo(other.replyTo) {}
+
+    Emotion::~Emotion() {}
 
     Executable::ExecutionState Emotion::execute() {
         ExecutionState state = ExecutionState::RUNNING;
@@ -22,14 +25,15 @@ namespace Divisaction {
             running = true;
         }
 
-        if (!stage->isPlaying()) {
+        if (!stage->isRunning()) {
             stage->start();
             state = ExecutionState::CHANGED;
         }
-        stage->update();
+        stage->execute();
         if (stage->isComplete()) {
             running = false;
             state = ExecutionState::ENDED;
+            replyTo = std::make_shared<Agent>();
         }
 
         return state;
@@ -37,7 +41,7 @@ namespace Divisaction {
 
     void Emotion::reset() {
         this->running = false;
-        stage->endStage();
+        stage->reset();
     }
 
     std::shared_ptr<Stage> Emotion::getStage() const {
@@ -50,6 +54,14 @@ namespace Divisaction {
 
     bool Emotion::isRunning() const {
         return this->running;
+    }
+
+    const std::weak_ptr<IAgent>& Emotion::getReplyAgent() const {
+        return replyTo;
+    }
+
+    void Emotion::replyToAgent(const std::shared_ptr<IAgent>& replyTo) {
+        Emotion::replyTo = replyTo;
     }
 
 } /* namespace Divisaction */

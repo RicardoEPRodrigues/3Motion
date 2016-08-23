@@ -15,12 +15,24 @@ namespace Divisaction {
         reset();
     }
 
+    Action::Action(const Action& other) : Executable(other), running(other.running),
+                                          currentStageType(other.currentStageType) {
+        stages = vector<std::shared_ptr<Stage>>(StageType::size, nullptr);
+        for (unsigned int stageType = 0; stageType < other.stages.size(); ++stageType) {
+            if (other.stages[stageType]) {
+                stages[stageType] = other.stages[stageType]->clone();
+            }
+        }
+    }
+
+    Action::~Action() {}
+
     void Action::reset() {
         this->currentStageType = StageType::ANTICIPATION_INTERRUPTIBLE;
         this->running = false;
         for (auto stage : stages) {
             if (stage) {
-                stage->endStage();
+                stage->reset();
             }
         }
     }
@@ -53,11 +65,11 @@ namespace Divisaction {
         }
 
         std::shared_ptr<Stage> currentStage = getStage(currentStageType);
-        if (!currentStage->isPlaying()) {
+        if (!currentStage->isRunning()) {
             currentStage->start();
             state = ExecutionState::CHANGED;
         }
-        currentStage->update();
+        currentStage->execute();
         if (currentStage->isComplete()) {
             if (currentStageType == StageType::FOLLOW_THROUGH || currentStageType == StageType::CANCEL) {
                 running = false;

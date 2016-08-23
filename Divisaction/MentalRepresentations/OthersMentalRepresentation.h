@@ -18,6 +18,8 @@ namespace Divisaction {
 
             bool updateEmotion;
 
+            bool actionInStage(StageType stageType) const override;
+
     };
 
 } /* namespace Divisaction */

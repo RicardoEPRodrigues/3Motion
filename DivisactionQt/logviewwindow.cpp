@@ -78,7 +78,7 @@ void LogViewWindow::updateProgress() {
             shared_ptr<Agent> agent = dynamic_pointer_cast<Agent>(iagent);
             if (agent) {
                 shared_ptr<Action> action = dynamic_pointer_cast<Action>(
-                    agent->getMentalState()->self.action);
+                                                agent->getMentalState()->self.action);
                 if (action) {
                     auto stage = action->getCurrentStage();
 
@@ -111,31 +111,26 @@ void LogViewWindow::updateProgress() {
             }
         }
         for (shared_ptr<Event> event : worldManager->getCurrentEvents()) {
-            shared_ptr<ReplyEvent> replyEvent =
-                dynamic_pointer_cast<ReplyEvent>(event);
-            if (replyEvent) {
-                if (shared_ptr<IAgent> origin = replyEvent->origin.lock()) {
+            shared_ptr<EmotionEvent> emotionEvent =
+                    dynamic_pointer_cast<EmotionEvent>(event);
+            if (emotionEvent) {
+                shared_ptr<Emotion> emotion = emotionEvent->emotion;
+                if (shared_ptr<IAgent> replyAgent = emotion->getReplyAgent().lock()) {
                     for (std::vector<ActionProgress *>::reverse_iterator
-                             progress = actionsProgress.rbegin();
+                         progress = actionsProgress.rbegin();
                          progress != actionsProgress.rend(); progress++) {
-                        if ((*progress)->agent == origin) {
+                        if ((*progress)->agent == replyAgent) {
                             (*progress)->addReply(event);
                             break;
                         }
                     }
-                }
-            } else {
-                shared_ptr<EmotionEvent> emotionEvent =
-                    dynamic_pointer_cast<EmotionEvent>(event);
-                if (emotionEvent) {
-                    shared_ptr<Emotion> emotion = emotionEvent->emotion;
+                } else {
                     if (shared_ptr<IAgent> sender =
-                            emotionEvent->sender.lock()) {
+                        emotionEvent->sender.lock()) {
                         for (std::vector<ActionProgress *>::reverse_iterator
-                                 progress = actionsProgress.rbegin();
+                             progress = actionsProgress.rbegin();
                              progress != actionsProgress.rend(); progress++) {
                             if ((*progress)->agent == sender) {
-                                //                                (*progress)->addReply(event);
                                 (*progress)->addEmotion(emotion);
                                 break;
                             }
@@ -173,7 +168,7 @@ void LogViewWindow::pause() {
 void LogViewWindow::moveScrollBarToBottom(int min, int max) {
     Q_UNUSED(min);
     this->scrollbar->setValue(max); // Moves the scroll bar to the bottom so
-                                    // that new stage are seen first.
+    // that new stage are seen first.
 }
 
 void LogViewWindow::on_playPauseButton_clicked() {

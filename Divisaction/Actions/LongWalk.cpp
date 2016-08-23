@@ -11,6 +11,8 @@ using namespace std;
 namespace Divisaction {
 
     LongWalk::LongWalk() : Action() {
+        this->setName("Long Walk");
+
         auto anticipation = make_shared<TimeProgressiveStage>(string("starts crossing the bridge"), 4000, 10000);
         this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 

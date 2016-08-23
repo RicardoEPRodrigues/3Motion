@@ -36,19 +36,19 @@ namespace Divisaction {
     }
 
     void Agent::addAvailableAction(std::shared_ptr<Action> action) {
-        mentalState->self.addAvailableAction(action);
+        mentalState->self.addAction(action);
     }
 
     void Agent::removeAvailableAction(std::shared_ptr<Action>& action) {
-        mentalState->self.removeAvailableAction(action);
+        mentalState->self.removeAction(action);
     }
 
     void Agent::addAvailableEmotion(std::shared_ptr<Emotion> emotion) {
-        mentalState->self.addAvailableEmotion(emotion);
+        mentalState->self.addEmotion(emotion);
     }
 
     void Agent::removeAvailableEmotion(std::shared_ptr<Emotion>& emotion) {
-        mentalState->self.removeAvailableEmotion(emotion);
+        mentalState->self.removeEmotion(emotion);
     }
 
     void Agent::perceive(const vector<std::shared_ptr<Event>>& events) {

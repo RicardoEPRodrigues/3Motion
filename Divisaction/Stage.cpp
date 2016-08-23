@@ -8,18 +8,19 @@
 
 namespace Divisaction {
 
-    Stage::Stage() : Stage::Stage(std::string("Default Stage Name"), 1000) {
-    }
+    Stage::Stage() : Stage::Stage(std::string("Default Stage Name"), 1000) {}
 
     Stage::Stage(std::string name, double timeToPerceive)
-            : name(name) {
+            : Executable(name) {
         complete = false;
         playing = false;
         this->timeToPerceive = timeToPerceive;
     }
 
-    Stage::~Stage() {
-    }
+    Stage::Stage(const Stage& other) : Executable(other), complete(other.complete), playing(other.playing),
+                                       timeToPerceive(other.timeToPerceive) {}
+
+    Stage::~Stage() {}
 
     void Stage::start() {
         complete = false;
@@ -27,14 +28,14 @@ namespace Divisaction {
         this->onStart();
     }
 
-    void Stage::update() {
+    Executable::ExecutionState Stage::execute() {
         if (!playing || complete) {
-            return;
+            return ExecutionState::ENDED;
         }
-        onUpdate();
+        return onUpdate();
     }
 
-    void Stage::endStage() {
+    void Stage::reset() {
         playing = false;
         complete = true;
     }
@@ -43,32 +44,8 @@ namespace Divisaction {
         return complete;
     }
 
-    bool Stage::isPlaying() const {
+    bool Stage::isRunning() const {
         return playing;
-    }
-
-    inline bool Stage::operator==(const Stage& other) {
-        return this->getName() == other.getName();
-    }
-
-    inline bool Stage::operator!=(const Stage& other) {
-        return !((*this) == other);
-    }
-
-    inline bool Stage::operator<(const Stage& other) {
-        return this->name < other.getName();
-    }
-
-    inline bool Stage::operator>(const Stage& other) {
-        return this->name > other.getName();
-    }
-
-    const std::string& Stage::getName() const {
-        return name;
-    }
-
-    void Stage::setName(const std::string& name) {
-        this->name = name;
     }
 
     double Stage::getTimeToPerceive() const {

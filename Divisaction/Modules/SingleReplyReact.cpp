@@ -22,11 +22,9 @@ namespace Divisaction {
                                     mentalState->self.emotion->reset();
                                 }
 
-                                auto emotionIndex = rand() % mentalState->self.availableEmotions.size();
-                                mentalState->self.emotion = mentalState->self.availableEmotions[emotionIndex];
-                                mentalState->self.emotion->setThrowEvents(false);
-                                std::shared_ptr<ReplyEvent> event = std::make_shared<ReplyEvent>(self, mentalState->self.emotion, origin);
-                                mentalState->self.addEmotionalReply(event);
+                                auto emotionIndex = rand() % mentalState->self.countEmotions();
+                                mentalState->self.emotion = mentalState->self.getEmotion(emotionIndex);
+                                mentalState->self.emotion->replyToAgent(origin);
                             }
                         }
                         mentalRep->updateAction = false;

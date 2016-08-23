@@ -8,18 +8,17 @@
 
 namespace Divisaction {
 
-    TimeProgressiveStage::TimeProgressiveStage() : Stage() {
-        duration = 0;
-        startTime = -1;
-        elapsedTime = 0;
+    TimeProgressiveStage::TimeProgressiveStage()
+            : Stage(), startTime(-1), elapsedTime(0), duration(0) {
     }
 
     TimeProgressiveStage::TimeProgressiveStage(std::string name, double timeToPerceive, double durationInMilliseconds)
-            : Stage(name, timeToPerceive) {
-        startTime = -1;
-        elapsedTime = 0;
-        this->duration = durationInMilliseconds;
-    }
+            : Stage(name, timeToPerceive), startTime(-1), elapsedTime(0), duration(durationInMilliseconds) {}
+
+    TimeProgressiveStage::TimeProgressiveStage(const TimeProgressiveStage& other) : Stage(other),
+                                                                                    startTime(other.startTime),
+                                                                                    elapsedTime(other.elapsedTime),
+                                                                                    duration(other.duration) {}
 
     TimeProgressiveStage::~TimeProgressiveStage() {
     }
@@ -29,11 +28,13 @@ namespace Divisaction {
         elapsedTime = 0;
     }
 
-    void TimeProgressiveStage::onUpdate() {
+    Executable::ExecutionState TimeProgressiveStage::onUpdate() {
         elapsedTime += Time::delta();
         if (elapsedTime > duration) {
-            endStage();
+            reset();
+            return ExecutionState::ENDED;
         }
+        return ExecutionState::RUNNING;
     }
 
     double TimeProgressiveStage::getProgress() const {
@@ -48,9 +49,13 @@ namespace Divisaction {
     }
 
     void TimeProgressiveStage::setDuration(double durationInMilliseconds) {
-        if (!isPlaying()) {
+        if (!isRunning()) {
             this->duration = durationInMilliseconds;
         }
+    }
+
+    std::shared_ptr<Stage> TimeProgressiveStage::clone() const {
+        return std::make_shared<TimeProgressiveStage>(*this);
     }
 
 } /* namespace Divisaction */

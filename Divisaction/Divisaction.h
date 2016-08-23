@@ -12,6 +12,5 @@
 #include "Agent.h"
 #include "Events/ActionEvent.h"
 #include "Events/EmotionEvent.h"
-#include "Events/ReplyEvent.h"
 
 #endif //DIVISACTION_DIVISACTION_H

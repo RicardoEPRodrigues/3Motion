@@ -25,9 +25,13 @@ namespace Divisaction {
 
             std::string replyText;
 
-            bool throwEvents;
+            std::weak_ptr<class IAgent> replyTo;
         public:
             Emotion();
+
+            Emotion(const Emotion& other);
+
+            ~Emotion();
 
             virtual ExecutionState execute();
 
@@ -39,20 +43,16 @@ namespace Divisaction {
 
             void setStage(std::shared_ptr<Stage> emotion);
 
+            const std::weak_ptr<class IAgent>& getReplyAgent() const;
+
+            void replyToAgent(const std::shared_ptr<class IAgent>& replyTo);
+
             const std::string& getReplyText() const {
                 return replyText;
             }
 
             void setReplyText(const std::string& replyText) {
                 Emotion::replyText = replyText;
-            }
-
-            bool isThrowEvents() const {
-                return throwEvents;
-            }
-
-            void setThrowEvents(bool throwEvents) {
-                Emotion::throwEvents = throwEvents;
             }
     };
 

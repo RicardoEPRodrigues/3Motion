@@ -24,9 +24,9 @@ void AgentStatus::set(std::shared_ptr<Divisaction::IAgent> &iagent) {
                                      "</span></p></body></html>");
     } else {
         this->ui->agentName->setText(
-            "<html><head/><body><p><span style=\""
-            "font-size:20pt; font-weight:600;\">Agent is "
-            "Null</span></p></body></html>");
+                    "<html><head/><body><p><span style=\""
+                    "font-size:20pt; font-weight:600;\">Agent is "
+                    "Null</span></p></body></html>");
     }
 }
 
@@ -37,51 +37,42 @@ void AgentStatus::update(std::vector<std::shared_ptr<Event>> events) {
                 if (agent == sender) {
 
                     shared_ptr<ActionEvent> actionEvent =
-                        dynamic_pointer_cast<ActionEvent>(event);
+                            dynamic_pointer_cast<ActionEvent>(event);
 
                     if (actionEvent) {
                         action =
-                            std::dynamic_pointer_cast<TimeProgressiveStage>(
-                                actionEvent->action->getCurrentStage());
+                                std::dynamic_pointer_cast<TimeProgressiveStage>(
+                                    actionEvent->action->getCurrentStage());
 
                         ui->actionDescription->setText(QString::fromStdString(
-                            agent->getName() + " " +
-                            actionEvent->action->getCurrentStage()->getName() +
-                            "."));
+                                                           agent->getName() + " " +
+                                                           actionEvent->action->getCurrentStage()->getName() +
+                                                           "."));
                     } else {
-                        shared_ptr<ReplyEvent> replyEvent =
-                            dynamic_pointer_cast<ReplyEvent>(event);
-                        if (replyEvent) {
-                            emotion =
-                                std::dynamic_pointer_cast<TimeProgressiveStage>(
-                                    replyEvent->emotion->getStage());
-
-                            if (shared_ptr<IAgent> origin =
-                                    replyEvent->origin.lock()) {
-                                ui->emotionDescription->setText(
-                                    QString::fromStdString(
-                                        agent->getName() + " " +
-                                        replyEvent->emotion->getReplyText() +
-                                        origin->getName() + ". " +
-                                        agent->getName() + " " +
-                                        replyEvent->emotion->getStage()
-                                            ->getName()) +
-                                    ".");
-                            }
-                        } else {
-                            shared_ptr<EmotionEvent> emotionEvent =
+                        shared_ptr<EmotionEvent> emotionEvent =
                                 dynamic_pointer_cast<EmotionEvent>(event);
-                            if (emotionEvent) {
-                                emotion = std::dynamic_pointer_cast<
-                                    TimeProgressiveStage>(
-                                    emotionEvent->emotion->getStage());
-
+                        if (emotionEvent) {
+                            emotion = std::dynamic_pointer_cast<
+                                      TimeProgressiveStage>(
+                                          emotionEvent->emotion->getStage());
+                            if (shared_ptr<IAgent> origin =
+                                emotionEvent->emotion->getReplyAgent().lock()) {
                                 ui->emotionDescription->setText(
-                                    QString::fromStdString(
-                                        agent->getName() + " " +
-                                        emotionEvent->emotion->getStage()
-                                            ->getName() +
-                                        "."));
+                                            QString::fromStdString(
+                                                agent->getName() + " " +
+                                                emotionEvent->emotion->getReplyText() +
+                                                origin->getName() + ". " +
+                                                agent->getName() + " " +
+                                                emotionEvent->emotion->getStage()
+                                                ->getName()) +
+                                            ".");
+                            } else {
+                                ui->emotionDescription->setText(
+                                            QString::fromStdString(
+                                                agent->getName() + " " +
+                                                emotionEvent->emotion->getStage()
+                                                ->getName() +
+                                                "."));
                             }
                         }
                     }

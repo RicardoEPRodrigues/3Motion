@@ -19,7 +19,7 @@ set(SOURCE_FILES
         StageType.h
         Stage.cpp Stage.h
         Time.cpp Time.h
-        MentalRepresentation.h
+        MentalRepresentation.h MentalRepresentation.cpp
         Extra/Looper.cpp Extra/Looper.h
         Actions/LongWalk.cpp Actions/LongWalk.h
         Actions/ThrowBall.cpp Actions/ThrowBall.h
@@ -40,12 +40,12 @@ set(SOURCE_FILES
         Extra/ChronoTimeCalculator.cpp Extra/ChronoTimeCalculator.h
         Events/ActionEvent.cpp Events/ActionEvent.h
         Events/EmotionEvent.cpp Events/EmotionEvent.h
-        Events/ReplyEvent.cpp Events/ReplyEvent.h
         MentalState.cpp MentalState.h
         Divisaction.h
         DivisactionExtras.h
         MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h
         MentalRepresentations/OthersMentalRepresentation.cpp MentalRepresentations/OthersMentalRepresentation.h
+        DModule.cpp DModule.h
         Module.h
         Modules/DelayPerceive.cpp Modules/DelayPerceive.h
         Modules/Perform.cpp Modules/Perform.h
@@ -61,7 +61,6 @@ set(SOURCE_FILES
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
-        DivisactionModule.cpp DivisactionModule.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

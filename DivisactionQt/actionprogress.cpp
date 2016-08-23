@@ -88,7 +88,7 @@ void ActionProgress::concatDescription(QString text) {
 }
 
 void ActionProgress::addReply(shared_ptr<Event> reply) {
-    shared_ptr<ReplyEvent> emotionEvent = dynamic_pointer_cast<ReplyEvent>(reply);
+    shared_ptr<EmotionEvent> emotionEvent = dynamic_pointer_cast<EmotionEvent>(reply);
     if (emotionEvent) {
         if (auto sender = emotionEvent->sender.lock()) {
             ActionProgress * actionProgress = new ActionProgress(this);
@@ -99,9 +99,9 @@ void ActionProgress::addReply(shared_ptr<Event> reply) {
     }
 }
 
-void ActionProgress::setReply(std::shared_ptr<IAgent>& agent, std::shared_ptr<ReplyEvent> reply) {
+void ActionProgress::setReply(std::shared_ptr<IAgent>& agent, std::shared_ptr<EmotionEvent> reply) {
     this->agent = agent;
-    if (auto origin = reply->origin.lock()) {
+    if (auto origin = reply->emotion->getReplyAgent().lock()) {
         concatDescription(QString(reply->emotion->getReplyText().c_str()) + QString(origin->getName().c_str()));
     }
     this->set(agent, reply->emotion->getStage());
