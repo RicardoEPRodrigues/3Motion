@@ -12,6 +12,11 @@ namespace Divisaction {
     Emotion::Emotion() : running(false), stage(nullptr), replyText(""),
                          replyTo(std::make_shared<Agent>()/* Gave reply to an empty agent until it's valid*/) {}
 
+    Emotion::Emotion(std::string name, std::shared_ptr<Stage> stage, std::string replyText) : stage(stage),
+                                                                                              replyText(replyText) {
+        setName(name);
+    }
+
     Emotion::Emotion(const Emotion& other) : Executable(other), running(other.running),
                                              stage(other.stage->clone()),
                                              replyText(other.replyText), replyTo(other.replyTo) {}

@@ -29,6 +29,8 @@ namespace Divisaction {
         public:
             Emotion();
 
+            Emotion(std::string name, std::shared_ptr<Stage> stage, std::string replyText);
+
             Emotion(const Emotion& other);
 
             ~Emotion();

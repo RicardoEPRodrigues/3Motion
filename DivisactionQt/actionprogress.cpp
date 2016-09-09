@@ -81,9 +81,9 @@ void ActionProgress::addEmotion(std::shared_ptr<Emotion> emotion) {
 
 void ActionProgress::concatDescription(QString text) {
     if (this->ui->Description->text().length() > 0) {
-        this->ui->Description->setText(this->ui->Description->text() + ". " + QString(agent->getName().c_str()) + " " + text);
+        this->ui->Description->setText(this->ui->Description->text() + " " + QString(agent->getName().c_str()) + " " + text + ".");
     } else {
-        this->ui->Description->setText(QString(agent->getName().c_str()) + " " + text);
+        this->ui->Description->setText(QString(agent->getName().c_str()) + " " + text + ".");
     }
 }
 

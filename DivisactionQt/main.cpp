@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
     QString styleSheet = QLatin1String(file.readAll());
     a.setStyleSheet(styleSheet);
 
-//    LogViewWindow w;
-    AgentViewWindow w;
+    LogViewWindow w;
+//    AgentViewWindow w;
     w.show();
 
     const int retval = a.exec();

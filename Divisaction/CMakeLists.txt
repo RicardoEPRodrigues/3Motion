@@ -21,13 +21,8 @@ set(SOURCE_FILES
         Time.cpp Time.h
         MentalRepresentation.h MentalRepresentation.cpp
         Extra/Looper.cpp Extra/Looper.h
-        Actions/LongWalk.cpp Actions/LongWalk.h
-        Actions/ThrowBall.cpp Actions/ThrowBall.h
-        Actions/Follow.cpp Actions/Follow.h
-        Emotions/Confidence.cpp Emotions/Confidence.h
-        Emotions/Fear.cpp Emotions/Fear.h
-        Emotions/Happiness.cpp Emotions/Happiness.h
-        Emotions/Relief.cpp Emotions/Relief.h
+        Actions/Actions.cpp Actions/Actions.h
+        Emotions/Emotions.cpp Emotions/Emotions.h
         Agents/SingleActionAgent.cpp Agents/SingleActionAgent.h
         Agents/SingleReplyAgent.cpp Agents/SingleReplyAgent.h
         Agents/CoopSceneBob.cpp Agents/CoopSceneBob.h
