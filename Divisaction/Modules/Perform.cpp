@@ -36,6 +36,10 @@ namespace Divisaction {
             // Sends events about the action and emotion of the agent
             responseEvents.insert(std::end(responseEvents), std::begin(events),
                                   std::end(events));
+
+            // Clean up
+            // FIXME this clean up shouldn't be in the perform module.
+            mentalState->self.replies.clear();
         }
     }
 

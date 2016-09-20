@@ -3,10 +3,10 @@
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#include "OthersMentalRepresentation.h"
+#include "OtherMentalRepresentation.h"
 
 namespace Divisaction {
-    bool OthersMentalRepresentation::actionInStage(StageType stageType) const {
+    bool OtherMentalRepresentation::actionInStage(StageType stageType) const {
         return this->state == stageType;
     }
 } /* namespace Divisaction */

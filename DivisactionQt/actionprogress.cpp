@@ -29,6 +29,9 @@ ActionProgress::ActionProgress(QWidget *parent) :
     ui->repliesHolder->setVisible(false);
 
     ui->progressBar->setProperty("disabled", false);
+
+    previousWasEqualMax = 10;
+    previousWasEqualCounter = 0;
 }
 
 ActionProgress::~ActionProgress()
@@ -51,16 +54,21 @@ void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
 void ActionProgress::update()
 {
     if (this->stage) {
-        auto progress = this->stage->getProgress() * 100;
+        int progress = int(this->stage->getProgress() * 100);
         if (progress > ui->progressBar->value()) {
             ui->progressBar->setValue(progress);
             if (ui->progressBar->property("disabled") == true) {
                 QtHelper::setProperty(ui->progressBar, "disabled", false);
             }
-        } else if (int(progress) == ui->progressBar->value() && progress > 1) {
-            if (ui->progressBar->property("disabled") == false) {
-                QtHelper::setProperty(ui->progressBar, "disabled", true);
+            previousWasEqualCounter = 0;
+        } else if (previousWasEqualCounter >= previousWasEqualMax) {
+            if (progress > 1) {
+                if (ui->progressBar->property("disabled") == false) {
+                    QtHelper::setProperty(ui->progressBar, "disabled", true);
+                }
             }
+        } else {
+            previousWasEqualCounter++;
         }
     }
     if (this->replies.size() > 0) {

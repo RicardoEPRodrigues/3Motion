@@ -26,6 +26,21 @@ namespace Divisaction {
         return std::make_shared<Action>(*availableActions[index].get());
     }
 
+    std::shared_ptr<Action> SelfMentalRepresentation::getAction(const std::string name) const {
+        if (name.empty()) {
+            return nullptr;
+        }
+        auto actionIter = std::find_if(availableActions.begin(), availableActions.end(),
+                                        [name](const std::shared_ptr<Action> other) {
+                                            return other->getName().compare(name) == 0;
+                                        });
+        if (actionIter == availableActions.end()) {
+            return nullptr;
+        }
+
+        return std::make_shared<Action>(*(*actionIter).get());
+    }
+
     std::shared_ptr<Action> SelfMentalRepresentation::getAction(const std::shared_ptr<Action> action) const {
         std::shared_pointer_values_equal<Action> eq = {action};
         auto storedAction = find_if(availableActions.begin(), availableActions.end(), eq);
@@ -52,6 +67,21 @@ namespace Divisaction {
             return nullptr;
         }
         return std::make_shared<Emotion>(*availableEmotions[index].get());
+    }
+
+    std::shared_ptr<Emotion> SelfMentalRepresentation::getEmotion(const std::string name) const {
+        if (name.empty()) {
+            return nullptr;
+        }
+        auto emotionIter = std::find_if(availableEmotions.begin(), availableEmotions.end(),
+                                    [name](const std::shared_ptr<Emotion> other) {
+                                        return other->getName().compare(name) == 0;
+                                    });
+        if (emotionIter == availableEmotions.end()) {
+            return nullptr;
+        }
+
+        return std::make_shared<Emotion>(*(*emotionIter).get());
     }
 
     std::shared_ptr<Emotion> SelfMentalRepresentation::getEmotion(const std::shared_ptr<Emotion> emotion) const {

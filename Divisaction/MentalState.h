@@ -12,13 +12,13 @@
 #include "Events/ActionEvent.h"
 #include "Events/EmotionEvent.h"
 #include "MentalRepresentations/SelfMentalRepresentation.h"
-#include "MentalRepresentations/OthersMentalRepresentation.h"
+#include "MentalRepresentations/OtherMentalRepresentation.h"
 
 namespace Divisaction {
 
     class MentalState {
         public:
-            typedef std::vector<OthersMentalRepresentation> MentalRepresentations;
+            typedef std::vector<OtherMentalRepresentation> OthersMentalRep;
 
             MentalState();
 
@@ -27,11 +27,13 @@ namespace Divisaction {
             virtual ~MentalState();
 
             SelfMentalRepresentation self;
-            MentalRepresentations others;
+            OthersMentalRep others;
 
             void initialize(std::weak_ptr<IAgent> selfAgent);
 
             void update(std::shared_ptr<class Event>& event);
+
+            OtherMentalRepresentation* getOther(const std::string agentName);
     };
 
 } /* namespace Divisaction */

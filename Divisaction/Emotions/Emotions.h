@@ -35,6 +35,11 @@ namespace Divisaction {
             Apprehension();
     };
 
+    class Sadness : public Emotion {
+        public:
+            Sadness();
+    };
+
 } /* namespace Divisaction */
 
 #endif //DIVISACTION_EMOTIONS_H

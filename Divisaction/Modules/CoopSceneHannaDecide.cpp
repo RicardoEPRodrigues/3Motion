@@ -7,12 +7,32 @@
 
 namespace Divisaction {
 
-    void CoopSceneHannaDecide::selectAction(std::shared_ptr<MentalState> mentalState) {
-        for (auto otherIter = mentalState->others.begin(); otherIter != mentalState->others.end(); ++otherIter) {
-            if ((*otherIter).agentHasName("Bob") &&
-                (*otherIter).actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
-                if (!this->action || this->action != mentalState->self.getAction(1)) {
-                    this->action = mentalState->self.getAction(1);
+    CoopSceneHannaDecide::CoopSceneHannaDecide() : DecideModule(), interval(2000), timer(nullptr) {}
+
+    void CoopSceneHannaDecide::_execute() {
+//        if (mentalState->self.emotionHasName("Fear")) {
+//            return; // Frozen in fear
+//        }
+        if (!alreadyActed) {
+            if (auto mentalState = mentalStateWeak.lock()) {
+                if (mentalState->self.emotionHasName("Fear")) {
+                    alreadyActed = true; // Frozen in fear
+                } else {
+                    // Follow Bob if he's walking.
+                    if (!timer) {
+                        OtherMentalRepresentation* bobMentalRep;
+                        if ((bobMentalRep = mentalState->getOther("Bob"))) {
+                            if (bobMentalRep->actionHasName("Long Walk") &&
+                                bobMentalRep->actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
+                                timer = wait(interval, [this]() {
+                                    if (auto mentalState = mentalStateWeak.lock()) {
+                                        mentalState->self.action = mentalState->self.getAction("Follow");
+                                        alreadyActed = true;
+                                    }
+                                });
+                            }
+                        }
+                    }
                 }
             }
         }

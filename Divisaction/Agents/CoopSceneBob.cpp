@@ -16,7 +16,7 @@ namespace Divisaction {
 
         reactModules.push_back(std::make_unique<CoopSceneBobReact>());
 
-        decideModules.push_back(std::make_unique<SingleActionDecide>());
+        decideModules.push_back(std::make_unique<CoopSceneBobDecide>());
 
         performModules.push_back(std::make_unique<Perform>());
     }

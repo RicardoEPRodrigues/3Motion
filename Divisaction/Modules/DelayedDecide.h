@@ -12,12 +12,12 @@
 namespace Divisaction {
 
     class DelayedDecide : public DecideModule {
-        private:
-            bool alreadyActed;
+        public:
+            DelayedDecide();
+            DelayedDecide(milliseconds interval);
 
-            std::shared_ptr<DTimer> timer;
         protected:
-            milliseconds interval = 2000.0;
+            milliseconds interval;
             /**
              * This variable is used to store the action to be picked until the agent has to make the action.
              */
@@ -26,6 +26,11 @@ namespace Divisaction {
             virtual void selectAction(std::shared_ptr<MentalState> mentalState);
 
             virtual void _execute() override;
+
+        private:
+            bool alreadyActed;
+
+            std::shared_ptr<DTimer> timer;
     };
 
 } /* namespace Divisaction */

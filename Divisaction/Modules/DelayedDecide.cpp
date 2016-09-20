@@ -6,6 +6,10 @@
 #include "DelayedDecide.h"
 
 namespace Divisaction {
+    DelayedDecide::DelayedDecide() : DelayedDecide(2000) {}
+
+    DelayedDecide::DelayedDecide(milliseconds interval) : Module(), interval(interval) {}
+
     void DelayedDecide::_execute() {
         if (!alreadyActed) {
             if (auto mentalState = mentalStateWeak.lock()) {

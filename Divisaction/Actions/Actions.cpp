@@ -18,7 +18,7 @@ namespace Divisaction {
                                                                   4000, 10000);
             this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 
-            auto finished = make_shared<TimeProgressiveStage>(string("is next to " + agentshr->getName()), 4000, 7000);
+            auto finished = make_shared<TimeProgressiveStage>(string("reaches " + agentshr->getName()), 4000, 7000);
             this->setStage(StageType::FOLLOW_THROUGH, finished);
 
             auto cancel = make_shared<TimeProgressiveStage>(

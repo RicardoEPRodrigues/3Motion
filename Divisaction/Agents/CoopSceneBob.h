@@ -10,7 +10,7 @@
 #include "../Modules/DelayPerceive.h"
 #include "../Modules/Perform.h"
 #include "../Modules/CoopSceneBobReact.h"
-#include "../Modules/SingleActionDecide.h"
+#include "../Modules/CoopSceneBobDecide.h"
 
 namespace Divisaction {
 

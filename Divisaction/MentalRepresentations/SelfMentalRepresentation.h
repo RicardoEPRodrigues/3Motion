@@ -34,6 +34,8 @@ namespace Divisaction {
 
             std::shared_ptr<Action> getAction(unsigned int index) const;
 
+            std::shared_ptr<Action> getAction(const std::string name) const;
+
             std::shared_ptr<Action> getAction(const std::shared_ptr<Action> action) const;
 
             unsigned long countActions() const;
@@ -43,6 +45,8 @@ namespace Divisaction {
             virtual void removeEmotion(std::shared_ptr<Emotion>& emotion);
 
             std::shared_ptr<Emotion> getEmotion(unsigned int index) const;
+
+            std::shared_ptr<Emotion> getEmotion(const std::string name) const;
 
             std::shared_ptr<Emotion> getEmotion(const std::shared_ptr<Emotion> emotion) const;
 

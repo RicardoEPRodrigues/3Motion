@@ -11,9 +11,18 @@
 
 namespace Divisaction {
 
-    class CoopSceneHannaDecide : public DelayedDecide {
+    class CoopSceneHannaDecide : public DecideModule {
+        public:
+            CoopSceneHannaDecide();
+
         protected:
-            virtual void selectAction(std::shared_ptr<MentalState> mentalState);
+            virtual void _execute() override;
+
+            milliseconds interval;
+        private:
+            bool alreadyActed;
+
+            std::shared_ptr<DTimer> timer;
     };
 
 } /* namespace Divisaction */

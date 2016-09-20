@@ -14,10 +14,12 @@ namespace Divisaction {
         public:
             Follow(std::weak_ptr<IAgent> agent);
     };
+
     class LongWalk : public Action {
         public:
             LongWalk();
     };
+
     class ThrowBall : public Action {
         public:
             ThrowBall();

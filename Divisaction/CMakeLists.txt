@@ -39,7 +39,7 @@ set(SOURCE_FILES
         Divisaction.h
         DivisactionExtras.h
         MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h
-        MentalRepresentations/OthersMentalRepresentation.cpp MentalRepresentations/OthersMentalRepresentation.h
+        MentalRepresentations/OtherMentalRepresentation.cpp MentalRepresentations/OtherMentalRepresentation.h
         DModule.cpp DModule.h
         Module.h
         Modules/DelayPerceive.cpp Modules/DelayPerceive.h
@@ -56,7 +56,7 @@ set(SOURCE_FILES
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
-        )
+        Modules/CoopSceneBobDecide.cpp Modules/CoopSceneBobDecide.h)
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

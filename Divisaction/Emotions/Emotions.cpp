@@ -27,4 +27,10 @@ namespace Divisaction {
                                            std::make_shared<TimeProgressiveStage>(std::string("is apprehensive"), 1500,
                                                                                   2000),
                                            "feels somethings is wrong and fears for ") {}
+
+    Sadness::Sadness() : Emotion("Sadness",
+                                 std::make_shared<TimeProgressiveStage>(std::string("is sad"), 1500,
+                                                                        2000),
+                                 "feels gloomy and discouraged, looking at ") {}
+
 } /* namespace Divisaction */

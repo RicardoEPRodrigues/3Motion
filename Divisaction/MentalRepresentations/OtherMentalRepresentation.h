@@ -10,7 +10,7 @@
 
 namespace Divisaction {
 
-    class OthersMentalRepresentation : public MentalRepresentation {
+    class OtherMentalRepresentation : public MentalRepresentation {
         public:
             StageType state;
 

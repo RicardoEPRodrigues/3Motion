@@ -13,43 +13,37 @@ namespace Divisaction {
     void CoopSceneHannaReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
             if (!alreadyFelt[0] && mentalState->self.actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
-                if (mentalState->self.emotion) {
-                    mentalState->self.emotion->reset();
-                }
-                mentalState->self.emotion = mentalState->self.getEmotion(1);
+                mentalState->self.emotion = mentalState->self.getEmotion("Fear");
                 alreadyFelt[0] = true;
             } else if (!alreadyFelt[1] && mentalState->self.actionInStage(StageType::FOLLOW_THROUGH)) {
-                if (mentalState->self.emotion) {
-                    mentalState->self.emotion->reset();
-                }
-                mentalState->self.emotion = mentalState->self.getEmotion(2);
+                mentalState->self.emotion = mentalState->self.getEmotion("Happiness");
                 alreadyFelt[1] = true;
             }
 
-            for (auto mentalRep = mentalState->others.begin(); mentalRep != mentalState->others.end(); ++mentalRep) {
-                if (mentalRep->updateAction && mentalRep->updateEmotion && mentalRep->action && mentalRep->emotion) {
-                    mentalRep->updateAction = false;
-                    mentalRep->updateEmotion = false;
+            OtherMentalRepresentation* bobMentalRep;
+            if ((bobMentalRep = mentalState->getOther("Bob"))) {
+                if (bobMentalRep->updateAction && bobMentalRep->updateEmotion && bobMentalRep->action &&
+                    bobMentalRep->emotion) {
+                    bobMentalRep->updateAction = false;
+                    bobMentalRep->updateEmotion = false;
                     if (auto self = mentalState->self.agent.lock()) {
-                        if (auto origin = mentalRep->agent.lock()) {
-                            auto emotionIndex = 0;
-                            if (mentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE) {
-                                emotionIndex = 1;
+                        if (auto origin = bobMentalRep->agent.lock()) {
+                            std::string emotionName;
+                            if (bobMentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE) {
+//                                emotionName = "Apprehension";
+                                emotionName = "Fear";
                             } else {
-                                emotionIndex = 3;
+                                emotionName = "Relief";
                             }
 
-                            if (mentalState->self.emotion) {
-                                mentalState->self.emotion->reset();
+                            if ((mentalState->self.emotion = mentalState->self.getEmotion(emotionName))) {
+                                mentalState->self.emotion->replyToAgent(origin);
                             }
-
-                            mentalState->self.emotion = mentalState->self.getEmotion(emotionIndex);
-                            mentalState->self.emotion->replyToAgent(origin);
                         }
                     }
-                } else if (mentalRep->updateAction && mentalRep->action) {
+                } else if (bobMentalRep->updateAction && bobMentalRep->action) {
                     // TODO deal with the case of having only an action
-                } else if (mentalRep->updateEmotion && mentalRep->emotion) {
+                } else if (bobMentalRep->updateEmotion && bobMentalRep->emotion) {
                     // TODO deal with the case of having only an emotion
                 }
             }
