@@ -66,6 +66,7 @@ namespace Divisaction {
         agentBob->addAvailableEmotion(make_shared<Happiness>());
         agentBob->addAvailableEmotion(make_shared<Relief>());
         agentBob->addAvailableEmotion(make_shared<Apprehension>());
+        agentBob->addAvailableEmotion(make_shared<Sadness>());
         agentBob->initialize();
         worldManager->addAgent(agentBob);
 
@@ -77,6 +78,7 @@ namespace Divisaction {
         agentHanna->addAvailableEmotion(make_shared<Happiness>());
         agentHanna->addAvailableEmotion(make_shared<Relief>());
         agentHanna->addAvailableEmotion(make_shared<Apprehension>());
+        agentHanna->addAvailableEmotion(make_shared<Sadness>());
         agentHanna->initialize();
         worldManager->addAgent(agentHanna);
 
