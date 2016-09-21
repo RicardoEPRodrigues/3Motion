@@ -22,8 +22,7 @@ namespace Divisaction {
                     if (!timer) {
                         OtherMentalRepresentation* bobMentalRep;
                         if ((bobMentalRep = mentalState->getOther("Bob"))) {
-                            if (bobMentalRep->actionHasName("Long Walk") &&
-                                bobMentalRep->actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
+                            if (bobMentalRep->actionHasName("Long Walk")) {
                                 timer = wait(interval, [this]() {
                                     if (auto mentalState = mentalStateWeak.lock()) {
                                         mentalState->self.action = mentalState->self.getAction("Follow");

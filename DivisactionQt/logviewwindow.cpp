@@ -37,10 +37,11 @@ LogViewWindow::~LogViewWindow() {
 }
 
 void LogViewWindow::init() {
-    worldManager = Examples::example2();
+    worldManager = Examples::exampleCoop();
     this->pause();
     QLabel *descriptionLabel = new QLabel();
-    descriptionLabel->setText(QString::fromStdString(worldManager->getDescription()));
+    descriptionLabel->setText(
+        QString::fromStdString(worldManager->getDescription()));
     descriptionLabel->setAlignment(Qt::AlignCenter);
     ui->ActionStackLayout->addWidget(descriptionLabel);
 }
@@ -74,50 +75,51 @@ struct ActionProgress_stage_equal {
 
 void LogViewWindow::updateProgress() {
     if (worldManager) {
-        for (shared_ptr<IAgent> iagent : worldManager->getAgents()) {
-            shared_ptr<Agent> agent = dynamic_pointer_cast<Agent>(iagent);
-            if (agent) {
-                shared_ptr<Action> action = dynamic_pointer_cast<Action>(
-                                                agent->getMentalState()->self.action);
-                if (action) {
-                    auto stage = action->getCurrentStage();
+//        for (shared_ptr<IAgent> iagent : worldManager->getAgents()) {
+//            shared_ptr<Agent> agent = dynamic_pointer_cast<Agent>(iagent);
+//            if (agent) {
+//                shared_ptr<Action> action = dynamic_pointer_cast<Action>(
+//                    agent->getMentalState()->self.action);
+//                if (action) {
+//                    auto stage = action->getCurrentStage();
 
-                    auto it = std::find_if(actionsProgress.begin(),
-                                           actionsProgress.end(),
-                                           ActionProgress_stage_equal{stage});
-                    if (it == actionsProgress.end()) {
-                        ActionProgress *actionProgress = new ActionProgress();
-                        actionProgress->set(iagent, stage);
-                        ui->ActionStackLayout->addWidget(actionProgress);
-                        actionsProgress.push_back(actionProgress);
-                    }
-                }
+//                    auto it = std::find_if(actionsProgress.begin(),
+//                                           actionsProgress.end(),
+//                                           ActionProgress_stage_equal{stage});
+//                    if (it == actionsProgress.end()) {
+//                        ActionProgress *actionProgress = new ActionProgress();
+//                        actionProgress->set(iagent, stage);
+//                        ui->ActionStackLayout->addWidget(actionProgress);
+//                        actionsProgress.push_back(actionProgress);
+//                    }
+//                }
 
-                //                shared_ptr<Emotion> emotion =
-                //                dynamic_pointer_cast<Emotion>(agent->getMentalState()->self.emotion);
-                //                if (emotion) {
-                //                    auto stage = emotion->getStage();
+//                //                shared_ptr<Emotion> emotion =
+//                //                dynamic_pointer_cast<Emotion>(agent->getMentalState()->self.emotion);
+//                //                if (emotion) {
+//                //                    auto stage = emotion->getStage();
 
-                //                    auto it = actionsProgress.find(stage);
-                //                    if (it == actionsProgress.end()) {
-                //                        ActionProgress * actionProgress = new
-                //                        ActionProgress();
-                //                        actionProgress->set(iagent, stage);
-                //                        ui->ActionStackLayout->addWidget(actionProgress);
-                //                        actionsProgress[stage] =
-                //                        actionProgress;
-                //                    }
-                //                }
-            }
-        }
+//                //                    auto it = actionsProgress.find(stage);
+//                //                    if (it == actionsProgress.end()) {
+//                //                        ActionProgress * actionProgress = new
+//                //                        ActionProgress();
+//                //                        actionProgress->set(iagent, stage);
+//                //                        ui->ActionStackLayout->addWidget(actionProgress);
+//                //                        actionsProgress[stage] =
+//                //                        actionProgress;
+//                //                    }
+//                //                }
+//            }
+//        }
         for (shared_ptr<Event> event : worldManager->getCurrentEvents()) {
             shared_ptr<EmotionEvent> emotionEvent =
-                    dynamic_pointer_cast<EmotionEvent>(event);
+                dynamic_pointer_cast<EmotionEvent>(event);
             if (emotionEvent) {
                 shared_ptr<Emotion> emotion = emotionEvent->emotion;
-                if (shared_ptr<IAgent> replyAgent = emotion->getReplyAgent().lock()) {
+                if (shared_ptr<IAgent> replyAgent =
+                        emotion->getReplyAgent().lock()) {
                     for (std::vector<ActionProgress *>::reverse_iterator
-                         progress = actionsProgress.rbegin();
+                             progress = actionsProgress.rbegin();
                          progress != actionsProgress.rend(); progress++) {
                         if ((*progress)->agent == replyAgent) {
                             (*progress)->addReply(event);
@@ -126,15 +128,28 @@ void LogViewWindow::updateProgress() {
                     }
                 } else {
                     if (shared_ptr<IAgent> sender =
-                        emotionEvent->sender.lock()) {
+                            emotionEvent->sender.lock()) {
                         for (std::vector<ActionProgress *>::reverse_iterator
-                             progress = actionsProgress.rbegin();
+                                 progress = actionsProgress.rbegin();
                              progress != actionsProgress.rend(); progress++) {
                             if ((*progress)->agent == sender) {
                                 (*progress)->addEmotion(emotion);
                                 break;
                             }
                         }
+                    }
+                }
+            } else {
+                shared_ptr<ActionEvent> actionEvent =
+                    dynamic_pointer_cast<ActionEvent>(event);
+                if (actionEvent) {
+
+                    if (auto iagent = actionEvent->sender.lock()) {
+                        auto stage = actionEvent->action->getCurrentStage();
+                        ActionProgress *actionProgress = new ActionProgress();
+                        actionProgress->set(iagent, stage);
+                        ui->ActionStackLayout->addWidget(actionProgress);
+                        actionsProgress.push_back(actionProgress);
                     }
                 }
             }
@@ -183,14 +198,10 @@ void LogViewWindow::on_playPauseButton_clicked() {
 
 void LogViewWindow::on_actionExit_triggered() { QApplication::exit(); }
 
-void LogViewWindow::on_actionAction_View_triggered()
-{
+void LogViewWindow::on_actionAction_View_triggered() {
     (new AgentViewWindow())->show();
     updateTimer->stop();
     this->hide();
 }
 
-void LogViewWindow::on_actionRestart_triggered()
-{
-    restart();
-}
+void LogViewWindow::on_actionRestart_triggered() { restart(); }

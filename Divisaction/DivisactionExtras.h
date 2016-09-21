@@ -20,4 +20,6 @@
 #include "Extra/ChronoTimeCalculator.h"
 #include "Extra/Looper.h"
 
+#include "Extra/NoAnticipationExample/NoAnticipationActions.h"
+
 #endif //DIVISACTION_DIVISACTIONEXTRAS_H

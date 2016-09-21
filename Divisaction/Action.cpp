@@ -65,6 +65,17 @@ namespace Divisaction {
         }
 
         std::shared_ptr<Stage> currentStage = getStage(currentStageType);
+        if (!currentStage) {
+            do {
+                currentStageType = static_cast<StageType>((int) currentStageType + 1);
+            } while (getStage(currentStageType) == nullptr &&
+                     (currentStageType != StageType::FOLLOW_THROUGH || currentStageType != StageType::CANCEL));
+            currentStage = getStage(currentStageType);
+            if (!currentStage) {
+                return ExecutionState::ENDED;
+            }
+        }
+
         if (!currentStage->isRunning()) {
             currentStage->start();
             state = ExecutionState::CHANGED;
@@ -75,9 +86,7 @@ namespace Divisaction {
                 running = false;
                 state = ExecutionState::ENDED;
             } else {
-                do {
-                    currentStageType = static_cast<StageType>((int) currentStageType + 1);
-                } while (getStage(currentStageType) == nullptr && currentStageType != StageType::FOLLOW_THROUGH);
+                currentStageType = static_cast<StageType>((int) currentStageType + 1);
             }
         }
         return state;

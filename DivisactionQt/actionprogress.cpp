@@ -8,10 +8,8 @@
 using namespace std;
 using namespace Divisaction;
 
-ActionProgress::ActionProgress(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ActionProgress)
-{
+ActionProgress::ActionProgress(QWidget *parent)
+    : QWidget(parent), ui(new Ui::ActionProgress) {
     ui->setupUi(this);
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(100);
@@ -23,7 +21,7 @@ ActionProgress::ActionProgress(QWidget *parent) :
     animationOpacity->setDuration(500);
     animationOpacity->setStartValue(0.0);
     animationOpacity->setEndValue(1.0);
-    animationOpacity->setEasingCurve( QEasingCurve::InCubic );
+    animationOpacity->setEasingCurve(QEasingCurve::InCubic);
     animationOpacity->start();
 
     ui->repliesHolder->setVisible(false);
@@ -34,15 +32,13 @@ ActionProgress::ActionProgress(QWidget *parent) :
     previousWasEqualCounter = 0;
 }
 
-ActionProgress::~ActionProgress()
-{
+ActionProgress::~ActionProgress() {
     delete ui;
     delete animationOpacity;
     delete opacity;
 }
 
-void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
-{
+void ActionProgress::set(shared_ptr<IAgent> &agent, shared_ptr<Stage> stage) {
     this->stage = std::dynamic_pointer_cast<TimeProgressiveStage>(stage);
     this->agent = agent;
     if (this->stage) {
@@ -51,8 +47,7 @@ void ActionProgress::set(shared_ptr<IAgent>& agent, shared_ptr<Stage> stage)
     }
 }
 
-void ActionProgress::update()
-{
+void ActionProgress::update() {
     if (this->stage) {
         int progress = int(this->stage->getProgress() * 100);
         if (progress > ui->progressBar->value()) {
@@ -75,7 +70,7 @@ void ActionProgress::update()
         if (!this->ui->repliesHolder->isVisible()) {
             this->ui->repliesHolder->setVisible(true);
         }
-        for (ActionProgress* reply : replies) {
+        for (ActionProgress *reply : replies) {
             reply->update();
         }
     }
@@ -89,17 +84,21 @@ void ActionProgress::addEmotion(std::shared_ptr<Emotion> emotion) {
 
 void ActionProgress::concatDescription(QString text) {
     if (this->ui->Description->text().length() > 0) {
-        this->ui->Description->setText(this->ui->Description->text() + " " + QString(agent->getName().c_str()) + " " + text + ".");
+        this->ui->Description->setText(this->ui->Description->text() + " " +
+                                       QString(agent->getName().c_str()) + " " +
+                                       text + ".");
     } else {
-        this->ui->Description->setText(QString(agent->getName().c_str()) + " " + text + ".");
+        this->ui->Description->setText(QString(agent->getName().c_str()) + " " +
+                                       text + ".");
     }
 }
 
 void ActionProgress::addReply(shared_ptr<Event> reply) {
-    shared_ptr<EmotionEvent> emotionEvent = dynamic_pointer_cast<EmotionEvent>(reply);
+    shared_ptr<EmotionEvent> emotionEvent =
+        dynamic_pointer_cast<EmotionEvent>(reply);
     if (emotionEvent) {
         if (auto sender = emotionEvent->sender.lock()) {
-            ActionProgress * actionProgress = new ActionProgress(this);
+            ActionProgress *actionProgress = new ActionProgress(this);
             actionProgress->setReply(sender, emotionEvent);
             this->replies.push_back(actionProgress);
             this->ui->replies->addWidget(actionProgress);
@@ -107,10 +106,12 @@ void ActionProgress::addReply(shared_ptr<Event> reply) {
     }
 }
 
-void ActionProgress::setReply(std::shared_ptr<IAgent>& agent, std::shared_ptr<EmotionEvent> reply) {
+void ActionProgress::setReply(std::shared_ptr<IAgent> &agent,
+                              std::shared_ptr<EmotionEvent> reply) {
     this->agent = agent;
     if (auto origin = reply->emotion->getReplyAgent().lock()) {
-        concatDescription(QString(reply->emotion->getReplyText().c_str()) + QString(origin->getName().c_str()));
+        concatDescription(QString(reply->emotion->getReplyText().c_str()) +
+                          QString(origin->getName().c_str()));
     }
     this->set(agent, reply->emotion->getStage());
 }

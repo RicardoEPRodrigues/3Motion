@@ -56,7 +56,7 @@ set(SOURCE_FILES
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
-        Modules/CoopSceneBobDecide.cpp Modules/CoopSceneBobDecide.h)
+        Modules/CoopSceneBobDecide.cpp Modules/CoopSceneBobDecide.h Extra/NoAnticipationExample/NoAnticipationActions.cpp Extra/NoAnticipationExample/NoAnticipationActions.h)
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

@@ -6,8 +6,8 @@
 #ifndef DIVISACTION_COOPSCENEHANNADECIDE_H
 #define DIVISACTION_COOPSCENEHANNADECIDE_H
 
-#include "DelayedDecide.h"
 #include "../Time.h"
+#include "../Module.h"
 
 namespace Divisaction {
 

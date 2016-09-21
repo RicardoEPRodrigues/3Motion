@@ -23,7 +23,8 @@ namespace Divisaction {
         public:
             static std::shared_ptr<WorldManager> example1();
 
-            static std::shared_ptr<WorldManager> example2();
+            static std::shared_ptr<WorldManager> exampleCoop();
+            static std::shared_ptr<WorldManager> exampleCoopReactive();
 
     };
 

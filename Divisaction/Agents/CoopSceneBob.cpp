@@ -10,8 +10,7 @@ using namespace placeholders;
 
 namespace Divisaction {
 
-    CoopSceneBob::CoopSceneBob()
-            : Agent() {
+    CoopSceneBob::CoopSceneBob() : Agent() {
         perceiveModules.push_back(std::make_unique<DelayPerceive>());
 
         reactModules.push_back(std::make_unique<CoopSceneBobReact>());

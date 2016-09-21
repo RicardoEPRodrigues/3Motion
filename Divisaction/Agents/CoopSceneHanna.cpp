@@ -9,8 +9,7 @@ using namespace std;
 using namespace placeholders;
 
 namespace Divisaction {
-    CoopSceneHanna::CoopSceneHanna()
-            : Agent() {
+    CoopSceneHanna::CoopSceneHanna() : Agent() {
         perceiveModules.push_back(std::make_unique<DelayPerceive>());
 
         reactModules.push_back(std::make_unique<CoopSceneHannaReact>());

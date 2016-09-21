@@ -34,7 +34,7 @@ AgentViewWindow::~AgentViewWindow() {
 }
 
 void AgentViewWindow::init() {
-    worldManager = Examples::example2();
+    worldManager = Examples::exampleCoopReactive() ;
     this->pause();
     QLabel *descriptionLabel = new QLabel();
     descriptionLabel->setText(QString::fromStdString(worldManager->getDescription()));
