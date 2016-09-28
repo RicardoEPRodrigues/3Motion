@@ -56,7 +56,13 @@ set(SOURCE_FILES
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
-        Modules/CoopSceneBobDecide.cpp Modules/CoopSceneBobDecide.h Extra/NoAnticipationExample/NoAnticipationActions.cpp Extra/NoAnticipationExample/NoAnticipationActions.h)
+        Modules/CoopSceneBobDecide.cpp Modules/CoopSceneBobDecide.h
+        Extra/NoAnticipation/Actions.cpp Extra/NoAnticipation/Actions.h
+        Extra/NoAnticipation/Modules/CoopSceneBobReact.cpp Extra/NoAnticipation/Modules/CoopSceneBobReact.h
+        Extra/NoAnticipation/Modules/CoopSceneHannaReact.cpp Extra/NoAnticipation/Modules/CoopSceneHannaReact.h
+        Extra/NoAnticipation/Agents/CoopSceneBob.cpp Extra/NoAnticipation/Agents/CoopSceneBob.h
+        Extra/NoAnticipation/Agents/CoopSceneHanna.cpp Extra/NoAnticipation/Agents/CoopSceneHanna.h
+        )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
 

@@ -37,7 +37,7 @@ LogViewWindow::~LogViewWindow() {
 }
 
 void LogViewWindow::init() {
-    worldManager = Examples::exampleCoop();
+    worldManager = Examples::exampleCoopNoAnticipation();
     this->pause();
     QLabel *descriptionLabel = new QLabel();
     descriptionLabel->setText(

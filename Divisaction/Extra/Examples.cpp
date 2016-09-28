@@ -85,36 +85,36 @@ namespace Divisaction {
         return worldManager;
     }
 
-    shared_ptr<WorldManager> Examples::exampleCoopReactive() {
+    shared_ptr<WorldManager> Examples::exampleCoopNoAnticipation() {
         Time::setTimeCalculator(new ChronoTimeCalculator());
 
         auto worldManager = make_shared<WorldManager>();
         worldManager->setDescription(
                 "This scenario contains 2 agents, Bob and Hanna.\n The agents are near a rope bridge.");
 
-        auto agentBob = make_shared<CoopSceneBob>();
-        auto agentHanna = make_shared<CoopSceneHanna>();
+        auto agentBob = make_shared<NoAnticipation::CoopSceneBob>();
+        auto agentHanna = make_shared<NoAnticipation::CoopSceneHanna>();
         agentBob->setName(string("Bob"));
-        agentBob->addAvailableAction(make_shared<ReactiveLongWalk>());
-        agentBob->addAvailableAction(make_shared<ReactiveFollow>(agentHanna));
-//        agentBob->addAvailableEmotion(make_shared<Confidence>());
-//        agentBob->addAvailableEmotion(make_shared<Fear>());
-//        agentBob->addAvailableEmotion(make_shared<Happiness>());
-//        agentBob->addAvailableEmotion(make_shared<Relief>());
-//        agentBob->addAvailableEmotion(make_shared<Apprehension>());
-//        agentBob->addAvailableEmotion(make_shared<Sadness>());
+        agentBob->addAvailableAction(make_shared<NoAnticipation::LongWalk>());
+        agentBob->addAvailableAction(make_shared<NoAnticipation::Follow>(agentHanna));
+        agentBob->addAvailableEmotion(make_shared<Confidence>());
+        agentBob->addAvailableEmotion(make_shared<Fear>());
+        agentBob->addAvailableEmotion(make_shared<Happiness>());
+        agentBob->addAvailableEmotion(make_shared<Relief>());
+        agentBob->addAvailableEmotion(make_shared<Apprehension>());
+        agentBob->addAvailableEmotion(make_shared<Sadness>());
         agentBob->initialize();
         worldManager->addAgent(agentBob);
 
         agentHanna->setName(string("Hanna"));
-        agentHanna->addAvailableAction(make_shared<ReactiveLongWalk>());
-        agentHanna->addAvailableAction(make_shared<ReactiveFollow>(agentBob));
-//        agentHanna->addAvailableEmotion(make_shared<Confidence>());
-//        agentHanna->addAvailableEmotion(make_shared<Fear>());
-//        agentHanna->addAvailableEmotion(make_shared<Happiness>());
-//        agentHanna->addAvailableEmotion(make_shared<Relief>());
-//        agentHanna->addAvailableEmotion(make_shared<Apprehension>());
-//        agentHanna->addAvailableEmotion(make_shared<Sadness>());
+        agentHanna->addAvailableAction(make_shared<NoAnticipation::LongWalk>());
+        agentHanna->addAvailableAction(make_shared<NoAnticipation::Follow>(agentBob));
+        agentHanna->addAvailableEmotion(make_shared<Confidence>());
+        agentHanna->addAvailableEmotion(make_shared<Fear>());
+        agentHanna->addAvailableEmotion(make_shared<Happiness>());
+        agentHanna->addAvailableEmotion(make_shared<Relief>());
+        agentHanna->addAvailableEmotion(make_shared<Apprehension>());
+        agentHanna->addAvailableEmotion(make_shared<Sadness>());
         agentHanna->initialize();
         worldManager->addAgent(agentHanna);
 
