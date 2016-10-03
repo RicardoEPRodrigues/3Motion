@@ -33,7 +33,7 @@ namespace Divisaction {
         auto anticipation = make_shared<TimeProgressiveStage>(string("starts crossing the bridge"), 4000, 10000);
         this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 
-        auto finished = make_shared<TimeProgressiveStage>(string("reaches the end of the bridge"), 4000, 7000);
+        auto finished = make_shared<TimeProgressiveStage>(string("nears the end of the bridge"), 4000, 7000);
         this->setStage(StageType::FOLLOW_THROUGH, finished);
 
         auto cancel = make_shared<TimeProgressiveStage>(

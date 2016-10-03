@@ -6,12 +6,12 @@
 #include "CoopSceneHannaReact.h"
 
 namespace Divisaction {
-    CoopSceneHannaReact::CoopSceneHannaReact() {
+    Screening::CoopSceneHannaReact::CoopSceneHannaReact() {
         alreadyFelt = std::vector<bool>(10);
     }
 
-    void CoopSceneHannaReact::_execute() {
-        if (auto mentalState = mentalStateWeak.lock()) {
+    void Screening::CoopSceneHannaReact::_execute() {
+        if (std::shared_ptr<MentalState> mentalState = mentalStateWeak.lock()) {
             if (!alreadyFelt[0] && mentalState->self.actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
                 mentalState->self.emotion = mentalState->self.getEmotion("Fear");
                 alreadyFelt[0] = true;
@@ -26,25 +26,27 @@ namespace Divisaction {
                     bobMentalRep->emotion) {
                     bobMentalRep->updateAction = false;
                     bobMentalRep->updateEmotion = false;
-                    if (auto self = mentalState->self.agent.lock()) {
-                        if (auto origin = bobMentalRep->agent.lock()) {
-                            std::string emotionName;
-                            if (bobMentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE) {
-                                emotionName = "Apprehension";
-//                                emotionName = "Fear";
-                            } else {
-                                emotionName = "Relief";
-                            }
+                    if (auto origin = bobMentalRep->agent.lock()) {
 
-                            if ((mentalState->self.emotion = mentalState->self.getEmotion(emotionName))) {
+                        wait(4000, [this, bobMentalRep]() {
+                            if (std::shared_ptr<MentalState> mentalState = mentalStateWeak.lock()) {
+                                if (auto origin = bobMentalRep->agent.lock()) {
+                                    if (bobMentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE) {
+                                        if ((mentalState->self.emotion = mentalState->self.getEmotion(
+                                                "Confidence"))) {
+                                            mentalState->self.emotion->replyToAgent(origin);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                        if (bobMentalRep->state == StageType::FOLLOW_THROUGH) {
+                            if ((mentalState->self.emotion = mentalState->self.getEmotion("Relief"))) {
                                 mentalState->self.emotion->replyToAgent(origin);
                             }
                         }
                     }
-                } else if (bobMentalRep->updateAction && bobMentalRep->action) {
-                    // TODO deal with the case of having only an action
-                } else if (bobMentalRep->updateEmotion && bobMentalRep->emotion) {
-                    // TODO deal with the case of having only an emotion
                 }
             }
         }

@@ -24,4 +24,8 @@
 #include "Extra/NoAnticipation/Agents/CoopSceneBob.h"
 #include "Extra/NoAnticipation/Agents/CoopSceneHanna.h"
 
+#include "Extra/Screening/Actions.h"
+#include "Extra/Screening/Agents/CoopSceneBob.h"
+#include "Extra/Screening/Agents/CoopSceneHanna.h"
+
 #endif //DIVISACTION_DIVISACTIONEXTRAS_H

@@ -62,6 +62,11 @@ set(SOURCE_FILES
         Extra/NoAnticipation/Modules/CoopSceneHannaReact.cpp Extra/NoAnticipation/Modules/CoopSceneHannaReact.h
         Extra/NoAnticipation/Agents/CoopSceneBob.cpp Extra/NoAnticipation/Agents/CoopSceneBob.h
         Extra/NoAnticipation/Agents/CoopSceneHanna.cpp Extra/NoAnticipation/Agents/CoopSceneHanna.h
+        Extra/Screening/Actions.cpp Extra/Screening/Actions.h
+        Extra/Screening/Modules/CoopSceneBobReact.cpp Extra/Screening/Modules/CoopSceneBobReact.h
+        Extra/Screening/Modules/CoopSceneHannaReact.cpp Extra/Screening/Modules/CoopSceneHannaReact.h
+        Extra/Screening/Agents/CoopSceneBob.cpp Extra/Screening/Agents/CoopSceneBob.h
+        Extra/Screening/Agents/CoopSceneHanna.cpp Extra/Screening/Agents/CoopSceneHanna.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

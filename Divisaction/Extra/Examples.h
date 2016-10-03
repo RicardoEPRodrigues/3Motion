@@ -25,6 +25,7 @@ namespace Divisaction {
 
             static std::shared_ptr<WorldManager> exampleCoop();
             static std::shared_ptr<WorldManager> exampleCoopNoAnticipation();
+            static std::shared_ptr<WorldManager> exampleCoopScreening();
 
     };
 
