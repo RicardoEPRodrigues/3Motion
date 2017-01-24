@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_NOANTICIPATION_COOPSCENEBOBREACT_H
 #define DIVISACTION_NOANTICIPATION_COOPSCENEBOBREACT_H
 
-#include "../../../Module.h"
+#include "../../../DModule.h"
 
 namespace Divisaction {
     namespace Screening {

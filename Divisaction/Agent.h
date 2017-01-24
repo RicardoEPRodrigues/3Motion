@@ -17,7 +17,7 @@
 #include "Emotion.h"
 #include "Events/ActionEvent.h"
 #include "MentalState.h"
-#include "Module.h"
+#include "DModule.h"
 
 namespace Divisaction {
 

@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_COOPSCENEBOBDECIDE_H
 #define DIVISACTION_COOPSCENEBOBDECIDE_H
 
-#include "../Module.h"
+#include "../DModule.h"
 
 namespace Divisaction {
 
@@ -17,7 +17,7 @@ namespace Divisaction {
             virtual ~CoopSceneBobDecide();
 
         protected:
-            virtual void _execute() override;
+            virtual void _execute();
 
         private:
             bool alreadyActed;

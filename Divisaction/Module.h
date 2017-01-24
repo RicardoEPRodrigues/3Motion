@@ -9,46 +9,28 @@
 #include <memory>
 
 #include "MentalState.h"
-#include "DModule.h"
 
 namespace Divisaction {
 
     template<typename T, typename U>
-    class Module : public DModule {
+    class Module {
         public:
-            Module() : DModule() {}
+            Module() {}
 
             virtual ~Module() {}
 
-            T execute(U param) {
-                timersUpdate();
-                return _execute(param);
-            }
-
-        protected:
-            virtual T _execute(U param) = 0;
+            virtual T execute(U param) = 0;
     };
 
     template<typename T>
-    class Module<T, void> : public DModule {
+    class Module<T, void> {
         public:
-            Module() : DModule() {}
+            Module() {}
 
             virtual ~Module() {}
 
-            T execute() {
-                timersUpdate();
-                return _execute();
-            }
-
-        protected:
-            virtual T _execute() = 0;
+            virtual T execute() = 0;
     };
-
-    typedef Module<void, const std::vector<std::shared_ptr<Event>>&> PerceiveModule;
-    typedef Module<void, void> ReactModule;
-    typedef Module<void, void> DecideModule;
-    typedef Module<void, std::vector<std::shared_ptr<Event>>&> PerformModule;
 } /* namespace Divisaction */
 
 #endif //DIVISACTION_MODULE_H

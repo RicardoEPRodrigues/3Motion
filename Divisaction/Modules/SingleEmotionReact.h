@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_SINGLEEMOTIONREACT_H
 #define DIVISACTION_SINGLEEMOTIONREACT_H
 
-#include "../Module.h"
+#include "../DModule.h"
 
 namespace Divisaction {
 
@@ -14,7 +14,7 @@ namespace Divisaction {
         private:
             bool alreadyFelt;
         protected:
-            virtual void _execute() override;
+            virtual void _execute() override ;
     };
 
 } /* namespace Divisaction */

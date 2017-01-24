@@ -1,9 +1,13 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.6)
 project(Divisaction)
 
 find_package(Doxygen)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -g3 -O0 -fPIC -Wuninitialized -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++14")
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g3 -Og -Wuninitialized")
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
 
 include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
 
@@ -40,7 +44,7 @@ set(SOURCE_FILES
         DivisactionExtras.h
         MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h
         MentalRepresentations/OtherMentalRepresentation.cpp MentalRepresentations/OtherMentalRepresentation.h
-        DModule.cpp DModule.h
+        DModule.h
         Module.h
         Modules/DelayPerceive.cpp Modules/DelayPerceive.h
         Modules/Perform.cpp Modules/Perform.h

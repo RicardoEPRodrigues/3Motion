@@ -7,7 +7,7 @@
 #define DIVISACTION_COOPSCENEHANNADECIDE_H
 
 #include "../Time.h"
-#include "../Module.h"
+#include "../DModule.h"
 
 namespace Divisaction {
 

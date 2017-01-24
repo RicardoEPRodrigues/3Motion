@@ -9,20 +9,58 @@
 
 #include "TimeUtils/DTimerManager.h"
 #include "MentalState.h"
+#include "Module.h"
 
 namespace Divisaction {
 
-    class DModule : public DTimerManager {
+    template<typename T, typename U>
+    class DModule : public DTimerManager, public Module<T, U> {
         public:
-            DModule();
+            DModule() : mentalStateWeak(std::make_shared<MentalState>()) {};
 
-            virtual ~DModule();
+            virtual ~DModule() {};
 
-            void initialize(std::shared_ptr<MentalState> mentalState);
+            void initialize(std::shared_ptr<MentalState> mentalState) {
+                this->mentalStateWeak = mentalState;
+            };
+
+            T execute(U param) override {
+                timersUpdate();
+                return _execute(param);
+            }
 
         protected:
             std::weak_ptr<MentalState> mentalStateWeak;
+
+            virtual T _execute(U param) = 0;
     };
+
+    template<typename T>
+    class DModule<T, void> : public DTimerManager, public Module<T, void> {
+        public:
+            DModule() : mentalStateWeak(std::make_shared<MentalState>()) {};
+
+            virtual ~DModule() {};
+
+            void initialize(std::shared_ptr<MentalState> mentalState) {
+                this->mentalStateWeak = mentalState;
+            };
+
+            T execute() override {
+                timersUpdate();
+                return _execute();
+            }
+
+        protected:
+            std::weak_ptr<MentalState> mentalStateWeak;
+
+            virtual T _execute() = 0;
+    };
+
+    typedef DModule<void, const std::vector<std::shared_ptr<Event>>&> PerceiveModule;
+    typedef DModule<void, void> ReactModule;
+    typedef DModule<void, void> DecideModule;
+    typedef DModule<void, std::vector<std::shared_ptr<Event>>&> PerformModule;
 
 } /* namespace Divisaction */
 

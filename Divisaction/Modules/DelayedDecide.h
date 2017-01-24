@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_DELAYEDDECIDE_H
 #define DIVISACTION_DELAYEDDECIDE_H
 
-#include "../Module.h"
+#include "../DModule.h"
 #include "../Time.h"
 
 namespace Divisaction {

@@ -7,10 +7,10 @@
 //============================================================================
 
 #include <iostream>
-#include <functional>
 
-#include "Looper.h"
-#include "WorldManager.h"
+#include "Divisaction.h"
+
+#include "Extra/Looper.h"
 #include "Extra/Examples.h"
 
 #include "ConsoleUtilities/ProgressString.h"
@@ -22,7 +22,7 @@ int counter = 0;
 ProgressString * progressState = new ProgressString();
 Looper * looper = new Looper();
 
-WorldManager * worldManager = nullptr;
+std::shared_ptr<WorldManager> worldManager = nullptr;
 
 void basicExample() {
 //  cout << counter << endl;
@@ -34,7 +34,7 @@ void basicExample() {
     counter++;
 }
 
-Event currentEvent;
+//Event currentEvent;
 bool hasEvent = false;
 
 void worldManagerTesting() {

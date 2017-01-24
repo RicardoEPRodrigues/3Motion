@@ -29,7 +29,6 @@
 
 # Eclipse
 .metadata
-Debug
 RemoteSystemsTempFiles
 .project
 .cproject
@@ -43,6 +42,7 @@ build-DivisactionQt*
 # CLion
 .idea
 .idea_modules
+cmake-build-*
 
 # Doxygen
 doc/

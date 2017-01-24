@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_REPLYREACT_H
 #define DIVISACTION_REPLYREACT_H
 
-#include "../Module.h"
+#include "../DModule.h"
 
 namespace Divisaction {
 

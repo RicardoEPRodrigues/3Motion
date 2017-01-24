@@ -8,7 +8,7 @@
 namespace Divisaction {
     DelayedDecide::DelayedDecide() : DelayedDecide(2000) {}
 
-    DelayedDecide::DelayedDecide(milliseconds interval) : Module(), interval(interval) {}
+    DelayedDecide::DelayedDecide(milliseconds interval) : DModule(), interval(interval) {}
 
     void DelayedDecide::_execute() {
         if (!alreadyActed) {

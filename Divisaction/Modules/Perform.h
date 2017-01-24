@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_PERFORM_H
 #define DIVISACTION_PERFORM_H
 
-#include "../Module.h"
+#include "../DModule.h"
 
 namespace Divisaction {
 
