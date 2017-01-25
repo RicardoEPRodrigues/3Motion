@@ -30,7 +30,7 @@ namespace Divisaction {
                         for (auto replyIter = mentalState->self.replies.begin();
                              replyIter != mentalState->self.replies.end(); ++replyIter) {
                             if (auto sender = (*replyIter)->sender.lock()) {
-                                if (sender->getName().compare("Hanna") == 0 &&
+                                if (sender->name.compare("Hanna") == 0 &&
                                     (*replyIter)->emotion->getName().compare("Fear") == 0) {
                                     if (mentalState->self.action) {
                                         mentalState->self.action->cancel();

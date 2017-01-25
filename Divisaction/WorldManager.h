@@ -16,58 +16,21 @@
 namespace Divisaction {
 
     class WorldManager {
-        private:
+        public:
+            std::string description;
             std::vector<std::shared_ptr<IAgent>> agents;
             std::vector<std::shared_ptr<Event>> events;
-
-            bool paused;
-
-            std::string description;
-        public:
 
             WorldManager();
 
             virtual ~WorldManager();
 
-            /**
-             * Sets the world manager to update it's agents when Update() is called
-             * @note Play is enabled by default
-             * @see WorldManager::update()
-             */
-            void play();
-
-            /**
-             * Sets the world manager not to update it's agents when Update() is called
-             * @note Play is enabled by default
-             * @see WorldManager::update()
-             */
-            void pause();
-
-            /**
-             * Tells if the World Manager is updating it's agents or if it's paused.
-             * @return true if World Manager is paused, false otherwise
-             */
-            bool isPaused() const {
-                return paused;
-            }
-
-            const std::vector<std::shared_ptr<IAgent>>& getAgents() const;
-
-            void addAgent(std::shared_ptr<IAgent> agent);
-
             void update();
 
-            const std::vector<std::shared_ptr<Event>>& getCurrentEvents() const {
-                return events;
-            }
-
-            const std::string& getDescription() const {
-                return description;
-            }
-
-            void setDescription(const std::string& description) {
-                WorldManager::description = description;
-            }
+            void updateEvents(const std::vector<std::shared_ptr<Event>>& events);
+            void updateReact();
+            void updateDecide();
+            void updatePerform(std::vector<std::shared_ptr<Event>>& events);
     };
 
 } /* namespace Divisaction */

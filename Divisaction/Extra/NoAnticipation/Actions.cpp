@@ -16,11 +16,11 @@ namespace Divisaction {
             this->setName("Follow");
 
             if (auto agentshr = agent.lock()) {
-                auto anticipation = make_shared<TimeProgressiveStage>(string("follows " + agentshr->getName()), 2000,
+                auto anticipation = make_shared<TimeProgressiveStage>(string("follows " + agentshr->name), 2000,
                                                                       7000);
                 this->setStage(StageType::ANTICIPATION_INTERRUPTIBLE, anticipation);
 
-                auto finished = make_shared<TimeProgressiveStage>(string("reaches " + agentshr->getName()), 2000, 3000);
+                auto finished = make_shared<TimeProgressiveStage>(string("reaches " + agentshr->name), 2000, 3000);
                 this->setStage(StageType::FOLLOW_THROUGH, finished);
 
 //            auto cancel = make_shared<TimeProgressiveStage>(

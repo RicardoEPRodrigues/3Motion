@@ -13,7 +13,7 @@ namespace Divisaction {
 
     bool MentalRepresentation::agentHasName(std::string name) const {
         if (std::shared_ptr<IAgent> iAgent = this->agent.lock()) {
-            return iAgent->getName().compare(name) == 0;
+            return iAgent->name.compare(name) == 0;
         }
         return false;
     }

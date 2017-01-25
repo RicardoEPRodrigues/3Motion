@@ -85,10 +85,10 @@ void ActionProgress::addEmotion(std::shared_ptr<Emotion> emotion) {
 void ActionProgress::concatDescription(QString text) {
     if (this->ui->Description->text().length() > 0) {
         this->ui->Description->setText(this->ui->Description->text() + " " +
-                                       QString(agent->getName().c_str()) + " " +
+                                       QString(agent->name.c_str()) + " " +
                                        text + ".");
     } else {
-        this->ui->Description->setText(QString(agent->getName().c_str()) + " " +
+        this->ui->Description->setText(QString(agent->name.c_str()) + " " +
                                        text + ".");
     }
 }
@@ -111,7 +111,7 @@ void ActionProgress::setReply(std::shared_ptr<IAgent> &agent,
     this->agent = agent;
     if (auto origin = reply->emotion->getReplyAgent().lock()) {
         concatDescription(QString(reply->emotion->getReplyText().c_str()) +
-                          QString(origin->getName().c_str()));
+                          QString(origin->name.c_str()));
     }
     this->set(agent, reply->emotion->getStage());
 }

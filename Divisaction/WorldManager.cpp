@@ -10,47 +10,40 @@ using namespace std;
 
 namespace Divisaction {
 
-    WorldManager::WorldManager() {
-        paused = false;
+    WorldManager::WorldManager() {}
+
+    WorldManager::~WorldManager() {}
+
+    void WorldManager::update() {
+        updateEvents(this->events);
+        events.clear();
+        updateReact();
+        updateDecide();
+        updatePerform(this->events);
     }
 
-    WorldManager::~WorldManager() { }
-
-    const vector<std::shared_ptr<IAgent>> &WorldManager::getAgents() const {
-        return agents;
-    }
-
-    void WorldManager::play() {
-        this->paused = false;
-    }
-
-    void WorldManager::pause() {
-        this->paused = true;
-    }
-
-    void WorldManager::addAgent(shared_ptr<IAgent> agent) {
-        if (agent) {
-            this->agents.push_back(agent);
+    void WorldManager::updateEvents(const std::vector<std::shared_ptr<Event>>& events) {
+        for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+            (*agent)->perceive(events);
         }
     }
 
-    void WorldManager::update() {
-        if (!paused) {
-            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-                (*agent)->perceive(events);
-            }
-            events.clear();
-            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-                (*agent)->react();
-            }
-            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-                (*agent)->decide();
-            }
-            for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-                vector<shared_ptr<Event>> events = (*agent)->perform();
-                this->events.insert(std::end(this->events), std::begin(events), std::end(events));
-            }
+    void WorldManager::updateReact() {
+        for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+            (*agent)->react();
+        }
+    }
 
+    void WorldManager::updateDecide() {
+        for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+            (*agent)->decide();
+        }
+    }
+
+    void WorldManager::updatePerform(std::vector<std::shared_ptr<Event>>& events) {
+        for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
+            vector<shared_ptr<Event>> agentEvents = (*agent)->perform();
+            events.insert(std::end(events), std::begin(agentEvents), std::end(agentEvents));
         }
     }
 

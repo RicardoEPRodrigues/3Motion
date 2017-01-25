@@ -37,11 +37,11 @@ void AgentViewWindow::init() {
     worldManager = Examples::exampleCoopNoAnticipation() ;
     this->pause();
     QLabel *descriptionLabel = new QLabel();
-    descriptionLabel->setText(QString::fromStdString(worldManager->getDescription()));
+    descriptionLabel->setText(QString::fromStdString(worldManager->description));
     descriptionLabel->setAlignment(Qt::AlignCenter);
     ui->gridLayout->addWidget(descriptionLabel, 0, 0, 1, 2);
 
-    for (auto agent : worldManager->getAgents()) {
+    for (auto agent : worldManager->agents) {
         AgentStatus *status = new AgentStatus(this);
         status->set(agent);
         agentsStatus.push_back(status);
@@ -61,7 +61,7 @@ void AgentViewWindow::restart() {
 
 void AgentViewWindow::updateWorld() {
     Time::update();
-    if (worldManager && !worldManager->isPaused()) {
+    if (worldManager && !paused) {
         worldManager->update();
 
         this->updateProgress();
@@ -71,7 +71,7 @@ void AgentViewWindow::updateWorld() {
 void AgentViewWindow::updateProgress() {
     if (worldManager) {
         for (AgentStatus *status : agentsStatus) {
-            status->update(worldManager->getCurrentEvents());
+            status->update(worldManager->events);
         }
     }
 }
@@ -80,7 +80,7 @@ void AgentViewWindow::play() {
     if (worldManager) {
         ui->playPauseButton->setText("Pause (space)");
         Time::play();
-        worldManager->play();
+        paused = false;
     }
 }
 
@@ -88,13 +88,13 @@ void AgentViewWindow::pause() {
     if (worldManager) {
         ui->playPauseButton->setText("Play (space)");
         Time::pause();
-        worldManager->pause();
+        paused = true;
     }
 }
 
 void AgentViewWindow::on_playPauseButton_clicked() {
     if (worldManager) {
-        if (worldManager->isPaused()) {
+        if (paused) {
             this->play();
         } else {
             this->pause();

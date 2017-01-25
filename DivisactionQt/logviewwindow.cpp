@@ -41,7 +41,7 @@ void LogViewWindow::init() {
     this->pause();
     QLabel *descriptionLabel = new QLabel();
     descriptionLabel->setText(
-        QString::fromStdString(worldManager->getDescription()));
+        QString::fromStdString(worldManager->description));
     descriptionLabel->setAlignment(Qt::AlignCenter);
     ui->ActionStackLayout->addWidget(descriptionLabel);
 }
@@ -58,7 +58,7 @@ void LogViewWindow::restart() {
 
 void LogViewWindow::updateWorld() {
     Time::update();
-    if (worldManager && !worldManager->isPaused()) {
+    if (worldManager && !paused) {
         worldManager->update();
 
         this->updateProgress();
@@ -111,7 +111,7 @@ void LogViewWindow::updateProgress() {
 //                //                }
 //            }
 //        }
-        for (shared_ptr<Event> event : worldManager->getCurrentEvents()) {
+        for (shared_ptr<Event> event : worldManager->events) {
             shared_ptr<EmotionEvent> emotionEvent =
                 dynamic_pointer_cast<EmotionEvent>(event);
             if (emotionEvent) {
@@ -166,7 +166,7 @@ void LogViewWindow::play() {
     if (worldManager) {
         ui->playPauseButton->setText("Pause (space)");
         Time::play();
-        worldManager->play();
+        paused = false;
     }
 }
 
@@ -174,7 +174,7 @@ void LogViewWindow::pause() {
     if (worldManager) {
         ui->playPauseButton->setText("Play (space)");
         Time::pause();
-        worldManager->pause();
+        paused = true;
     }
 }
 
@@ -188,7 +188,7 @@ void LogViewWindow::moveScrollBarToBottom(int min, int max) {
 
 void LogViewWindow::on_playPauseButton_clicked() {
     if (worldManager) {
-        if (worldManager->isPaused()) {
+        if (paused) {
             this->play();
         } else {
             this->pause();

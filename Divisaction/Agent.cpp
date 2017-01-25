@@ -30,11 +30,6 @@ namespace Divisaction {
         }
     }
 
-
-    const std::shared_ptr<MentalState> Agent::getMentalState() const {
-        return mentalState;
-    }
-
     void Agent::addAvailableAction(std::shared_ptr<Action> action) {
         mentalState->self.addAction(action);
     }

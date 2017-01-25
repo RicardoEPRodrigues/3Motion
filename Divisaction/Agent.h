@@ -22,19 +22,17 @@
 namespace Divisaction {
 
     class Agent : public IAgent {
-        protected:
+        public:
             std::shared_ptr<MentalState> mentalState;
 
             std::vector<std::unique_ptr<PerceiveModule>> perceiveModules;
             std::vector<std::unique_ptr<ReactModule>> reactModules;
             std::vector<std::unique_ptr<DecideModule>> decideModules;
             std::vector<std::unique_ptr<PerformModule>> performModules;
-        public:
+
             Agent();
 
-            virtual void initialize() override;
-
-            const std::shared_ptr<MentalState> getMentalState() const;
+            virtual void initialize();
 
             virtual void addAvailableAction(std::shared_ptr<Action> action);
 

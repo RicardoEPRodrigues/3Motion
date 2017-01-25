@@ -20,7 +20,7 @@ void AgentStatus::set(std::shared_ptr<Divisaction::IAgent> &iagent) {
     if (agent) {
         this->ui->agentName->setText("<html><head/><body><p><span style=\""
                                      "font-size:20pt; font-weight:600;\">" +
-                                     QString::fromStdString(agent->getName()) +
+                                     QString::fromStdString(agent->name) +
                                      "</span></p></body></html>");
     } else {
         this->ui->agentName->setText(
@@ -45,7 +45,7 @@ void AgentStatus::update(std::vector<std::shared_ptr<Event>> events) {
                                     actionEvent->action->getCurrentStage());
 
                         ui->actionDescription->setText(QString::fromStdString(
-                                                           agent->getName() + " " +
+                                                           agent->name + " " +
                                                            actionEvent->action->getCurrentStage()->getName() +
                                                            "."));
                     } else {
@@ -59,17 +59,17 @@ void AgentStatus::update(std::vector<std::shared_ptr<Event>> events) {
                                 emotionEvent->emotion->getReplyAgent().lock()) {
                                 ui->emotionDescription->setText(
                                             QString::fromStdString(
-                                                agent->getName() + " " +
+                                                agent->name + " " +
                                                 emotionEvent->emotion->getReplyText() +
-                                                origin->getName() + ". " +
-                                                agent->getName() + " " +
+                                                origin->name + ". " +
+                                                agent->name + " " +
                                                 emotionEvent->emotion->getStage()
                                                 ->getName()) +
                                             ".");
                             } else {
                                 ui->emotionDescription->setText(
                                             QString::fromStdString(
-                                                agent->getName() + " " +
+                                                agent->name + " " +
                                                 emotionEvent->emotion->getStage()
                                                 ->getName() +
                                                 "."));

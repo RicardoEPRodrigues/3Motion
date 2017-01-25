@@ -46,6 +46,7 @@ private:
 
     void play();
     void pause();
+    bool paused;
 private slots:
     void updateWorld();
     void moveScrollBarToBottom(int min, int max);

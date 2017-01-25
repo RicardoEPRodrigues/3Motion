@@ -41,6 +41,7 @@ class AgentViewWindow : public QMainWindow {
 
     void play();
     void pause();
+    bool paused;
   private slots:
     void updateWorld();
     void on_playPauseButton_clicked();

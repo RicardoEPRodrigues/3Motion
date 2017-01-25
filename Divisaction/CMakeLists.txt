@@ -27,10 +27,6 @@ set(SOURCE_FILES
         Extra/Looper.cpp Extra/Looper.h
         Actions/Actions.cpp Actions/Actions.h
         Emotions/Emotions.cpp Emotions/Emotions.h
-        Agents/SingleActionAgent.cpp Agents/SingleActionAgent.h
-        Agents/SingleReplyAgent.cpp Agents/SingleReplyAgent.h
-        Agents/CoopSceneBob.cpp Agents/CoopSceneBob.h
-        Agents/CoopSceneHanna.cpp Agents/CoopSceneHanna.h
         Exceptions/InvalidArgumentException.h
         Exceptions/NullPointerException.h
         Extra/StdExtras.cpp Extra/StdExtras.h
@@ -64,13 +60,9 @@ set(SOURCE_FILES
         Extra/NoAnticipation/Actions.cpp Extra/NoAnticipation/Actions.h
         Extra/NoAnticipation/Modules/CoopSceneBobReact.cpp Extra/NoAnticipation/Modules/CoopSceneBobReact.h
         Extra/NoAnticipation/Modules/CoopSceneHannaReact.cpp Extra/NoAnticipation/Modules/CoopSceneHannaReact.h
-        Extra/NoAnticipation/Agents/CoopSceneBob.cpp Extra/NoAnticipation/Agents/CoopSceneBob.h
-        Extra/NoAnticipation/Agents/CoopSceneHanna.cpp Extra/NoAnticipation/Agents/CoopSceneHanna.h
         Extra/Screening/Actions.cpp Extra/Screening/Actions.h
         Extra/Screening/Modules/CoopSceneBobReact.cpp Extra/Screening/Modules/CoopSceneBobReact.h
         Extra/Screening/Modules/CoopSceneHannaReact.cpp Extra/Screening/Modules/CoopSceneHannaReact.h
-        Extra/Screening/Agents/CoopSceneBob.cpp Extra/Screening/Agents/CoopSceneBob.h
-        Extra/Screening/Agents/CoopSceneHanna.cpp Extra/Screening/Agents/CoopSceneHanna.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
