@@ -7,6 +7,7 @@
 #include "qthelper.h"
 
 #include "divisactionwidget.h"
+
 #include "Divisaction.h"
 #include "DivisactionExtras.h"
 

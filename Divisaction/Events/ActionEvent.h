@@ -22,7 +22,8 @@ namespace Divisaction {
 
         ActionEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Action> action);
 
-        ActionEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Action> action, StageType stage);
+        ActionEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Action> action,
+                    StageType stage);
 
         virtual double timeToPerceive();
 

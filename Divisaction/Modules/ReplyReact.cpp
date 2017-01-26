@@ -9,7 +9,8 @@ namespace Divisaction {
 
     void ReplyReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            for (auto replyIter = mentalState->self.replies.begin(); replyIter != mentalState->self.replies.end(); ++replyIter) {
+            for (auto replyIter = mentalState->self.replies.begin();
+                 replyIter != mentalState->self.replies.end(); ++replyIter) {
                 auto reply = (*replyIter);
                 if (reply->emotion->getName().compare("Confidence") != 0) {
                     if (mentalState->self.action) {

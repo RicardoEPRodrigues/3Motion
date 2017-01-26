@@ -9,8 +9,6 @@
 #include <QShortcut>
 #include <QTimer>
 
-#include "Divisaction.h"
-#include "Extra/Examples.h"
 #include "agentstatus.h"
 
 namespace Ui {
@@ -27,7 +25,7 @@ class AgentViewWindow : public QMainWindow {
   private:
     Ui::AgentViewWindow *ui;
 
-    std::shared_ptr<class Divisaction::WorldManager> worldManager;
+    std::shared_ptr<Divisaction::WorldManager> worldManager;
     std::vector<AgentStatus *> agentsStatus; // TODO change to have a matrix
                                              // where the key is the agent and
                                              // the value a list with the
@@ -36,7 +34,7 @@ class AgentViewWindow : public QMainWindow {
     QTimer* updateTimer;
     void updateProgress();
 
-    void init();
+    void init(std::shared_ptr<Divisaction::WorldManager>& worldManager);
     void restart();
 
     void play();

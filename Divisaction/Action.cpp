@@ -69,7 +69,8 @@ namespace Divisaction {
             do {
                 currentStageType = static_cast<StageType>((int) currentStageType + 1);
             } while (getStage(currentStageType) == nullptr &&
-                     (currentStageType != StageType::FOLLOW_THROUGH || currentStageType != StageType::CANCEL));
+                     (currentStageType != StageType::FOLLOW_THROUGH ||
+                      currentStageType != StageType::CANCEL));
             currentStage = getStage(currentStageType);
             if (!currentStage) {
                 return ExecutionState::ENDED;
@@ -82,7 +83,8 @@ namespace Divisaction {
         }
         currentStage->execute();
         if (currentStage->isComplete()) {
-            if (currentStageType == StageType::FOLLOW_THROUGH || currentStageType == StageType::CANCEL) {
+            if (currentStageType == StageType::FOLLOW_THROUGH ||
+                currentStageType == StageType::CANCEL) {
                 running = false;
                 state = ExecutionState::ENDED;
             } else {

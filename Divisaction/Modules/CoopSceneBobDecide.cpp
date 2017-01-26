@@ -13,7 +13,8 @@ namespace Divisaction {
 
     void CoopSceneBobDecide::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyActed && !mentalState->self.action && mentalState->self.countActions() > 0) {
+            if (!alreadyActed && !mentalState->self.action &&
+                mentalState->self.countActions() > 0) {
                 alreadyActed = true;
                 // Start walking
                 mentalState->self.action = mentalState->self.getAction("Long Walk");
@@ -25,15 +26,15 @@ namespace Divisaction {
 //                        }
 //                    }
                 }, [this](milliseconds counter) {
-                    if (auto mentalState = mentalStateWeak.lock()) {
+                    if (auto innerMentalState = mentalStateWeak.lock()) {
                         // If Hanna replied with fear to his walking, then cancel action
-                        for (auto replyIter = mentalState->self.replies.begin();
-                             replyIter != mentalState->self.replies.end(); ++replyIter) {
+                        for (auto replyIter = innerMentalState->self.replies.begin();
+                             replyIter != innerMentalState->self.replies.end(); ++replyIter) {
                             if (auto sender = (*replyIter)->sender.lock()) {
                                 if (sender->name.compare("Hanna") == 0 &&
                                     (*replyIter)->emotion->getName().compare("Fear") == 0) {
-                                    if (mentalState->self.action) {
-                                        mentalState->self.action->cancel();
+                                    if (innerMentalState->self.action) {
+                                        innerMentalState->self.action->cancel();
                                     }
                                     return true;
                                 }

@@ -15,7 +15,8 @@ namespace Divisaction {
                 auto state = mentalState->self.action->execute();
                 if (state == Executable::ExecutionState::CHANGED) {
                     if (auto self = mentalState->self.agent.lock()) {
-                        events.push_back(std::make_shared<ActionEvent>(self, mentalState->self.action));
+                        events.push_back(
+                                std::make_shared<ActionEvent>(self, mentalState->self.action));
                     }
                 } else if (state == Executable::ExecutionState::ENDED) {
                     mentalState->self.action = nullptr;

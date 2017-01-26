@@ -14,7 +14,7 @@ namespace Divisaction {
         private:
             bool alreadyFelt;
         protected:
-            virtual void _execute() override ;
+            virtual void _execute() override;
     };
 
 } /* namespace Divisaction */

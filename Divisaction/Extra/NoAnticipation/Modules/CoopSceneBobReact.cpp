@@ -30,7 +30,8 @@ namespace Divisaction {
 
             OtherMentalRepresentation* hannaMentalRep;
             if ((hannaMentalRep = mentalState->getOther("Hanna"))) {
-                if (hannaMentalRep->updateAction && hannaMentalRep->updateEmotion && hannaMentalRep->action &&
+                if (hannaMentalRep->updateAction && hannaMentalRep->updateEmotion &&
+                    hannaMentalRep->action &&
                     hannaMentalRep->emotion) {
                     hannaMentalRep->updateAction = false;
                     hannaMentalRep->updateEmotion = false;
@@ -38,7 +39,8 @@ namespace Divisaction {
                         if (auto origin = hannaMentalRep->agent.lock()) {
 
                             if (hannaMentalRep->state == StageType::FOLLOW_THROUGH) {
-                                if ((mentalState->self.emotion = mentalState->self.getEmotion("Happiness"))) {
+                                if ((mentalState->self.emotion = mentalState->self.getEmotion(
+                                        "Happiness"))) {
                                     mentalState->self.emotion->replyToAgent(origin);
                                 }
                             }

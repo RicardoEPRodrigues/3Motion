@@ -7,10 +7,10 @@
 
 namespace Divisaction {
 
-    EmotionEvent::EmotionEvent() : EmotionEvent::EmotionEvent(std::weak_ptr<IAgent>(), nullptr) { }
+    EmotionEvent::EmotionEvent() : EmotionEvent::EmotionEvent(std::weak_ptr<IAgent>(), nullptr) {}
 
     EmotionEvent::EmotionEvent(std::weak_ptr<class IAgent> sender, std::shared_ptr<Emotion> emotion)
-            : Event::Event(sender), emotion(emotion) { }
+            : Event::Event(sender), emotion(emotion) {}
 
     double EmotionEvent::timeToPerceive() {
         if (this->emotion) {

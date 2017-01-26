@@ -30,18 +30,22 @@ namespace Divisaction {
 
             OtherMentalRepresentation* hannaMentalRep;
             if ((hannaMentalRep = mentalState->getOther("Hanna"))) {
-                if (hannaMentalRep->updateAction && hannaMentalRep->updateEmotion && hannaMentalRep->action &&
+                if (hannaMentalRep->updateAction && hannaMentalRep->updateEmotion &&
+                    hannaMentalRep->action &&
                     hannaMentalRep->emotion) {
                     hannaMentalRep->updateAction = false;
                     hannaMentalRep->updateEmotion = false;
                     if (auto origin = hannaMentalRep->agent.lock()) {
 
                         wait(4000, [this, hannaMentalRep]() {
-                            if (std::shared_ptr<MentalState> mentalState = mentalStateWeak.lock()) {
-                                if (auto origin = hannaMentalRep->agent.lock()) {
-                                    if (hannaMentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE) {
-                                        if ((mentalState->self.emotion = mentalState->self.getEmotion("Relief"))) {
-                                            mentalState->self.emotion->replyToAgent(origin);
+                            if (std::shared_ptr<MentalState> innerMentalState = mentalStateWeak.lock()) {
+                                if (auto innerOrigin = hannaMentalRep->agent.lock()) {
+                                    if (hannaMentalRep->state ==
+                                        StageType::ANTICIPATION_INTERRUPTIBLE) {
+                                        if ((innerMentalState->self.emotion = innerMentalState->self.getEmotion(
+                                                "Relief"))) {
+                                            innerMentalState->self.emotion->replyToAgent(
+                                                    innerOrigin);
                                         }
                                     }
                                 }
@@ -49,7 +53,8 @@ namespace Divisaction {
                         });
 
                         if (hannaMentalRep->state == StageType::FOLLOW_THROUGH) {
-                            if ((mentalState->self.emotion = mentalState->self.getEmotion("Happiness"))) {
+                            if ((mentalState->self.emotion = mentalState->self.getEmotion(
+                                    "Happiness"))) {
                                 mentalState->self.emotion->replyToAgent(origin);
                             }
                         }

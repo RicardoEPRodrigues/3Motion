@@ -51,7 +51,7 @@ namespace Divisaction {
     }
 
     void DTimer::setDuration(milliseconds duration) {
-        if (duration > 0) {
+        if (duration >= 0) {
             DTimer::duration = duration;
         }
     }

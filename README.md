@@ -1,6 +1,6 @@
 # Divisaction
 
-*Rodrigues* Production
+*RRodrigues* Production
 
 Library that allows the creation of agents and their behaviour with the objective of creating more belieable scenes.
 

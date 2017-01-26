@@ -9,8 +9,9 @@
 namespace Divisaction {
 
     DTimerIfWait::DTimerIfWait(milliseconds duration, std::function<void()> onCompleteCallback,
-                               std::function<bool(milliseconds)> onUpdateCallback) : DTimerWait(duration,
-                                                                                                onCompleteCallback),
+                               std::function<bool(milliseconds)> onUpdateCallback) : DTimerWait(
+            duration,
+            onCompleteCallback),
                                                                                      onUpdateCallback(
                                                                                              onUpdateCallback) {}
 
@@ -26,7 +27,8 @@ namespace Divisaction {
         return onUpdateCallback;
     }
 
-    void DTimerIfWait::setOnUpdateCallback(const std::function<bool(milliseconds)>& onUpdateCallback) {
+    void
+    DTimerIfWait::setOnUpdateCallback(const std::function<bool(milliseconds)>& onUpdateCallback) {
         DTimerIfWait::onUpdateCallback = onUpdateCallback;
     }
 

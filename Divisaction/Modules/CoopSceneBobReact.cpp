@@ -31,7 +31,8 @@ namespace Divisaction {
 
             OtherMentalRepresentation* hannaMentalRep;
             if ((hannaMentalRep = mentalState->getOther("Hanna"))) {
-                if (hannaMentalRep->updateAction && hannaMentalRep->updateEmotion && hannaMentalRep->action &&
+                if (hannaMentalRep->updateAction && hannaMentalRep->updateEmotion &&
+                    hannaMentalRep->action &&
                     hannaMentalRep->emotion) {
                     hannaMentalRep->updateAction = false;
                     hannaMentalRep->updateEmotion = false;

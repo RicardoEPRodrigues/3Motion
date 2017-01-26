@@ -24,8 +24,9 @@ namespace Divisaction {
                         if ((bobMentalRep = mentalState->getOther("Bob"))) {
                             if (bobMentalRep->actionHasName("Long Walk")) {
                                 timer = wait(interval, [this]() {
-                                    if (auto mentalState = mentalStateWeak.lock()) {
-                                        mentalState->self.action = mentalState->self.getAction("Follow");
+                                    if (auto innerMentalState = mentalStateWeak.lock()) {
+                                        innerMentalState->self.action = innerMentalState->self.getAction(
+                                                "Follow");
                                         alreadyActed = true;
                                     }
                                 });

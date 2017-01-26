@@ -17,8 +17,6 @@ AgentViewWindow::AgentViewWindow(QWidget *parent)
     QObject::connect(shortcut, SIGNAL(activated()), this,
                      SLOT(on_playPauseButton_clicked()));
 
-    init();
-
     updateTimer = new QTimer(this);
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateWorld()));
     Time::update();
@@ -33,19 +31,21 @@ AgentViewWindow::~AgentViewWindow() {
     }
 }
 
-void AgentViewWindow::init() {
-    worldManager = Examples::exampleCoopNoAnticipation() ;
+void AgentViewWindow::init(std::shared_ptr<Divisaction::WorldManager>& worldManager) {
+    worldManager = worldManager;
     this->pause();
-    QLabel *descriptionLabel = new QLabel();
-    descriptionLabel->setText(QString::fromStdString(worldManager->description));
-    descriptionLabel->setAlignment(Qt::AlignCenter);
-    ui->gridLayout->addWidget(descriptionLabel, 0, 0, 1, 2);
+    if (worldManager) {
+        QLabel *descriptionLabel = new QLabel();
+        descriptionLabel->setText(QString::fromStdString(worldManager->description));
+        descriptionLabel->setAlignment(Qt::AlignCenter);
+        ui->gridLayout->addWidget(descriptionLabel, 0, 0, 1, 2);
 
-    for (auto agent : worldManager->agents) {
-        AgentStatus *status = new AgentStatus(this);
-        status->set(agent);
-        agentsStatus.push_back(status);
-        ui->gridLayout->addWidget(status);
+        for (auto agent : worldManager->agents) {
+            AgentStatus *status = new AgentStatus(this);
+            status->set(agent);
+            agentsStatus.push_back(status);
+            ui->gridLayout->addWidget(status);
+        }
     }
 }
 
@@ -56,7 +56,7 @@ void AgentViewWindow::restart() {
     QtHelper::clearLayout(ui->gridLayout);
     agentsStatus.clear();
 
-    init();
+    init(worldManager);
 }
 
 void AgentViewWindow::updateWorld() {

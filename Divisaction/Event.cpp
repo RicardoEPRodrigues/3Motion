@@ -8,10 +8,10 @@
 
 namespace Divisaction {
 
-    Event::Event() : Event::Event(std::weak_ptr<IAgent>()) { }
+    Event::Event() : Event::Event(std::weak_ptr<IAgent>()) {}
 
-    Event::Event(std::weak_ptr<class IAgent> sender) : sender(sender) { }
+    Event::Event(std::weak_ptr<class IAgent> sender) : sender(sender) {}
 
-    Event::~Event() { }
+    Event::~Event() {}
 
 } /* namespace Divisaction */

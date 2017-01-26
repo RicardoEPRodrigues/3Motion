@@ -17,7 +17,8 @@ namespace Divisaction {
         this->timeToPerceive = timeToPerceive;
     }
 
-    Stage::Stage(const Stage& other) : Executable(other), complete(other.complete), playing(other.playing),
+    Stage::Stage(const Stage& other) : Executable(other), complete(other.complete),
+                                       playing(other.playing),
                                        timeToPerceive(other.timeToPerceive) {}
 
     Stage::~Stage() {}

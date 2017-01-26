@@ -12,6 +12,9 @@
 #include "../Divisaction.h"
 #include "../DivisactionExtras.h"
 
+#include "../Extra/NoAnticipation/Actions.h"
+#include "../Extra/Screening/Actions.h"
+
 namespace Divisaction {
 
     class Examples {
@@ -24,7 +27,9 @@ namespace Divisaction {
             static std::shared_ptr<WorldManager> example1();
 
             static std::shared_ptr<WorldManager> exampleCoop();
+
             static std::shared_ptr<WorldManager> exampleCoopNoAnticipation();
+
             static std::shared_ptr<WorldManager> exampleCoopScreening();
 
     };

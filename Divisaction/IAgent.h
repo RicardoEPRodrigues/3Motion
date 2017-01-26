@@ -16,7 +16,8 @@ namespace Divisaction {
     class IAgent : public std::enable_shared_from_this<IAgent> {
         public:
 
-            virtual ~IAgent() { }
+            virtual ~IAgent() {}
+
             virtual void perceive(const std::vector<std::shared_ptr<Event>>& events) = 0;
 
             virtual void react() = 0;

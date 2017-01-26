@@ -9,7 +9,8 @@ namespace Divisaction {
 
     void SingleReplyReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            for (auto mentalRep = mentalState->others.begin(); mentalRep != mentalState->others.end(); ++mentalRep) {
+            for (auto mentalRep = mentalState->others.begin();
+                 mentalRep != mentalState->others.end(); ++mentalRep) {
                 if (mentalRep->updateAction) {
                     if (mentalRep->action
                         && (mentalRep->state == StageType::ANTICIPATION_INTERRUPTIBLE
@@ -22,8 +23,10 @@ namespace Divisaction {
                                     mentalState->self.emotion->reset();
                                 }
 
-                                auto emotionIndex = rand() % mentalState->self.countEmotions();
-                                mentalState->self.emotion = mentalState->self.getEmotion(emotionIndex);
+                                auto emotionIndex = static_cast<unsigned int>(int(
+                                        rand() % mentalState->self.countEmotions()));
+                                mentalState->self.emotion = mentalState->self.getEmotion(
+                                        emotionIndex);
                                 mentalState->self.emotion->replyToAgent(origin);
                             }
                         }

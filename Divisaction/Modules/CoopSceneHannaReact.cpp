@@ -12,17 +12,20 @@ namespace Divisaction {
 
     void CoopSceneHannaReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt[0] && mentalState->self.actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
+            if (!alreadyFelt[0] &&
+                mentalState->self.actionInStage(StageType::ANTICIPATION_INTERRUPTIBLE)) {
                 mentalState->self.emotion = mentalState->self.getEmotion("Fear");
                 alreadyFelt[0] = true;
-            } else if (!alreadyFelt[1] && mentalState->self.actionInStage(StageType::FOLLOW_THROUGH)) {
+            } else if (!alreadyFelt[1] &&
+                       mentalState->self.actionInStage(StageType::FOLLOW_THROUGH)) {
                 mentalState->self.emotion = mentalState->self.getEmotion("Happiness");
                 alreadyFelt[1] = true;
             }
 
             OtherMentalRepresentation* bobMentalRep;
             if ((bobMentalRep = mentalState->getOther("Bob"))) {
-                if (bobMentalRep->updateAction && bobMentalRep->updateEmotion && bobMentalRep->action &&
+                if (bobMentalRep->updateAction && bobMentalRep->updateEmotion &&
+                    bobMentalRep->action &&
                     bobMentalRep->emotion) {
                     bobMentalRep->updateAction = false;
                     bobMentalRep->updateEmotion = false;
@@ -36,7 +39,8 @@ namespace Divisaction {
                                 emotionName = "Relief";
                             }
 
-                            if ((mentalState->self.emotion = mentalState->self.getEmotion(emotionName))) {
+                            if ((mentalState->self.emotion = mentalState->self.getEmotion(
+                                    emotionName))) {
                                 mentalState->self.emotion->replyToAgent(origin);
                             }
                         }

@@ -12,7 +12,6 @@
 
 #include "Executable.h"
 #include "Stage.h"
-#include "Exceptions/NullPointerException.h"
 #include "StageType.h"
 
 namespace Divisaction {

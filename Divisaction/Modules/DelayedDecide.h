@@ -14,6 +14,7 @@ namespace Divisaction {
     class DelayedDecide : public DecideModule {
         public:
             DelayedDecide();
+
             DelayedDecide(milliseconds interval);
 
         protected:

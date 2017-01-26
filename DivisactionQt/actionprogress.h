@@ -16,7 +16,7 @@
 #include "Agent.h"
 #include "Stage.h"
 #include "Event.h"
-#include "Stages/TimeProgressiveStage.h"
+#include "Extra/TimeProgressiveStage.h"
 
 namespace Ui {
     class ActionProgress;

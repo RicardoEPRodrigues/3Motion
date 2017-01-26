@@ -13,7 +13,8 @@ namespace Divisaction {
 
     class DTimerIfWait : public DTimerWait {
         public:
-            DTimerIfWait(milliseconds duration = 1000, std::function<void()> onCompleteCallback = []() {},
+            DTimerIfWait(milliseconds duration = 1000,
+                         std::function<void()> onCompleteCallback = []() {},
                          std::function<bool(milliseconds)> onUpdateCallback = [](
                                  milliseconds counter) { return false; });
 

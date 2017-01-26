@@ -5,7 +5,7 @@
 #include "logviewwindow.h"
 #include "ui_logviewwindow.h"
 
-#include "agentviewwindow.h"
+//#include "agentviewwindow.h"
 
 using namespace Divisaction;
 using namespace std;
@@ -23,8 +23,6 @@ LogViewWindow::LogViewWindow(QWidget *parent)
     QObject::connect(shortcut, SIGNAL(activated()), this,
                      SLOT(on_playPauseButton_clicked()));
 
-    init();
-
     updateTimer = new QTimer(this);
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateWorld()));
     Time::update();
@@ -36,14 +34,17 @@ LogViewWindow::~LogViewWindow() {
     scrollbar = nullptr;
 }
 
-void LogViewWindow::init() {
-    worldManager = Examples::exampleCoop();
+void LogViewWindow::init(std::shared_ptr<Divisaction::WorldManager>& worldManager) {
+    this->worldManager = worldManager;
     this->pause();
+    if (this->worldManager) {
+
     QLabel *descriptionLabel = new QLabel();
     descriptionLabel->setText(
         QString::fromStdString(worldManager->description));
     descriptionLabel->setAlignment(Qt::AlignCenter);
     ui->ActionStackLayout->addWidget(descriptionLabel);
+    }
 }
 
 void LogViewWindow::restart() {
@@ -53,7 +54,7 @@ void LogViewWindow::restart() {
     QtHelper::clearLayout(ui->ActionStackLayout);
     this->actionsProgress.clear();
 
-    init();
+    init(worldManager);
 }
 
 void LogViewWindow::updateWorld() {
@@ -165,7 +166,6 @@ void LogViewWindow::updateProgress() {
 void LogViewWindow::play() {
     if (worldManager) {
         ui->playPauseButton->setText("Pause (space)");
-        Time::play();
         paused = false;
     }
 }
@@ -173,7 +173,6 @@ void LogViewWindow::play() {
 void LogViewWindow::pause() {
     if (worldManager) {
         ui->playPauseButton->setText("Play (space)");
-        Time::pause();
         paused = true;
     }
 }
@@ -199,9 +198,9 @@ void LogViewWindow::on_playPauseButton_clicked() {
 void LogViewWindow::on_actionExit_triggered() { QApplication::exit(); }
 
 void LogViewWindow::on_actionAction_View_triggered() {
-    (new AgentViewWindow())->show();
-    updateTimer->stop();
-    this->hide();
+//    (new AgentViewWindow())->show();
+//    updateTimer->stop();
+//    this->hide();
 }
 
 void LogViewWindow::on_actionRestart_triggered() { restart(); }

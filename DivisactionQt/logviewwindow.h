@@ -17,7 +17,7 @@
 
 #include "actionprogress.h"
 
-#include "Extra/Examples.h"
+#include "Divisaction.h"
 
 namespace Ui {
 class LogViewWindow;
@@ -31,17 +31,17 @@ public:
     explicit LogViewWindow(QWidget *parent = 0);
     ~LogViewWindow();
 
+    void init(std::shared_ptr<Divisaction::WorldManager>& worldManager);
 private:
     Ui::LogViewWindow *ui;
     QScrollBar* scrollbar;
 
-    std::shared_ptr<class Divisaction::WorldManager> worldManager;
     std::vector<ActionProgress *> actionsProgress; // TODO change to have a matrix where the key is the agent and the value a list with the actions he has done.
+    std::shared_ptr<Divisaction::WorldManager> worldManager;
 
     QTimer* updateTimer;
     void updateProgress();
 
-    void init();
     void restart();
 
     void play();

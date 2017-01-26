@@ -3,10 +3,9 @@ project(Divisaction)
 
 find_package(Doxygen)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -std=c++14")
-
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g3 -Og -Wuninitialized")
-
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
 
 include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
@@ -24,14 +23,11 @@ set(SOURCE_FILES
         Stage.cpp Stage.h
         Time.cpp Time.h
         MentalRepresentation.h MentalRepresentation.cpp
-        Extra/Looper.cpp Extra/Looper.h
-        Actions/Actions.cpp Actions/Actions.h
-        Emotions/Emotions.cpp Emotions/Emotions.h
-        Exceptions/InvalidArgumentException.h
-        Exceptions/NullPointerException.h
-        Extra/StdExtras.cpp Extra/StdExtras.h
+        Extra/Actions.cpp Extra/Actions.h
+        Extra/Emotions.cpp Extra/Emotions.h
+        Extra/StdExtras.h
         Extra/Examples.cpp Extra/Examples.h
-        Stages/TimeProgressiveStage.cpp Stages/TimeProgressiveStage.h
+        Extra/TimeProgressiveStage.cpp Extra/TimeProgressiveStage.h
         Extra/ChronoTimeCalculator.cpp Extra/ChronoTimeCalculator.h
         Events/ActionEvent.cpp Events/ActionEvent.h
         Events/EmotionEvent.cpp Events/EmotionEvent.h

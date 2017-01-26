@@ -26,7 +26,8 @@ namespace Divisaction {
         }
     }
 
-    shared_ptr<DTimer> DTimerManager::wait(milliseconds duration, function<void()> onCompleteCallback) {
+    shared_ptr<DTimer>
+    DTimerManager::wait(milliseconds duration, function<void()> onCompleteCallback) {
         if (duration <= 0 || !onCompleteCallback) {
             return nullptr;
         }
@@ -35,12 +36,14 @@ namespace Divisaction {
         return timer;
     }
 
-    shared_ptr<DTimer> DTimerManager::ifWait(milliseconds duration, function<void()> onCompleteCallback,
-                                             function<bool(milliseconds)> onUpdateCallback) {
+    shared_ptr<DTimer>
+    DTimerManager::ifWait(milliseconds duration, function<void()> onCompleteCallback,
+                          function<bool(milliseconds)> onUpdateCallback) {
         if (duration <= 0 || !onCompleteCallback || !onUpdateCallback) {
             return nullptr;
         }
-        shared_ptr<DTimer> timer = make_shared<DTimerIfWait>(duration, onCompleteCallback, onUpdateCallback);
+        shared_ptr<DTimer> timer = make_shared<DTimerIfWait>(duration, onCompleteCallback,
+                                                             onUpdateCallback);
         timers.push_back(timer);
         return timer;
     }

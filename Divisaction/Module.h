@@ -8,8 +8,6 @@
 
 #include <memory>
 
-#include "MentalState.h"
-
 namespace Divisaction {
 
     template<typename T, typename U>

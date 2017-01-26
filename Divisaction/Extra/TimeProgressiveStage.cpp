@@ -12,19 +12,23 @@ namespace Divisaction {
             : Stage(), startTime(-1), elapsedTime(0), duration(0) {
     }
 
-    TimeProgressiveStage::TimeProgressiveStage(std::string name, double timeToPerceive, double durationInMilliseconds)
-            : Stage(name, timeToPerceive), startTime(-1), elapsedTime(0), duration(durationInMilliseconds) {}
+    TimeProgressiveStage::TimeProgressiveStage(std::string name, double timeToPerceive,
+                                               double durationInMilliseconds)
+            : Stage(name, timeToPerceive), startTime(-1), elapsedTime(0),
+              duration(durationInMilliseconds) {}
 
     TimeProgressiveStage::TimeProgressiveStage(const TimeProgressiveStage& other) : Stage(other),
-                                                                                    startTime(other.startTime),
-                                                                                    elapsedTime(other.elapsedTime),
-                                                                                    duration(other.duration) {}
+                                                                                    startTime(
+                                                                                            other.startTime),
+                                                                                    elapsedTime(
+                                                                                            other.elapsedTime),
+                                                                                    duration(
+                                                                                            other.duration) {}
 
     TimeProgressiveStage::~TimeProgressiveStage() {
     }
 
     void TimeProgressiveStage::onStart() {
-        startTime = Time::now();
         elapsedTime = 0;
     }
 

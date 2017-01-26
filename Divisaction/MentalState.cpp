@@ -38,13 +38,15 @@ namespace Divisaction {
                                                                   [&eventAgent](
                                                                           const OthersMentalRep::value_type& stored) {
                                                                       if (auto storedEventAgent = stored.agent.lock()) {
-                                                                          return storedEventAgent == eventAgent;
+                                                                          return storedEventAgent ==
+                                                                                 eventAgent;
                                                                       } else {
                                                                           return false;
                                                                       }
                                                                   });
 
-                    if (otherIter == others.end()) { // if there is no record of this event agent, create a record
+                    if (otherIter ==
+                        others.end()) { // if there is no record of this event agent, create a record
                         OtherMentalRepresentation other = OtherMentalRepresentation();
                         other.agent = event->sender;
                         otherIter = others.insert(otherIter, other);

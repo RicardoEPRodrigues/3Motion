@@ -22,10 +22,12 @@ namespace Divisaction {
         protected:
             void timersUpdate();
 
-            std::shared_ptr<DTimer> wait(milliseconds duration, std::function<void()> onCompleteCallback);
+            std::shared_ptr<DTimer>
+            wait(milliseconds duration, std::function<void()> onCompleteCallback);
 
-            std::shared_ptr<DTimer> ifWait(milliseconds duration, std::function<void()> onCompleteCallback,
-                                           std::function<bool(milliseconds)> onUpdateCallback);
+            std::shared_ptr<DTimer>
+            ifWait(milliseconds duration, std::function<void()> onCompleteCallback,
+                   std::function<bool(milliseconds)> onUpdateCallback);
 
         private:
             std::vector<std::shared_ptr<DTimer>> timers;
