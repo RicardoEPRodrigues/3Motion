@@ -14,11 +14,11 @@ namespace Divisaction {
     class ChronoTimeCalculator : public TimeCalculator {
         private:
             bool started;
+            bool _pause;
+            milliseconds _startTime;
             milliseconds _now;
             milliseconds realtimeNow;
-            milliseconds _startTime;
             milliseconds _delta;
-            bool _pause;
         public:
 
             ChronoTimeCalculator();

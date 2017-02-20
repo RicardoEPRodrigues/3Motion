@@ -23,10 +23,7 @@ set(SOURCE_FILES
         Stage.cpp Stage.h
         Time.cpp Time.h
         MentalRepresentation.h MentalRepresentation.cpp
-        Extra/Actions.cpp Extra/Actions.h
-        Extra/Emotions.cpp Extra/Emotions.h
         Extra/StdExtras.h
-        Extra/Examples.cpp Extra/Examples.h
         Extra/TimeProgressiveStage.cpp Extra/TimeProgressiveStage.h
         Extra/ChronoTimeCalculator.cpp Extra/ChronoTimeCalculator.h
         Events/ActionEvent.cpp Events/ActionEvent.h
@@ -44,21 +41,11 @@ set(SOURCE_FILES
         Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h
         Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h
         Modules/ReplyReact.cpp Modules/ReplyReact.h
-        Modules/CoopSceneBobReact.cpp Modules/CoopSceneBobReact.h
-        Modules/CoopSceneHannaReact.cpp Modules/CoopSceneHannaReact.h
-        Modules/CoopSceneHannaDecide.cpp Modules/CoopSceneHannaDecide.h
         Modules/DelayedDecide.cpp Modules/DelayedDecide.h
         TimeUtils/DTimer.cpp TimeUtils/DTimer.h
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
-        Modules/CoopSceneBobDecide.cpp Modules/CoopSceneBobDecide.h
-        Extra/NoAnticipation/Actions.cpp Extra/NoAnticipation/Actions.h
-        Extra/NoAnticipation/Modules/CoopSceneBobReact.cpp Extra/NoAnticipation/Modules/CoopSceneBobReact.h
-        Extra/NoAnticipation/Modules/CoopSceneHannaReact.cpp Extra/NoAnticipation/Modules/CoopSceneHannaReact.h
-        Extra/Screening/Actions.cpp Extra/Screening/Actions.h
-        Extra/Screening/Modules/CoopSceneBobReact.cpp Extra/Screening/Modules/CoopSceneBobReact.h
-        Extra/Screening/Modules/CoopSceneHannaReact.cpp Extra/Screening/Modules/CoopSceneHannaReact.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})

@@ -6,9 +6,6 @@
 #ifndef DIVISACTION_DIVISACTIONEXTRAS_H
 #define DIVISACTION_DIVISACTIONEXTRAS_H
 
-#include "Extra/Actions.h"
-#include "Extra/Emotions.h"
-
 #include "Extra/TimeProgressiveStage.h"
 
 #include "Extra/ChronoTimeCalculator.h"

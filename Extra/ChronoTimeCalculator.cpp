@@ -9,12 +9,8 @@ using namespace std;
 using namespace std::chrono;
 
 namespace Divisaction {
-    ChronoTimeCalculator::ChronoTimeCalculator() {
-        started = false;
-        _startTime = 0;
-        _now = 0;
-        _delta = 0;
-    }
+    ChronoTimeCalculator::ChronoTimeCalculator() : started(false), _pause(false), _startTime(0),
+                                                   _now(0), realtimeNow(0), _delta(0) {}
 
 
     milliseconds ChronoTimeCalculator::startTime() {

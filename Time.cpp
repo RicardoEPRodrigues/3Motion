@@ -20,19 +20,21 @@ namespace Divisaction {
     }
 
     void Time::update() {
-        _timeCalculator->update();
+        if (_timeCalculator) {
+            _timeCalculator->update();
+        }
     }
 
     milliseconds Time::startTime() {
-        return _timeCalculator->startTime();
+        return _timeCalculator ? _timeCalculator->startTime() : -1;
     }
 
     milliseconds Time::now() {
-        return _timeCalculator->now();
+        return _timeCalculator ? _timeCalculator->now() : -1;
     }
 
     milliseconds Time::delta() {
-        return _timeCalculator->delta();
+        return _timeCalculator ? _timeCalculator->delta() : -1;
     }
 
     void Time::setTimeCalculator(TimeCalculator* timeCalculator) {
@@ -43,11 +45,15 @@ namespace Divisaction {
     }
 
     void Time::play() {
-        _timeCalculator->play();
+        if (_timeCalculator) {
+            _timeCalculator->play();
+        }
     }
 
     void Time::pause() {
-        _timeCalculator->pause();
+        if (_timeCalculator) {
+            _timeCalculator->pause();
+        }
     }
 
 } /* namespace Divisaction */
