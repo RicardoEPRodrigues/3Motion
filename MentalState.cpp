@@ -1,92 +1,32 @@
 /*
- * File MentalState.cpp in project Divisaction
+ * File MentalRepresentation.cpp in project Divisaction
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#include "MentalState.h"
 
-using namespace std;
+#include "MentalState.h"
+#include "IAgent.h"
+#include "Action.h"
+#include "Emotion.h"
 
 namespace Divisaction {
-    MentalState::MentalState() {}
 
-    MentalState::MentalState(weak_ptr<IAgent> selfAgent) {
-        initialize(selfAgent);
-    }
-
-    MentalState::~MentalState() {
-
-    }
-
-    void MentalState::initialize(std::weak_ptr<IAgent> selfAgent) {
-        this->self.agent = selfAgent;
-    }
-
-    void MentalState::update(std::shared_ptr<class Event>& event) {
-        if (auto selfAgent = self.agent.lock()) {
-            if (auto eventAgent = event->sender.lock()) {
-                if (selfAgent == eventAgent) { // if the event is from this agent then ignore
-                    return;
-                }
-
-
-                shared_ptr<EmotionEvent> emotionEvent = dynamic_pointer_cast<EmotionEvent>(event);
-                if (emotionEvent && !emotionEvent->emotion->getReplyAgent().expired()) {
-                    self.replies.push_back(emotionEvent);
-                } else {
-                    OthersMentalRep::iterator otherIter = find_if(others.begin(), others.end(),
-                                                                  [&eventAgent](
-                                                                          const OthersMentalRep::value_type& stored) {
-                                                                      if (auto storedEventAgent = stored.agent.lock()) {
-                                                                          return storedEventAgent ==
-                                                                                 eventAgent;
-                                                                      } else {
-                                                                          return false;
-                                                                      }
-                                                                  });
-
-                    if (otherIter ==
-                        others.end()) { // if there is no record of this event agent, create a record
-                        OtherMentalRepresentation other = OtherMentalRepresentation();
-                        other.agent = event->sender;
-                        otherIter = others.insert(otherIter, other);
-                    }
-
-                    shared_ptr<ActionEvent> actionEvent = dynamic_pointer_cast<ActionEvent>(event);
-                    if (actionEvent) {
-                        otherIter->action = actionEvent->action;
-                        otherIter->state = actionEvent->stage;
-                        otherIter->updateAction = true;
-                    } else {
-                        if (emotionEvent) {
-                            if (shared_ptr<IAgent> replyAgent = emotionEvent->emotion->getReplyAgent().lock()) {
-                                if (replyAgent == selfAgent) {
-                                    self.replies.push_back(emotionEvent);
-                                    self.updateReplies = true;
-                                }
-                            } else {
-                                otherIter->emotion = emotionEvent->emotion;
-                                otherIter->updateEmotion = true;
-                            }
-                        }
-                    }
-                }
-            }
+    bool MentalState::agentHasName(std::string name) const {
+        if (std::shared_ptr<IAgent> iAgent = this->agent.lock()) {
+            return iAgent->name.compare(name) == 0;
         }
+        return false;
     }
 
-    OtherMentalRepresentation* MentalState::getOther(const std::string agentName) {
-        if (agentName.empty()) {
-            return nullptr;
-        }
-        auto otherIter = std::find_if(others.begin(), others.end(),
-                                      [agentName](const OtherMentalRepresentation other) {
-                                          return other.agentHasName(agentName);
-                                      });
-        if (otherIter == others.end()) {
-            return nullptr;
-        }
-
-        return &(*otherIter);
+    bool MentalState::actionHasName(std::string name) const {
+        return action && action->getName().compare(name) == 0;
     }
-} /* namespace Divisaction */
+
+    bool MentalState::actionInStage(StageType stageType) const {
+        return action && action->getCurrentStageType() == stageType;
+    }
+
+    bool MentalState::emotionHasName(std::string name) const {
+        return emotion && emotion->getName().compare(name) == 0;
+    }
+}

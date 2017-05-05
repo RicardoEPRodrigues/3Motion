@@ -3,14 +3,14 @@
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#ifndef DIVISACTION_OTHERSMENTALREPRESENTATION_H
-#define DIVISACTION_OTHERSMENTALREPRESENTATION_H
+#ifndef DIVISACTION_OTHERMENTALSTATE_H
+#define DIVISACTION_OTHERMENTALSTATE_H
 
-#include "../MentalRepresentation.h"
+#include "../MentalState.h"
 
 namespace Divisaction {
 
-    class OtherMentalRepresentation : public MentalRepresentation {
+    class OtherMentalState : public MentalState {
         public:
             StageType state;
 
@@ -24,4 +24,4 @@ namespace Divisaction {
 
 } /* namespace Divisaction */
 
-#endif //DIVISACTION_OTHERSMENTALREPRESENTATION_H
+#endif //DIVISACTION_OTHERMENTALSTATE_H

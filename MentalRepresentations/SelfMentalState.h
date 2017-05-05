@@ -3,21 +3,21 @@
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#ifndef DIVISACTION_SELFMENTALREPRESENTATION_H
-#define DIVISACTION_SELFMENTALREPRESENTATION_H
+#ifndef DIVISACTION_SELFMENTALSTATE_H
+#define DIVISACTION_SELFMENTALSTATE_H
 
 #include <vector>
 #include <algorithm>    // std::find_if
 #include "../Action.h"
 
 #include "../Extra/StdExtras.h"
-#include "../MentalRepresentation.h"
+#include "../MentalState.h"
 #include "../IAgent.h"
 #include "../Events/EmotionEvent.h"
 
 namespace Divisaction {
 
-    class SelfMentalRepresentation : public MentalRepresentation {
+    class SelfMentalState : public MentalState {
         public:
             typedef std::vector<std::shared_ptr<EmotionEvent>> AgentsReplies;
             /**
@@ -66,4 +66,4 @@ namespace Divisaction {
 
 } /* namespace Divisaction */
 
-#endif //DIVISACTION_SELFMENTALREPRESENTATION_H
+#endif //DIVISACTION_SELFMENTALSTATE_H

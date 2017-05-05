@@ -17,8 +17,7 @@ namespace Divisaction {
     void WorldManager::update() {
         updateEvents(this->events);
         events.clear();
-        updateReact();
-        updateDecide();
+        updateInterpret();
         updatePerform(this->events);
     }
 
@@ -28,15 +27,9 @@ namespace Divisaction {
         }
     }
 
-    void WorldManager::updateReact() {
+    void WorldManager::updateInterpret() {
         for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-            (*agent)->react();
-        }
-    }
-
-    void WorldManager::updateDecide() {
-        for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-            (*agent)->decide();
+            (*agent)->interpret();
         }
     }
 

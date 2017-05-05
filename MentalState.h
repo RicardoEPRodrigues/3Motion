@@ -1,5 +1,5 @@
 /*
- * File MentalState.h in project Divisaction
+ * File MentalRepresentation.h in project Divisaction
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
@@ -7,33 +7,25 @@
 #define DIVISACTION_MENTALSTATE_H
 
 #include <memory>
-
-#include "MentalRepresentation.h"
-#include "Events/ActionEvent.h"
-#include "Events/EmotionEvent.h"
-#include "MentalRepresentations/SelfMentalRepresentation.h"
-#include "MentalRepresentations/OtherMentalRepresentation.h"
+#include "StageType.h"
 
 namespace Divisaction {
 
     class MentalState {
         public:
-            typedef std::vector<OtherMentalRepresentation> OthersMentalRep;
+            std::weak_ptr<class IAgent> agent;
 
-            MentalState();
+            std::shared_ptr<class Action> action;
 
-            MentalState(std::weak_ptr<IAgent> selfAgent);
+            std::shared_ptr<class Emotion> emotion;
 
-            virtual ~MentalState();
+            bool agentHasName(std::string name) const;
 
-            SelfMentalRepresentation self;
-            OthersMentalRep others;
+            bool actionHasName(std::string name) const;
 
-            void initialize(std::weak_ptr<IAgent> selfAgent);
+            virtual bool actionInStage(StageType stageType) const;
 
-            void update(std::shared_ptr<class Event>& event);
-
-            OtherMentalRepresentation* getOther(const std::string agentName);
+            bool emotionHasName(std::string name) const;
     };
 
 } /* namespace Divisaction */

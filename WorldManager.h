@@ -29,9 +29,7 @@ namespace Divisaction {
 
             void updateEvents(const std::vector<std::shared_ptr<Event>>& events);
 
-            void updateReact();
-
-            void updateDecide();
+            void updateInterpret();
 
             void updatePerform(std::vector<std::shared_ptr<Event>>& events);
     };

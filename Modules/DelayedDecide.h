@@ -11,7 +11,7 @@
 
 namespace Divisaction {
 
-    class DelayedDecide : public DecideModule {
+    class DelayedDecide : public InterpretModule {
         public:
             DelayedDecide();
 
@@ -24,7 +24,7 @@ namespace Divisaction {
              */
             std::shared_ptr<Action> action;
 
-            virtual void selectAction(std::shared_ptr<MentalState> mentalState);
+            virtual void selectAction(std::shared_ptr<TheoryOfMind> mentalState);
 
             virtual void _execute() override;
 

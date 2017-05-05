@@ -22,17 +22,17 @@ set(SOURCE_FILES
         StageType.h
         Stage.cpp Stage.h
         Time.cpp Time.h
-        MentalRepresentation.h MentalRepresentation.cpp
+        MentalState.cpp MentalState.h
         Extra/StdExtras.h
         Extra/TimeProgressiveStage.cpp Extra/TimeProgressiveStage.h
         Extra/ChronoTimeCalculator.cpp Extra/ChronoTimeCalculator.h
         Events/ActionEvent.cpp Events/ActionEvent.h
         Events/EmotionEvent.cpp Events/EmotionEvent.h
-        MentalState.cpp MentalState.h
+        TheoryOfMind.cpp TheoryOfMind.h
         Divisaction.h
         DivisactionExtras.h
-        MentalRepresentations/SelfMentalRepresentation.cpp MentalRepresentations/SelfMentalRepresentation.h
-        MentalRepresentations/OtherMentalRepresentation.cpp MentalRepresentations/OtherMentalRepresentation.h
+        MentalRepresentations/SelfMentalState.cpp MentalRepresentations/SelfMentalState.h
+        MentalRepresentations/OtherMentalState.cpp MentalRepresentations/OtherMentalState.h
         DModule.h
         Module.h
         Modules/DelayPerceive.cpp Modules/DelayPerceive.h

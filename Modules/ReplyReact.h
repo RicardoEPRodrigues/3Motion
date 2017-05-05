@@ -10,7 +10,7 @@
 
 namespace Divisaction {
 
-    class ReplyReact : public ReactModule {
+    class ReplyReact : public InterpretModule {
         protected:
             virtual void _execute() override;
     };

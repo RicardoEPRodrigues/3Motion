@@ -10,7 +10,7 @@ using namespace std;
 
 namespace Divisaction {
 
-    Agent::Agent() : mentalState(make_shared<MentalState>()) {}
+    Agent::Agent() : mentalState(make_shared<TheoryOfMind>()) {}
 
 
     void Agent::initialize() {
@@ -20,13 +20,9 @@ namespace Divisaction {
              perceiveModule != perceiveModules.end(); ++perceiveModule) {
             (*perceiveModule)->initialize(mentalState);
         }
-        for (auto reactModule = reactModules.begin();
-             reactModule != reactModules.end(); ++reactModule) {
+        for (auto reactModule = interpretModules.begin();
+             reactModule != interpretModules.end(); ++reactModule) {
             (*reactModule)->initialize(mentalState);
-        }
-        for (auto decideModule = decideModules.begin();
-             decideModule != decideModules.end(); ++decideModule) {
-            (*decideModule)->initialize(mentalState);
         }
         for (auto performModule = performModules.begin();
              performModule != performModules.end(); ++performModule) {
@@ -57,17 +53,10 @@ namespace Divisaction {
         }
     }
 
-    void Agent::react() {
-        for (auto reactModule = reactModules.begin();
-             reactModule != reactModules.end(); ++reactModule) {
-            (*reactModule)->execute();
-        }
-    }
-
-    void Agent::decide() {
-        for (auto decideModule = decideModules.begin();
-             decideModule != decideModules.end(); ++decideModule) {
-            (*decideModule)->execute();
+    void Agent::interpret() {
+        for (auto interpretModule = interpretModules.begin();
+             interpretModule != interpretModules.end(); ++interpretModule) {
+            (*interpretModule)->execute();
         }
     }
 

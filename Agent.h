@@ -16,18 +16,17 @@
 #include "Event.h"
 #include "Emotion.h"
 #include "Events/ActionEvent.h"
-#include "MentalState.h"
+#include "TheoryOfMind.h"
 #include "DModule.h"
 
 namespace Divisaction {
 
     class Agent : public IAgent {
         public:
-            std::shared_ptr<MentalState> mentalState;
+            std::shared_ptr<TheoryOfMind> mentalState;
 
             std::vector<std::unique_ptr<PerceiveModule>> perceiveModules;
-            std::vector<std::unique_ptr<ReactModule>> reactModules;
-            std::vector<std::unique_ptr<DecideModule>> decideModules;
+            std::vector<std::unique_ptr<InterpretModule>> interpretModules;
             std::vector<std::unique_ptr<PerformModule>> performModules;
 
             Agent();
@@ -44,9 +43,7 @@ namespace Divisaction {
 
             void perceive(const std::vector<std::shared_ptr<Event>>& events);
 
-            void react();
-
-            void decide();
+            void interpret();
 
             const std::vector<std::shared_ptr<Event>> perform();
     };

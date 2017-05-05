@@ -10,7 +10,7 @@
 
 namespace Divisaction {
 
-    class SingleActionDecide : public DecideModule {
+    class SingleActionDecide : public InterpretModule {
         private:
             bool alreadyActed;
         protected:

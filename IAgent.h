@@ -20,9 +20,7 @@ namespace Divisaction {
 
             virtual void perceive(const std::vector<std::shared_ptr<Event>>& events) = 0;
 
-            virtual void react() = 0;
-
-            virtual void decide() = 0;
+            virtual void interpret() = 0;
 
             virtual const std::vector<std::shared_ptr<Event>> perform() = 0;
 

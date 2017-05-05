@@ -10,7 +10,7 @@
 
 namespace Divisaction {
 
-    class SingleEmotionReact : public ReactModule {
+    class SingleEmotionReact : public InterpretModule {
         private:
             bool alreadyFelt;
         protected:
