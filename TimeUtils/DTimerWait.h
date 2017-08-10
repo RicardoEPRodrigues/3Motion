@@ -8,6 +8,7 @@
 #define DIVISACTION_DTIMERWAIT_H
 
 #include <memory>
+#include <functional>
 #include "DTimer.h"
 
 namespace Divisaction {

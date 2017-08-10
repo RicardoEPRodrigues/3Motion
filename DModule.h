@@ -8,19 +8,19 @@
 #define DIVISACTION_DIVISACTIONMODULE_H
 
 #include "TimeUtils/DTimerManager.h"
-#include "TheoryOfMind.h"
-#include "Module.h"
+#include "DTheoryOfMind.h"
+#include "Extra/Module.h"
 
 namespace Divisaction {
 
     template<typename T, typename U>
     class DModule : public DTimerManager, public Module<T, U> {
         public:
-            DModule() : mentalStateWeak(std::make_shared<TheoryOfMind>()) {};
+            DModule() : mentalStateWeak(std::make_shared<DTheoryOfMind>()) {};
 
             virtual ~DModule() {};
 
-            void initialize(std::shared_ptr<TheoryOfMind> mentalState) {
+            void initialize(std::shared_ptr<DTheoryOfMind> mentalState) {
                 this->mentalStateWeak = mentalState;
             };
 
@@ -30,7 +30,7 @@ namespace Divisaction {
             }
 
         protected:
-            std::weak_ptr<TheoryOfMind> mentalStateWeak;
+            std::weak_ptr<DTheoryOfMind> mentalStateWeak;
 
             virtual T _execute(U param) = 0;
     };
@@ -38,11 +38,11 @@ namespace Divisaction {
     template<typename T>
     class DModule<T, void> : public DTimerManager, public Module<T, void> {
         public:
-            DModule() : mentalStateWeak(std::make_shared<TheoryOfMind>()) {};
+            DModule() : mentalStateWeak(std::make_shared<DTheoryOfMind>()) {};
 
             virtual ~DModule() {};
 
-            void initialize(std::shared_ptr<TheoryOfMind> mentalState) {
+            void initialize(std::shared_ptr<DTheoryOfMind> mentalState) {
                 this->mentalStateWeak = mentalState;
             };
 
@@ -52,14 +52,14 @@ namespace Divisaction {
             }
 
         protected:
-            std::weak_ptr<TheoryOfMind> mentalStateWeak;
+            std::weak_ptr<DTheoryOfMind> mentalStateWeak;
 
             virtual T _execute() = 0;
     };
 
-    typedef DModule<void, const std::vector<std::shared_ptr<Event>>&> PerceiveModule;
+    typedef DModule<void, const std::vector<std::shared_ptr<DEvent>>&> PerceiveModule;
     typedef DModule<void, void> InterpretModule;
-    typedef DModule<void, std::vector<std::shared_ptr<Event>>&> PerformModule;
+    typedef DModule<void, std::vector<std::shared_ptr<DEvent>>&> PerformModule;
 
 } /* namespace Divisaction */
 

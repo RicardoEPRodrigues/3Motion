@@ -7,10 +7,10 @@
 #ifndef DIVISACTION_DIVISACTION_H
 #define DIVISACTION_DIVISACTION_H
 
-#include "WorldManager.h"
-#include "Time.h"
-#include "Agent.h"
-#include "Events/ActionEvent.h"
-#include "Events/EmotionEvent.h"
+#include "DTime.h"
+#include "DWorldManager.h"
+#include "DAgent.h"
+#include "Events/DActionEvent.h"
+#include "Events/DEmotionEvent.h"
 
 #endif //DIVISACTION_DIVISACTION_H

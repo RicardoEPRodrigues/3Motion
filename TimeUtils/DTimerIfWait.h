@@ -16,7 +16,7 @@ namespace Divisaction {
             DTimerIfWait(milliseconds duration = 1000,
                          std::function<void()> onCompleteCallback = []() {},
                          std::function<bool(milliseconds)> onUpdateCallback = [](
-                                 milliseconds counter) { return false; });
+                                 milliseconds) { return false; });
 
             const std::function<bool(milliseconds)>& getOnUpdateCallback() const;
 

@@ -7,7 +7,7 @@
 #ifndef DIVISACTION_DTIMER_H
 #define DIVISACTION_DTIMER_H
 
-#include "../Time.h"
+#include "../DTime.h"
 
 namespace Divisaction {
 

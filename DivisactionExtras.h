@@ -6,8 +6,10 @@
 #ifndef DIVISACTION_DIVISACTIONEXTRAS_H
 #define DIVISACTION_DIVISACTIONEXTRAS_H
 
-#include "Extra/TimeProgressiveStage.h"
+#include "Extra/DTimeProgressiveStage.h"
 
-#include "Extra/ChronoTimeCalculator.h"
+#include "Extra/DChronoTimeCalculator.h"
+
+#include "Extra/DSimpleTimeCalculator.h"
 
 #endif //DIVISACTION_DIVISACTIONEXTRAS_H

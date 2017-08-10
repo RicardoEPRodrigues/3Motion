@@ -14,7 +14,7 @@ namespace Divisaction {
 
     bool DTimer::update() {
         if (!paused) {
-            counter += Time::delta();
+            counter += DTime::delta();
             if (counter >= duration) {
                 onComplete();
                 return true;
@@ -28,7 +28,7 @@ namespace Divisaction {
 
     void DTimer::onComplete() {}
 
-    bool DTimer::onUpdate(milliseconds counter) { return false; }
+    bool DTimer::onUpdate(milliseconds) { return false; }
 
     bool DTimer::isPaused() const {
         return paused;

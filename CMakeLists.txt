@@ -5,47 +5,61 @@ find_package(Doxygen)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g3 -Og -Wuninitialized")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
+# setting the c++ compiler like this doesn't seem to work...
+# see this page: https://stackoverflow.com/questions/30399654/how-to-switch-between-gcc-and-clang-in-clion-from-within-cmakelists-txt-using-wi
+# -D CMAKE_C_COMPILER=/usr/bin/clang -D CMAKE_CXX_COMPILER=/usr/bin/clang++
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    message(STATUS "CLang Compiler")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -pedantic -Wuninitialized")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    message(STATUS "GCC Compiler")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -pedantic -g3 -Og -Wuninitialized")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
+endif ()
 
 include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
 
 set(SOURCE_FILES
-        WorldManager.cpp WorldManager.h
-        IAgent.h
-        Action.cpp Action.h
-        Agent.cpp Agent.h
-        Emotion.cpp Emotion.h
-        Event.cpp Event.h
-        Executable.h Executable.cpp
-        TimeCalculator.h
-        StageType.h
-        Stage.cpp Stage.h
-        Time.cpp Time.h
-        MentalState.cpp MentalState.h
+        DWorldManager.cpp DWorldManager.h
+        DIAgent.h
+        DAction.cpp DAction.h
+        DAgent.cpp DAgent.h
+        DEmotion.cpp DEmotion.h
+        DEvent.cpp DEvent.h
+        DExecutable.h DExecutable.cpp
+        DTimeCalculator.h
+        DStageType.h
+        DStage.cpp DStage.h
+        DTime.cpp DTime.h
+        DMentalState.cpp DMentalState.h
         Extra/StdExtras.h
-        Extra/TimeProgressiveStage.cpp Extra/TimeProgressiveStage.h
-        Extra/ChronoTimeCalculator.cpp Extra/ChronoTimeCalculator.h
-        Events/ActionEvent.cpp Events/ActionEvent.h
-        Events/EmotionEvent.cpp Events/EmotionEvent.h
-        TheoryOfMind.cpp TheoryOfMind.h
+        Extra/DTimeProgressiveStage.cpp Extra/DTimeProgressiveStage.h
+        Extra/DChronoTimeCalculator.cpp Extra/DChronoTimeCalculator.h
+        Events/DActionEvent.cpp Events/DActionEvent.h
+        Events/DEmotionEvent.cpp Events/DEmotionEvent.h
+        DTheoryOfMind.cpp DTheoryOfMind.h
         Divisaction.h
         DivisactionExtras.h
-        MentalRepresentations/SelfMentalState.cpp MentalRepresentations/SelfMentalState.h
-        MentalRepresentations/OtherMentalState.cpp MentalRepresentations/OtherMentalState.h
+        MentalRepresentations/DSelfMentalState.cpp MentalRepresentations/DSelfMentalState.h
+        MentalRepresentations/DOtherMentalState.cpp MentalRepresentations/DOtherMentalState.h
         DModule.h
-        Module.h
-        Modules/DelayPerceive.cpp Modules/DelayPerceive.h
-        Modules/Perform.cpp Modules/Perform.h
-        Modules/SingleActionDecide.cpp Modules/SingleActionDecide.h
-        Modules/SingleEmotionReact.cpp Modules/SingleEmotionReact.h
-        Modules/SingleReplyReact.cpp Modules/SingleReplyReact.h
-        Modules/ReplyReact.cpp Modules/ReplyReact.h
-        Modules/DelayedDecide.cpp Modules/DelayedDecide.h
+        Extra/Module.h
+        Modules/DDelayPerceive.cpp Modules/DDelayPerceive.h
+        Modules/DPerform.cpp Modules/DPerform.h
+        Modules/DSingleActionDecide.cpp Modules/DSingleActionDecide.h
+        Modules/DSingleEmotionReact.cpp Modules/DSingleEmotionReact.h
+        Modules/DSingleReplyReact.cpp Modules/DSingleReplyReact.h
+        Modules/DReplyReact.cpp Modules/DReplyReact.h
+        Modules/DDelayedDecide.cpp Modules/DDelayedDecide.h
         TimeUtils/DTimer.cpp TimeUtils/DTimer.h
         TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
+        Extra/DSimpleTimeCalculator.cpp Extra/DSimpleTimeCalculator.h
         )
 
 add_library(Divisaction SHARED ${SOURCE_FILES})
@@ -73,3 +87,8 @@ if (DOXYGEN_FOUND)
             )
 
 endif (DOXYGEN_FOUND)
+
+add_custom_target(UE4PLUGIN
+        COMMAND cd ${PROJECT_SOURCE_DIR} && find . -name '*.h' -o -name '*.cpp' | cpio -updm ../ThreeMotionIntegration/Source/ThreeMotionIntegration/Public/
+        )
+
