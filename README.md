@@ -13,8 +13,6 @@ This project allows the creation of agents and their behavior with the objective
 This project is based on a thesis that defends that the subdivision of an action into several stages increases the immersion of the audience in a scene.
 
 Links to the papers will be posted when available.
-<!-- - [Towards Believable Interactions between Synthetic Characters]() - Poster paper describing the model (4 pages).
-- [Measuring Believable Interactions, a Case Study: 3Motion]() - Workshop paper focusing on the User Study -->
 
 # Contact Us!
 
