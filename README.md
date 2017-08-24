@@ -1,4 +1,4 @@
-## WIP
+# *WIP*
 
 The code is not yet available. This is due to instability and constant change of the code.
 
@@ -13,10 +13,8 @@ This project allows the creation of agents and their behavior with the objective
 This project is based on a thesis that defends that the subdivision of an action into several stages increases the immersion of the audience in a scene.
 
 Links to the papers will be posted when available.
-<!-- 
-- [Towards Believable Interactions between Synthetic Characters]() - Poster paper describing the model (4 pages).
-- [Measuring Believable Interactions, a Case Study: 3Motion]() - Workshop paper focusing on the User Study 
--->
+<!-- - [Towards Believable Interactions between Synthetic Characters]() - Poster paper describing the model (4 pages).
+- [Measuring Believable Interactions, a Case Study: 3Motion]() - Workshop paper focusing on the User Study -->
 
 # Contact Us!
 
@@ -40,17 +38,17 @@ To better showcase the expressive potential of our approach, we present an examp
 
 The *anticipation* stage serves the purpose of communicating the intent so every other agent understands it and can expressively prepare for it. In this stage, an agent broadcasts its intent and associated emotion, and receives feedback in the form of emotions from the other agents that are aware of the expression: 
 
-    Bob is happy and wants to throw the ball, Hanna responds she is happy for Bob, while Steve is afraid Bob will miss his mark. 
+> Bob is happy and wants to throw the ball, Hanna responds she is happy for Bob, while Steve is afraid Bob will miss his mark. 
 
 This allows Bob to interpret the emotional reactions in the context of his intentions and modulate his behavior accordingly.
 
 Anticipation is further subdivided into two sub-stages: an *interruptible* stage in which the agent is still able to cancel the initiated action, and an *uninterruptible* stage in which the action reached a point where it cannot be stopped.
 
-    While Bob has the ball in his hand, he is able to cancel the throw. While Steve is fearful, Hanna is happy for him, so Bob decides to proceed with the throw. He releases the ball.
+> While Bob has the ball in his hand, he is able to cancel the throw. While Steve is fearful, Hanna is happy for him, so Bob decides to proceed with the throw. He releases the ball.
 
 At this point Bob enters the uninterruptible stage, in which the action is still not finished and the agent can create an expectation about its outcome, which is later broadcast as an emotion and may provoke an affective response from the other agents.
 
-    Bob is confident about his throw, which gets Hanna excited and Steve more at ease.
+> Bob is confident about his throw, which gets Hanna excited and Steve more at ease.
 
 The precise timing of the expression and affective responses is crucial in this stage, otherwise, the audience may not be able to understand how decision-making took place in this shared affective context.
 
@@ -58,7 +56,7 @@ The *action* stage is instantaneous and only exists conceptually. This stage rep
 
 The *follow-through* stage is entered after the action is resolved and the result of the action is broadcast, which will meet or challenge the expectations of the agents. As in the anticipation stage, the agent sends its affective appraisal to others along with the result, allowing them to feel happy, sorry, etc. and receives their affective feedback to perform a final appraisal of the action.
 
-    Bob hits the target and is very happy! Hanna rejoices sharing on the happiness; Steve is now relieved because all went well. Their responses further increases Bob’s happiness. 
+> Bob hits the target and is very happy! Hanna rejoices sharing on the happiness; Steve is now relieved because all went well. Their responses further increases Bob’s happiness. 
 
 Since we focus on non-verbal communication, emotions play a very important role on the communication of the actions progression. With the use of emotions, we hope to improve the believability of the interaction without compromising other parallel forms of communication.
 
