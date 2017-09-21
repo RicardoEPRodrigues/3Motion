@@ -8,7 +8,7 @@
 
 #include "../DMentalState.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DOtherMentalState : public DMentalState {
         public:
@@ -22,6 +22,6 @@ namespace Divisaction {
 
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_OTHERMENTALSTATE_H

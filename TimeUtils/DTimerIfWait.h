@@ -1,6 +1,6 @@
 
 /*
- * File DTimerIfWait.h in project Divisaction
+ * File DTimerIfWait.h in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
@@ -9,7 +9,7 @@
 
 #include "DTimerWait.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DTimerIfWait : public DTimerWait {
         public:
@@ -29,6 +29,6 @@ namespace Divisaction {
             std::function<bool(milliseconds)> onUpdateCallback;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DTIMERIFWAIT_H

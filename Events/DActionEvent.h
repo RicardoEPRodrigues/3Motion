@@ -9,7 +9,7 @@
 #include "../DEvent.h"
 #include "../DAction.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     struct DActionEvent : public DEvent {
 
@@ -31,6 +31,6 @@ namespace Divisaction {
 
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_ACTIONEVENT_H

@@ -9,7 +9,7 @@
 #include <memory>
 #include "DStageType.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DMentalState {
         public:
@@ -28,6 +28,6 @@ namespace Divisaction {
             bool emotionHasName(std::string name) const;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_MENTALSTATE_H

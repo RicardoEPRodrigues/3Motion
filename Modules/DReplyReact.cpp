@@ -5,7 +5,7 @@
  */
 #include "DReplyReact.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     void DReplyReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
@@ -21,4 +21,4 @@ namespace Divisaction {
         }
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

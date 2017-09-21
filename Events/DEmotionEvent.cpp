@@ -9,7 +9,7 @@
 
 using namespace std;
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DEmotionEvent::DEmotionEvent() : DEmotionEvent::DEmotionEvent(std::weak_ptr<DIAgent>(),
                                                                   nullptr) {}
@@ -37,4 +37,4 @@ namespace Divisaction {
             state.updateEmotion = true;
         }
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

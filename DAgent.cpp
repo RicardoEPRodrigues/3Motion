@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DAgent::DAgent() : mentalState(make_shared<DTheoryOfMind>()) {}
 
@@ -69,4 +69,4 @@ namespace Divisaction {
         return eventsToSend;
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

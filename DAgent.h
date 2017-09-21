@@ -19,7 +19,7 @@
 #include "DTheoryOfMind.h"
 #include "DModule.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DAgent : public DIAgent {
         public:
@@ -48,6 +48,6 @@ namespace Divisaction {
             const std::vector<std::shared_ptr<DEvent>> perform();
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* AGENT_H_ */

@@ -8,7 +8,7 @@
 
 #include "../DModule.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DPerform : public PerformModule {
 
@@ -16,6 +16,6 @@ namespace Divisaction {
             virtual void _execute(std::vector<std::shared_ptr<DEvent>>&) override;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_PERFORM_H

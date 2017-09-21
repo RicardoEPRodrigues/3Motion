@@ -8,7 +8,7 @@
 
 #include "../DTimeCalculator.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DSimpleTimeCalculator : public DTimeCalculator {
         private:
@@ -35,6 +35,6 @@ namespace Divisaction {
             void setStartTime(milliseconds startTime);
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DSIMPLETIMECALCULATOR_H

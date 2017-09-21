@@ -9,7 +9,7 @@
 #include "../DTime.h"
 #include "../DModule.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DDelayPerceive : public PerceiveModule {
 
@@ -17,6 +17,6 @@ namespace Divisaction {
             virtual void _execute(const std::vector<std::shared_ptr<DEvent>>& param) override;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DELAYPERCEIVE_H

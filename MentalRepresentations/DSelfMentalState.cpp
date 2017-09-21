@@ -5,7 +5,7 @@
  */
 #include "DSelfMentalState.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
 
     void DSelfMentalState::addAction(std::shared_ptr<DAction> action) {
@@ -97,4 +97,4 @@ namespace Divisaction {
     unsigned long DSelfMentalState::countEmotions() const {
         return availableEmotions.size();
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

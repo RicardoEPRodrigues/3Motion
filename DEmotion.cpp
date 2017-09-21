@@ -7,7 +7,7 @@
 #include "DEmotion.h"
 #include "DAgent.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DEmotion::DEmotion() : DEmotion("", nullptr, "") {}
 
@@ -69,4 +69,4 @@ namespace Divisaction {
         DEmotion::replyTo = replyTo;
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

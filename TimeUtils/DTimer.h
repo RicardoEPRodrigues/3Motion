@@ -1,6 +1,6 @@
 
 /*
- * File DTimer.h in project Divisaction
+ * File DTimer.h in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
@@ -9,7 +9,7 @@
 
 #include "../DTime.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DTimer {
         public:
@@ -57,6 +57,6 @@ namespace Divisaction {
             void setPaused(bool paused);
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DTIMER_H

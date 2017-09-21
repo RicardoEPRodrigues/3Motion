@@ -1,6 +1,6 @@
 
 /*
- * File DTimerManager.cpp in project Divisaction
+ * File DTimerManager.cpp in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
@@ -10,7 +10,7 @@
 
 using namespace std;
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DTimerManager::DTimerManager() {}
 
@@ -47,4 +47,4 @@ namespace Divisaction {
         timers.push_back(timer);
         return timer;
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

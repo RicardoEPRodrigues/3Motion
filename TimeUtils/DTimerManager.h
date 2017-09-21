@@ -1,6 +1,6 @@
 
 /*
- * File DTimerManager.h in project Divisaction
+ * File DTimerManager.h in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
@@ -12,7 +12,7 @@
 #include <functional>
 #include "DTimer.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DTimerManager {
         public:
@@ -34,6 +34,6 @@ namespace Divisaction {
             std::vector<std::shared_ptr<DTimer>> timers;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DTIMERMANAGER_H

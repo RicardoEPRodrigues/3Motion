@@ -5,7 +5,7 @@
  */
 #include "DSimpleTimeCalculator.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DSimpleTimeCalculator::DSimpleTimeCalculator() {}
 
@@ -39,4 +39,4 @@ namespace Divisaction {
         DSimpleTimeCalculator::_startTime = startTime;
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

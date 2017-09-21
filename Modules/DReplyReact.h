@@ -8,13 +8,13 @@
 
 #include "../DModule.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DReplyReact : public InterpretModule {
         protected:
             virtual void _execute() override;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_REPLYREACT_H

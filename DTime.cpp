@@ -7,7 +7,7 @@
 #include "DTime.h"
 
 
-namespace Divisaction {
+namespace ThreeMotion {
     std::shared_ptr<DTimeCalculator> DTime::_timeCalculator = nullptr;
 
     DTime::DTime() {
@@ -42,4 +42,4 @@ namespace Divisaction {
         _timeCalculator = timeCalculator;
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

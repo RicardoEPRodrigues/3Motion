@@ -8,7 +8,7 @@
 
 #include "../DModule.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DSingleReplyReact : public InterpretModule {
 
@@ -16,6 +16,6 @@ namespace Divisaction {
             virtual void _execute() override;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_SINGLEREPLYREACT_H

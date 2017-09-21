@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace Divisaction {
+namespace ThreeMotion {
     DTheoryOfMind::DTheoryOfMind() {}
 
     DTheoryOfMind::DTheoryOfMind(weak_ptr<DIAgent> selfAgent) {
@@ -69,4 +69,4 @@ namespace Divisaction {
 
         return &(*otherIter);
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

@@ -5,7 +5,7 @@
  */
 #include "DDelayPerceive.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
     void DDelayPerceive::_execute(const std::vector<std::shared_ptr<DEvent>>& events) {
         for (auto eventIter = events.begin(); eventIter != events.end(); eventIter++) {
             double timeToPerceive = (*eventIter)->timeToPerceive();
@@ -18,4 +18,4 @@ namespace Divisaction {
             });
         }
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

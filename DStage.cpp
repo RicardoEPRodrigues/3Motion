@@ -6,7 +6,7 @@
 
 #include "DStage.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DStage::DStage() : DStage::DStage(std::string("Default Stage Name"), 1000) {}
 
@@ -56,4 +56,4 @@ namespace Divisaction {
     void DStage::setTimeToPerceive(double timeToPerceive) {
         DStage::timeToPerceive = timeToPerceive;
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

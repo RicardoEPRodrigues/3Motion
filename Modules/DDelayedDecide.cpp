@@ -5,7 +5,7 @@
  */
 #include "DDelayedDecide.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
     DDelayedDecide::DDelayedDecide() : DDelayedDecide(2000) {}
 
     DDelayedDecide::DDelayedDecide(milliseconds interval) : DModule(), interval(interval) {}
@@ -33,4 +33,4 @@ namespace Divisaction {
             this->action = mentalState->self.getAction(0);
         }
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

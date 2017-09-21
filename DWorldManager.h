@@ -13,7 +13,7 @@
 #include "DIAgent.h"
 #include "DEvent.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DWorldManager {
         public:
@@ -34,6 +34,6 @@ namespace Divisaction {
             void updatePerform(std::vector<std::shared_ptr<DEvent>>& events);
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* WORLDMANAGER_H_ */

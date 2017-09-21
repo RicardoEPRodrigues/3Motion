@@ -10,7 +10,7 @@
 
 #include "../DTimeCalculator.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
     class DChronoTimeCalculator : public DTimeCalculator {
         private:
             bool started;

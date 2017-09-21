@@ -9,7 +9,7 @@
 
 #include <memory>
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     struct DEvent {
 
@@ -27,6 +27,6 @@ namespace Divisaction {
         virtual void update(class DSelfMentalState& self, class DOtherMentalState& state);
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* EVENT_H_ */

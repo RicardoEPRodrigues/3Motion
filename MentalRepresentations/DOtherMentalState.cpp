@@ -5,8 +5,8 @@
  */
 #include "DOtherMentalState.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
     bool DOtherMentalState::actionInStage(DStageType stageType) const {
         return this->stage == stageType;
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

@@ -8,7 +8,7 @@
 using namespace std;
 using namespace std::chrono;
 
-namespace Divisaction {
+namespace ThreeMotion {
     DChronoTimeCalculator::DChronoTimeCalculator() : started(false), _startTime(0),
                                                      _now(0), realtimeNow(0), _delta(0) {}
 

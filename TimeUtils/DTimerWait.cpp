@@ -1,12 +1,12 @@
 
 /*
- * File DTimerWait.cpp in project Divisaction
+ * File DTimerWait.cpp in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
 #include "DTimerWait.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DTimerWait::DTimerWait(milliseconds duration,
                            std::function<void()> onCompleteCallback) : DTimer(duration),
@@ -26,4 +26,4 @@ namespace Divisaction {
     void DTimerWait::setOnCompleteCallback(const std::function<void()>& onCompleteCallback) {
         DTimerWait::onCompleteCallback = onCompleteCallback;
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

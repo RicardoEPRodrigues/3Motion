@@ -7,12 +7,12 @@
 #ifndef STAGETYPE_H_
 #define STAGETYPE_H_
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     enum DStageType {
         ANTICIPATION_INTERRUPTIBLE, ANTICIPATION_UNINTERRUPTIBLE, FOLLOW_THROUGH, CANCEL, size
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* STAGETYPE_H_ */

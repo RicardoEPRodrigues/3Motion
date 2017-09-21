@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_TIMECALCULATOR_H
 #define DIVISACTION_TIMECALCULATOR_H
 
-namespace Divisaction {
+namespace ThreeMotion {
     typedef double milliseconds;
 
     class DTimeCalculator {

@@ -5,7 +5,7 @@
  */
 #include "DSingleEmotionReact.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     void DSingleEmotionReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
@@ -20,4 +20,4 @@ namespace Divisaction {
         }
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

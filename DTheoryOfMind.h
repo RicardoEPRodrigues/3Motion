@@ -14,7 +14,7 @@
 #include "MentalRepresentations/DSelfMentalState.h"
 #include "MentalRepresentations/DOtherMentalState.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DTheoryOfMind {
         public:
@@ -36,6 +36,6 @@ namespace Divisaction {
             DOtherMentalState* getOther(const std::string agentName);
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_THEORYOFMIND_H

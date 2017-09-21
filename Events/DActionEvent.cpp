@@ -7,7 +7,7 @@
 #include "../MentalRepresentations/DOtherMentalState.h"
 #include "../MentalRepresentations/DSelfMentalState.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DActionEvent::DActionEvent() : DActionEvent::DActionEvent(std::weak_ptr<DIAgent>(), nullptr,
                                                           DStageType::ANTICIPATION_INTERRUPTIBLE) {}
@@ -32,4 +32,4 @@ namespace Divisaction {
         state.updateAction = true;
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

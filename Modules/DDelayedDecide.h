@@ -9,7 +9,7 @@
 #include "../DModule.h"
 #include "../DTime.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DDelayedDecide : public InterpretModule {
         public:
@@ -34,6 +34,6 @@ namespace Divisaction {
             std::shared_ptr<DTimer> timer;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DELAYEDDECIDE_H

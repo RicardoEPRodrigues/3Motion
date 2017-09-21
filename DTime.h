@@ -10,7 +10,7 @@
 #include <memory>
 #include "DTimeCalculator.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DTime {
         private:
@@ -34,6 +34,6 @@ namespace Divisaction {
             static milliseconds delta();
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* TIME_H_ */

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DWorldManager::DWorldManager() {}
 
@@ -40,4 +40,4 @@ namespace Divisaction {
         }
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

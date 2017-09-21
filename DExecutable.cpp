@@ -6,7 +6,7 @@
 
 #include "DExecutable.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
 
     DExecutable::DExecutable() {}

@@ -5,7 +5,7 @@
  */
 #include "DSingleActionDecide.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     void DSingleActionDecide::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
@@ -16,4 +16,4 @@ namespace Divisaction {
             }
         }
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

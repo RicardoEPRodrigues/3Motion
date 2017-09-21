@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DAction::DAction() {
         stages = vector<std::shared_ptr<DStage>>(DStageType::size, nullptr);
@@ -112,4 +112,4 @@ namespace Divisaction {
         return currentStageType == DStageType::FOLLOW_THROUGH;
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

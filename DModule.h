@@ -1,6 +1,6 @@
 
 /*
- * File DModule.h in project Divisaction
+ * File DModule.h in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
@@ -11,7 +11,7 @@
 #include "DTheoryOfMind.h"
 #include "Extra/Module.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     template<typename T, typename U>
     class DModule : public DTimerManager, public Module<T, U> {
@@ -61,6 +61,6 @@ namespace Divisaction {
     typedef DModule<void, void> InterpretModule;
     typedef DModule<void, std::vector<std::shared_ptr<DEvent>>&> PerformModule;
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_DIVISACTIONMODULE_H

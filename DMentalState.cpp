@@ -9,7 +9,7 @@
 #include "DAction.h"
 #include "DEmotion.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     bool DMentalState::agentHasName(std::string name) const {
         if (std::shared_ptr<DIAgent> iAgent = this->agent.lock()) {

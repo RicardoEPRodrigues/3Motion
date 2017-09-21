@@ -8,7 +8,7 @@
 
 #include <memory>
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     template<typename T, typename U>
     class Module {
@@ -29,6 +29,6 @@ namespace Divisaction {
 
             virtual T execute() = 0;
     };
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_MODULE_H

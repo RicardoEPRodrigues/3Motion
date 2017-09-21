@@ -10,7 +10,7 @@
 #include <string>
 #include <memory>
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DExecutable {
         private:
@@ -57,6 +57,6 @@ namespace Divisaction {
             }
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* EXECUTABLE_H_ */

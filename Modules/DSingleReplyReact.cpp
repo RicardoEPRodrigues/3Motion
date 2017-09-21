@@ -6,7 +6,7 @@
 #include "DSingleReplyReact.h"
 #include <stdlib.h>
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     void DSingleReplyReact::_execute() {
         if (auto mentalState = mentalStateWeak.lock()) {
@@ -37,4 +37,4 @@ namespace Divisaction {
             }
         }
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

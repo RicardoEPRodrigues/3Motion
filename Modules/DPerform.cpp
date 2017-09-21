@@ -5,7 +5,7 @@
  */
 #include "DPerform.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     void DPerform::_execute(std::vector<std::shared_ptr<DEvent>>& responseEvents) {
         if (auto mentalState = mentalStateWeak.lock()) {
@@ -44,4 +44,4 @@ namespace Divisaction {
         }
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

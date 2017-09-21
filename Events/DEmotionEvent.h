@@ -9,7 +9,7 @@
 #include "../DEvent.h"
 #include "../DEmotion.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     struct DEmotionEvent : public DEvent, std::enable_shared_from_this<DEmotionEvent> {
 
@@ -24,6 +24,6 @@ namespace Divisaction {
         virtual void update(class DSelfMentalState& self, class DOtherMentalState& state) override;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_EMOTIONEVENT_H

@@ -6,7 +6,7 @@
 
 #include "DTimeProgressiveStage.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DTimeProgressiveStage::DTimeProgressiveStage()
             : DStage(), startTime(-1), elapsedTime(0), duration(0) {
@@ -62,4 +62,4 @@ namespace Divisaction {
         return std::make_shared<DTimeProgressiveStage>(*this);
     }
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

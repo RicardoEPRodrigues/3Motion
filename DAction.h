@@ -14,7 +14,7 @@
 #include "DStage.h"
 #include "DStageType.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     /**
      * @class Action
@@ -57,6 +57,6 @@ namespace Divisaction {
 
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* ACTION_H_ */

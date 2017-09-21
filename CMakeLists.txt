@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(Divisaction)
+project(ThreeMotion)
 
 find_package(Doxygen)
 
@@ -42,8 +42,7 @@ set(SOURCE_FILES
         Events/DActionEvent.cpp Events/DActionEvent.h
         Events/DEmotionEvent.cpp Events/DEmotionEvent.h
         DTheoryOfMind.cpp DTheoryOfMind.h
-        Divisaction.h
-        DivisactionExtras.h
+        ThreeMotion.h
         MentalRepresentations/DSelfMentalState.cpp MentalRepresentations/DSelfMentalState.h
         MentalRepresentations/DOtherMentalState.cpp MentalRepresentations/DOtherMentalState.h
         DModule.h
@@ -62,7 +61,7 @@ set(SOURCE_FILES
         Extra/DSimpleTimeCalculator.cpp Extra/DSimpleTimeCalculator.h
         )
 
-add_library(Divisaction SHARED ${SOURCE_FILES})
+add_library(ThreeMotion SHARED ${SOURCE_FILES})
 
 if (DOXYGEN_FOUND)
 

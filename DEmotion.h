@@ -14,7 +14,7 @@
 
 #include "DStage.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DEmotion : public DExecutable {
         private:
@@ -58,6 +58,6 @@ namespace Divisaction {
             }
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* EMOTION_H_ */

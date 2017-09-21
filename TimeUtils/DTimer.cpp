@@ -1,12 +1,12 @@
 
 /*
- * File DTimer.cpp in project Divisaction
+ * File DTimer.cpp in project ThreeMotion
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
 #include "DTimer.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DTimer::DTimer(milliseconds duration) : counter(0), duration(duration), paused(false) {}
 
@@ -55,4 +55,4 @@ namespace Divisaction {
             DTimer::duration = duration;
         }
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */

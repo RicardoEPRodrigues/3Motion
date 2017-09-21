@@ -11,7 +11,7 @@
 #include "DTime.h"
 #include "DExecutable.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DStage : public DExecutable {
         public:
@@ -54,6 +54,6 @@ namespace Divisaction {
             milliseconds timeToPerceive;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* STAGE_H_ */

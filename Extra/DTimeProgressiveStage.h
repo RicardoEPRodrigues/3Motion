@@ -10,7 +10,7 @@
 #include "../DStage.h"
 #include "../DTime.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DTimeProgressiveStage : public DStage {
         public:
@@ -41,6 +41,6 @@ namespace Divisaction {
             double duration;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif /* STAGES_TIMEPROGRESSIVESTAGE_H_ */

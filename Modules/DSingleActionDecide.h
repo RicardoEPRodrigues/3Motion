@@ -8,7 +8,7 @@
 
 #include "../DModule.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DSingleActionDecide : public InterpretModule {
         private:
@@ -17,6 +17,6 @@ namespace Divisaction {
             virtual void _execute() override;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_SINGLEACTIONDECIDE_H

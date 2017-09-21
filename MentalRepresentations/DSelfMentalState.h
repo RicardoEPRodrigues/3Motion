@@ -15,7 +15,7 @@
 #include "../DIAgent.h"
 #include "../Events/DEmotionEvent.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DSelfMentalState : public DMentalState {
         public:
@@ -64,6 +64,6 @@ namespace Divisaction {
             std::vector<std::shared_ptr<DEmotion>> availableEmotions;
     };
 
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
 
 #endif //DIVISACTION_SELFMENTALSTATE_H

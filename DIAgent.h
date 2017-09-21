@@ -12,7 +12,7 @@
 
 #include "DEvent.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     class DIAgent : public std::enable_shared_from_this<DIAgent> {
         public:

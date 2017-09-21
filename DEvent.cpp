@@ -8,7 +8,7 @@
 #include "MentalRepresentations/DOtherMentalState.h"
 #include "MentalRepresentations/DSelfMentalState.h"
 
-namespace Divisaction {
+namespace ThreeMotion {
 
     DEvent::DEvent() : DEvent::DEvent(std::weak_ptr<DIAgent>()) {}
 
@@ -19,4 +19,4 @@ namespace Divisaction {
     void DEvent::update(DSelfMentalState&, DOtherMentalState&) {
         // Empty on purpose
     }
-} /* namespace Divisaction */
+} /* namespace ThreeMotion */
