@@ -18,11 +18,11 @@ namespace ThreeMotion {
 
             DStage();
 
-            DStage(std::string name, double timeToPerceive);
+            DStage(std::string name, milliseconds timeToPerceive);
 
             DStage(const DStage& other);
 
-            virtual ~DStage();
+            ~DStage() override;
 
             virtual std::shared_ptr<DStage> clone() const = 0;
 
@@ -31,17 +31,17 @@ namespace ThreeMotion {
             /**
              * Updates the current stage
              */
-            ExecutionState execute();
+            ExecutionState execute() override;
 
-            void reset();
+            void reset() override;
 
-            bool isRunning() const;
+            bool isRunning() const override;
 
             bool isComplete() const;
 
-            double getTimeToPerceive() const;
+            milliseconds getTimeToPerceive() const;
 
-            void setTimeToPerceive(double timeToPerceive);
+            void setTimeToPerceive(milliseconds timeToPerceive);
 
         protected:
             virtual void onStart() = 0;

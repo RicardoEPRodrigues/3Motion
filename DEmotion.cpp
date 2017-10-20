@@ -5,6 +5,8 @@
  */
 
 #include "DEmotion.h"
+
+#include <utility>
 #include "DAgent.h"
 
 namespace ThreeMotion {
@@ -12,7 +14,7 @@ namespace ThreeMotion {
     DEmotion::DEmotion() : DEmotion("", nullptr, "") {}
 
     DEmotion::DEmotion(std::string name, std::shared_ptr<DStage> stage, std::string replyText)
-            : running(false), stage(stage), replyText(replyText),
+            : DExecutable(name), running(false), stage(std::move(stage)), replyText(std::move(replyText)),
               replyTo(std::make_shared<DAgent>()/* Gave reply to an empty agent until it's valid*/) {
         setName(name);
     }
@@ -21,7 +23,7 @@ namespace ThreeMotion {
                                              stage(other.stage->clone()),
                                              replyText(other.replyText), replyTo(other.replyTo) {}
 
-    DEmotion::~DEmotion() {}
+    DEmotion::~DEmotion() = default;
 
     DExecutable::ExecutionState DEmotion::execute() {
         ExecutionState state = ExecutionState::RUNNING;

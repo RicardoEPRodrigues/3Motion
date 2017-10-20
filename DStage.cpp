@@ -8,20 +8,15 @@
 
 namespace ThreeMotion {
 
-    DStage::DStage() : DStage::DStage(std::string("Default Stage Name"), 1000) {}
+    DStage::DStage() : DStage::DStage("Default Stage Name", 1000) {}
 
-    DStage::DStage(std::string name, double timeToPerceive)
-            : DExecutable(name) {
-        complete = false;
-        playing = false;
-        this->timeToPerceive = timeToPerceive;
-    }
+    DStage::DStage(std::string name, milliseconds timeToPerceive)
+            : DExecutable(std::move(name)), complete(false),
+              playing(false), timeToPerceive(timeToPerceive) {}
 
-    DStage::DStage(const DStage& other) : DExecutable(other), complete(other.complete),
-                                       playing(other.playing),
-                                       timeToPerceive(other.timeToPerceive) {}
+    DStage::DStage(const DStage &other) = default;
 
-    DStage::~DStage() {}
+    DStage::~DStage() = default;
 
     void DStage::start() {
         complete = false;
@@ -49,11 +44,11 @@ namespace ThreeMotion {
         return playing;
     }
 
-    double DStage::getTimeToPerceive() const {
+    milliseconds DStage::getTimeToPerceive() const {
         return timeToPerceive;
     }
 
-    void DStage::setTimeToPerceive(double timeToPerceive) {
+    void DStage::setTimeToPerceive(milliseconds timeToPerceive) {
         DStage::timeToPerceive = timeToPerceive;
     }
 } /* namespace ThreeMotion */
