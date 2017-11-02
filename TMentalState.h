@@ -7,23 +7,23 @@
 #define DIVISACTION_MENTALSTATE_H
 
 #include <memory>
-#include "DStageType.h"
+#include "TStageType.h"
 
 namespace ThreeMotion {
 
-    class DMentalState {
+    class TMentalState {
         public:
-            std::weak_ptr<class DIAgent> agent;
+            std::weak_ptr<class TIAgent> agent;
 
-            std::shared_ptr<class DAction> action;
+            std::shared_ptr<class TAction> action;
 
-            std::shared_ptr<class DEmotion> emotion;
+            std::shared_ptr<class TEmotion> emotion;
 
             bool agentHasName(std::string name) const;
 
             bool actionHasName(std::string name) const;
 
-            virtual bool actionInStage(DStageType stageType) const;
+            virtual bool IsActionInStage(TStageType stageType) const;
 
             bool emotionHasName(std::string name) const;
     };

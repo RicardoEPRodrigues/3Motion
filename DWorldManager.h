@@ -10,16 +10,16 @@
 #include <vector>
 #include <memory>
 
-#include "DIAgent.h"
-#include "DEvent.h"
+#include "TIAgent.h"
+#include "TEvent.h"
 
 namespace ThreeMotion {
 
     class DWorldManager {
         public:
             std::string description;
-            std::vector<std::shared_ptr<DIAgent>> agents;
-            std::vector<std::shared_ptr<DEvent>> events;
+            std::vector<std::shared_ptr<TIAgent>> agents;
+            std::vector<std::shared_ptr<TEvent>> events;
 
             DWorldManager();
 
@@ -27,11 +27,11 @@ namespace ThreeMotion {
 
             void update();
 
-            void updateEvents(const std::vector<std::shared_ptr<DEvent>>& events);
+            void updateEvents(const std::vector<std::shared_ptr<TEvent>>& events);
 
             void updateInterpret();
 
-            void updatePerform(std::vector<std::shared_ptr<DEvent>>& events);
+            void updatePerform(std::vector<std::shared_ptr<TEvent>>& events);
     };
 
 } /* namespace ThreeMotion */

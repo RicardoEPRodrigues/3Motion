@@ -8,7 +8,7 @@
 
 
 namespace ThreeMotion {
-    std::shared_ptr<DTimeCalculator> DTime::_timeCalculator = nullptr;
+    std::shared_ptr<TTimeCalculator> DTime::_timeCalculator = nullptr;
 
     DTime::DTime() {
     }
@@ -34,11 +34,11 @@ namespace ThreeMotion {
         return _timeCalculator ? _timeCalculator->delta() : -1;
     }
 
-    void DTime::setTimeCalculator(std::shared_ptr<DTimeCalculator>& timeCalculator) {
+    void DTime::setTimeCalculator(std::shared_ptr<TTimeCalculator>& timeCalculator) {
         _timeCalculator = timeCalculator;
     }
 
-    void DTime::setTimeCalculator(std::shared_ptr<DTimeCalculator> timeCalculator) {
+    void DTime::setTimeCalculator(std::shared_ptr<TTimeCalculator> timeCalculator) {
         _timeCalculator = timeCalculator;
     }
 

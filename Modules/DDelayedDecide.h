@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_DELAYEDDECIDE_H
 #define DIVISACTION_DELAYEDDECIDE_H
 
-#include "../DModule.h"
+#include "../TModule.h"
 #include "../DTime.h"
 
 namespace ThreeMotion {
@@ -22,9 +22,9 @@ namespace ThreeMotion {
             /**
              * This variable is used to store the action to be picked until the agent has to make the action.
              */
-            std::shared_ptr<DAction> action;
+            std::shared_ptr<TAction> action;
 
-            virtual void selectAction(std::shared_ptr<DTheoryOfMind> mentalState);
+            virtual void selectAction(std::shared_ptr<TTheoryOfMind> mentalState);
 
             virtual void _execute() override;
 

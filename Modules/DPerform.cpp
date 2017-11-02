@@ -7,30 +7,30 @@
 
 namespace ThreeMotion {
 
-    void DPerform::_execute(std::vector<std::shared_ptr<DEvent>>& responseEvents) {
+    void DPerform::_execute(std::vector<std::shared_ptr<TEvent>>& responseEvents) {
         if (auto mentalState = mentalStateWeak.lock()) {
-            std::vector<std::shared_ptr<DEvent>> events = std::vector<std::shared_ptr<DEvent>>();
+            std::vector<std::shared_ptr<TEvent>> events = std::vector<std::shared_ptr<TEvent>>();
 
             if (mentalState->self.action) {
-                auto state = mentalState->self.action->execute();
-                if (state == DExecutable::ExecutionState::CHANGED) {
+                auto state = mentalState->self.action->Execute();
+                if (state == TExecutable::ExecutionState::CHANGED) {
                     if (auto self = mentalState->self.agent.lock()) {
                         events.push_back(
-                                std::make_shared<DActionEvent>(self, mentalState->self.action));
+                                std::make_shared<TActionEvent>(self, mentalState->self.action));
                     }
-                } else if (state == DExecutable::ExecutionState::ENDED) {
+                } else if (state == TExecutable::ExecutionState::ENDED) {
                     mentalState->self.action = nullptr;
                 }
             }
             if (mentalState->self.emotion) {
-                auto state = mentalState->self.emotion->execute();
-                if (state == DExecutable::ExecutionState::CHANGED) {
+                auto state = mentalState->self.emotion->Execute();
+                if (state == TExecutable::ExecutionState::CHANGED) {
                     auto emotion = mentalState->self.emotion;
                     if (auto self = mentalState->self.agent.lock()) {
-                        events.push_back(std::make_shared<DEmotionEvent>(self, emotion));
+                        events.push_back(std::make_shared<TEmotionEvent>(self, emotion));
                     }
                 }
-                if (state == DExecutable::ExecutionState::ENDED) {
+                if (state == TExecutable::ExecutionState::ENDED) {
                     mentalState->self.emotion = nullptr;
                 }
             }

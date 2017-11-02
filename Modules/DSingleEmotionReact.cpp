@@ -11,7 +11,7 @@ namespace ThreeMotion {
         if (auto mentalState = mentalStateWeak.lock()) {
             if (!alreadyFelt && mentalState->self.countEmotions() > 0) {
                 if (mentalState->self.emotion) {
-                    mentalState->self.emotion->reset();
+                    mentalState->self.emotion->Reset();
                 }
 
                 mentalState->self.emotion = mentalState->self.getEmotion(0);

@@ -9,15 +9,15 @@
 namespace ThreeMotion {
 
     DTimeProgressiveStage::DTimeProgressiveStage()
-            : DStage(), startTime(-1), elapsedTime(0), duration(0) {
+            : TStage(), startTime(-1), elapsedTime(0), duration(0) {
     }
 
-    DTimeProgressiveStage::DTimeProgressiveStage(std::string name, double timeToPerceive,
-                                               double durationInMilliseconds)
-            : DStage(name, timeToPerceive), startTime(-1), elapsedTime(0),
+    DTimeProgressiveStage::DTimeProgressiveStage(std::string name, milliseconds timeToPerceive,
+                                               milliseconds durationInMilliseconds)
+            : TStage(name, timeToPerceive), startTime(-1), elapsedTime(0),
               duration(durationInMilliseconds) {}
 
-    DTimeProgressiveStage::DTimeProgressiveStage(const DTimeProgressiveStage& other) : DStage(other),
+    DTimeProgressiveStage::DTimeProgressiveStage(const DTimeProgressiveStage& other) : TStage(other),
                                                                                     startTime(
                                                                                             other.startTime),
                                                                                     elapsedTime(
@@ -28,37 +28,37 @@ namespace ThreeMotion {
     DTimeProgressiveStage::~DTimeProgressiveStage() {
     }
 
-    void DTimeProgressiveStage::onStart() {
+    void DTimeProgressiveStage::OnStart() {
         elapsedTime = 0;
     }
 
-    DExecutable::ExecutionState DTimeProgressiveStage::onUpdate() {
+    TExecutable::ExecutionState DTimeProgressiveStage::onUpdate() {
         elapsedTime += DTime::delta();
         if (elapsedTime > duration) {
-            reset();
+            Reset();
             return ExecutionState::ENDED;
         }
         return ExecutionState::RUNNING;
     }
 
-    double DTimeProgressiveStage::getProgress() const {
+    float DTimeProgressiveStage::getProgress() const {
         if (elapsedTime > duration) {
             return 1.0;
         }
         return elapsedTime / duration;
     }
 
-    double DTimeProgressiveStage::getDuration() const {
+    milliseconds DTimeProgressiveStage::getDuration() const {
         return duration;
     }
 
-    void DTimeProgressiveStage::setDuration(double durationInMilliseconds) {
-        if (!isRunning()) {
+    void DTimeProgressiveStage::setDuration(milliseconds durationInMilliseconds) {
+        if (!IsRunning()) {
             this->duration = durationInMilliseconds;
         }
     }
 
-    std::shared_ptr<DStage> DTimeProgressiveStage::clone() const {
+    std::shared_ptr<TStage> DTimeProgressiveStage::clone() const {
         return std::make_shared<DTimeProgressiveStage>(*this);
     }
 

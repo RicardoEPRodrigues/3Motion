@@ -10,20 +10,20 @@
 #include <memory>
 #include <string>
 
-#include "DEvent.h"
+#include "TEvent.h"
 
 namespace ThreeMotion {
 
-    class DIAgent : public std::enable_shared_from_this<DIAgent> {
+    class TIAgent : public std::enable_shared_from_this<TIAgent> {
         public:
 
-            virtual ~DIAgent() {}
+            virtual ~TIAgent() = default;
 
-            virtual void perceive(const std::vector<std::shared_ptr<DEvent>>& events) = 0;
+            virtual void perceive(std::vector<std::shared_ptr<TEvent>> const & events) = 0;
 
             virtual void interpret() = 0;
 
-            virtual const std::vector<std::shared_ptr<DEvent>> perform() = 0;
+            virtual const std::vector<std::shared_ptr<TEvent>> perform() = 0;
 
             std::string name;
     };

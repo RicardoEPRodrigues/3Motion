@@ -14,7 +14,7 @@ namespace ThreeMotion {
                 auto reply = (*replyIter);
                 if (reply->emotion->getName().compare("Confidence") != 0) {
                     if (mentalState->self.action) {
-                        mentalState->self.action->cancel();
+                        mentalState->self.action->Cancel();
                     }
                 }
             }

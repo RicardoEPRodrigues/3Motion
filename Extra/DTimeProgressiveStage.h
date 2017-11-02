@@ -7,38 +7,38 @@
 #ifndef STAGES_TIMEPROGRESSIVESTAGE_H_
 #define STAGES_TIMEPROGRESSIVESTAGE_H_
 
-#include "../DStage.h"
+#include "../TStage.h"
 #include "../DTime.h"
 
 namespace ThreeMotion {
 
-    class DTimeProgressiveStage : public DStage {
+    class DTimeProgressiveStage : public TStage {
         public:
             DTimeProgressiveStage();
 
-            DTimeProgressiveStage(std::string name, double timeToPerceive = 1000,
-                                  double durationInMilliseconds = 0);
+            DTimeProgressiveStage(std::string name, milliseconds timeToPerceive = 1000,
+                                  milliseconds durationInMilliseconds = 0);
 
             DTimeProgressiveStage(const DTimeProgressiveStage& other);
 
             virtual ~DTimeProgressiveStage();
 
-            void onStart() override;
+            void OnStart() override;
 
             ExecutionState onUpdate() override;
 
-            double getProgress() const;
+            float getProgress() const;
 
-            virtual double getDuration() const;
+            virtual milliseconds getDuration() const;
 
-            void setDuration(double durationInMilliseconds);
+            void setDuration(milliseconds durationInMilliseconds);
 
-            virtual std::shared_ptr<DStage> clone() const override;
+            virtual std::shared_ptr<TStage> clone() const override;
 
         private:
-            double startTime;
-            double elapsedTime;
-            double duration;
+            milliseconds startTime;
+            milliseconds elapsedTime;
+            milliseconds duration;
     };
 
 } /* namespace ThreeMotion */

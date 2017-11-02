@@ -6,19 +6,21 @@
 #ifndef DIVISACTION_OTHERMENTALSTATE_H
 #define DIVISACTION_OTHERMENTALSTATE_H
 
-#include "../DMentalState.h"
+#include "../TMentalState.h"
 
 namespace ThreeMotion {
 
-    class DOtherMentalState : public DMentalState {
+    class TOtherMentalState : public TMentalState {
         public:
-            DStageType stage;
+            TStageType stage = ANTICIPATION_INTERRUPTIBLE;
 
-            bool updateAction;
+            bool updateAction{};
 
-            bool updateEmotion;
+            bool updateEmotion{};
 
-            bool actionInStage(DStageType stageType) const override;
+            TOtherMentalState() = default;
+
+            bool IsActionInStage(TStageType stageType) const override;
 
     };
 

@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_SINGLEEMOTIONREACT_H
 #define DIVISACTION_SINGLEEMOTIONREACT_H
 
-#include "../DModule.h"
+#include "../TModule.h"
 
 namespace ThreeMotion {
 

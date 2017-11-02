@@ -7,14 +7,14 @@
 #define DIVISACTION_DELAYPERCEIVE_H
 
 #include "../DTime.h"
-#include "../DModule.h"
+#include "../TModule.h"
 
 namespace ThreeMotion {
 
     class DDelayPerceive : public PerceiveModule {
 
         protected:
-            virtual void _execute(const std::vector<std::shared_ptr<DEvent>>& param) override;
+            virtual void _execute(const std::vector<std::shared_ptr<TEvent>>& param) override;
     };
 
 } /* namespace ThreeMotion */

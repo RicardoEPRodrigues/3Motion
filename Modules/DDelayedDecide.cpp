@@ -8,7 +8,7 @@
 namespace ThreeMotion {
     DDelayedDecide::DDelayedDecide() : DDelayedDecide(2000) {}
 
-    DDelayedDecide::DDelayedDecide(milliseconds interval) : DModule(), interval(interval) {}
+    DDelayedDecide::DDelayedDecide(milliseconds interval) : TModule(), interval(interval) {}
 
     void DDelayedDecide::_execute() {
         if (!alreadyActed) {
@@ -28,7 +28,7 @@ namespace ThreeMotion {
         }
     }
 
-    void DDelayedDecide::selectAction(std::shared_ptr<DTheoryOfMind> mentalState) {
+    void DDelayedDecide::selectAction(std::shared_ptr<TTheoryOfMind> mentalState) {
         if (!this->action || this->action != mentalState->self.getAction(0)) {
             this->action = mentalState->self.getAction(0);
         }

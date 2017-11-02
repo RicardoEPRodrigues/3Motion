@@ -17,7 +17,7 @@ namespace ThreeMotion {
 
             virtual ~Module() {}
 
-            virtual T execute(U param) = 0;
+            virtual T Execute(U param) = 0;
     };
 
     template<typename T>
@@ -27,7 +27,7 @@ namespace ThreeMotion {
 
             virtual ~Module() {}
 
-            virtual T execute() = 0;
+            virtual T Execute() = 0;
     };
 } /* namespace ThreeMotion */
 

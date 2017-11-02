@@ -8,10 +8,10 @@
 
 #include <chrono>
 
-#include "../DTimeCalculator.h"
+#include "../TTimeCalculator.h"
 
 namespace ThreeMotion {
-    class DChronoTimeCalculator : public DTimeCalculator {
+    class DChronoTimeCalculator : public TTimeCalculator {
         private:
             bool started;
             milliseconds _startTime;

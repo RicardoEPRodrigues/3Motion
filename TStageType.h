@@ -9,8 +9,12 @@
 
 namespace ThreeMotion {
 
-    enum DStageType {
-        ANTICIPATION_INTERRUPTIBLE, ANTICIPATION_UNINTERRUPTIBLE, FOLLOW_THROUGH, CANCEL, size
+    enum TStageType {
+        ANTICIPATION_INTERRUPTIBLE,
+        ANTICIPATION_UNINTERRUPTIBLE,
+        FOLLOW_THROUGH,
+        CANCEL,
+        size
     };
 
 } /* namespace ThreeMotion */

@@ -6,14 +6,15 @@
 #ifndef DIVISACTION_TIMECALCULATOR_H
 #define DIVISACTION_TIMECALCULATOR_H
 
+#include "TDefine.h"
+
 namespace ThreeMotion {
-    typedef double milliseconds;
 
-    class DTimeCalculator {
+    class TTimeCalculator {
         public:
-            DTimeCalculator() {};
+            TTimeCalculator() = default;
 
-            virtual ~DTimeCalculator() {};
+            virtual ~TTimeCalculator() = default;
 
             virtual void update() = 0;
 

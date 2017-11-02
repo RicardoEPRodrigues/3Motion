@@ -3,10 +3,10 @@
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#include "DOtherMentalState.h"
+#include "TOtherMentalState.h"
 
 namespace ThreeMotion {
-    bool DOtherMentalState::actionInStage(DStageType stageType) const {
+    bool TOtherMentalState::IsActionInStage(TStageType stageType) const {
         return this->stage == stageType;
     }
 } /* namespace ThreeMotion */

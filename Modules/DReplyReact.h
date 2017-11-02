@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_REPLYREACT_H
 #define DIVISACTION_REPLYREACT_H
 
-#include "../DModule.h"
+#include "../TModule.h"
 
 namespace ThreeMotion {
 

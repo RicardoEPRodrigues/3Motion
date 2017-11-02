@@ -25,27 +25,27 @@ include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
 
 set(SOURCE_FILES
         DWorldManager.cpp DWorldManager.h
-        DIAgent.h
-        DAction.cpp DAction.h
+        TIAgent.h
+        TAction.cpp TAction.h
         DAgent.cpp DAgent.h
-        DEmotion.cpp DEmotion.h
-        DEvent.cpp DEvent.h
-        DExecutable.h DExecutable.cpp
-        DTimeCalculator.h
-        DStageType.h
-        DStage.cpp DStage.h
+        TEmotion.cpp TEmotion.h
+        TEvent.cpp TEvent.h
+        TExecutable.h TExecutable.cpp
+        TTimeCalculator.h
+        TStageType.h
+        TStage.cpp TStage.h
         DTime.cpp DTime.h
-        DMentalState.cpp DMentalState.h
+        TMentalState.cpp TMentalState.h
         Extra/StdExtras.h
         Extra/DTimeProgressiveStage.cpp Extra/DTimeProgressiveStage.h
         Extra/DChronoTimeCalculator.cpp Extra/DChronoTimeCalculator.h
-        Events/DActionEvent.cpp Events/DActionEvent.h
-        Events/DEmotionEvent.cpp Events/DEmotionEvent.h
-        DTheoryOfMind.cpp DTheoryOfMind.h
+        Events/TActionEvent.cpp Events/TActionEvent.h
+        Events/TEmotionEvent.cpp Events/TEmotionEvent.h
+        TTheoryOfMind.cpp TTheoryOfMind.h
         ThreeMotion.h
-        MentalRepresentations/DSelfMentalState.cpp MentalRepresentations/DSelfMentalState.h
-        MentalRepresentations/DOtherMentalState.cpp MentalRepresentations/DOtherMentalState.h
-        DModule.h
+        MentalStates/TSelfMentalState.cpp MentalStates/TSelfMentalState.h
+        MentalStates/TOtherMentalState.cpp MentalStates/TOtherMentalState.h
+        TModule.h
         Extra/Module.h
         Modules/DDelayPerceive.cpp Modules/DDelayPerceive.h
         Modules/DPerform.cpp Modules/DPerform.h
@@ -59,7 +59,7 @@ set(SOURCE_FILES
         TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
         TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
         Extra/DSimpleTimeCalculator.cpp Extra/DSimpleTimeCalculator.h
-        )
+        TDefine.h)
 
 add_library(ThreeMotion SHARED ${SOURCE_FILES})
 

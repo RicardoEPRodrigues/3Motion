@@ -6,7 +6,7 @@
 #ifndef DIVISACTION_SINGLEACTIONDECIDE_H
 #define DIVISACTION_SINGLEACTIONDECIDE_H
 
-#include "../DModule.h"
+#include "../TModule.h"
 
 namespace ThreeMotion {
 

@@ -10,7 +10,7 @@
 #include "DTime.h"
 #include "DWorldManager.h"
 #include "DAgent.h"
-#include "Events/DActionEvent.h"
-#include "Events/DEmotionEvent.h"
+#include "TActionEvent.h"
+#include "TEmotionEvent.h"
 
 #endif //DIVISACTION_DIVISACTION_H

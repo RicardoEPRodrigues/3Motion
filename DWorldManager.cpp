@@ -21,7 +21,7 @@ namespace ThreeMotion {
         updatePerform(this->events);
     }
 
-    void DWorldManager::updateEvents(const std::vector<std::shared_ptr<DEvent>>& events) {
+    void DWorldManager::updateEvents(const std::vector<std::shared_ptr<TEvent>>& events) {
         for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
             (*agent)->perceive(events);
         }
@@ -33,9 +33,9 @@ namespace ThreeMotion {
         }
     }
 
-    void DWorldManager::updatePerform(std::vector<std::shared_ptr<DEvent>>& events) {
+    void DWorldManager::updatePerform(std::vector<std::shared_ptr<TEvent>>& events) {
         for (auto agent = agents.begin(); agent != agents.end(); ++agent) {
-            vector<shared_ptr<DEvent>> agentEvents = (*agent)->perform();
+            vector<shared_ptr<TEvent>> agentEvents = (*agent)->perform();
             events.insert(std::end(events), std::begin(agentEvents), std::end(agentEvents));
         }
     }

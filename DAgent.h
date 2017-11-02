@@ -7,23 +7,23 @@
 #ifndef AGENT_H_
 #define AGENT_H_
 
-#include "DIAgent.h"
+#include "TIAgent.h"
 
 #include <vector>
 #include <algorithm>    // std::find_if
 
-#include "DAction.h"
-#include "DEvent.h"
-#include "DEmotion.h"
-#include "Events/DActionEvent.h"
-#include "DTheoryOfMind.h"
-#include "DModule.h"
+#include "TAction.h"
+#include "TEvent.h"
+#include "TEmotion.h"
+#include "TActionEvent.h"
+#include "TTheoryOfMind.h"
+#include "TModule.h"
 
 namespace ThreeMotion {
 
-    class DAgent : public DIAgent {
+    class DAgent : public TIAgent {
         public:
-            std::shared_ptr<DTheoryOfMind> mentalState;
+            std::shared_ptr<TTheoryOfMind> theoryOfMind;
 
             std::vector<std::unique_ptr<PerceiveModule>> perceiveModules;
             std::vector<std::unique_ptr<InterpretModule>> interpretModules;
@@ -33,19 +33,19 @@ namespace ThreeMotion {
 
             virtual void initialize();
 
-            virtual void addAvailableAction(std::shared_ptr<DAction> action);
+            virtual void addAvailableAction(std::shared_ptr<TAction> action);
 
-            virtual void removeAvailableAction(std::shared_ptr<DAction>& action);
+            virtual void removeAvailableAction(std::shared_ptr<TAction>& action);
 
-            virtual void addAvailableEmotion(std::shared_ptr<DEmotion> emotion);
+            virtual void addAvailableEmotion(std::shared_ptr<TEmotion> emotion);
 
-            virtual void removeAvailableEmotion(std::shared_ptr<DEmotion>& emotion);
+            virtual void removeAvailableEmotion(std::shared_ptr<TEmotion>& emotion);
 
-            void perceive(const std::vector<std::shared_ptr<DEvent>>& events);
+            void perceive(const std::vector<std::shared_ptr<TEvent>>& events);
 
             void interpret();
 
-            const std::vector<std::shared_ptr<DEvent>> perform();
+            const std::vector<std::shared_ptr<TEvent>> perform();
     };
 
 } /* namespace ThreeMotion */

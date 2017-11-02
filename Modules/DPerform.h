@@ -6,14 +6,14 @@
 #ifndef DIVISACTION_PERFORM_H
 #define DIVISACTION_PERFORM_H
 
-#include "../DModule.h"
+#include "../TModule.h"
 
 namespace ThreeMotion {
 
     class DPerform : public PerformModule {
 
         protected:
-            virtual void _execute(std::vector<std::shared_ptr<DEvent>>&) override;
+            virtual void _execute(std::vector<std::shared_ptr<TEvent>>&) override;
     };
 
 } /* namespace ThreeMotion */
