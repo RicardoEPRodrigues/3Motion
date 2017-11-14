@@ -15,23 +15,26 @@
 
 namespace ThreeMotion {
 
-    class DWorldManager {
+    class TWorldManager {
         public:
             std::string description;
             std::vector<std::shared_ptr<TIAgent>> agents;
             std::vector<std::shared_ptr<TEvent>> events;
 
-            DWorldManager();
+            TWorldManager();
 
-            virtual ~DWorldManager();
+            virtual ~TWorldManager();
 
-            void update();
+            void Initialize();
 
-            void updateEvents(const std::vector<std::shared_ptr<TEvent>>& events);
+            void Update();
 
-            void updateInterpret();
+            void UpdatePerceive(
+                    const std::vector<std::shared_ptr<TEvent>>& events);
 
-            void updatePerform(std::vector<std::shared_ptr<TEvent>>& events);
+            void UpdateInterpret();
+
+            void UpdatePerform(std::vector<std::shared_ptr<TEvent>>& events);
     };
 
 } /* namespace ThreeMotion */

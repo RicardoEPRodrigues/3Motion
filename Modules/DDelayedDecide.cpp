@@ -12,14 +12,14 @@ namespace ThreeMotion {
 
     void DDelayedDecide::_execute() {
         if (!alreadyActed) {
-            if (auto mentalState = mentalStateWeak.lock()) {
+            if (auto mentalState = theoryOfMindWeak.lock()) {
                 if (!mentalState->self.action) {
                     this->selectAction(mentalState);
                 }
             }
             if (this->action && !timer) {
-                timer = wait(interval, [this]() {
-                    if (auto mentalState = mentalStateWeak.lock()) {
+                timer = Wait(interval, [this]() {
+                    if (auto mentalState = theoryOfMindWeak.lock()) {
                         mentalState->self.action = action;
                         alreadyActed = true;
                     }
@@ -29,8 +29,8 @@ namespace ThreeMotion {
     }
 
     void DDelayedDecide::selectAction(std::shared_ptr<TTheoryOfMind> mentalState) {
-        if (!this->action || this->action != mentalState->self.getAction(0)) {
-            this->action = mentalState->self.getAction(0);
+        if (!this->action || this->action != mentalState->self.GetAction(0)) {
+            this->action = mentalState->self.GetAction(0);
         }
     }
 } /* namespace ThreeMotion */

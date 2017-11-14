@@ -7,9 +7,9 @@
 #ifndef DIVISACTION_DIVISACTION_H
 #define DIVISACTION_DIVISACTION_H
 
-#include "DTime.h"
-#include "DWorldManager.h"
-#include "DAgent.h"
+#include "TTime.h"
+#include "TWorldManager.h"
+#include "TAgent.h"
 #include "TActionEvent.h"
 #include "TEmotionEvent.h"
 

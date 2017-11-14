@@ -20,13 +20,13 @@ namespace ThreeMotion {
 
             virtual ~DSimpleTimeCalculator();
 
-            void update() override;
+            void Update() override;
 
-            milliseconds startTime() override;
+            milliseconds StartTime() override;
 
-            milliseconds now() override;
+            milliseconds Now() override;
 
-            milliseconds delta() override;
+            milliseconds Delta() override;
 
             void setDeltaTime(milliseconds deltaTime);
 

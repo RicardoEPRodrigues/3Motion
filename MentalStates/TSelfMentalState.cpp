@@ -8,25 +8,26 @@
 namespace ThreeMotion {
 
 
-    void TSelfMentalState::addAction(std::shared_ptr<TAction> const & action) {
+    void TSelfMentalState::AddAction(std::shared_ptr<TAction> const& action) {
         this->availableActions.push_back(action);
     }
 
-    void TSelfMentalState::removeAction(std::shared_ptr<TAction> const & action) {
+    void TSelfMentalState::RemoveAction(std::shared_ptr<TAction> const& action) {
         auto it = std::find(availableActions.begin(), availableActions.end(), action);
         if (it != availableActions.end()) {
             availableActions.erase(it);
         }
     }
 
-    std::shared_ptr<TAction> TSelfMentalState::getAction(unsigned int index) const {
+    std::shared_ptr<TAction> TSelfMentalState::GetAction(unsigned int index) const {
         if (index >= availableActions.size()) {
             return nullptr;
         }
         return std::make_shared<TAction>(*availableActions[index].get());
     }
 
-    std::shared_ptr<TAction> TSelfMentalState::getAction(std::string const& name) const {
+    std::shared_ptr<TAction> TSelfMentalState::GetAction(
+            std::string const& name) const {
         if (name.empty()) {
             return nullptr;
         }
@@ -42,36 +43,38 @@ namespace ThreeMotion {
     }
 
     std::shared_ptr<TAction>
-    TSelfMentalState::getAction(const std::shared_ptr<TAction>& action) const {
+    TSelfMentalState::GetAction(const std::shared_ptr<TAction>& action) const {
         std::shared_pointer_values_equal<TAction> eq = {action};
         auto storedAction = find_if(availableActions.begin(), availableActions.end(), eq);
         return storedAction == availableActions.end() ? nullptr : std::make_shared<TAction>(
                 *(*storedAction).get());
     }
 
-    unsigned long TSelfMentalState::countActions() const {
-        return availableActions.size();
+    unsigned long TSelfMentalState::CountActions() const {
+        return static_cast<unsigned long>(availableActions.size());
     }
 
-    void TSelfMentalState::addEmotion(std::shared_ptr<TEmotion> const & emotion) {
+    void TSelfMentalState::AddEmotion(std::shared_ptr<TEmotion> const& emotion) {
         availableEmotions.push_back(emotion);
     }
 
-    void TSelfMentalState::removeEmotion(std::shared_ptr<TEmotion> const & emotion) {
+    void TSelfMentalState::RemoveEmotion(
+            std::shared_ptr<TEmotion> const& emotion) {
         auto it = std::find(availableEmotions.begin(), availableEmotions.end(), emotion);
         if (it != availableEmotions.end()) {
             availableEmotions.erase(it);
         }
     }
 
-    std::shared_ptr<TEmotion> TSelfMentalState::getEmotion(unsigned int index) const {
+    std::shared_ptr<TEmotion> TSelfMentalState::GetEmotion(unsigned int index) const {
         if (index >= availableEmotions.size()) {
             return nullptr;
         }
         return std::make_shared<TEmotion>(*availableEmotions[index].get());
     }
 
-    std::shared_ptr<TEmotion> TSelfMentalState::getEmotion(const std::string& name) const {
+    std::shared_ptr<TEmotion> TSelfMentalState::GetEmotion(
+            const std::string& name) const {
         if (name.empty()) {
             return nullptr;
         }
@@ -87,14 +90,14 @@ namespace ThreeMotion {
     }
 
     std::shared_ptr<TEmotion>
-    TSelfMentalState::getEmotion(const std::shared_ptr<TEmotion>& emotion) const {
+    TSelfMentalState::GetEmotion(const std::shared_ptr<TEmotion>& emotion) const {
         std::shared_pointer_values_equal<TEmotion> eq = {emotion};
         auto storedEmotion = find_if(availableEmotions.begin(), availableEmotions.end(), eq);
         return storedEmotion == availableEmotions.end() ? nullptr : std::make_shared<TEmotion>(
                 *(*storedEmotion).get());
     }
 
-    unsigned long TSelfMentalState::countEmotions() const {
+    unsigned long TSelfMentalState::CountEmotions() const {
         return availableEmotions.size();
     }
 } /* namespace ThreeMotion */

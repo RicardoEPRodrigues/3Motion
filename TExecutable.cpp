@@ -13,7 +13,7 @@ namespace ThreeMotion {
 
     TExecutable::TExecutable(std::string name) : name(std::move(name)) {}
 
-    TExecutable::TExecutable(const TExecutable& other) = default;
+    TExecutable::TExecutable(const TExecutable&) = default;
 
     TExecutable::~TExecutable() = default;
 

@@ -35,7 +35,7 @@ namespace ThreeMotion {
             }
         } else {
             state.emotion = this->emotion;
-            state.updateEmotion = true;
+            state.UpdateEmotion = true;
         }
     }
 } /* namespace ThreeMotion */

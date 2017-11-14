@@ -11,21 +11,17 @@
 namespace ThreeMotion {
 
     template<typename T, typename U>
-    class Module {
+    class IModule {
         public:
-            Module() {}
-
-            virtual ~Module() {}
+            virtual ~IModule() = default;
 
             virtual T Execute(U param) = 0;
     };
 
     template<typename T>
-    class Module<T, void> {
+    class IModule<T, void> {
         public:
-            Module() {}
-
-            virtual ~Module() {}
+            virtual ~IModule() = default;
 
             virtual T Execute() = 0;
     };

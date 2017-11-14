@@ -13,20 +13,20 @@ namespace ThreeMotion {
                                                      _now(0), realtimeNow(0), _delta(0) {}
 
 
-    milliseconds DChronoTimeCalculator::startTime() {
+    milliseconds DChronoTimeCalculator::StartTime() {
         return _startTime;
     }
 
-    milliseconds DChronoTimeCalculator::now() {
+    milliseconds DChronoTimeCalculator::Now() {
         return _now;
     }
 
 
-    milliseconds DChronoTimeCalculator::delta() {
+    milliseconds DChronoTimeCalculator::Delta() {
         return _delta;
     }
 
-    void DChronoTimeCalculator::update() {
+    void DChronoTimeCalculator::Update() {
         milliseconds now = chrono::duration_cast<chrono::milliseconds>(
                 system_clock::now().time_since_epoch()).count();
         if (!started) {

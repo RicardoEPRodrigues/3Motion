@@ -7,7 +7,7 @@
 #define DIVISACTION_DELAYEDDECIDE_H
 
 #include "../TModule.h"
-#include "../DTime.h"
+#include "../TTime.h"
 
 namespace ThreeMotion {
 
@@ -15,7 +15,7 @@ namespace ThreeMotion {
         public:
             DDelayedDecide();
 
-            DDelayedDecide(milliseconds interval);
+            explicit DDelayedDecide(milliseconds interval);
 
         protected:
             milliseconds interval;
@@ -26,12 +26,12 @@ namespace ThreeMotion {
 
             virtual void selectAction(std::shared_ptr<TTheoryOfMind> mentalState);
 
-            virtual void _execute() override;
+            void _execute() override;
 
         private:
             bool alreadyActed;
 
-            std::shared_ptr<DTimer> timer;
+            std::shared_ptr<TTimer> timer;
     };
 
 } /* namespace ThreeMotion */

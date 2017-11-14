@@ -21,7 +21,7 @@
 
 namespace ThreeMotion {
 
-    class DAgent : public TIAgent {
+    class TAgent : public TIAgent {
         public:
             std::shared_ptr<TTheoryOfMind> theoryOfMind;
 
@@ -29,23 +29,30 @@ namespace ThreeMotion {
             std::vector<std::unique_ptr<InterpretModule>> interpretModules;
             std::vector<std::unique_ptr<PerformModule>> performModules;
 
-            DAgent();
+            TAgent();
 
-            virtual void initialize();
+            ~TAgent() override;
 
-            virtual void addAvailableAction(std::shared_ptr<TAction> action);
+            virtual void
+            AddAvailableAction(std::shared_ptr<TAction> const& action);
 
-            virtual void removeAvailableAction(std::shared_ptr<TAction>& action);
+            virtual void
+            RemoveAvailableAction(std::shared_ptr<TAction> const& action);
 
-            virtual void addAvailableEmotion(std::shared_ptr<TEmotion> emotion);
+            virtual void
+            AddAvailableEmotion(std::shared_ptr<TEmotion> const& emotion);
 
-            virtual void removeAvailableEmotion(std::shared_ptr<TEmotion>& emotion);
+            virtual void
+            RemoveAvailableEmotion(std::shared_ptr<TEmotion> const& emotion);
 
-            void perceive(const std::vector<std::shared_ptr<TEvent>>& events);
+            void Initialize() override;
 
-            void interpret();
+            void Perceive(
+                    const std::vector<std::shared_ptr<TEvent>>& events) override;
 
-            const std::vector<std::shared_ptr<TEvent>> perform();
+            void Interpret() override;
+
+            const std::vector<std::shared_ptr<TEvent>> Perform() override;
     };
 
 } /* namespace ThreeMotion */

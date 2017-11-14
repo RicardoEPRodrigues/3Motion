@@ -24,17 +24,17 @@ endif ()
 include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
 
 set(SOURCE_FILES
-        DWorldManager.cpp DWorldManager.h
+        TWorldManager.cpp TWorldManager.h
         TIAgent.h
         TAction.cpp TAction.h
-        DAgent.cpp DAgent.h
+        TAgent.cpp TAgent.h
         TEmotion.cpp TEmotion.h
         TEvent.cpp TEvent.h
         TExecutable.h TExecutable.cpp
         TTimeCalculator.h
         TStageType.h
         TStage.cpp TStage.h
-        DTime.cpp DTime.h
+        TTime.cpp TTime.h
         TMentalState.cpp TMentalState.h
         Extra/StdExtras.h
         Extra/DTimeProgressiveStage.cpp Extra/DTimeProgressiveStage.h
@@ -46,7 +46,7 @@ set(SOURCE_FILES
         MentalStates/TSelfMentalState.cpp MentalStates/TSelfMentalState.h
         MentalStates/TOtherMentalState.cpp MentalStates/TOtherMentalState.h
         TModule.h
-        Extra/Module.h
+        Extra/IModule.h
         Modules/DDelayPerceive.cpp Modules/DDelayPerceive.h
         Modules/DPerform.cpp Modules/DPerform.h
         Modules/DSingleActionDecide.cpp Modules/DSingleActionDecide.h
@@ -54,10 +54,10 @@ set(SOURCE_FILES
         Modules/DSingleReplyReact.cpp Modules/DSingleReplyReact.h
         Modules/DReplyReact.cpp Modules/DReplyReact.h
         Modules/DDelayedDecide.cpp Modules/DDelayedDecide.h
-        TimeUtils/DTimer.cpp TimeUtils/DTimer.h
-        TimeUtils/DTimerWait.cpp TimeUtils/DTimerWait.h
-        TimeUtils/DTimerIfWait.cpp TimeUtils/DTimerIfWait.h
-        TimeUtils/DTimerManager.cpp TimeUtils/DTimerManager.h
+        TimeUtils/TTimer.cpp TimeUtils/TTimer.h
+        TimeUtils/TTimerWait.cpp TimeUtils/TTimerWait.h
+        TimeUtils/TTimerIfWait.cpp TimeUtils/TTimerIfWait.h
+        TimeUtils/TTimerManager.cpp TimeUtils/TTimerManager.h
         Extra/DSimpleTimeCalculator.cpp Extra/DSimpleTimeCalculator.h
         TDefine.h)
 

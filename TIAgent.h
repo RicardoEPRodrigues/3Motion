@@ -17,15 +17,18 @@ namespace ThreeMotion {
     class TIAgent : public std::enable_shared_from_this<TIAgent> {
         public:
 
+            std::string name;
+
             virtual ~TIAgent() = default;
 
-            virtual void perceive(std::vector<std::shared_ptr<TEvent>> const & events) = 0;
+            virtual void Initialize() = 0;
 
-            virtual void interpret() = 0;
+            virtual void Perceive(
+                    std::vector<std::shared_ptr<TEvent>> const& events) = 0;
 
-            virtual const std::vector<std::shared_ptr<TEvent>> perform() = 0;
+            virtual void Interpret() = 0;
 
-            std::string name;
+            virtual const std::vector<std::shared_ptr<TEvent>> Perform() = 0;
     };
 
 }

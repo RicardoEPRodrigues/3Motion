@@ -8,7 +8,7 @@
 namespace ThreeMotion {
 
     void DReplyReact::_execute() {
-        if (auto mentalState = mentalStateWeak.lock()) {
+        if (auto mentalState = theoryOfMindWeak.lock()) {
             for (auto replyIter = mentalState->self.replies.begin();
                  replyIter != mentalState->self.replies.end(); ++replyIter) {
                 auto reply = (*replyIter);

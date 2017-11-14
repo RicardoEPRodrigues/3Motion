@@ -12,17 +12,13 @@ namespace ThreeMotion {
 
     class TTimeCalculator {
         public:
-            TTimeCalculator() = default;
+            virtual void Update() = 0;
 
-            virtual ~TTimeCalculator() = default;
+            virtual milliseconds StartTime() = 0;
 
-            virtual void update() = 0;
+            virtual milliseconds Now() = 0;
 
-            virtual milliseconds startTime() = 0;
-
-            virtual milliseconds now() = 0;
-
-            virtual milliseconds delta() = 0;
+            virtual milliseconds Delta() = 0;
     };
 }
 

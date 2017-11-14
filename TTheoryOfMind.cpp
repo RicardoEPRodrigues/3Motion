@@ -60,7 +60,7 @@ namespace ThreeMotion {
         auto otherIter = std::find_if(others.begin(), others.end(),
                                       [agentName](
                                               const TOtherMentalState other) {
-                                          return other.agentHasName(agentName);
+                                          return other.AgentHasName(agentName);
                                       });
         if (otherIter == others.end()) {
             return nullptr;

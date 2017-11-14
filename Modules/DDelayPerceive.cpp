@@ -6,12 +6,13 @@
 #include "DDelayPerceive.h"
 
 namespace ThreeMotion {
-    void DDelayPerceive::_execute(const std::vector<std::shared_ptr<TEvent>>& events) {
+    void DDelayPerceive::_execute(
+            std::vector<std::shared_ptr<TEvent>> const& events) {
         for (const auto& eventIter : events) {
             milliseconds timeToPerceive = eventIter->timeToPerceive();
-            std::shared_ptr<TEvent> event = eventIter;
-            wait(timeToPerceive, [this, event]() {
-                if (auto mentalState = mentalStateWeak.lock()) {
+            const std::shared_ptr<TEvent>& event = eventIter;
+            Wait(timeToPerceive, [this, event]() {
+                if (auto mentalState = theoryOfMindWeak.lock()) {
                     auto eventshr = event;
                     mentalState->Update(eventshr);
                 }

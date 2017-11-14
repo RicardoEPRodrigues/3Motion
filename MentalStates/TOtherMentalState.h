@@ -14,9 +14,9 @@ namespace ThreeMotion {
         public:
             TStageType stage = ANTICIPATION_INTERRUPTIBLE;
 
-            bool updateAction{};
+            bool UpdateAction{};
 
-            bool updateEmotion{};
+            bool UpdateEmotion{};
 
             TOtherMentalState() = default;
 

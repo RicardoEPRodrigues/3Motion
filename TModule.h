@@ -7,58 +7,62 @@
 #ifndef DIVISACTION_DIVISACTIONMODULE_H
 #define DIVISACTION_DIVISACTIONMODULE_H
 
-#include "TimeUtils/DTimerManager.h"
+#include "TimeUtils/TTimerManager.h"
 #include "TTheoryOfMind.h"
-#include "Extra/Module.h"
+#include "IModule.h"
 
 namespace ThreeMotion {
 
     template<typename T, typename U>
-    class TModule : public DTimerManager, public Module<T, U> {
+    class TModule : public TTimerManager, public IModule<T, U> {
         protected:
-            std::weak_ptr<TTheoryOfMind> mentalStateWeak;
+            std::weak_ptr<TTheoryOfMind> theoryOfMindWeak;
 
             virtual T _execute(U param) = 0;
 
         public:
-            TModule() : mentalStateWeak(std::make_shared<TTheoryOfMind>()) {};
+            TModule()
+                    : TTimerManager(), IModule<void, U>(),
+                      theoryOfMindWeak() { };
 
             ~TModule() override = default;
 
-            void Initialize(std::shared_ptr<TTheoryOfMind> mentalState) {
-                this->mentalStateWeak = mentalState;
+            void Initialize(std::shared_ptr<TTheoryOfMind> const& mentalState) {
+                this->theoryOfMindWeak = mentalState;
             };
 
             T Execute(U param) override {
-                timersUpdate();
+                UpdateTimers();
                 return _execute(param);
             }
 
     };
 
     template<typename T>
-    class TModule<T, void> : public DTimerManager, public Module<T, void> {
+    class TModule<T, void> : public TTimerManager, public IModule<T, void> {
         protected:
-            std::weak_ptr<TTheoryOfMind> mentalStateWeak;
+            std::weak_ptr<TTheoryOfMind> theoryOfMindWeak;
 
             virtual T _execute() = 0;
+
         public:
-            TModule() : mentalStateWeak(std::make_shared<TTheoryOfMind>()) {};
+            TModule()
+                    : TTimerManager(), IModule<void, void>(),
+                      theoryOfMindWeak() { };
 
             ~TModule() override = default;
 
-            void Initialize(std::shared_ptr<TTheoryOfMind> mentalState) {
-                this->mentalStateWeak = mentalState;
+            void Initialize(std::shared_ptr<TTheoryOfMind> const& mentalState) {
+                this->theoryOfMindWeak = mentalState;
             };
 
             T Execute() override {
-                timersUpdate();
+                UpdateTimers();
                 return _execute();
             }
-
     };
 
-    typedef TModule<void, const std::vector<std::shared_ptr<TEvent>>&> PerceiveModule;
+    typedef TModule<void, std::vector<std::shared_ptr<TEvent>> const&> PerceiveModule;
     typedef TModule<void, void> InterpretModule;
     typedef TModule<void, std::vector<std::shared_ptr<TEvent>>&> PerformModule;
 

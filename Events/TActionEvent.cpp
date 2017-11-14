@@ -29,7 +29,7 @@ namespace ThreeMotion {
     void TActionEvent::update(TSelfMentalState&, TOtherMentalState& state) {
         state.action = this->action;
         state.stage = this->stage;
-        state.updateAction = true;
+        state.UpdateAction = true;
     }
 
 } /* namespace ThreeMotion */

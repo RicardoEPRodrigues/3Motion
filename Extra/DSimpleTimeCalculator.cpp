@@ -11,19 +11,19 @@ namespace ThreeMotion {
 
     DSimpleTimeCalculator::~DSimpleTimeCalculator() {}
 
-    void DSimpleTimeCalculator::update() {
+    void DSimpleTimeCalculator::Update() {
         // Purposely left empty
     }
 
-    milliseconds DSimpleTimeCalculator::startTime() {
+    milliseconds DSimpleTimeCalculator::StartTime() {
         return _startTime;
     }
 
-    milliseconds DSimpleTimeCalculator::now() {
+    milliseconds DSimpleTimeCalculator::Now() {
         return _nowTime;
     }
 
-    milliseconds DSimpleTimeCalculator::delta() {
+    milliseconds DSimpleTimeCalculator::Delta() {
         return _deltaTime;
     }
 

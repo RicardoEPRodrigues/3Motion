@@ -8,7 +8,7 @@
 namespace ThreeMotion {
 
     void DPerform::_execute(std::vector<std::shared_ptr<TEvent>>& responseEvents) {
-        if (auto mentalState = mentalStateWeak.lock()) {
+        if (auto mentalState = theoryOfMindWeak.lock()) {
             std::vector<std::shared_ptr<TEvent>> events = std::vector<std::shared_ptr<TEvent>>();
 
             if (mentalState->self.action) {

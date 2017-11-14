@@ -8,7 +8,7 @@
 #define STAGES_TIMEPROGRESSIVESTAGE_H_
 
 #include "../TStage.h"
-#include "../DTime.h"
+#include "../TTime.h"
 
 namespace ThreeMotion {
 

@@ -14,7 +14,7 @@ namespace ThreeMotion {
             : TExecutable(std::move(name)), complete(false),
               playing(false), timeToPerceive(timeToPerceive) {}
 
-    TStage::TStage(const TStage &other) = default;
+    TStage::TStage(const TStage &) = default;
 
     TStage::~TStage() = default;
 

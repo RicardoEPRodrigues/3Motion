@@ -22,13 +22,13 @@ namespace ThreeMotion {
 
             DChronoTimeCalculator();
 
-            virtual void update() override;
+            void Update() override;
 
-            virtual milliseconds now() override;
+            milliseconds Now() override;
 
-            virtual milliseconds delta() override;
+            milliseconds Delta() override;
 
-            milliseconds startTime() override;
+            milliseconds StartTime() override;
 
     };
 }

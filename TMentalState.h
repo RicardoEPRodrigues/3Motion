@@ -19,13 +19,13 @@ namespace ThreeMotion {
 
             std::shared_ptr<class TEmotion> emotion;
 
-            bool agentHasName(std::string name) const;
+            bool AgentHasName(std::string name) const;
 
-            bool actionHasName(std::string name) const;
+            bool ActionHasName(std::string name) const;
 
             virtual bool IsActionInStage(TStageType stageType) const;
 
-            bool emotionHasName(std::string name) const;
+            bool EmotionHasName(std::string name) const;
     };
 
 } /* namespace ThreeMotion */

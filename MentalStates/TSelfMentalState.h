@@ -39,29 +39,31 @@ namespace ThreeMotion {
 
             bool updateReplies;
 
-            virtual void addAction(std::shared_ptr<TAction> const & action);
+            virtual void AddAction(std::shared_ptr<TAction> const& action);
 
-            virtual void removeAction(std::shared_ptr<TAction> const & action);
+            virtual void RemoveAction(std::shared_ptr<TAction> const& action);
 
-            std::shared_ptr<TAction> getAction(unsigned int index) const;
+            std::shared_ptr<TAction> GetAction(unsigned int index) const;
 
-            std::shared_ptr<TAction> getAction(const std::string& name) const;
+            std::shared_ptr<TAction> GetAction(const std::string& name) const;
 
-            std::shared_ptr<TAction> getAction(const std::shared_ptr<TAction>& action) const;
+            std::shared_ptr<TAction> GetAction(
+                    const std::shared_ptr<TAction>& action) const;
 
-            unsigned long countActions() const;
+            unsigned long CountActions() const;
 
-            virtual void addEmotion(std::shared_ptr<TEmotion> const & emotion);
+            virtual void AddEmotion(std::shared_ptr<TEmotion> const& emotion);
 
-            virtual void removeEmotion(std::shared_ptr<TEmotion> const & emotion);
+            virtual void RemoveEmotion(std::shared_ptr<TEmotion> const& emotion);
 
-            std::shared_ptr<TEmotion> getEmotion(unsigned int index) const;
+            std::shared_ptr<TEmotion> GetEmotion(unsigned int index) const;
 
-            std::shared_ptr<TEmotion> getEmotion(const std::string& name) const;
+            std::shared_ptr<TEmotion> GetEmotion(const std::string& name) const;
 
-            std::shared_ptr<TEmotion> getEmotion(const std::shared_ptr<TEmotion>& emotion) const;
+            std::shared_ptr<TEmotion> GetEmotion(
+                    const std::shared_ptr<TEmotion>& emotion) const;
 
-            unsigned long countEmotions() const;
+            unsigned long CountEmotions() const;
 
     };
 

@@ -8,13 +8,13 @@
 namespace ThreeMotion {
 
     void DSingleEmotionReact::_execute() {
-        if (auto mentalState = mentalStateWeak.lock()) {
-            if (!alreadyFelt && mentalState->self.countEmotions() > 0) {
+        if (auto mentalState = theoryOfMindWeak.lock()) {
+            if (!alreadyFelt && mentalState->self.CountEmotions() > 0) {
                 if (mentalState->self.emotion) {
                     mentalState->self.emotion->Reset();
                 }
 
-                mentalState->self.emotion = mentalState->self.getEmotion(0);
+                mentalState->self.emotion = mentalState->self.GetEmotion(0);
                 alreadyFelt = true;
             }
         }

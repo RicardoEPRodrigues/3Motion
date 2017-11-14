@@ -33,7 +33,7 @@ namespace ThreeMotion {
     }
 
     TExecutable::ExecutionState DTimeProgressiveStage::onUpdate() {
-        elapsedTime += DTime::delta();
+        elapsedTime += TTime::Delta();
         if (elapsedTime > duration) {
             Reset();
             return ExecutionState::ENDED;

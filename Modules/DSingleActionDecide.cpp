@@ -8,10 +8,10 @@
 namespace ThreeMotion {
 
     void DSingleActionDecide::_execute() {
-        if (auto mentalState = mentalStateWeak.lock()) {
+        if (auto mentalState = theoryOfMindWeak.lock()) {
             if (!alreadyActed && !mentalState->self.action &&
-                mentalState->self.countActions() > 0) {
-                mentalState->self.action = mentalState->self.getAction(0);
+                    mentalState->self.CountActions() > 0) {
+                mentalState->self.action = mentalState->self.GetAction(0);
                 alreadyActed = true;
             }
         }

@@ -9,10 +9,10 @@
 namespace ThreeMotion {
 
     void DSingleReplyReact::_execute() {
-        if (auto mentalState = mentalStateWeak.lock()) {
+        if (auto mentalState = theoryOfMindWeak.lock()) {
             for (auto mentalRep = mentalState->others.begin();
                  mentalRep != mentalState->others.end(); ++mentalRep) {
-                if (mentalRep->updateAction) {
+                if (mentalRep->UpdateAction) {
                     if (mentalRep->action
                         && (mentalRep->stage == TStageType::ANTICIPATION_INTERRUPTIBLE
                             || mentalRep->stage == TStageType::ANTICIPATION_UNINTERRUPTIBLE
@@ -25,13 +25,14 @@ namespace ThreeMotion {
                                 }
 
                                 auto emotionIndex = static_cast<unsigned int>(int(
-                                        rand() % mentalState->self.countEmotions()));
-                                mentalState->self.emotion = mentalState->self.getEmotion(
+                                        rand() %
+                                                mentalState->self.CountEmotions()));
+                                mentalState->self.emotion = mentalState->self.GetEmotion(
                                         emotionIndex);
                                 mentalState->self.emotion->replyToAgent = origin;
                             }
                         }
-                        mentalRep->updateAction = false;
+                        mentalRep->UpdateAction = false;
                     }
                 }
             }
