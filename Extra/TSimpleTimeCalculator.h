@@ -6,19 +6,19 @@
 #ifndef DIVISACTION_DSIMPLETIMECALCULATOR_H
 #define DIVISACTION_DSIMPLETIMECALCULATOR_H
 
-#include "../TTimeCalculator.h"
+#include "../TITimeCalculator.h"
 
 namespace ThreeMotion {
 
-    class DSimpleTimeCalculator : public TTimeCalculator {
+    class TSimpleTimeCalculator : public TITimeCalculator {
         private:
             milliseconds _deltaTime;
             milliseconds _nowTime;
             milliseconds _startTime;
         public:
-            DSimpleTimeCalculator();
+            TSimpleTimeCalculator();
 
-            virtual ~DSimpleTimeCalculator();
+            virtual ~TSimpleTimeCalculator();
 
             void Update() override;
 

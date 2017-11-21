@@ -28,7 +28,7 @@ namespace ThreeMotion {
         if (!playing || complete) {
             return ExecutionState::ENDED;
         }
-        return onUpdate();
+        return OnUpdate();
     }
 
     void TStage::Reset() {

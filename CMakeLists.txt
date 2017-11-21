@@ -31,14 +31,14 @@ set(SOURCE_FILES
         TEmotion.cpp TEmotion.h
         TEvent.cpp TEvent.h
         TExecutable.h TExecutable.cpp
-        TTimeCalculator.h
+        TITimeCalculator.h
         TStageType.h
         TStage.cpp TStage.h
         TTime.cpp TTime.h
         TMentalState.cpp TMentalState.h
         Extra/StdExtras.h
-        Extra/DTimeProgressiveStage.cpp Extra/DTimeProgressiveStage.h
-        Extra/DChronoTimeCalculator.cpp Extra/DChronoTimeCalculator.h
+        Extra/TTimeProgressiveStage.cpp Extra/TTimeProgressiveStage.h
+        Extra/TChronoTimeCalculator.cpp Extra/TChronoTimeCalculator.h
         Events/TActionEvent.cpp Events/TActionEvent.h
         Events/TEmotionEvent.cpp Events/TEmotionEvent.h
         TTheoryOfMind.cpp TTheoryOfMind.h
@@ -58,7 +58,7 @@ set(SOURCE_FILES
         TimeUtils/TTimerWait.cpp TimeUtils/TTimerWait.h
         TimeUtils/TTimerIfWait.cpp TimeUtils/TTimerIfWait.h
         TimeUtils/TTimerManager.cpp TimeUtils/TTimerManager.h
-        Extra/DSimpleTimeCalculator.cpp Extra/DSimpleTimeCalculator.h
+        Extra/TSimpleTimeCalculator.cpp Extra/TSimpleTimeCalculator.h
         TDefine.h)
 
 add_library(ThreeMotion SHARED ${SOURCE_FILES})

@@ -10,7 +10,7 @@
 
 namespace ThreeMotion {
 
-    class TTimeCalculator {
+    class TITimeCalculator {
         public:
             virtual void Update() = 0;
 

@@ -8,7 +8,7 @@
 #define TIME_H_
 
 #include <memory>
-#include "TTimeCalculator.h"
+#include "TITimeCalculator.h"
 
 namespace ThreeMotion {
 
@@ -16,11 +16,11 @@ namespace ThreeMotion {
         private:
             TTime();
 
-            static std::shared_ptr<TTimeCalculator> _timeCalculator;
+            static std::shared_ptr<TITimeCalculator> _timeCalculator;
         public:
 
             static void SetTimeCalculator(
-                    std::shared_ptr<TTimeCalculator> const& timeCalculator);
+                    std::shared_ptr<TITimeCalculator> const& timeCalculator);
 
             static void Update();
 

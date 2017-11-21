@@ -19,7 +19,7 @@ namespace ThreeMotion {
               replyToAgent() { }
 
     TEmotion::TEmotion(const TEmotion& other) : TExecutable(other), running(other.running),
-                                                stage(other.stage->clone()),
+                                                stage(other.stage->Clone()),
                                                 replyText(other.replyText),
                                                 replyToAgent(other.replyToAgent) { }
 

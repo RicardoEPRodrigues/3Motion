@@ -24,7 +24,7 @@ namespace ThreeMotion {
         for (unsigned int stageType = 0;
              stageType < other.stages.size(); ++stageType) {
             if (other.stages[stageType]) {
-                stages[stageType] = other.stages[stageType]->clone();
+                stages[stageType] = other.stages[stageType]->Clone();
             }
         }
     }

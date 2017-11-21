@@ -14,6 +14,15 @@
 namespace ThreeMotion {
 
     class TStage : public TExecutable {
+        private:
+            bool complete;
+            bool playing;
+            milliseconds timeToPerceive;
+        protected:
+            virtual void OnStart() = 0;
+
+            virtual ExecutionState OnUpdate() = 0;
+
         public:
 
             TStage();
@@ -24,7 +33,7 @@ namespace ThreeMotion {
 
             ~TStage() override;
 
-            virtual std::shared_ptr<TStage> clone() const = 0;
+            virtual std::shared_ptr<TStage> Clone() const = 0;
 
             void Start();
 
@@ -43,15 +52,7 @@ namespace ThreeMotion {
 
             void SetTimeToPerceive(milliseconds timeToPerceive);
 
-        protected:
-            virtual void OnStart() = 0;
 
-            virtual ExecutionState onUpdate() = 0;
-
-        private:
-            bool complete;
-            bool playing;
-            milliseconds timeToPerceive;
     };
 
 } /* namespace ThreeMotion */

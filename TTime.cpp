@@ -8,12 +8,12 @@
 
 
 namespace ThreeMotion {
-    std::shared_ptr<TTimeCalculator> TTime::_timeCalculator = nullptr;
+    std::shared_ptr<TITimeCalculator> TTime::_timeCalculator = nullptr;
 
     TTime::TTime() = default;
 
     void TTime::SetTimeCalculator(
-            std::shared_ptr<TTimeCalculator> const& timeCalculator) {
+            std::shared_ptr<TITimeCalculator> const& timeCalculator) {
         _timeCalculator = timeCalculator;
     }
 

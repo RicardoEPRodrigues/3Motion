@@ -3,30 +3,32 @@
  * 
  * Copyright (C) Ricardo Rodrigues 2016 - All Rights Reserved
  */
-#include "DChronoTimeCalculator.h"
+#include "TChronoTimeCalculator.h"
 
 using namespace std;
 using namespace std::chrono;
 
 namespace ThreeMotion {
-    DChronoTimeCalculator::DChronoTimeCalculator() : started(false), _startTime(0),
-                                                     _now(0), realtimeNow(0), _delta(0) {}
+    TChronoTimeCalculator::TChronoTimeCalculator() : started(false),
+                                                     _startTime(0),
+                                                     _now(0), realtimeNow(0),
+                                                     _delta(0) { }
 
 
-    milliseconds DChronoTimeCalculator::StartTime() {
+    milliseconds TChronoTimeCalculator::StartTime() {
         return _startTime;
     }
 
-    milliseconds DChronoTimeCalculator::Now() {
+    milliseconds TChronoTimeCalculator::Now() {
         return _now;
     }
 
 
-    milliseconds DChronoTimeCalculator::Delta() {
+    milliseconds TChronoTimeCalculator::Delta() {
         return _delta;
     }
 
-    void DChronoTimeCalculator::Update() {
+    void TChronoTimeCalculator::Update() {
         milliseconds now = chrono::duration_cast<chrono::milliseconds>(
                 system_clock::now().time_since_epoch()).count();
         if (!started) {
