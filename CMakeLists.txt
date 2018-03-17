@@ -21,8 +21,6 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast")
 endif ()
 
-include_directories(Actions Agents Exceptions Extra Stages Emotions Events)
-
 set(SOURCE_FILES
         TWorldManager.cpp TWorldManager.h
         TIAgent.h
