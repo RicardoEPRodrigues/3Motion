@@ -9,7 +9,7 @@
 
 #include "TimeUtils/TTimerManager.h"
 #include "TTheoryOfMind.h"
-#include "IModule.h"
+#include "Extra/IModule.h"
 
 namespace ThreeMotion {
 

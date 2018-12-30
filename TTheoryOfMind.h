@@ -9,8 +9,8 @@
 #include <memory>
 
 #include "TMentalState.h"
-#include "TActionEvent.h"
-#include "TEmotionEvent.h"
+#include "Events/TActionEvent.h"
+#include "Events/TEmotionEvent.h"
 #include "MentalStates/TSelfMentalState.h"
 #include "MentalStates/TOtherMentalState.h"
 

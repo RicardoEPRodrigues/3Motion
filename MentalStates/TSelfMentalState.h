@@ -13,7 +13,7 @@
 #include "../Extra/StdExtras.h"
 #include "../TMentalState.h"
 #include "../TIAgent.h"
-#include "TEmotionEvent.h"
+#include "../Events/TEmotionEvent.h"
 
 namespace ThreeMotion {
 

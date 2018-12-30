@@ -15,7 +15,7 @@
 #include "TAction.h"
 #include "TEvent.h"
 #include "TEmotion.h"
-#include "TActionEvent.h"
+#include "Events/TActionEvent.h"
 #include "TTheoryOfMind.h"
 #include "TModule.h"
 
