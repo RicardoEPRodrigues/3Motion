@@ -12,7 +12,7 @@ namespace ThreeMotion {
     TChronoTimeCalculator::TChronoTimeCalculator() : started(false),
                                                      _startTime(0),
                                                      _now(0), realtimeNow(0),
-                                                     _delta(0) { }
+                                                     _delta(0) {}
 
 
     milliseconds TChronoTimeCalculator::StartTime() {
@@ -29,7 +29,7 @@ namespace ThreeMotion {
     }
 
     void TChronoTimeCalculator::Update() {
-        milliseconds now = chrono::duration_cast<chrono::milliseconds>(
+        milliseconds now = chrono::duration<milliseconds, milli>(
                 system_clock::now().time_since_epoch()).count();
         if (!started) {
             _startTime = _now = realtimeNow = now;

@@ -9,7 +9,7 @@
 namespace ThreeMotion {
 
     TTimer::TTimer(milliseconds duration) : counter(0), duration(duration),
-                                            playing(false) { }
+                                            playing(true) { }
 
     TTimer::~TTimer() = default;
 

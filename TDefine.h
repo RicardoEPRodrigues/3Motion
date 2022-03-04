@@ -7,7 +7,7 @@
 #define THREEMOTION_TDEFINE_H
 
 namespace ThreeMotion {
-    typedef float milliseconds;
+    typedef double milliseconds;
 }
 
 #endif //THREEMOTION_TDEFINE_H
