@@ -22,42 +22,42 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 endif ()
 
 set(SOURCE_FILES
-        TWorldManager.cpp TWorldManager.h
-        TIAgent.h
-        TAction.cpp TAction.h
-        TAgent.cpp TAgent.h
-        TEmotion.cpp TEmotion.h
-        TEvent.cpp TEvent.h
-        TExecutable.h TExecutable.cpp
-        TITimeCalculator.h
-        TStageType.h
-        TStage.cpp TStage.h
-        TTime.cpp TTime.h
-        TMentalState.cpp TMentalState.h
-        Extra/StdExtras.h
-        Extra/TTimeProgressiveStage.cpp Extra/TTimeProgressiveStage.h
-        Extra/TChronoTimeCalculator.cpp Extra/TChronoTimeCalculator.h
-        Events/TActionEvent.cpp Events/TActionEvent.h
-        Events/TEmotionEvent.cpp Events/TEmotionEvent.h
-        TTheoryOfMind.cpp TTheoryOfMind.h
-        ThreeMotion.h
-        MentalStates/TSelfMentalState.cpp MentalStates/TSelfMentalState.h
-        MentalStates/TOtherMentalState.cpp MentalStates/TOtherMentalState.h
-        TModule.h
-        Extra/IModule.h
-        Modules/DDelayPerceive.cpp Modules/DDelayPerceive.h
-        Modules/DPerform.cpp Modules/DPerform.h
-        Modules/DSingleActionDecide.cpp Modules/DSingleActionDecide.h
-        Modules/DSingleEmotionReact.cpp Modules/DSingleEmotionReact.h
-        Modules/DSingleReplyReact.cpp Modules/DSingleReplyReact.h
-        Modules/DReplyReact.cpp Modules/DReplyReact.h
-        Modules/DDelayedDecide.cpp Modules/DDelayedDecide.h
-        TimeUtils/TTimer.cpp TimeUtils/TTimer.h
-        TimeUtils/TTimerWait.cpp TimeUtils/TTimerWait.h
-        TimeUtils/TTimerIfWait.cpp TimeUtils/TTimerIfWait.h
-        TimeUtils/TTimerManager.cpp TimeUtils/TTimerManager.h
-        Extra/TSimpleTimeCalculator.cpp Extra/TSimpleTimeCalculator.h
-        TDefine.h)
+        Source/TWorldManager.cpp Source/TWorldManager.h
+        Source/TIAgent.h
+        Source/TAction.cpp Source/TAction.h
+        Source/TAgent.cpp Source/TAgent.h
+        Source/TEmotion.cpp Source/TEmotion.h
+        Source/TEvent.cpp Source/TEvent.h
+        Source/TExecutable.h Source/TExecutable.cpp
+        Source/TITimeCalculator.h
+        Source/TStageType.h
+        Source/TStage.cpp Source/TStage.h
+        Source/TTime.cpp Source/TTime.h
+        Source/TMentalState.cpp Source/TMentalState.h
+        Source/Extra/StdExtras.h
+        Source/Extra/TTimeProgressiveStage.cpp Source/Extra/TTimeProgressiveStage.h
+        Source/Extra/TChronoTimeCalculator.cpp Source/Extra/TChronoTimeCalculator.h
+        Source/Events/TActionEvent.cpp Source/Events/TActionEvent.h
+        Source/Events/TEmotionEvent.cpp Source/Events/TEmotionEvent.h
+        Source/TTheoryOfMind.cpp Source/TTheoryOfMind.h
+        Source/ThreeMotion.h
+        Source/MentalStates/TSelfMentalState.cpp Source/MentalStates/TSelfMentalState.h
+        Source/MentalStates/TOtherMentalState.cpp Source/MentalStates/TOtherMentalState.h
+        Source/TModule.h
+        Source/Extra/IModule.h
+        Source/Modules/DDelayPerceive.cpp Source/Modules/DDelayPerceive.h
+        Source/Modules/DPerform.cpp Source/Modules/DPerform.h
+        Source/Modules/DSingleActionDecide.cpp Source/Modules/DSingleActionDecide.h
+        Source/Modules/DSingleEmotionReact.cpp Source/Modules/DSingleEmotionReact.h
+        Source/Modules/DSingleReplyReact.cpp Source/Modules/DSingleReplyReact.h
+        Source/Modules/DReplyReact.cpp Source/Modules/DReplyReact.h
+        Source/Modules/DDelayedDecide.cpp Source/Modules/DDelayedDecide.h
+        Source/TimeUtils/TTimer.cpp Source/TimeUtils/TTimer.h
+        Source/TimeUtils/TTimerWait.cpp Source/TimeUtils/TTimerWait.h
+        Source/TimeUtils/TTimerIfWait.cpp Source/TimeUtils/TTimerIfWait.h
+        Source/TimeUtils/TTimerManager.cpp Source/TimeUtils/TTimerManager.h
+        Source/Extra/TSimpleTimeCalculator.cpp Source/Extra/TSimpleTimeCalculator.h
+        Source/TDefine.h)
 
 add_library(ThreeMotion SHARED ${SOURCE_FILES})
 
